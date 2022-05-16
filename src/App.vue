@@ -174,7 +174,8 @@ export default defineComponent({
     const initContract = (currentAccount) => {
       // 定义合约
       const UNIT = 1000000000
-      const abi = JSON.parse(JSON.stringify(ABI.abi))
+      const abi = JSON.parse(JSON.stringify(ABI))
+      
       var myContract = new web3.eth.Contract(abi, ADDRESS, {
         from: currentAccount, // default from address
         gasPrice: `${UNIT*0.001}` // default gas price in wei
