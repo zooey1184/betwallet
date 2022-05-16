@@ -45,7 +45,6 @@ import NavPane from './components/nav.vue'
 import DownloadModal from './components/downloadModal.vue'
 import {toast} from './components/toast'
 import {ADDRESS, ABI} from './constant'
-// import ABI from './constant/abi.json'
 
 export default defineComponent({
   components: {

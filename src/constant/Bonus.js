@@ -1,4 +1,4 @@
-export const api = [
+export const abi = [
   {
     "anonymous": false,
     "inputs": [
