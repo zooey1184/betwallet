@@ -24,6 +24,7 @@ import WalletPane from './components/wallet-pane.vue'
 import {toast} from './components/toast'
 import MNav from './components/m-nav.vue'
 import DownloadModal from './components/download-modal.vue'
+import {ADDRESS, ABI} from './constant'
 
 export default defineComponent({
   components: {
@@ -136,18 +137,19 @@ export default defineComponent({
     const initContract = (currentAccount) => {
       // 定义合约
       const UNIT = 1000000000
-      // const abi = JSON.parse(JSON.stringify(ABI.abi))
-      // var myContract = new web3.eth.Contract(abi, ADDRESS, {
-      //   from: currentAccount, // default from address
-      //   gasPrice: `${UNIT*0.001}` // default gas price in wei
-      // });
+      const abi = JSON.parse(JSON.stringify(ABI))
+      
+      var myContract = new web3.eth.Contract(abi, ADDRESS, {
+        from: currentAccount, // default from address
+        gasPrice: `${UNIT*0.001}` // default gas price in wei
+      });
     }
+
+    const getAccounts = computed(() => state.accounts)
 
     const handleWalletVisible = () => {
       state.walletVisible = true
     }
-
-    const getAccounts = computed(() => state.accounts)
 
 
     provide('accounts', getAccounts)
