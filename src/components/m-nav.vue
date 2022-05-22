@@ -1,49 +1,44 @@
 <template>
-  <header class="zyqhd flexC Huans">
-		<a href="javascript:;" class="wapNav" @click='handleShowNav'></a>
-		<div class="zyqlogoK Huans flexC">			
-			<a href="javascript:;" class="zyqlogo flexC"><img src="../images/zyq0425/logo.png"></a>
+  <div class="wapMenu">
+		<ul>
+      <li v-for='item in state.typeList'>
+        <a 
+          href="javascript:;"
+          class="hdNavA"
+          @click='handlePick(item)'
+          :class="{'on': state.active === item.value}"
+        >
+          <i class="hdNavI" :style="{backgroundPosition: state.active === item.value ? 'center 100%': ''}" :class="item.icon"></i>
+          <p>{{item.label}}</p>
+        </a>
+      </li>
+		</ul> 
+
+		<div class="zyqhdwal flexC fl-bet"  v-if='ACCOUNTS.isLink'>
+			<i class="zyqhdwalI"></i>
+			<div class="qhdwalN flexC">
+				<p>0</p>
+				<span>$0</span>
+			</div>
+			<a href="javascript:;" class="zyqhdwala IndBac1">wallet</a>
 		</div>
-		<div class="hdNavK flexC">
-			<a href="javascript:;"
-        @click='handlePick(item)'
-        v-for='item in state.typeList' 
-        :class="{'on': state.active === item.value}" 
-        class="hdNavA">
-        <i class="hdNavI" :class="item.icon"></i>
-        <p>{{item.label}}</p>
-      </a>
+    
+		<div class="zyqhdXD" v-if='ACCOUNTS.isLink'>
+			<a href="javascript:;" class="zyqhdId flexC fl-bet Huans">
+				<div class="RightHdI"><img src="../images/zyq0425/pic01.jpg"></div>
+				<div class="RightHdN">
+					<p>{{getId}}</p>
+					<div class="RightHdJ"></div>
+				</div>
+			</a>
 		</div>
 
-		<div class="zyqhdR flexC">
-      <!-- wallet -->
-			<div class="zyqhdwal flexC fl-bet" v-if='ACCOUNTS.isLink'>
-				<i class="zyqhdwalI"></i>
-				<div class="qhdwalN flexC">
-					<p>0</p>
-					<span>$0</span>
-				</div>
-				<a href="javascript:;" class="zyqhdwala IndBac1">wallet</a>
-			</div>
-      <!-- info -->
-			<div class="zyqhdXD" v-if='ACCOUNTS.isLink'>
-				<a href="javascript:;" class="zyqhdId flexC fl-bet Huans">
-					<div class="RightHdI"><img src="../images/zyq0425/pic01.jpg"></div>
-					<div class="RightHdN">
-						<p>{{getId}}</p>
-						<div class="RightHdJ"></div>
-					</div>
-				</a>
-			</div>	
-      
-      <!-- not login  -->
-			<a href="javascript:;" v-if='!ACCOUNTS.isLink' class="hdBut IndBac1" @click='handleConnect'>link wallet</a>
-		</div>
-	</header>
+		<a href="javascript:;" v-if='!ACCOUNTS.isLink' class="hdBut IndBac1">link wallet</a>
+	</div>    
 </template>
 
 <script>
-import { computed, defineComponent, inject, reactive, ref, watch } from 'vue'
+import { computed, defineComponent, reactive, ref, watch, inject } from 'vue'
 
 export default defineComponent({
   components: {},
@@ -88,6 +83,9 @@ export default defineComponent({
     })
 
     const ACCOUNTS = inject('ACCOUNTS')
+    const isLogin = computed(() => props.ID?.length)
+    
+    const getId = computed(() => ACCOUNTS.accountHide.value)
 
     watch(() => props.active, (n) => {
       state.active = n
@@ -97,8 +95,6 @@ export default defineComponent({
     watch(() => state.active, (n) => {
       emit('update:active', n)
     })
-
-    const getId = computed(() => ACCOUNTS.accountHide.value)
 
     const handlePick = (item) => {
       state.active = item.value
@@ -118,12 +114,19 @@ export default defineComponent({
 
     return {
       state,
+      getId,
       ACCOUNTS,
       handlePick,
+      isLogin,
       handleConnect,
-      handleShowNav,
-      getId
+      handleShowNav
     }
   }
 })
 </script>
+
+<style lang="less" scoped>
+.on {
+  color: #366efc;
+}
+</style>

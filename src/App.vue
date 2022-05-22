@@ -1,63 +1,38 @@
 <template>
-  <div class="back01">
-	<Header @connect="handleConnect" :ID='addressHide' :userInfo="state.userInfo" @showNav='handleShowNav' />
-	<NavPane :userInfo="state.userInfo" :ID='addressHide' :ETH="state.userInfo?.ETH" />
+  <div>
+    <Header v-model:active='state.active' @link="handleConnect" />
+    <MNav v-model:active='state.active' />
 
-	<div class="TcB"></div>
-	
-	<article class="IndBak Huans">
-		<section class="ward">
-			<HeaderPane :userInfo="state.userInfo" />
+    <LeftSider />
 
-			<section class="IndBet Huans flex fl-bet">
-				<div class="IndBetT wow slideInUp flexC IndBetW" data-wow-duration="1s">
-					<div class="IndBetTI IndBac1"><img src="./images/icon04.png"></div>
-					<div class="IndBetTN">
-						<div class="IndBetTNh">Stake BET</div>
-						<div class="IndBetTNs">Stake <a href="javascript:;">BET</a>&emsp;|&emsp;USDT  Earn dividend pool USDT</div>
-					</div>
-				</div>
+    <RightSider @walletVisible="handleWalletVisible" />
 
-        <DropdownState :userInfo="state.userInfo" />
-				<DropdownReward :userInfo="state.userInfo" />
-				<DropdownRewardClaimed :userInfo="state.userInfo" />
-			</section>
+    <Content />
 
-			<ValueDescription />
-		</section>
-	</article>	
-	<Footer />
-  <DownloadModal v-model:visible="state.downloadModalVisible" />
-</div>
+    <WalletPane v-model:visible="state.walletVisible" />
+    <DownloadModal v-model:visible='state.downloadModalVisible' />
+  </div>
 </template>
 
 <script>
-import { computed, defineComponent, onMounted, provide, reactive, ref } from 'vue'
-import Footer from './components/footer.vue'
-import ValueDescription from './components/value-description.vue'
-import HeaderPane from './components/header-pane.vue'
-import DescriptionDropdown2 from './components/description-dropdown2.vue'
+import { defineComponent, ref, provide, computed, watch, reactive, onMounted } from 'vue'
 import Header from './components/header.vue'
-import DropdownState from './components/dropdown/stake.vue'
-import DropdownReward from './components/dropdown/reward.vue'
-import DropdownRewardClaimed from './components/dropdown/reward-claimed.vue'
-import NavPane from './components/nav.vue'
-import DownloadModal from './components/downloadModal.vue'
+import LeftSider from './components/left-sider.vue'
+import RightSider from './components/right-sider.vue'
+import Content from './components/content.vue'
+import WalletPane from './components/wallet-pane.vue'
 import {toast} from './components/toast'
-import {ADDRESS, ABI} from './constant'
-// import ABI from './constant/abi.json'
+import MNav from './components/m-nav.vue'
+import DownloadModal from './components/download-modal.vue'
 
 export default defineComponent({
   components: {
-    Footer,
-    ValueDescription,
-    HeaderPane,
-    DescriptionDropdown2,
     Header,
-    DropdownState,
-    DropdownReward,
-    DropdownRewardClaimed,
-    NavPane,
+    LeftSider,
+    RightSider,
+    Content,
+    WalletPane,
+    MNav,
     DownloadModal
   },
   props: {},
@@ -66,13 +41,13 @@ export default defineComponent({
       downloadModalVisible: false,
       userInfo: undefined,
       accounts: undefined,
-      id: undefined
+      id: undefined,
+      walletVisible: false,
+      active: '', // footer , baskatball ...,
+      list: []
     })
-    const handleShowNav = () => {
-      $('.TcB').fadeIn(0);
-		  $('.nav').addClass("navO");
-    }
 
+    // 点击连接钱包
     const handleConnect = () => {
       if (typeof window.ethereum !== 'undefined') {
         if (!state.accounts?.length) {
@@ -83,7 +58,6 @@ export default defineComponent({
             window.localStorage.setItem('isLINK', 'true')
           })
           .catch((e) => {
-            console.log('not login: ', e);
             toast(e.message)
             window.localStorage.setItem('isLINK', 'false')
           });
@@ -99,6 +73,7 @@ export default defineComponent({
     const addressHide = computed(() => {
       if (state.id) {
         const len = state.id.length
+        console.log(state.id.substring(0, 3) + '...' + state.id.substring(len-4));
         return state.id.substring(0, 3) + '...' + state.id.substring(len-4)
       }
       return '**'
@@ -120,7 +95,7 @@ export default defineComponent({
         }
       })
     }
-    
+
     const init =  async () => {
       if (typeof web3 !== 'undefined') {
         web3 = new Web3(web3.currentProvider);
@@ -136,19 +111,6 @@ export default defineComponent({
           web3.givenProvider.on("disconnect", (code, reason) => {
             window.location.reload()
           });
-
-          setTimeout(() => {
-            // const provider = new web3.providers.HttpProvider('https://ropsten.infura.io/v3/');
-            // web3.setProvider(provider)
-
-            // const provider = new Web3.providers.WebsocketProvider('wss://infura_ws_url');
-            // provider.on('error', e => console.error('WS Error', e));
-            // provider.on('end', e => console.error('WS End', e));
-
-            // web3.eth.disconnect()
-            // ethereum.close()
-            // window.location.reload()
-          }, 2000)
         })
         if (accounts?.length) {
           state.accounts = accounts
@@ -174,34 +136,42 @@ export default defineComponent({
     const initContract = (currentAccount) => {
       // 定义合约
       const UNIT = 1000000000
-      const abi = JSON.parse(JSON.stringify(ABI.abi))
-      var myContract = new web3.eth.Contract(abi, ADDRESS, {
-        from: currentAccount, // default from address
-        gasPrice: `${UNIT*0.001}` // default gas price in wei
-      });
+      // const abi = JSON.parse(JSON.stringify(ABI.abi))
+      // var myContract = new web3.eth.Contract(abi, ADDRESS, {
+      //   from: currentAccount, // default from address
+      //   gasPrice: `${UNIT*0.001}` // default gas price in wei
+      // });
+    }
+
+    const handleWalletVisible = () => {
+      state.walletVisible = true
     }
 
     const getAccounts = computed(() => state.accounts)
+
+
     provide('accounts', getAccounts)
+    const isLink = computed(() => state.accounts?.length)
+    provide('ACCOUNTS', {
+      accounts: getAccounts,
+      id: getAccounts.value?.[0],
+      accountHide: addressHide,
+      isLink,
+      link: handleConnect,
+
+    })
 
     onMounted(() => {
-      // 滚动动态添加样式
-      $(window).scroll(function(){
-        if($(window).scrollTop() >0){
-          $('header').addClass("IndHC");
-        }else{
-          $('header').removeClass("IndHC");
-        } 
-      });
-
       init()
+      $(window).resize(function () {          //当浏览器大小变化时
+        if($('body').width()>959){$('.wapNav').removeClass('wapNavO');$('.wapMenu').slideUp(100);}
+      });
     })
 
     return {
       state,
-      addressHide,
-      handleConnect,
-      handleShowNav
+      handleWalletVisible,
+      handleConnect
     }
   }
 })

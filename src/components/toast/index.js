@@ -1,5 +1,5 @@
 import { createVNode, render } from "vue";
-import Toast from "./toast.vue";
+import Toast from "./index.vue";
 
 const div = document.createElement("div");
 div.setAttribute("class", "toast");
