@@ -25,7 +25,7 @@ export default defineComponent({
   props: {
     account: {
       type: [String, Number],
-      default: '168.62'
+      default: '-'
     }
   },
   setup(props) {

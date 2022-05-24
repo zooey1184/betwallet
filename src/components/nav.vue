@@ -19,18 +19,18 @@
 				<div class="navNH flexC">
 					<img src="../images/navI01.png">
 					<p>ETH</p>
-					<div class="navNu">{{ETH}}</div>
+					<div class="navNu">{{getBalance.eth}}</div>
 				</div>
-				<!-- <div class="navNH flexC">
+				<div class="navNH flexC">
 					<img src="../images/navI02.png">
 					<p>USDT</p>
-					<div class="navNu">0.786</div>
+					<div class="navNu">{{state.usdt}}</div>
 				</div>
 				<div class="navNH flexC">
 					<img src="../images/navI03.png">
 					<p>BET</p>
-					<div class="navNu">0</div>
-				</div> -->
+					<div class="navNu">{{state.bet}}</div>
+				</div>
 			</div>
 			<div class="navTit flexC fl-bet">
 				<h3>Stake & Rewards</h3>
@@ -56,7 +56,7 @@
 
 
 <script>
-import { defineComponent, inject, onMounted, reactive, ref, watch } from "vue";
+import { computed, defineComponent, inject, onMounted, reactive, ref, watch } from "vue";
 
 
 export default defineComponent({
@@ -70,17 +70,21 @@ export default defineComponent({
     ID: {
       type: [String, Number]
     },
-    ETH: {
-      type: [String, Number]
-    }
   },
   setup(props) {
     const state = reactive({
       isLogin: !!props.userInfo,
       visible: false,
-      clipboard: undefined
+      clipboard: undefined,
+      eth: 0,
+      bet: 0,
+      ustd: 0
     });
     const accounts = inject('accounts')
+    const CONTRACT = inject('CONTRACT')
+    const AMOUNT = inject('AMOUNT')
+    const getAmount = computed(() => AMOUNT.value)
+
 
     watch(
       () => props.userInfo,
@@ -90,6 +94,29 @@ export default defineComponent({
         }
       }
     );
+
+    const getBalance = computed(() => {
+      return {
+        eth: getAmount.value?.ethBalance.value
+      }
+    })
+
+    // watch(() => CONTRACT.value, (n) => {
+    //   if (n) {
+    //     n.methods.usdt().call().then(e => {
+    //       web3.eth.getBalance(e, (err, wei) => {
+    //         const balance = web3.utils.fromWei(wei, 'wei')
+    //         state.usdt = balance
+    //       })
+    //     })
+    //     n.methods.betCoin().call().then(e => {
+    //       web3.eth.getBalance(e, (err, wei) => {
+    //         const balance = web3.utils.fromWei(wei, 'wei')
+    //         state.bet = balance
+    //       })
+    //     })
+    //   }
+    // })
 
     const haddleToggleVisible = () => {
       state.visible = !state.visible;
@@ -129,7 +156,8 @@ export default defineComponent({
       haddleToggleVisible,
       handleDisconnect,
       handleClose,
-      handleCopy
+      handleCopy,
+      getBalance
     };
   },
 });

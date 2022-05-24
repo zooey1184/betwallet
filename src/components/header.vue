@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, ref, watch } from 'vue'
+import { defineComponent, reactive, ref, watch, onMounted } from 'vue'
 
 export default defineComponent({
   components: {},
@@ -42,8 +42,21 @@ export default defineComponent({
     })
 
     const handleShow = () => {
+      $('.TcB').fadeIn(0);
+		  $('.nav').addClass("navO");
       emit('showNav')
     }
+
+    onMounted(() => {
+      // 滚动动态添加样式
+      $(window).scroll(function(){
+        if($(window).scrollTop() >0){
+          $('header').addClass("IndHC");
+        }else{
+          $('header').removeClass("IndHC");
+        } 
+      });
+    })
 
     return {
       handleConnect,

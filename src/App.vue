@@ -1,13 +1,13 @@
 <template>
   <div class="back01">
-	<Header @connect="handleConnect" :ID='addressHide' :userInfo="state.userInfo" @showNav='handleShowNav' />
+	<Header @connect="handleConnect" :ID='addressHide' :userInfo="state.userInfo" />
 	<NavPane :userInfo="state.userInfo" :ID='addressHide' :ETH="state.userInfo?.ETH" />
 
 	<div class="TcB"></div>
 	
 	<article class="IndBak Huans">
 		<section class="ward">
-			<HeaderPane :userInfo="state.userInfo" />
+			<HeaderPane :userInfo="state.userInfo" :account="state.total_bet_today" />
 
 			<section class="IndBet Huans flex fl-bet">
 				<div class="IndBetT wow slideInUp flexC IndBetW" data-wow-duration="1s">
@@ -45,6 +45,8 @@ import NavPane from './components/nav.vue'
 import DownloadModal from './components/downloadModal.vue'
 import {toast} from './components/toast'
 import {ADDRESS, ABI} from './constant'
+import {initWeb3, initContract, getBalance} from './setup'
+import {getBonusInfo} from './api'
 
 export default defineComponent({
   components: {
@@ -65,13 +67,17 @@ export default defineComponent({
       downloadModalVisible: false,
       userInfo: undefined,
       accounts: undefined,
-      id: undefined
+      id: undefined,
+      contract: undefined,
+      maxUnStakeAmount: 0,
+      rewards: 0,
+      historyStakeAmount: 0,
+      historyUnStakeAmount: 0,
+      eth: 0,
+      bet: 0,
+      usdt: 0
     })
-    const handleShowNav = () => {
-      $('.TcB').fadeIn(0);
-		  $('.nav').addClass("navO");
-    }
-
+    
     const handleConnect = () => {
       if (typeof window.ethereum !== 'undefined') {
         if (!state.accounts?.length) {
@@ -103,105 +109,58 @@ export default defineComponent({
       return '**'
     })
 
-    // 获取余额
-    const getBalance = () => {
-      web3.eth.getBalance(state.id, (err, wei) => {
-        const balance = web3.utils.fromWei(wei, 'ether')
-        console.log(balance);
-        
-        web3.eth.getGasPrice((err, res) => {
-          console.log(err, res);
-        })
-        state.userInfo = {
-          _accounts: state.accounts,
-          _balance: balance,
-          ETH: balance
+    const init_web3 = async() => {
+      const res = await initWeb3()
+      if (res) {
+        if (res.accounts?.length) {
+          state.accounts = res.accounts
+          state.id = res.accounts[0]
+          const {bonus, bet, usdt, usdt_address, bonus_address} = await initContract()
+
+          console.log(bonus);
         }
-      })
-    }
-    
-    const init =  async () => {
-      if (typeof web3 !== 'undefined') {
-        web3 = new Web3(web3.currentProvider);
-        const accounts = await ethereum.request({ method: 'eth_accounts' })
-        console.log(accounts);
-        setTimeout(() => {
-          web3.givenProvider.on("accountsChanged", (accounts) => {
-            window.location.reload()
-          });
-          web3.givenProvider.on("chainChanged", (chainId) => {
-            window.location.reload()
-          });
-          web3.givenProvider.on("disconnect", (code, reason) => {
-            window.location.reload()
-          });
-
-          setTimeout(() => {
-            // const provider = new web3.providers.HttpProvider('https://ropsten.infura.io/v3/');
-            // web3.setProvider(provider)
-
-            // const provider = new Web3.providers.WebsocketProvider('wss://infura_ws_url');
-            // provider.on('error', e => console.error('WS Error', e));
-            // provider.on('end', e => console.error('WS End', e));
-
-            // web3.eth.disconnect()
-            // ethereum.close()
-            // window.location.reload()
-          }, 2000)
-        })
-        if (accounts?.length) {
-          state.accounts = accounts
-          state.id = accounts[0]
-          const isLINK = window.localStorage.getItem('isLINK')
-          initContract(state.accounts[0])
-          if (isLINK && isLINK === 'true') {
-            state.userInfo = {
-              _accounts: accounts
-            }
-            window.localStorage.setItem('isLINK', 'true')
-            
-            getBalance()
+        if(res.isLink) {
+          state.userInfo = {
+            _accounts: res.accounts
           }
-        } else {
-          console.log('未连接');
+          state.eth = await getBalance(res.accounts[0], 'ether')
         }
-      } else {
-        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
       }
     }
 
-    const initContract = (currentAccount) => {
-      // 定义合约
-      const UNIT = 1000000000
-      const abi = JSON.parse(JSON.stringify(ABI))
-      
-      var myContract = new web3.eth.Contract(abi, ADDRESS, {
-        from: currentAccount, // default from address
-        gasPrice: `${UNIT*0.001}` // default gas price in wei
-      });
+    const getAccounts = computed(() => state.accounts)
+    const getContract = computed(() => state.contract)
+    const getEth = computed(() => state.eth)
+    const getAmount = computed(() => {
+      return {
+        maxUnStakeAmount: state.maxUnStakeAmount,
+        rewards: state.rewards,
+        historyStakeAmount: state.historyStakeAmount,
+        historyUnStakeAmount: state.historyUnStakeAmount,
+        ethBalance: getEth
+      }
+    })
+    provide('accounts', getAccounts)
+    provide('CONTRACT', getContract)
+    provide('AMOUNT', getAmount)
+
+    const getBonusInfoFn = () => {
+      getBonusInfo().then(res => {
+        console.log(res);
+        const {total_bet_today} = res
+        state.total_bet_today = total_bet_today
+      })
     }
 
-    const getAccounts = computed(() => state.accounts)
-    provide('accounts', getAccounts)
-
     onMounted(() => {
-      // 滚动动态添加样式
-      $(window).scroll(function(){
-        if($(window).scrollTop() >0){
-          $('header').addClass("IndHC");
-        }else{
-          $('header').removeClass("IndHC");
-        } 
-      });
-
-      init()
+      init_web3()
+      getBonusInfoFn()
     })
 
     return {
       state,
       addressHide,
       handleConnect,
-      handleShowNav
     }
   }
 })
