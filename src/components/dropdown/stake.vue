@@ -180,7 +180,7 @@ export default defineComponent({
       const bonus_addr = ALL_ADDRESS.value.bonus
       const wallet_addr = accounts.value[0]
       const obj = await bet.methods.allowance(wallet_addr, bonus_addr).call()
-      if (obj < 1e+30) {
+      if (obj < 1e+28) {
         return false
       } else {
         return true
@@ -189,19 +189,22 @@ export default defineComponent({
     const getPermission = async(callback) => {
       const bet = ALL_CONTRACT.value.bet
       const bonus_addr = ALL_ADDRESS.value.bonus
+      const bet_addr = ALL_ADDRESS.value.bet
       const wallet_addr = accounts.value[0]
       const amount = web3.utils.toHex('11579208923731619542357098500')
+      const block = await web3.eth.getBlock("latest")
+      
+      const gasLimit = block.gasLimit
       const obj = bet.methods['approve'](bonus_addr, amount).encodeABI()
       const gasPrice = await web3.eth.getGasPrice()
-
       const params = {
         from: wallet_addr,
-        to: bonus_addr,
+        to: bet_addr,
         gasPrice: gasPrice,
+        gasLimit: gasLimit,
         data: obj,
         value: '0x00'
       }
-
       window.web3.eth.sendTransaction(params)
       .on('transactionHash', (hash) => {
         callback && callback(hash, null, null)
@@ -215,13 +218,16 @@ export default defineComponent({
     }
 
     const stake = () => {
-      const val = web3.utils.toWei(state.stake, 'wei')
+      const bonus_addr = ALL_ADDRESS.value.bonus
+      const wallet_addr = accounts.value[0]
+      const val = web3.utils.toWei(state.stake, 'ether')
+      console.log(val)
       if (!stakeErrMsg?.length) {
         state.stakeLoading = true
         if (val) {
           const a = CONTRACT.value?.methods.deposit(val).call({
-            from: accounts.value[0],
-            to: CONTRACT.value._address,
+            from: wallet_addr,
+            to: bonus_addr,
           }).then(res => {
             console.log(res);
           }).catch((e) => {
@@ -237,15 +243,15 @@ export default defineComponent({
     }
     const handleStake = async() => {
       state.stakeLoading = true
+      
+      return
       if (state.stake) {
-        // const val = web3.utils.toHex(state.stake)
         const t = await hasPermission()
-        console.log(t);
         state.stakeLoading = false
         if (t) {
           stake()
         } else {
-          const p = await getPermission((h, r, e) => {
+          const p = await getPermission(async(h, r, e) => {
             if (h) {
               stake()
             }
