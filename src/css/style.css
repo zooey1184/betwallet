@@ -45,7 +45,7 @@ span:focus,div:focus {outline: none;}
 .navHeadP{color:#FFF;flex:1;}
 .navHeadJ{margin-left: auto;}
 .navHeadJ img{width:100%;}
-.navTit{}
+
 .navTit h3{color:#7979a0;}
 .navTita{ background:#37375d;color:#FFF;position: relative;}
 .navTita.on{color: #c27bfc;}
@@ -70,7 +70,7 @@ span:focus,div:focus {outline: none;}
 .IndzhiZ1{background-image:url("../images/icon01.png");}
 .IndzhiZ2{background-image:url("../images/icon02.png");}
 .IndzhiFa{color:#FFF;z-index:9}
-.IndBetT{ }
+
 .IndBetTI{border-radius:50%;}
 .IndBetTI img{width:100%;}
 .IndBetTN{flex:1;width: 100%; }
@@ -128,7 +128,7 @@ footer{ border-top:1px solid #252c45;}
 .navHeadI{ width:54px; height:54px;}
 .navHeadP{ font-size:17px;line-height:24px;margin-left: 16px; }
 .navHeadJ{width:8px; margin-left: auto;}
-.navTit{}
+
 .navTit h3{ line-height:40px;font-size:16px;}
 .navTita{line-height:40px;height:40px; padding:0 8px; width: 134px;}
 .navTita .tips{top: 50px;font-size: 14px;}

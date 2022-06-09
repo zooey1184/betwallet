@@ -16,7 +16,7 @@
 					</div>
 				</div>
 				<div class="zyqTis">即将开始</div>
-				<ul class="zyqul">
+				<!-- <ul class="zyqul">
 					<li class="flexC Huans">
 						<div class="zyqulH">
 							<div class="zyqulHs flex"><i></i><p>10:52</p></div>
@@ -35,6 +35,9 @@
 						</div>
 						<a href="javascript:;" class="zyqulNJ"></a>
 					</li>
+				</ul> -->
+				<ul class="zyqul">
+					<sport-item></sport-item>
 				</ul>
 			</section>
 
@@ -80,10 +83,12 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import Swiper from './swiper.vue'
+import SportItem from './sport-item.vue'
 
 export default defineComponent({
   components: {
-    Swiper
+    Swiper,
+		SportItem
   },
   props: {},
   setup(props) {}

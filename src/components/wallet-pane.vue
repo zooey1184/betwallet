@@ -1,122 +1,122 @@
 <template>
-  <div class="wallCn Huans" :class="{ wallCnO: state.visible }">
-    <div class="RightHd flexC fl-bet Huans">
-      <div class="RightHdI"><img src="../images/zyq0425/pic01.jpg" /></div>
-      <div class="RightHdN">
-        <p>{{ getId }}</p>
-        <div class="RightHdJ"></div>
-      </div>
-      <a
-        href="javascript:;"
-        class="RightHda close1"
-        @click="state.visible = false"
-      ></a>
-    </div>
-
-		<!-- Wallet -->
-    <div class="wallCnK Huans">
-      <div class="wallCnT flexC">
-        <i class="wallCnTI wallCnTI1"></i>
-        <p>Wallet</p>
+  <div class="wallCn Huans" style="height: 100vh" :class="{ wallCnO: state.visible }">
+    <div>
+      <div class="RightHd flexC fl-bet Huans">
+        <div class="RightHdI"><img src="../images/zyq0425/pic01.jpg" /></div>
+        <div class="RightHdN">
+          <p>{{ getId }}</p>
+          <div class="RightHdJ"></div>
+        </div>
         <a
           href="javascript:;"
-          class="wallCnJ"
-          :class="{ wallCnJO: !state.walletVisible }"
-          @click="handleToggleWallet"
+          class="RightHda close1"
+          @click="state.visible = false"
         ></a>
       </div>
-
-      <div class="wallCnk" id="walletPane">
-        <div class="navTit flexC fl-end">
-          <div class="navTita Huans flexC fl-bet">
-            <button
-              class="btn"
-              data-clipboard-action="copy"
-              @click="handleCopy"
-              data-clipboard-target="#target1"
-              id="copy_btn1"
-            ></button>
-            <p id="target1">{{ getId }}</p>
-            <img src="../images/navEit.png" />
-            <div class="tips">Copy successful</div>
+      
+          <!-- Wallet -->
+      <div class="wallCnK Huans" style="height: calc(100vh - 120px); overflow: auto; ">
+        <div class="wallCnT flexC">
+          <i class="wallCnTI wallCnTI1"></i>
+          <p>Wallet</p>
+          <a
+            href="javascript:;"
+            class="wallCnJ"
+            :class="{ wallCnJO: !state.walletVisible }"
+            @click="handleToggleWallet"
+          ></a>
+        </div>
+        <div class="wallCnk" id="walletPane">
+          <div class="navTit flexC fl-end">
+            <div class="navTita Huans flexC fl-bet">
+              <button
+                class="btn"
+                data-clipboard-action="copy"
+                @click="handleCopy"
+                data-clipboard-target="#target1"
+                id="copy_btn1"
+              ></button>
+              <p id="target1">{{ getId }}</p>
+              <img src="../images/navEit.png" />
+              <div class="tips">Copy successful</div>
+            </div>
+          </div>
+          <div class="navNR Huans">
+            <div class="navNH flexC">
+              <img src="../images/navI01.png" />
+              <p>ETH</p>
+              <div class="navNu">0.00</div>
+            </div>
+            <div class="navNH flexC">
+              <img src="../images/zyq0425/ZRicon06.png" />
+              <p>USDT</p>
+              <div class="navNu">0.015</div>
+            </div>
           </div>
         </div>
-        <div class="navNR Huans">
-          <div class="navNH flexC">
-            <img src="../images/navI01.png" />
-            <p>ETH</p>
-            <div class="navNu">0.00</div>
-          </div>
-          <div class="navNH flexC">
-            <img src="../images/zyq0425/ZRicon06.png" />
-            <p>USDT</p>
-            <div class="navNu">0.015</div>
-          </div>
+      
+      
+            <!-- 仪表盘 -->
+        <div class="wallCnT flexC">
+          <i class="wallCnTI wallCnTI2"></i>
+          <p>仪表盘</p>
+          <a 
+            href="javascript:;"
+            class="wallCnJ"
+            :class="{ wallCnJO: !state.betVisible }"
+            @click='handleBetVisible'
+          />
         </div>
+        <ul class="wallCnU wallCnk" id="betPane">
+          <li>
+            <div class="navNR Huans">
+              <div class="wallYBP"><img src="../images/zyq0425/pic01.jpg" /></div>
+              <div class="wallYBPz flexC fl-cen">
+                <div class="navTita Huans flexC fl-bet">
+                  <button
+                    class="btn"
+                    data-clipboard-action="copy"
+                    data-clipboard-target="#target"
+                        @click="handleCopy2"
+                    id="copy_btn2"
+                  ></button>
+                  <p id="target">{{ getId }}</p>
+                  <img src="../images/navEit.png" />
+                  <div class="tips2">Copy successful</div>
+                </div>
+                <a href="javascript:;" class="wallYBPa"
+                  ><img src="../images/zyq0425/ZRicon07.png"
+                /></a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="navNR Huans">
+              <div class="navztz flexC fl-cen">
+                <img src="../images/zyq0425/ZRicon09.png" />
+                <p>41%</p>
+              </div>
+              <div class="navztzK flexC fl-cen">
+                <div class="navztzN flexC fl-bet">
+                  <img src="../images/zyq0425/ZRicon03.png" />
+                  <p>Total bet</p>
+                  <span>0</span>
+                </div>
+                <div class="navztzN flexC fl-bet">
+                  <img src="../images/zyq0425/ZRicon04.png" />
+                  <p>Bet won</p>
+                  <span> 0（0%）</span>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
-
-
-			<!-- 仪表盘 -->
-      <div class="wallCnT flexC">
-        <i class="wallCnTI wallCnTI2"></i>
-        <p>仪表盘</p>
-        <a 
-					href="javascript:;"
-					class="wallCnJ"
-					:class="{ wallCnJO: !state.betVisible }"
-					@click='handleBetVisible'
-				/>
-      </div>
-
-      <ul class="wallCnU wallCnk" id="betPane">
-        <li>
-          <div class="navNR Huans">
-            <div class="wallYBP"><img src="../images/zyq0425/pic01.jpg" /></div>
-            <div class="wallYBPz flexC fl-cen">
-              <div class="navTita Huans flexC fl-bet">
-                <button
-                  class="btn"
-                  data-clipboard-action="copy"
-                  data-clipboard-target="#target"
-									@click="handleCopy2"
-                  id="copy_btn2"
-                ></button>
-                <p id="target">{{ getId }}</p>
-                <img src="../images/navEit.png" />
-                <div class="tips2">Copy successful</div>
-              </div>
-              <a href="javascript:;" class="wallYBPa"
-                ><img src="../images/zyq0425/ZRicon07.png"
-              /></a>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="navNR Huans">
-            <div class="navztz flexC fl-cen">
-              <img src="../images/zyq0425/ZRicon09.png" />
-              <p>41%</p>
-            </div>
-            <div class="navztzK flexC fl-cen">
-              <div class="navztzN flexC fl-bet">
-                <img src="../images/zyq0425/ZRicon03.png" />
-                <p>Total bet</p>
-                <span>0</span>
-              </div>
-              <div class="navztzN flexC fl-bet">
-                <img src="../images/zyq0425/ZRicon04.png" />
-                <p>Bet won</p>
-                <span> 0（0%）</span>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
     </div>
-    <a href="javascript:;" class="wallCnBa Huans flexC close1"
-      ><img src="../images/zyq0425/ZRicon05.png" />
-      <p>退出</p></a
-    >
+    <a href="javascript:;" class="wallCnBa Huans flexC close1">
+			<img src="../images/zyq0425/ZRicon05.png" />
+      <p>退出</p>
+		</a>
   </div>
 </template>
 

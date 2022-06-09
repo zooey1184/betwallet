@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <InitProvider>
     <Header v-model:active='state.active' @link="handleConnect" />
     <MNav v-model:active='state.active' />
 
@@ -11,7 +11,7 @@
 
     <WalletPane v-model:visible="state.walletVisible" />
     <DownloadModal v-model:visible='state.downloadModalVisible' />
-  </div>
+  </InitProvider>
 </template>
 
 <script>
@@ -25,6 +25,7 @@ import {toast} from './components/toast'
 import MNav from './components/m-nav.vue'
 import DownloadModal from './components/download-modal.vue'
 import {ADDRESS, ABI} from './constant'
+import InitProvider from './components/init-provider.vue'
 
 export default defineComponent({
   components: {
@@ -34,7 +35,8 @@ export default defineComponent({
     Content,
     WalletPane,
     MNav,
-    DownloadModal
+    DownloadModal,
+    InitProvider
   },
   props: {},
   setup(props) {
@@ -45,7 +47,8 @@ export default defineComponent({
       id: undefined,
       walletVisible: false,
       active: '', // footer , baskatball ...,
-      list: []
+      list: [],
+      betType: 'single', // combo
     })
 
     // 点击连接钱包
@@ -84,8 +87,6 @@ export default defineComponent({
     const getBalance = () => {
       web3.eth.getBalance(state.id, (err, wei) => {
         const balance = web3.utils.fromWei(wei, 'ether')
-        console.log(balance);
-        
         web3.eth.getGasPrice((err, res) => {
           console.log(err, res);
         })
@@ -160,11 +161,20 @@ export default defineComponent({
       accountHide: addressHide,
       isLink,
       link: handleConnect,
-
     })
 
+    // 投注方式
+    const getBetType = computed(() => state.betType)
+    const getBetInfo = computed(() => ({
+      betType: state.betType,
+      changeBetType: (e) => {
+        state.betType = e
+      }
+    }))
+    provide('BET', getBetInfo)
+
     onMounted(() => {
-      init()
+      // init()
       $(window).resize(function () {          //当浏览器大小变化时
         if($('body').width()>959){$('.wapNav').removeClass('wapNavO');$('.wapMenu').slideUp(100);}
       });

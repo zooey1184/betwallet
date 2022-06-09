@@ -1,14 +1,14 @@
 <template>
   <div class="wapMenu">
 		<ul>
-      <li v-for='item in state.typeList'>
+      <li v-for='item in SPORTS'>
         <a 
           href="javascript:;"
           class="hdNavA"
           @click='handlePick(item)'
           :class="{'on': state.active === item.value}"
         >
-          <i class="hdNavI" :style="{backgroundPosition: state.active === item.value ? 'center 100%': ''}" :class="item.icon"></i>
+          <i class="hdNavI" v-if='item.icon' :style="{backgroundPosition: state.active === item.value ? 'center 100%': ''}" :class="item.icon"></i>
           <p>{{item.label}}</p>
         </a>
       </li>
@@ -81,6 +81,7 @@ export default defineComponent({
       active: props.active,
       typeList: TYPE_LIST
     })
+    const SPORTS = inject('SPORTS')
 
     const ACCOUNTS = inject('ACCOUNTS')
     const isLogin = computed(() => props.ID?.length)
@@ -115,6 +116,7 @@ export default defineComponent({
     return {
       state,
       getId,
+      SPORTS,
       ACCOUNTS,
       handlePick,
       isLogin,

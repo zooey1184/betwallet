@@ -12,6 +12,11 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     }
   },
+  server: {
+    proxy: {
+      '/v1': 'http://47.242.226.50:7020'
+    }
+  },
   build: {
     
   }

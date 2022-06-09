@@ -1,7 +1,7 @@
 <template>
   <article class="LeftCn Huans" :class="{LeftCO: !state.visible}">
 		<ul class="LeftUl content" :style="{height: state.height, position: state.visible ? 'relative' : 'absolute'}">
-			<li v-for='(item, index) in state.list' >
+			<li v-for='(item, index) in state.list' @click='state.active=item.value'>
 				<a href="javascript:;" class="LeftUla flexC" :class="{'on': state.active === item.value}">
 					<i class="LeftI" :class="item.icon"></i>
           <p>{{item.label}}</p>
@@ -13,7 +13,7 @@
 
 		<div class="LeftF flexC fl-bet">
 			<!-- 多语言 -->
-			<a href="javascript:;" class="LeftFQ flexC fl-cen"><img src="../images/zyq0425/qi01.png"></a>
+			<a href="javascript:;" class="LeftFQ flexC fl-cen"><img class="i18n-icon" src="../images/zyq0425/qi01.png"></a>
 			<!-- qa -->
 			<div class="LeftW"><img src="../images/icon03.png"></div>
 			<!-- 展开 -->
@@ -42,6 +42,12 @@ export default defineComponent({
         {
           label: 'Bundesliga',
           value: 'Bundesliga',
+          count: 23,
+          icon: 'LeftI1',
+        },
+				{
+          label: 'Bundesliga',
+          value: 'Bundeslig11a',
           count: 23,
           icon: 'LeftI1',
         },
@@ -89,6 +95,19 @@ export default defineComponent({
 	position: absolute;
 }
 .on {
-	background: rgba(10, 14, 23, 0.801);
+	background: #212a33;
+	position: relative;
+	&:before {
+		position: absolute;
+		left: 0;
+		height: 100%;
+		width: 2px;
+		background: #336efc;
+		content: "";
+	}
+}
+.i18n-icon {
+	width: 50%;
+	border-radius: 4px;
 }
 </style>

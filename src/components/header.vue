@@ -7,10 +7,10 @@
 		<div class="hdNavK flexC">
 			<a href="javascript:;"
         @click='handlePick(item)'
-        v-for='item in state.typeList' 
+        v-for='item in SPORTS' 
         :class="{'on': state.active === item.value}" 
         class="hdNavA">
-        <i class="hdNavI" :class="item.icon"></i>
+        <i class="hdNavI" v-if='item.icon' :class="item.icon"></i>
         <p>{{item.label}}</p>
       </a>
 		</div>
@@ -56,36 +56,18 @@ export default defineComponent({
     },
     active: {
       type: String
+    },
+    options: {
+      type: Array
     }
   },
   emits: ['link', 'update:active'],
   setup(props, {emit}) {
-    const TYPE_LIST = [
-      {
-        label: 'football',
-        value: 'football',
-        icon: 'hdNavI1'
-      },
-      {
-        label: 'basketball',
-        value: 'basketball',
-        icon: 'hdNavI2'
-      },
-      {
-        label: 'Esports',
-        value: 'Esports',
-        icon: 'hdNavI3'
-      },
-      {
-        label: 'official website',
-        value: 'website',
-        icon: 'hdNavI4'
-      }
-    ]
     const state = reactive({
       active: props.active,
-      typeList: TYPE_LIST
     })
+
+    const SPORTS = inject('SPORTS')
 
     const ACCOUNTS = inject('ACCOUNTS')
 
@@ -122,7 +104,8 @@ export default defineComponent({
       handlePick,
       handleConnect,
       handleShowNav,
-      getId
+      getId,
+      SPORTS
     }
   }
 })
