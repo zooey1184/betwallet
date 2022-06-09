@@ -198,7 +198,7 @@ export default defineComponent({
         from: wallet_addr,
         to: bonus_addr,
         gasPrice: gasPrice,
-        data: obj,
+        // data: obj,
         value: '0x00'
       }
 
