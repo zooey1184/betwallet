@@ -1,10 +1,12 @@
 import {getConfig} from './api'
-import { ABI } from './constant'
+import { ABI, ERC_ABI } from './constant'
 
-export const initWeb3 = async () => {
+export const initWeb3 = async (pre, after) => {
   if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
+    pre && pre()
     const accounts = await ethereum.request({ method: 'eth_accounts' })
+    after && after()
     setTimeout(() => {
       web3.givenProvider.on("accountsChanged", (accounts) => {
         window.location.reload()
@@ -36,7 +38,11 @@ export const initWeb3 = async () => {
   } else {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
   }
-  return {}
+
+  window.web3 = web3
+  return {
+    web3
+  }
 }
 
 export const initContract = async() => {
@@ -45,9 +51,11 @@ export const initContract = async() => {
 
   const abi = JSON.parse(JSON.stringify(ABI))
 
-  const bonus_contract = new web3.eth.Contract(abi, bonus_address);
-  const bet_contract = new web3.eth.Contract(abi, bet_address);
-  const usdt_contract = new web3.eth.Contract(abi, usdt_address);
+  const bonus_contract = new web3.eth.Contract(abi, '0x9e6aA4354A751991F0Bc28AE04eFcC8AD7b0A794');
+  const bet_contract = new web3.eth.Contract(ERC_ABI.ERC20_ABI, bet_address);
+  const usdt_contract = new web3.eth.Contract(ERC_ABI.ERC20_ABI, usdt_address);
+
+  
   return {
     bonus: bonus_contract,
     bet: bet_contract,
@@ -59,25 +67,50 @@ export const initContract = async() => {
 }
 
 export const initInfo = async(address, contract) => {
-  // 用户编码
-  const userNo = await contract.methods.userToNumberMap(address).call()
+  // // 用户编码
+  // const userNo = await contract.methods.userToNumberMap(address).call()
   
-  // 获取最大提取本金金额  userTotalPledgeAmount[编号]
-  const maxUnStakeAmountFn = contract.methods.userTotalPledgeAmount(userNo).call
-  // 可提取分红
-  const rewardsFn = contract.methods.withdrawBonus(userNo).call
-  // 历史质押金额
-  const historyStakeAmountFn = contract.methods.addUpPledgeAmountMap(userNo).call
-  // 历史提取金额
-  const historyUnStakeAmountFn = contract.methods.addUpWithdrawAmountMap(userNo).call
+  // // 获取最大提取本金金额  userTotalPledgeAmount[编号]
+  // const maxUnStakeAmountFn = contract.methods.userTotalPledgeAmount(userNo).call
+  // // 可提取分红
+  // const rewardsFn = contract.methods.withdrawBonus(userNo).call
+  // // 历史质押金额
+  // const historyStakeAmountFn = contract.methods.addUpPledgeAmountMap(userNo).call
+  // // 历史提取金额
+  // const historyUnStakeAmountFn = contract.methods.addUpWithdrawAmountMap(userNo).call
 
-  const res = await Promise.all([maxUnStakeAmountFn(), rewardsFn(), historyStakeAmountFn(), historyUnStakeAmountFn()])
-  const [maxUnStakeAmount, rewards, historyStakeAmount, historyUnStakeAmount] = res
+  // const res = await Promise.all([maxUnStakeAmountFn(), rewardsFn(), historyStakeAmountFn(), historyUnStakeAmountFn()])
+  // const [maxUnStakeAmount, rewards, historyStakeAmount, historyUnStakeAmount] = res
+  // return {
+  //   maxUnStakeAmount: maxUnStakeAmount || 0,
+  //   rewards: rewards || 0,
+  //   historyStakeAmount: historyStakeAmount || 0,
+  //   historyUnStakeAmount: historyUnStakeAmount || 0
+  // }
+
+  
+  const historyAmount = await contract.methods.userInfo(address).call()
+  // 1、可提取分红， getPendingAmount(address _user)
+  const canRewardAmount = await contract.methods.getPendingAmount(address).call()
+
+  // allRewardAmount
+  const allRewardAmount = historyAmount.addUpWithdrawBonusAmount + canRewardAmount
+
+  // 累计质押总额
+  const allStakeAmount = historyAmount.addUpPledgeAmount
+
+  // 累计提取本金总额
+  const allUnstakeAmount = historyAmount.addUpWithdrawPrincipal
+
+  // 可提取本金最大额
+  const maxUnstakeAmount = historyAmount.amount
+
   return {
-    maxUnStakeAmount: maxUnStakeAmount || 0,
-    rewards: rewards || 0,
-    historyStakeAmount: historyStakeAmount || 0,
-    historyUnStakeAmount: historyUnStakeAmount || 0
+    allRewardAmount,
+    allStakeAmount,
+    allUnstakeAmount,
+    maxUnstakeAmount,
+    canRewardAmount,
   }
 }
 
@@ -88,4 +121,9 @@ export const getBalance = (account, unit='wei') => { // ether
       res(balance)
     })
   })
+}
+
+export const getBalanceOf = async(contract, account, unit = 'wei') => {
+  const res = await contract.methods.balanceOf(account).call()
+  return web3.utils.fromWei(res, unit)
 }

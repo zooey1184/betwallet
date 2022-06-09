@@ -9,7 +9,7 @@ import './js/swiper.min.js'
 // import './js/wow.min.js'
 import './js/clipboard.min.js'
 import './js/web3.min.js'
-
+import 'ant-design-vue/dist/antd.css';
 
 const app = createApp(App)
 app.mount('#app')

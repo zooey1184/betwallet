@@ -11,7 +11,7 @@
       <div class="IndBetYDK" v-else>
         <div class="IndBetYz Huans flexC">
           <div class="IndBetYzH">Amount earned so far:</div>
-          <div class="IndBetYzS">0 USDT</div>
+          <div class="IndBetYzS">{{allRewardAmount}} USDT</div>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, ref, watch } from "vue";
+import { defineComponent, reactive, ref, watch, inject, computed } from "vue";
 import LinkWallet from './link-wallet.vue'
 
 export default defineComponent({
@@ -45,6 +45,8 @@ export default defineComponent({
         }
       }
     );
+    const AMOUNT = inject('AMOUNT')
+    const allRewardAmount = computed(() => AMOUNT.value.allRewardAmount || 0)
 
     const haddleToggleVisible = () => {
       if (!state.visible) {
@@ -58,6 +60,7 @@ export default defineComponent({
     return {
       state,
       haddleToggleVisible,
+      allRewardAmount,
     };
   },
 });

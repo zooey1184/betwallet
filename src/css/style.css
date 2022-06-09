@@ -4,13 +4,21 @@
 
 *{ margin:0; padding:0;}
 
-html{}
-
-body{margin:0;color:#FFF; position: relative; font-family: "Arial"; background-color:#020218; background-image: url("../images/back.png"); background-repeat: no-repeat; background-position: top center; background-size: 100%; background-attachment: fixed}
+body{margin:0;color:#FFF !important; position: relative; font-family: "Arial"; background-color:#020218 !important; background-image: url("../images/back.png"); background-repeat: no-repeat; background-position: top center; background-size: 100%; background-attachment: fixed}
 
 ul,li,p,h1,h2,h3,h4,h5,h6,dl,dt,dd {margin:0px;padding:0px;border:none;list-style:none; font-weight: normal;}
 
-a{outline: none; text-decoration:none;  text-shadow:none;font-weight:normal;-webkit-tap-highlight-color: rgba(255, 255, 255, 0);-webkit-user-select: none;-moz-user-focus: none;-moz-user-select: none;}
+a{
+  outline: none; 
+  text-decoration:none;
+  text-shadow:none;
+  font-weight:normal;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-focus: none;
+  -moz-user-select: none;
+}
 
 ul{list-style:none;}
 
@@ -24,7 +32,9 @@ span{margin:0; padding:0; cursor: auto;}
 
 span:focus,div:focus {outline: none;}
 
-
+body p {
+  margin-bottom: 0;
+}
 
 
 
@@ -44,7 +54,13 @@ span:focus,div:focus {outline: none;}
 
 .fl-end{-webkit-box-pack:right;-ms-flex-pack:right;justify-content:flex-end;}
 
-.InCjs{display:table;background-image:-webkit-linear-gradient(left, #c27bfc,#336efc);-webkit-background-clip:text;-webkit-text-fill-color: transparent;}
+.InCjs{
+  display:table;
+  background-image:-webkit-linear-gradient(left, #c27bfc,#336efc);
+  background-clip:text;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color: transparent;
+}
 
 .IndBac1{background:linear-gradient(to right,#c27bfc,#336efc); color:#FFF;text-align: center; display: block;}
 
@@ -87,8 +103,6 @@ span:focus,div:focus {outline: none;}
 .navHeadJ{margin-left: auto;}
 
 .navHeadJ img{width:100%;}
-
-.navTit{}
 
 .navTit h3{color:#7979a0;}
 
@@ -373,8 +387,6 @@ border-radius:4px;}
 
 .navHeadJ{width:8px; margin-left: auto;}
 
-.navTit{}
-
 .navTit h3{ line-height:40px;font-size:16px;}
 
 
@@ -420,11 +432,6 @@ border-radius:4px;}
 
 
 .IndzhiJ{ font-size:26px; line-height:34px;}
-
-
-
-.IndzhiB{}
-
 
 
 .IndzhiBP{font-size:126px;  font-weight:550;line-height:130px;}
@@ -476,11 +483,6 @@ border-radius:4px;}
 
 
 .IndBetW{width: 525px;}
-
-
-
-.IndBetT{ }
-
 
 
 .IndBetTI{width:58px; height: 58px; border-radius:50%;}
@@ -787,11 +789,6 @@ border-radius:4px;}
 .navHeadJ{width:8px; margin-left: auto;}
 
 
-
-.navTit{}
-
-
-
 .navTit h3{ line-height:40px;font-size:16px;}
 
 
@@ -843,11 +840,6 @@ border-radius:4px;}
 .IndzhiJ{ font-size:24px; line-height:34px;}
 
 
-
-.IndzhiB{}
-
-
-
 .IndzhiBP{font-size:116px;  font-weight:550;line-height:120px;}
 
 
@@ -897,11 +889,6 @@ border-radius:4px;}
 
 
 .IndBetW{width: 500px;}
-
-
-
-.IndBetT{ }
-
 
 
 .IndBetTI{width:58px; height: 58px; border-radius:50%;}
@@ -1210,11 +1197,6 @@ border-radius:3px;}
 .navHeadJ{width:8px; margin-left: auto;}
 
 
-
-.navTit{}
-
-
-
 .navTit h3{ line-height:40px;font-size:14px;}
 
 
@@ -1266,11 +1248,6 @@ border-radius:3px;}
 .IndzhiJ{ font-size:21px; line-height:30px;}
 
 
-
-.IndzhiB{}
-
-
-
 .IndzhiBP{font-size:100px;  font-weight:550;line-height:110px;}
 
 
@@ -1320,12 +1297,6 @@ border-radius:4px;}
 
 
 .IndBetW{width:420px;}
-
-
-
-.IndBetT{ }
-
-
 
 .IndBetTI{width:50px; height:50px; border-radius:50%;}
 
@@ -1627,11 +1598,6 @@ border-radius:4px;}
 .navHeadJ{width:6px; margin-left: auto;}
 
 
-
-.navTit{}
-
-
-
 .navTit h3{ line-height:32px;font-size:14px;}
 
 
@@ -1684,10 +1650,6 @@ border-radius:4px;}
 
 
 
-.IndzhiB{}
-
-
-
 .IndzhiBP{font-size:100px;  font-weight:550;line-height:110px;}
 
 
@@ -1737,11 +1699,6 @@ border-radius:4px;}
 
 
 .IndBetW{width:100%;}
-
-
-
-.IndBetT{ }
-
 
 
 .IndBetTI{width:50px; height:50px; border-radius:50%;}
@@ -2046,11 +2003,6 @@ border-radius:4px;}
 .navHeadJ{width:0.06rem; margin-left: auto;}
 
 
-
-.navTit{}
-
-
-
 .navTit h3{ line-height:0.3rem;font-size:0.12rem;}
 
 
@@ -2176,11 +2128,6 @@ border-radius:3px;}
 
 
 .IndBetTNs{ font-size:0.1rem; line-height:0.18rem;}
-
-
-
-.IndBetNma{}
-
 
 
 .IndBetN{margin-bottom:0.1rem;}

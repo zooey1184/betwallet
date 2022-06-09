@@ -12,10 +12,10 @@
         <div class="IndBetYz Huans">
           <DescriptionDropdown2 />
           <div class="IndBetYzD flexC fl-bet">
-            <a href="javascript:;" class="IndBetYzDN">0 USDT</a>
-            <a href="javascript:;" class="IndBetYzDa">Receive</a>
+            <a href="javascript:;" class="IndBetYzDN">{{canRewardAmount}} USDT</a>
+            <a href="javascript:;" class="IndBetYzDa" @click='handleReceive'>Receive</a>
           </div>
-          <div class="IndBetYzH flexC fl-bet">
+          <div class="IndBetYzH flexC fl-bet" v-if='false'>
             <p>Amount earned today</p>
             <div class="IndBetYzsub">USDT 0.0</div>
           </div>
@@ -26,8 +26,10 @@
 </template>
 
 <script>
-import { defineComponent, reactive, ref, watch } from "vue";
+import { computed, defineComponent, inject, reactive, ref, watch } from "vue";
 import LinkWallet from './link-wallet.vue'
+// import {toast} from '../toast'
+import {message} from 'ant-design-vue'
 
 export default defineComponent({
   components: {
@@ -44,6 +46,8 @@ export default defineComponent({
       visible: false,
     });
 
+    const AMOUNT = inject('AMOUNT')
+    const canRewardAmount = computed(() => AMOUNT.value.canRewardAmount || 0)
     watch(
       () => props.userInfo,
       (n) => {
@@ -52,6 +56,8 @@ export default defineComponent({
         }
       }
     );
+
+    const CONTRACT = inject('CONTRACT')
 
     const haddleToggleVisible = () => {
       if (!state.visible) {
@@ -62,9 +68,23 @@ export default defineComponent({
       state.visible = !state.visible;
     };
 
+    const handleReceive = () => {
+      if (parseFloat(canRewardAmount.value)) {
+        CONTRACT.value?.methods?.claim().call().then((res) => {
+          AMOUNT.value?.getInfo()
+        })
+      } else {
+        // toast('No Rewards to be claimed!')
+        message.error('No Rewards to be claimed!')
+      }
+    }
+
     return {
       state,
+      AMOUNT,
       haddleToggleVisible,
+      canRewardAmount,
+      handleReceive,
     };
   },
 });

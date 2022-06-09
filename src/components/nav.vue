@@ -2,7 +2,9 @@
   <div class="nav Huans">
 		<a href="javascript:;" class="navclose close" @click='handleClose'><img src="../images/close.png"></a>
 		<a href="javascript:;" class="navHead flexC">
-			<div class="navHeadI"></div>
+			<div class="navHeadI">
+        <img src="../images/pic01.jpg" alt="">
+      </div>
 			<div class="navHeadP">ID: {{ID}}</div>
 			<div class="navHeadJ"><img src="../images/navJiao.png"></div>
 		</a>
@@ -19,17 +21,23 @@
 				<div class="navNH flexC">
 					<img src="../images/navI01.png">
 					<p>ETH</p>
-					<div class="navNu">{{getBalance.eth}}</div>
+					<div class="navNu">
+            <a-statistic :valueStyle="{color: 'white', fontSize: '16px'}" :value="getBalance.eth" />
+          </div>
 				</div>
 				<div class="navNH flexC">
 					<img src="../images/navI02.png">
 					<p>USDT</p>
-					<div class="navNu">{{state.usdt}}</div>
+					<div class="navNu">
+            <a-statistic :valueStyle="{color: 'white', fontSize: '16px'}" :value="getBalance.usdt" />
+          </div>
 				</div>
 				<div class="navNH flexC">
 					<img src="../images/navI03.png">
 					<p>BET</p>
-					<div class="navNu">{{state.bet}}</div>
+					<div class="navNu">
+            <a-statistic :valueStyle="{color: 'white', fontSize: '16px'}" :value="getBalance.bet" />
+          </div>
 				</div>
 			</div>
 			<div class="navTit flexC fl-bet">
@@ -38,11 +46,15 @@
 			<div class="navNR Huans">
 				<div class="navNH flexC">
 					<p>BET to be claimed</p>
-					<div class="navNu">0</div>
+					<div class="navNu">
+            <a-statistic :valueStyle="{color: 'white', fontSize: '16px'}" :value="getBalance.allRewardAmount" />
+          </div>
 				</div>
 				<div class="navNH flexC">
 					<p>Staked BET</p>
-					<div class="navNu">0</div>
+					<div class="navNu">
+            <a-statistic :valueStyle="{color: 'white', fontSize: '16px'}" :value="getBalance.allStakeAmount" />
+          </div>
 				</div>
 			</div>
 			
@@ -56,12 +68,13 @@
 
 
 <script>
+import { Statistic } from "ant-design-vue";
 import { computed, defineComponent, inject, onMounted, reactive, ref, watch } from "vue";
-
+// import 
 
 export default defineComponent({
   components: {
-    
+    'a-statistic': Statistic
   },
   props: {
     userInfo: {
@@ -97,26 +110,13 @@ export default defineComponent({
 
     const getBalance = computed(() => {
       return {
-        eth: getAmount.value?.ethBalance.value
+        eth: getAmount.value?.eth.value,
+        bet: getAmount.value?.bet.value,
+        usdt: getAmount.value?.usdt.value,
+        allRewardAmount: getAmount.value?.allRewardAmount,
+        allStakeAmount: getAmount.value?.allStakeAmount
       }
     })
-
-    // watch(() => CONTRACT.value, (n) => {
-    //   if (n) {
-    //     n.methods.usdt().call().then(e => {
-    //       web3.eth.getBalance(e, (err, wei) => {
-    //         const balance = web3.utils.fromWei(wei, 'wei')
-    //         state.usdt = balance
-    //       })
-    //     })
-    //     n.methods.betCoin().call().then(e => {
-    //       web3.eth.getBalance(e, (err, wei) => {
-    //         const balance = web3.utils.fromWei(wei, 'wei')
-    //         state.bet = balance
-    //       })
-    //     })
-    //   }
-    // })
 
     const haddleToggleVisible = () => {
       state.visible = !state.visible;
