@@ -7,7 +7,7 @@
 		<div class="hdNavK flexC">
 			<a href="javascript:;"
         @click='handlePick(item)'
-        v-for='item in SPORTS' 
+        v-for='item in options' 
         :class="{'on': state.active === item.value}" 
         class="hdNavA">
         <i class="hdNavI" v-if='item.icon' :class="item.icon"></i>

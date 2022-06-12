@@ -295,4 +295,7 @@ export default defineComponent({
 	font-size: 16px;
 	margin-bottom: 8px;
 }
+.RighNTita {
+	line-height: 28px !important;
+}
 </style>

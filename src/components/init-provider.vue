@@ -1,17 +1,23 @@
 <template>
-  <div>
+  <a-spin :spinning='state.loading' :delay='500'>
     <slot></slot>
-  </div>
+  </a-spin>
 </template>
 
 <script>
 import { computed, defineComponent, onBeforeMount, onMounted, provide, reactive, ref } from 'vue'
 import {getSports, getSportList} from '../api'
+import {Spin} from 'ant-design-vue'
 
 export default defineComponent({
+  components: {
+    'a-spin': Spin
+  },
   setup(props) {
     const state = reactive({
-      sportsList: []
+      sportsList: [],
+      sportsItemList: [],
+      loading: false
     })
     const handleGetSports = async() => {
       const res = await getSports()
@@ -45,11 +51,41 @@ export default defineComponent({
     })
 
     provide('SPORTS', getSportsList)
-    
 
-    onBeforeMount(() => {
+
+    const getSportItemListFn = async(id) => {
+      state.loading = true
+      const {data} = await getSportList(id)
+      state.loading = false
+      const _data = []
+      data.forEach(item => {
+        _data.push({
+          ...item,
+          label: item.name,
+          value: item.id,
+          icon: 'LeftI1'
+        })
+      });
+      state.sportsItemList = _data
+    }
+    const getSportItemList = computed(() => state.sportsItemList)
+    provide('SPORTS_ITEM_LIST', getSportItemList)
+
+    provide('methods', {
+      handleGetSportItemList: getSportItemListFn,
+      setLoading: (e) => {
+        state.loading = e
+      }
+    })
+
+
+    onMounted(() => {
       handleGetSports()
     })
+
+    return {
+      state
+    }
   }
 })
 </script>

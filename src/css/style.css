@@ -45,13 +45,13 @@ span:focus,div:focus {outline: none;}
 .navHeadP{color:#FFF;flex:1;}
 .navHeadJ{margin-left: auto;}
 .navHeadJ img{width:100%;}
-
+.navTit{}
 .navTit h3{color:#7979a0;}
 .navTita{ background:#37375d;color:#FFF;position: relative;}
 .navTita.on{color: #c27bfc;}
 .navTita p{overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
 .navTita .tips{position: absolute;width: 100%;height: 100%;left: 0;text-align: center;background-color: rgb(57 110 252 / 75%);display: none;color: #fff;}
-.navTita .tips2{position: absolute; top: 32px; width: 100%;height: 100%;left: 0;text-align: center;background-color: rgb(57 110 252 / 75%);display: none;color: #fff;}
+.navTita .tips2{position: absolute; top: 28px; width: 100%;height: 100%;left: 0;text-align: center;background-color: rgb(57 110 252 / 75%);display: none;color: #fff;}
 .navNR{border:1px solid #58587e; color:#FFF;}
 .navNH img{display: block;}
 .navNu{ margin-left: auto;}
@@ -128,7 +128,7 @@ footer{ border-top:1px solid #252c45;}
 .navHeadI{ width:54px; height:54px;}
 .navHeadP{ font-size:17px;line-height:24px;margin-left: 16px; }
 .navHeadJ{width:8px; margin-left: auto;}
-
+.navTit{}
 .navTit h3{ line-height:40px;font-size:16px;}
 .navTita{line-height:40px;height:40px; padding:0 8px; width: 134px;}
 .navTita .tips{top: 50px;font-size: 14px;}

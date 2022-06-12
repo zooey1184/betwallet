@@ -1,11 +1,11 @@
 <template>
   <article class="LeftCn Huans" :class="{LeftCO: !state.visible}">
 		<ul class="LeftUl content" :style="{height: state.height, position: state.visible ? 'relative' : 'absolute'}">
-			<li v-for='(item, index) in state.list' @click='state.active=item.value'>
+			<li v-for='(item, index) in options' class="leftItem" @click='state.active=item.value'>
 				<a href="javascript:;" class="LeftUla flexC" :class="{'on': state.active === item.value}">
 					<i class="LeftI" :class="item.icon"></i>
-          <p>{{item.label}}</p>
-          <span>{{item.count}}</span>
+          <p :title='item.label'>{{item.label}}</p>
+          <span>{{item.count || 0}}</span>
 				</a>
 			</li>
 		</ul>
@@ -30,6 +30,9 @@ export default defineComponent({
   props: {
 		active: {
 			type: [String, Number]
+		},
+		options: {
+			type: Array
 		}
 	},
 	emits: ['update:active'],
@@ -39,18 +42,18 @@ export default defineComponent({
 			posIndex: 0,
 			visible: false,
       list: [
-        {
-          label: 'Bundesliga',
-          value: 'Bundesliga',
-          count: 23,
-          icon: 'LeftI1',
-        },
-				{
-          label: 'Bundesliga',
-          value: 'Bundeslig11a',
-          count: 23,
-          icon: 'LeftI1',
-        },
+        // {
+        //   label: 'Bundesliga',
+        //   value: 'Bundesliga',
+        //   count: 23,
+        //   icon: 'LeftI1',
+        // },
+				// {
+        //   label: 'Bundesliga',
+        //   value: 'Bundeslig11a',
+        //   count: 23,
+        //   icon: 'LeftI1',
+        // },
       ],
 			height: 'calc(100vh - 160px)'
     })
@@ -97,6 +100,7 @@ export default defineComponent({
 .on {
 	background: #212a33;
 	position: relative;
+	color: #64a0fa;
 	&:before {
 		position: absolute;
 		left: 0;
@@ -109,5 +113,16 @@ export default defineComponent({
 .i18n-icon {
 	width: 50%;
 	border-radius: 4px;
+}
+.leftItem {
+	&:hover {
+		color: #336efc;
+		background: #336ffc10;
+	}
+	p {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="wapMenu">
 		<ul>
-      <li v-for='item in SPORTS'>
+      <li v-for='item in options'>
         <a 
           href="javascript:;"
           class="hdNavA"
@@ -51,35 +51,16 @@ export default defineComponent({
     },
     active: {
       type: String
+    },
+    options: {
+      type: Array
     }
   },
   emits: ['link', 'update:active'],
   setup(props, {emit}) {
-    const TYPE_LIST = [
-      {
-        label: 'football',
-        value: 'football',
-        icon: 'hdNavI1'
-      },
-      {
-        label: 'basketball',
-        value: 'basketball',
-        icon: 'hdNavI2'
-      },
-      {
-        label: 'Esports',
-        value: 'Esports',
-        icon: 'hdNavI3'
-      },
-      {
-        label: 'official website',
-        value: 'website',
-        icon: 'hdNavI4'
-      }
-    ]
+    
     const state = reactive({
       active: props.active,
-      typeList: TYPE_LIST
     })
     const SPORTS = inject('SPORTS')
 

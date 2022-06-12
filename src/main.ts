@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-
+import 'ant-design-vue/dist/antd.css';
 import './css/animate.min.css'
 import './css/style.css'
 import './css/common.less'

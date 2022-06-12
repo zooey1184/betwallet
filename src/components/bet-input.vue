@@ -8,7 +8,7 @@
     </div>
   </div>
 
-  <div class="collapse-wrap flex items-center" :class="{'collapse-show': state.visible}">
+  <div class="collapse-wrap flex items-center justify-between" :class="{'collapse-show': state.visible}">
     <div class="collapse-item" :class="{'gutter': index !== 0, 'active': state.value === item.value}" @click="handlePickItem(item)" v-for="(item, index) in options">
       {{item.label}}
     </div>
@@ -116,7 +116,7 @@ export default defineComponent({
   line-height: 32px;
   font-weight: 500;
   font-size: 14px;
-  width: 30%;
+  flex-grow: 1;
   cursor: pointer;
   border: 1px solid #303b47;
   border-radius: 4px;
