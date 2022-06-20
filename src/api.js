@@ -46,7 +46,7 @@ js
   req: http://47.242.226.50:7020/v1/sports/events/probabilities/sr:match:27636100
 */
 export const getProbabilities = async(id) => {
-  return await (`${HOST}/v1/sports/events/probabilities/${id}`)
+  return await http.get(`${HOST}/v1/sports/events/probabilities/${id}`)
 }
 
 /* ## 下单前预校验 - 是否允许下单
@@ -95,4 +95,8 @@ export const orderQuery = async(data) => {
 */
 export const orderSave = async(data) => {
   return http.post(`${HOST}/v1/bet/order/save`, {data})
+}
+
+export const getBanner = async(data) => {
+  return http.get(`${HOST}/v1/system/getBannerList`, {data})
 }

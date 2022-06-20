@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 8px" class="flex items-center justify-between">
+  <div class="flex items-center justify-between" style="height: 32px">
     <div>
       <slot name='title'></slot>
     </div>
@@ -28,16 +28,16 @@ export default defineComponent({
       type: Array,
       default: () => ([
         {
+          label: '1000',
+          value: '1000'
+        },
+        {
+          label: '2000',
+          value: '2000'
+        },
+        {
           label: '2500',
           value: '2500'
-        },
-        {
-          label: '2300',
-          value: '2300'
-        },
-        {
-          label: '500',
-          value: '500'
         }
       ])
     },
@@ -66,7 +66,6 @@ export default defineComponent({
     })
 
     const handleFocus = () => {
-      console.log('focus');
       state.isPickItem = true
       if (props.options?.length) {
         state.visible = true
@@ -74,19 +73,24 @@ export default defineComponent({
     }
 
     const handlePickItem  = (item) => {
+      state.visible = true
+      inputRef.value.focus()
       state.isPickItem = true
       setTimeout(() => {
         state.isPickItem = false
-      }, 100)
-      state.visible = true
+      }, 50)
+      
       state.value = item.value
-      inputRef.value.focus()
+      
     }
 
     const handleBlur = () => {
-      if (!state.isPickItem) {
-        state.visible = false
-      }
+      setTimeout(() => {
+        if (!state.isPickItem) {
+          state.visible = false
+        }
+      })
+      // state.visible = false
     }
 
     return {
@@ -105,7 +109,6 @@ export default defineComponent({
   overflow: hidden;
   position: relative;
   max-height: 0;
-  padding: 0 6px;
   transition: all 200ms linear;
 }
 .collapse-item {
@@ -113,6 +116,7 @@ export default defineComponent({
   text-align: center;
   background: #303b47;
   color: #fff;
+  margin-top: 6px;
   line-height: 32px;
   font-weight: 500;
   font-size: 14px;
@@ -136,8 +140,13 @@ export default defineComponent({
   border-radius: 4px;
   outline: none;
   text-align: center;
-  width: 80px;
+  width: 75px;
   font-weight: 600;
+  font-size: 14px;
+  transition: all 100ms linear;
+  &:hover {
+    border: 1px solid #26baf07e;
+  }
   &:focus {
     border: 1px solid #16bdf9;
   }

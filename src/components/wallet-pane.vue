@@ -1,5 +1,5 @@
 <template>
-  <div class="wallCn Huans" style="height: 100vh" :class="{ wallCnO: state.visible }">
+  <div class="wallCn Huans" style="height: 100vh;" :class="{ wallCnO: state.visible }">
     <div>
       <div class="RightHd flexC fl-bet Huans">
         <div class="RightHdI"><img src="../images/zyq0425/pic01.jpg" /></div>
@@ -113,7 +113,7 @@
         </ul>
       </div>
     </div>
-    <a href="javascript:;" class="wallCnBa Huans flexC close1">
+    <a href="javascript:;" class="wallCnBa Huans flexC close1" @click="handleDisLink">
 			<img src="../images/zyq0425/ZRicon05.png" />
       <p>退出</p>
 		</a>
@@ -122,6 +122,7 @@
 
 <script>
 import { defineComponent, inject, reactive, ref, watch, computed, onMounted } from "vue";
+import {Modal} from 'ant-design-vue'
 
 export default defineComponent({
   components: {},
@@ -211,6 +212,16 @@ export default defineComponent({
       });
     };
 
+    const handleDisLink = () => {
+      Modal.confirm({
+        title: 'Tip',
+        content: 'Are you sure you want to exit?',
+        onOk: () => {
+          ACCOUNTS.disLink()
+        }
+      })
+    }
+
 		onMounted(() => {
 
 		})
@@ -223,6 +234,7 @@ export default defineComponent({
       handleToggleWallet,
 			handleBetVisible,
 			handleCopy2,
+      handleDisLink,
     };
   },
 });

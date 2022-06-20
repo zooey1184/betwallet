@@ -51,7 +51,6 @@ span:focus,div:focus {outline: none;}
 .navTita.on{color: #c27bfc;}
 .navTita p{overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
 .navTita .tips{position: absolute;width: 100%;height: 100%;left: 0;text-align: center;background-color: rgb(57 110 252 / 75%);display: none;color: #fff;}
-.navTita .tips2{position: absolute; top: 28px; width: 100%;height: 100%;left: 0;text-align: center;background-color: rgb(57 110 252 / 75%);display: none;color: #fff;}
 .navNR{border:1px solid #58587e; color:#FFF;}
 .navNH img{display: block;}
 .navNu{ margin-left: auto;}
@@ -70,7 +69,7 @@ span:focus,div:focus {outline: none;}
 .IndzhiZ1{background-image:url("../images/icon01.png");}
 .IndzhiZ2{background-image:url("../images/icon02.png");}
 .IndzhiFa{color:#FFF;z-index:9}
-
+.IndBetT{ }
 .IndBetTI{border-radius:50%;}
 .IndBetTI img{width:100%;}
 .IndBetTN{flex:1;width: 100%; }
@@ -697,7 +696,7 @@ footer{ border-top:1px solid #252c45;}
 
 .zyqulNa{background-color:#43435b; display: block; background-position: center; background-repeat: no-repeat; background-size:100%;}
 .zyqulNaOn{ background-image:url("../images/zyq0425/suo.png");}
-.zyqulNI{background:#000001; text-align: center; border:none; color:#ccd6ef;}
+.zyqulNI{background:#000001; text-align: center; border:none; color:#ccd6ef; cursor: pointer;}
 .zyqulNvs{text-align: center;color:#ccd6ef;}
 .zyqulNp{width:100%; flex: 1;}
 .zyqulNp:first-child{text-align:right;}
@@ -926,8 +925,8 @@ transition:0.5s;
 .LeftCO .LeftUl li:hover{width:260px;transition:0.5s;}
 
 /**/
-.RightCn{width: 222px;}
-.RightHd{ padding:0 10px; height: 80px;width:222px;}
+.RightCn{width: 250px;}
+.RightHd{ padding:0 10px; height: 80px;width:250px;}
 .RightHdI{width:36px; height:36px;}
 .RightHda{ width: 24px; height:24px; }
 .RightHdN{ padding-left:10px;}
@@ -941,7 +940,7 @@ transition:0.5s;
 .Rightita p{ line-height:24px; }
 .Rightit .on .RightitI{background-position: center -26px;}
 .Rightit .on:before{width:60px;transition:0.5s;}
-.RighN{ width:210px;;}
+.RighN{ width:230px;;}
 .RighNTit{ height:57px}
 .RighNTita{line-height:42px; height: 42px;font-size:16px; padding-top:15px;}
 .RighNTita:before{height:2px;}
@@ -977,11 +976,11 @@ transition:0.5s;
 .RightCO .Rightita p{ line-height:20px; width:100%;}
 .RightCO .Rightit {margin-top:15px;}
 .RightCO .Rightit .on .RightitI{background-position: center -20px;}
-.RightCO .RighN{height: 200px;}
+.RightCO .RighN{height: 230px;}
 .RightCO .RightFNI{ margin-bottom:10px;}
 
 /**/
-.wallCn{width: 222px;right:-222px;}
+.wallCn{width: 250px;right:-250px;}
 .wallCnO{right:0;transition:0.5s;}
 .wallCnK{ padding:10px 6px;}
 .wallCnK .navNR{ font-size:14px;}
@@ -1121,8 +1120,8 @@ transition:0.5s;
 .LeftCO .LeftUl li:hover{width:230px;transition:0.5s;}
 
 /**/
-.RightCn{width: 202px;}
-.RightHd{ padding:0 10px; height: 80px;width:202px;}
+.RightCn{width: 250px;}
+.RightHd{ padding:0 10px; height: 80px;width:250px;}
 .RightHdI{width:36px; height:36px;}
 .RightHda{ width: 24px; height:24px; }
 .RightHdN{ padding-left:10px;}
@@ -1136,7 +1135,7 @@ transition:0.5s;
 .Rightita p{ line-height:24px; }
 .Rightit .on .RightitI{background-position: center -26px;}
 .Rightit .on:before{width:60px;transition:0.5s;}
-.RighN{ width:190px;;}
+.RighN{ width:230px;;}
 .RighNTit{ height:57px}
 .RighNTita{line-height:42px; height: 42px;font-size:15px; padding-top:15px;}
 .RighNTita:before{height:2px;}
@@ -1172,11 +1171,11 @@ transition:0.5s;
 .RightCO .Rightita p{ line-height:20px; width:100%;}
 .RightCO .Rightit {margin-top:15px;}
 .RightCO .Rightit .on .RightitI{background-position: center -20px;}
-.RightCO .RighN{height: 200px;}
+.RightCO .RighN{height: 230px;}
 .RightCO .RightFNI{ margin-bottom:10px;}
 
 /**/
-.wallCn{width: 202px;right:-202px;}
+.wallCn{width: 250px;right:-250px;}
 .wallCnO{right:0;transition:0.5s;}
 .wallCnK{ padding:10px 6px;}
 .wallCnK .navNR{ font-size:14px;}
@@ -1315,8 +1314,8 @@ transition:0.5s;
 .LeftCO .LeftUl li:hover{width:230px;transition:0.5s;}
 
 /**/
-.RightCn{width: 202px;}
-.RightHd{ padding:0 10px; height: 80px;width:202px;}
+.RightCn{width: 250px;}
+.RightHd{ padding:0 10px; height: 80px;width:250px;}
 .RightHdI{width:36px; height:36px;}
 .RightHda{ width: 24px; height:24px; }
 .RightHdN{ padding-left:10px;}
@@ -1330,7 +1329,7 @@ transition:0.5s;
 .Rightita p{ line-height:24px; }
 .Rightit .on .RightitI{background-position: center -26px;}
 .Rightit .on:before{width:60px;transition:0.5s;}
-.RighN{ width:190px;;}
+.RighN{ width:230px;;}
 .RighNTit{ height:57px}
 .RighNTita{line-height:42px; height: 42px;font-size:15px; padding-top:15px;}
 .RighNTita:before{height:2px;}
@@ -1366,11 +1365,11 @@ transition:0.5s;
 .RightCO .Rightita p{ line-height:20px; width:100%;}
 .RightCO .Rightit {margin-top:15px;}
 .RightCO .Rightit .on .RightitI{background-position: center -20px;}
-.RightCO .RighN{height: 200px;}
+.RightCO .RighN{height: 230px;}
 .RightCO .RightFNI{ margin-bottom:10px;}
 
 /**/
-.wallCn{width: 202px;right:-202px;}
+.wallCn{width: 250px;right:-250px;}
 .wallCnO{right:0;transition:0.5s;}
 .wallCnK{ padding:10px 6px;}
 .wallCnK .navNR{ font-size:14px;}
@@ -1511,8 +1510,8 @@ transition:0.5s;
 .LeftCO .LeftUl li:hover{width:230px;transition:0.5s;}
 
 /**/
-.RightCn{width: 202px;}
-.RightHd{ padding:0 10px; height: 80px;width:202px;}
+.RightCn{width: 250px;}
+.RightHd{ padding:0 10px; height: 80px;width:250px;}
 .RightHdI{width:36px; height:36px;}
 .RightHda{ width: 24px; height:24px; }
 .RightHdN{ padding-left:10px;}
@@ -1526,7 +1525,7 @@ transition:0.5s;
 .Rightita p{ line-height:24px; }
 .Rightit .on .RightitI{background-position: center -26px;}
 .Rightit .on:before{width:60px;transition:0.5s;}
-.RighN{ width:190px;;}
+.RighN{ width:230px;}
 .RighNTit{ height:57px}
 .RighNTita{line-height:42px; height: 42px;font-size:15px; padding-top:15px;}
 .RighNTita:before{height:2px;}
@@ -1562,11 +1561,11 @@ transition:0.5s;
 .RightCO .Rightita p{ line-height:20px; width:100%;}
 .RightCO .Rightit {margin-top:15px;}
 .RightCO .Rightit .on .RightitI{background-position: center -20px;}
-.RightCO .RighN{height: 200px;}
+.RightCO .RighN{height: 230px;}
 .RightCO .RightFNI{ margin-bottom:10px;}
 
 /**/
-.wallCn{width: 202px;right:-202px;}
+.wallCn{width: 250px;right:-250px;}
 .wallCnO{right:0;transition:0.5s;}
 .wallCnK{ padding:10px 6px;}
 .wallCnK .navNR{ font-size:14px;}
@@ -1634,7 +1633,7 @@ transition:0.5s;
 .zyqDk{padding:0.42rem 0 0;}
 .zyqDD{padding:0 10% 0;}
 .zyqhd{height:0.42rem; padding:0 4%;}
-.zyqlogoK{}
+
 .zyqlogo{ height:0.24rem; margin-left: 0.12rem}
 .hdNavK{padding:0 0.08rem; display: none;}
 .hdNavA{text-align: right; width:90%; line-height:0.4rem;height:0.4rem; padding:0 5%; display:flex;align-items:center;}
@@ -1669,7 +1668,7 @@ transition:0.5s;
 .zyqTit{margin-bottom:1rem;}
 .zyqTitH{ height:0.3rem; line-height:0.3rem; padding:0 0.04rem;font-size:0.13rem;}
 .zyqTitH:before{height:0.03rem; border-radius:0.02rem; }
-.zyqTitR{}
+
 .zyqTitRS{height:0.4rem; margin-left: 0.1rem;}
 .zyqTitRS img{width:0.18rem;margin-right:0.06rem;}
 .zyqTitRS p{font-size:0.11rem;}
@@ -1678,7 +1677,6 @@ transition:0.5s;
 .zyqseaI{height:0.36rem; line-height:0.36rem;  font-size:0.12rem;}
 .zyqTis{height:0.3rem; line-height:0.3rem; font-size:0.12rem;}
 
-.zyqul{}
 .zyqul li{margin-bottom:0.1rem;border-radius:0.03rem; padding:0.05rem 4%; position: relative;}
 .zyqulH{ width:100%;}
 .zyqulHs i{border-radius:3px; width: 24px; height: 24px; margin-right:8px;}
@@ -1759,7 +1757,7 @@ transition:0.5s;
 .RightCO .Rightita p{ line-height:20px; width:100%;}
 .RightCO .Rightit {margin-top:15px;}
 .RightCO .Rightit .on .RightitI{background-position: center -20px;}
-.RightCO .RighN{height: 200px;}
+.RightCO .RighN{height: 230px;}
 .RightCO .RightFNI{ margin-bottom:10px;}
 
 /**/

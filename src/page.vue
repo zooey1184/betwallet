@@ -10,6 +10,8 @@
     <Content />
 
     <WalletPane v-model:visible="state.walletVisible" />
+
+    <BetModal v-model:visible='state.visible' />
   </div>
 </template>
 
@@ -17,12 +19,14 @@
 import { defineComponent, ref, provide, computed, watch, reactive, onMounted, inject } from 'vue'
 import Header from './components/header.vue'
 import LeftSider from './components/left-sider.vue'
-import RightSider from './components/right-sider.vue'
+import RightSider from './components/right-sider/index.vue'
 import Content from './components/content.vue'
 import WalletPane from './components/wallet-pane.vue'
 import MNav from './components/m-nav.vue'
 import InitProvider from './components/init-provider.vue'
 import {getSportTournament} from './api'
+import { message } from 'ant-design-vue'
+import BetModal from './components/transaction'
 
 export default defineComponent({
   components: {
@@ -32,18 +36,19 @@ export default defineComponent({
     Content,
     WalletPane,
     MNav,
-    InitProvider
+    InitProvider,
+    BetModal
   },
   props: {},
   setup(props) {
     const state = reactive({
       walletVisible: false,
       active: '', // footer , baskatball ...,
-      list: [],
-      betType: 'single', // combo
       sports: [],
       sportItemList: [],
-      schedule: undefined
+      schedule: undefined,
+      scheduleList: [],
+      visible: false
     })
 
     const SPORTS = inject('SPORTS')
@@ -61,46 +66,55 @@ export default defineComponent({
     watch(() =>SPORTS_ITEM_LIST.value, (n)=> {
       if (n?.length) {
         state.sportItemList = n
-        console.log('===', state.sportItemList);
       }
     })
 
     watch(() => state.active, (n) => {
-      methods.handleGetSportItemList(n)
+      if (n === 'website') {
+        // window.open('')
+        message.info('这个是要跳转的链接')
+      } else {
+        methods.handleGetSportItemList(n)
+      }
     })
 
     
 
     watch(() => state.schedule, (n) => {
       getSportTournament(n, {
-        scheduled: '2022-06-11',
-        status: 'closed'
+        // scheduled: '2022-06-11',
+        status: 'not_started'
       }).then(res => {
-        console.log(res);
+        if (res.data) {
+          state.scheduleList = res.data
+        }
       })
     })
+    const getSchedule = computed(() => state.schedule)
+    const getScheduleItem = computed(() => {
+      const val = state.schedule
+      const list = state.sportItemList
+      const item = list.find(ii => ii.id === val)
+      return item
+    })
+    const getScheduleList = computed(() => state.scheduleList)
+
+    provide('SCHEDULE', {
+      getSchedule,
+      getScheduleList,
+      getScheduleItem,
+    })
+    // provide('BET_MODAL', {
+    //   visible: (n) => {
+    //     state.visible = n
+    //   }
+    // })
 
     
 
     const handleWalletVisible = () => {
       state.walletVisible = true
     }
-    // 投注方式
-    const getBetType = computed(() => state.betType)
-    const getBetInfo = computed(() => ({
-      betType: state.betType,
-      changeBetType: (e) => {
-        state.betType = e
-      }
-    }))
-    provide('BET', getBetInfo)
-
-    onMounted(() => {
-      $(window).resize(function () {          //当浏览器大小变化时
-        if($('body').width()>959){$('.wapNav').removeClass('wapNavO');$('.wapMenu').slideUp(100);}
-      });
-    })
-
     return {
       state,
       handleWalletVisible,

@@ -13,7 +13,10 @@
 
 		<div class="LeftF flexC fl-bet">
 			<!-- 多语言 -->
-			<a href="javascript:;" class="LeftFQ flexC fl-cen"><img class="i18n-icon" src="../images/zyq0425/qi01.png"></a>
+			<a-tooltip placement='right'>
+				<template #title>Language: English</template>
+				<a href="javascript:;" class="LeftFQ flexC fl-cen"><img class="i18n-icon" src="../images/zyq0425/qi01.png"></a>
+			</a-tooltip>
 			<!-- qa -->
 			<div class="LeftW"><img src="../images/icon03.png"></div>
 			<!-- 展开 -->
@@ -24,9 +27,12 @@
 
 <script>
 import { defineComponent, reactive, ref, watch } from 'vue'
+import {Tooltip} from 'ant-design-vue'
 
 export default defineComponent({
-  components: {},
+  components: {
+		'a-tooltip': Tooltip
+	},
   props: {
 		active: {
 			type: [String, Number]
@@ -45,12 +51,6 @@ export default defineComponent({
         // {
         //   label: 'Bundesliga',
         //   value: 'Bundesliga',
-        //   count: 23,
-        //   icon: 'LeftI1',
-        // },
-				// {
-        //   label: 'Bundesliga',
-        //   value: 'Bundeslig11a',
         //   count: 23,
         //   icon: 'LeftI1',
         // },
@@ -117,7 +117,7 @@ export default defineComponent({
 .leftItem {
 	&:hover {
 		color: #336efc;
-		background: #336ffc10;
+		background: #21242c;
 	}
 	p {
 		overflow: hidden;

@@ -17,7 +17,7 @@
 
 		<div class="zyqhdR flexC">
       <!-- wallet -->
-			<div class="zyqhdwal flexC fl-bet" v-if='ACCOUNTS.isLink'>
+			<div class="zyqhdwal flexC fl-bet" v-if='isLink'>
 				<i class="zyqhdwalI"></i>
 				<div class="qhdwalN flexC">
 					<p>0</p>
@@ -26,7 +26,7 @@
 				<a href="javascript:;" class="zyqhdwala IndBac1">wallet</a>
 			</div>
       <!-- info -->
-			<div class="zyqhdXD" v-if='ACCOUNTS.isLink'>
+			<div class="zyqhdXD" v-if='isLink'>
 				<a href="javascript:;" class="zyqhdId flexC fl-bet Huans">
 					<div class="RightHdI"><img src="../images/zyq0425/pic01.jpg"></div>
 					<div class="RightHdN">
@@ -70,6 +70,10 @@ export default defineComponent({
     const SPORTS = inject('SPORTS')
 
     const ACCOUNTS = inject('ACCOUNTS')
+    const isLink = computed(() => {
+      console.log(ACCOUNTS.isLink.value);
+      return ACCOUNTS.isLink.value
+    })
 
     watch(() => props.active, (n) => {
       state.active = n
@@ -105,7 +109,8 @@ export default defineComponent({
       handleConnect,
       handleShowNav,
       getId,
-      SPORTS
+      SPORTS,
+      isLink
     }
   }
 })

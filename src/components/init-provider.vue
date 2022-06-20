@@ -17,7 +17,8 @@ export default defineComponent({
     const state = reactive({
       sportsList: [],
       sportsItemList: [],
-      loading: false
+      loading: false,
+      betType: 'single'
     })
     const handleGetSports = async() => {
       const res = await getSports()
@@ -75,8 +76,25 @@ export default defineComponent({
       handleGetSportItemList: getSportItemListFn,
       setLoading: (e) => {
         state.loading = e
+      },
+      betType: (e) => {
+        if(typeof e === 'undefined') {
+          return state.betType
+        } else {
+          state.betType = e
+        }
       }
     })
+
+    // 投注方式
+    const getBetType = computed(() => state.betType)
+    const getBetInfo = computed(() => ({
+      betType: state.betType,
+      changeBetType: (e) => {
+        state.betType = e
+      }
+    }))
+    provide('BET', getBetInfo)
 
 
     onMounted(() => {
@@ -89,3 +107,13 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="less" scoped>
+.body {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+</style>

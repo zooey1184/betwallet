@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, ref, provide, computed, watch } from 'vue'
+import { defineComponent, reactive, ref, provide, computed, watch, onMounted } from 'vue'
 import DownloadModal from '../download-modal.vue'
 
 export default defineComponent({
@@ -51,7 +51,10 @@ export default defineComponent({
       }
       return '**'
     })
-    const isLink = computed(() => state.accounts?.length)
+    const isLink = computed(() => {
+      const isLINK = window.localStorage.getItem('isLINK')
+      return isLINK && isLINK === 'true' && state.accounts?.length
+    })
     const getAccounts = computed(() => state.accounts)
 
     provide('accounts', getAccounts)
@@ -62,6 +65,12 @@ export default defineComponent({
       accountHide: addressHide,
       isLink,
       link: handleConnect,
+      disLink: () => {
+        window.localStorage.removeItem('isLINK')
+        setTimeout(() => {
+          window.location.reload()
+        })
+      }
     })
 
     const init =  async () => {
@@ -99,6 +108,9 @@ export default defineComponent({
       }
     }
 
+    onMounted(() => {
+      init()
+    })
     return {
       state
     }
