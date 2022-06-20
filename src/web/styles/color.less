@@ -1,0 +1,63 @@
+
+:root {
+  --bg: #020318;
+  --primary-main: #c17bfd;
+  --primary-sub: #376dfa;
+}
+.bg {
+  background: var(--bg);
+}
+.primary {
+  color: var(--primary-main);
+}
+.linear-color {
+  background-image:linear-gradient(to right, var(--primary-main), var(--primary-sub));
+  background-clip:text;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.linear-bg {
+  background-image:linear-gradient(to right, var(--primary-main), var(--primary-sub));
+}
+.linear-border {
+  .content {
+    border: 1px solid transparent;
+    border-radius: 2px;
+    position: relative;
+    background-clip: padding-box, border-box;
+    color: #fff;
+    background-origin: padding-box, border-box;
+    background-image: linear-gradient(to right, var(--bg), var(--bg)), linear-gradient(90deg, #8F41E9, #578AEF);
+    transition: all 200ms linear;
+    cursor: pointer;
+    &:hover {
+      background-image: linear-gradient(to right, var(--bg), var(--bg)), linear-gradient(90deg, #9e75ce, #b5ef57);
+    }
+  }
+}
+
+.link {
+  color: #1890ff;
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.color-blue {
+  color: #3B6FFC !important;
+}
+
+.gray {
+  color: #617199;
+}
+.grey {
+  color: #849EBF;
+}
+.gray-9 {
+  color: #98A8D2
+}
+.gray-9d {
+  color: #9D9EC1;
+}

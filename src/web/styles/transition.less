@@ -1,0 +1,96 @@
+.slideLeft-enter-active, .slideLeft-leave-active  {
+  transition: all 1500ms ease-in-out;
+}
+.slideLeft-enter-from,
+.slideLeft-leave-to {
+  transform: translateX(-180px);
+  opacity: 0;
+}
+
+.slideRight-enter-active, .slideRight-leave-active  {
+  transition: all 1500ms ease-in-out;
+}
+.slideRight-enter-from,
+.slideRight-leave-to {
+  transform: translateX(180px);
+  opacity: 0;
+}
+
+.slideTop-enter-active, .slideTop-leave-active  {
+  transition: all 1500ms ease-in-out;
+}
+.slideTop-enter-from,
+.slideTop-leave-to {
+  transform: translateY(-50px);
+  opacity: 0;
+}
+
+.slideBottom-enter-active, .slideBottom-leave-active  {
+  transition: all 1200ms ease-in-out;
+}
+.slideBottom-enter-from,
+.slideBottom-leave-to {
+  transform: translateY(50px);
+  opacity: 0;
+}
+
+.bounce-enter-active, .bounce-leave-active  {
+  transition: all 1500ms ease-in-out;
+}
+.bounce-enter-from,
+.bounce-leave-to {
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+.fade-enter-active, .fade-leave-active  {
+  transition: all 1200ms ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fadeout {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1000ms linear;
+}
+.fadein {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 1000ms linear;
+}
+
+.fade-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 1000ms linear;
+}
+.fade-right {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 1000ms linear;
+}
+
+.slideout-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 1000ms linear;
+}
+.slidein-right {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 1000ms linear;
+}
+
+.slideout-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 1000ms linear;
+}
+.slidein-left {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 1000ms linear;
+}

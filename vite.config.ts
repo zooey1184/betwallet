@@ -18,6 +18,13 @@ export default defineConfig({
     }
   },
   build: {
-    
+    rollupOptions: {
+      input: {
+        web: path.resolve(__dirname, './web.html'),
+        bet: path.resolve(__dirname, './bet.html'),
+        index: path.resolve(__dirname, './web.html'),
+        sport: path.resolve(__dirname, './sport.html'),
+      }
+    }
   }
 })
