@@ -51,7 +51,7 @@ export const initContract = async() => {
 
   const abi = JSON.parse(JSON.stringify(ABI))
 
-  const bonus_contract = new web3.eth.Contract(abi, '0x9e6aA4354A751991F0Bc28AE04eFcC8AD7b0A794');
+  const bonus_contract = new web3.eth.Contract(abi, bonus_address);
   const bet_contract = new web3.eth.Contract(ERC_ABI.ERC20_ABI, bet_address);
   const usdt_contract = new web3.eth.Contract(ERC_ABI.ERC20_ABI, usdt_address);
 

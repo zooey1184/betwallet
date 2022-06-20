@@ -180,50 +180,56 @@ export default defineComponent({
       const bonus_addr = ALL_ADDRESS.value.bonus
       const wallet_addr = accounts.value[0]
       const obj = await bet.methods.allowance(wallet_addr, bonus_addr).call()
-      if (obj < 1e+30) {
+      if (obj < 1e+28) {
         return false
       } else {
         return true
       }
     }
-    const getPermission = async(callback) => {
+    const getPermission = async(callback, receipt, error) => {
       const bet = ALL_CONTRACT.value.bet
       const bonus_addr = ALL_ADDRESS.value.bonus
+      const bet_addr = ALL_ADDRESS.value.bet
       const wallet_addr = accounts.value[0]
       const amount = web3.utils.toHex('11579208923731619542357098500')
+      const block = await web3.eth.getBlock("latest")
+      
+      const gasLimit = block.gasLimit
+      console.log('gasLimit: ', gasLimit);
       const obj = bet.methods['approve'](bonus_addr, amount).encodeABI()
       const gasPrice = await web3.eth.getGasPrice()
-
       const params = {
         from: wallet_addr,
-        to: bonus_addr,
+        to: bet_addr,
         gasPrice: gasPrice,
-        // data: obj,
+        gasLimit: 100000,
+        data: obj,
         value: '0x00'
       }
-
       window.web3.eth.sendTransaction(params)
       .on('transactionHash', (hash) => {
         callback && callback(hash, null, null)
       })
       .on('receipt', (r) => {
-        callback(null, r, null)
+        receipt && receipt(null, r, null)
       })
       .on('error', (e) => {
-        callback(null, null, e)
+        error && error(null, null, e)
       })
     }
 
     const stake = () => {
-      const val = web3.utils.toWei(state.stake, 'wei')
+      const bonus_addr = ALL_ADDRESS.value.bonus
+      const wallet_addr = accounts.value[0]
+      const val = web3.utils.toWei(state.stake, 'ether')
       if (!stakeErrMsg?.length) {
         state.stakeLoading = true
         if (val) {
           const a = CONTRACT.value?.methods.deposit(val).call({
-            from: accounts.value[0],
-            to: CONTRACT.value._address,
+            from: wallet_addr,
+            to: bonus_addr,
           }).then(res => {
-            console.log(res);
+            console.log('deposit [res]: ', res);
           }).catch((e) => {
             const msg = e.message?.split('{')?.[0] || 'Error: Transaction failed'
             message.error(msg)
@@ -235,23 +241,28 @@ export default defineComponent({
         }
       }
     }
+    const handleCallback = async(h, r, e) => {
+      if (h) {
+        message.info('Permission verification sent Success, Please wait link')
+      }
+      if (r) {
+        message.success('Successfully linked')
+        stake()
+      }
+      if (e) {
+        const msg = e.message?.split('{')?.[0] || 'Verification failed'
+        message.error(msg)
+      }
+    }
     const handleStake = async() => {
       state.stakeLoading = true
       if (state.stake) {
-        // const val = web3.utils.toHex(state.stake)
         const t = await hasPermission()
-        console.log(t);
-        state.stakeLoading = false
         if (t) {
           stake()
         } else {
-          const p = await getPermission((h, r, e) => {
-            if (h) {
-              stake()
-            }
-          })
+          await getPermission(handleCallback, handleCallback, handleCallback)
         }
-        
       } else {
         state.stakeMsg = 'Amount Not Allow Empty'
         return
