@@ -16,6 +16,7 @@
         @click="handleChangeWalletVisible"
       ></a>
     </div>
+    <div v-if='!isLink' class="RightHd"></div>
 
     <div style="height: calc(100vh - 120px); overflow: auto">
       <div class="Rightit flex fl-bet">

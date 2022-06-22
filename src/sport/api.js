@@ -1,13 +1,13 @@
 import http from './js/http'
 
-const HOST = window.location.host.match(/localhost/g) ? '' : 'http://47.242.226.50:7020'
+const HOST = window.location.host.match(/localhost/g) ? '' : 'http://47.242.226.50:7011'
 
 /* ## 查看支持的运动类型列表
 * js
 * method: GET
 * url: /v1/sports
 * params: ''
-* req: http://47.242.226.50:7020/v1/sports
+* req: http://47.242.226.50:7011/v1/sports
 */
 export const getSports = async() => {
   return http.get(`${HOST}/v1/sports`)
@@ -18,7 +18,7 @@ js
   method: GET
   url: /v1/tournaments/:sportId
   params: ''
-  req: http://47.242.226.50:7020/v1/tournaments/sr:sport:1
+  req: http://47.242.226.50:7011/v1/tournaments/sr:sport:1
 */
 export const getSportList = async(id) => {
   return await http.get(`${HOST}/v1/tournaments/${id}`)
@@ -32,7 +32,7 @@ js
   params:
     scheduled 比赛日期，格式是 YYYY-MM-DD
     status 比赛状态  closed/not_start
-  req: http://47.242.226.50:7020/v1/events/schedule/sr:tournament:7
+  req: http://47.242.226.50:7011/v1/events/schedule/sr:tournament:7
 */
 export const getSportTournament = async(id, data) => {
   return await http.get(`${HOST}/v1/events/schedule/${id}`, {data})
@@ -65,6 +65,7 @@ js
 export const preCheck = async(data) => {
   return await http.post(`${HOST}/v1/bet/order/preCheck`, {data})
 }
+
 /* ## 查询我的订单
 js
   method: POST

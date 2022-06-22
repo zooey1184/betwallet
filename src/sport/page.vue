@@ -11,7 +11,7 @@
 
     <WalletPane v-model:visible="state.walletVisible" />
 
-    <BetModal v-model:visible='state.visible' />
+    <!-- <BetModal v-model:visible='state.visible' /> -->
   </div>
 </template>
 

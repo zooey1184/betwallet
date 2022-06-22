@@ -43,6 +43,7 @@
               subTitle="scubtitle"
               :info='item'
               :showInput="getBetType !== 'combo'"
+              v-model:value='item.betValue'
               @delete='handleDeleteItem(item)'
             ></BetItem>
           </div>
@@ -54,20 +55,44 @@
             <a href="javascript:;" class="RighDGDa">Your bet</a>
             
           </div> -->
-          <BetInput v-model:value='state.betSingleValue'>
-            <template #title>
-              <div>
-                Single share:
-              </div>
-            </template>
-          </BetInput>
-          <div class="RighDGD flexC fl-bet">
-            <div class="RighDGH">Total shares：</div>
-            <div class="RighDGS">0</div>
+          <div v-if='getBetType === "single"'>
+            <BetInput v-model:value='state.betSingleValue'>
+              <template #title>
+                <div>
+                  Single share:
+                </div>
+              </template>
+            </BetInput>
+            <div class="RighDGD flexC fl-bet">
+              <div class="RighDGH">Total shares：</div>
+              <div class="RighDGS">{{getTotal}}</div>
+            </div>
+            <div class="RighDGD flexC fl-bet" style="color: #376efc">
+              <div class="RighDGH">Potential victory：</div>
+              <div class="RighDGS">{{getWin}}</div>
+            </div>
           </div>
-          <div class="RighDGD flexC fl-bet" style="color: #376efc">
-            <div class="RighDGH">Potential victory：</div>
-            <div class="RighDGS">0</div>
+          <div v-if='getBetType === "combo"'>
+            <BetInput v-model:value='state.betComboValue'>
+              <template #title>
+                <div>
+                  Amount:
+                </div>
+              </template>
+              <template #desc>
+                <div style='text-align: right' class="default_color">
+                  Amount required
+                </div>
+              </template>
+            </BetInput>
+            <div class="RighDGD flexC fl-bet">
+              <div class="RighDGH">Odds:</div>
+              <div class="RighDGS">{{getOdds}}</div>
+            </div>
+            <div class="RighDGD flexC fl-bet" style="color: #376efc">
+              <div class="RighDGH">Potential victory：</div>
+              <div class="RighDGS">{{getWinCombo}}</div>
+            </div>
           </div>
           <a href="javascript:;" class="RighDGod">
             <i></i>
@@ -100,6 +125,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const state = reactive({
       betSingleValue: undefined,
+      betComboValue: undefined,
       visible: false
     })
     const ACCOUNTS = inject("ACCOUNTS");
@@ -117,15 +143,49 @@ export default defineComponent({
       return SPORT_BET.getBetList.value
     })
     const isLink = computed(() => ACCOUNTS.isLink?.value)
+    const getTotal = computed(() => {
+      const list = getSportBetList.value
+      let s = 0
+      for(let i=0; i<list.length; i++) {
+        const item = list[i]
+        const val = +(item.betValue || 0)
+        s+=val
+      }
+      return s
+    })
+
+    
+    const getWin = computed(() => {
+      const list = getSportBetList.value
+      let s = 0
+      for(let i=0; i<list.length; i++) {
+        const item = list[i]
+        const val = +(item.betValue || 0)*(item.activeValue)
+        s+=val
+      }
+      return s
+    })
+    const getOdds = computed(() => {
+      const list = getSportBetList.value
+      let s = 0
+      const arr = []
+      for(let i=0; i<list.length; i++) {
+        const item = list[i]
+        const val = +(item.activeValue || 0)
+        arr.push(val)
+      }
+      s = arr.reduce((p,n) => p*n, 1)
+      return parseFloat(s.toFixed(2))
+    })
+    const getWinCombo = computed(() => {
+      const val = state.betComboValue || 0
+      const odds = getOdds.value
+      return parseFloat((val*odds).toFixed(2))
+    })
     const handleBet = () => {
-      if (isLink) {
+      if (isLink.value) {
         emit("bet");
-        // BET_MODAL.visible(true)
         state.visible = true
-        // $('.TCB1').fadeIn(100);
-        // $('.Tc-MYJY').slideDown(200);
-        // $('.RightCn').addClass("RightCO");
-        // $('.RighTB').fadeOut(100);
       } else {
         ACCOUNTS.link();
       }
@@ -137,15 +197,25 @@ export default defineComponent({
     const handleDeleteItem = (item) => {
       SPORT_BET.delete(item)
     }
+    watch(() => state.betSingleValue, (n) => {
+      const list = getSportBetList.value
+      list.forEach(item => {
+        item.betValue = n
+      });
+    })
     return {
       state,
       isLink,
+      getTotal,
       handleBet,
+      getWin,
       getSportBetList,
       getBetType,
       handleDelete,
       handleChangeBetType,
       handleDeleteItem,
+      getOdds,
+      getWinCombo
     };
   },
 });

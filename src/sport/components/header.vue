@@ -71,7 +71,6 @@ export default defineComponent({
 
     const ACCOUNTS = inject('ACCOUNTS')
     const isLink = computed(() => {
-      console.log(ACCOUNTS.isLink.value);
       return ACCOUNTS.isLink.value
     })
 

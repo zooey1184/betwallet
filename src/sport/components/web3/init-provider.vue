@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { message } from 'ant-design-vue'
 import { defineComponent, reactive, ref, provide, computed, watch, onMounted } from 'vue'
 import DownloadModal from '../download-modal.vue'
 
@@ -32,7 +33,8 @@ export default defineComponent({
             window.localStorage.setItem('isLINK', 'true')
           })
           .catch((e) => {
-            toast(e.message)
+            // toast(e.message)
+            message.error(e.message)
             window.localStorage.setItem('isLINK', 'false')
           });
         } else {

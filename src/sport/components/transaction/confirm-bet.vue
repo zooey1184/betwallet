@@ -71,8 +71,8 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .content {
-	width: 40%;
-	min-width: 280px;
+	width: 45%;
+	min-width: 400px;
 	max-width: 600px;
 	position:fixed;
 	z-index:1000;

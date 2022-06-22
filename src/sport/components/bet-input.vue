@@ -4,9 +4,10 @@
       <slot name='title'></slot>
     </div>
     <div v-if='showInput'>
-      <input class="bet-input" ref='inputRef' placeholder="Your bet" @focus="handleFocus" @blur="handleBlur" v-model='state.value' />
+      <input class="bet-input" type='number' ref='inputRef' placeholder="Your bet" @focus="handleFocus" @blur="handleBlur" v-model='state.value' />  
     </div>
   </div>
+  <slot name='desc'></slot>
 
   <div class="collapse-wrap flex items-center justify-between" :class="{'collapse-show': state.visible}">
     <div class="collapse-item" :class="{'gutter': index !== 0, 'active': state.value === item.value}" @click="handlePickItem(item)" v-for="(item, index) in options">
@@ -16,6 +17,7 @@
 </template>
 
 <script>
+import { message } from 'ant-design-vue'
 import { defineComponent, reactive, ref, watch } from 'vue'
 
 export default defineComponent({
@@ -63,6 +65,7 @@ export default defineComponent({
 
     watch(() => state.value, (n) => {
       emit('update:value', n)
+      
     })
 
     const handleFocus = () => {
@@ -70,6 +73,9 @@ export default defineComponent({
       if (props.options?.length) {
         state.visible = true
       }
+      setTimeout(() => {
+        state.isPickItem = false
+      })
     }
 
     const handlePickItem  = (item) => {
@@ -85,6 +91,10 @@ export default defineComponent({
     }
 
     const handleBlur = () => {
+      if (parseInt(state.value) < 0) {
+        message.warning('Amount must be greater than 0')
+        state.value = ''
+      }
       setTimeout(() => {
         if (!state.isPickItem) {
           state.visible = false

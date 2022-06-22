@@ -47,10 +47,7 @@ export default defineComponent({
 			emit('update:visible', n)
 		})
 		const handleClose = () => {
-			// $('.TCB1').fadeOut(100);
 			emit('close')
-			// $('.Tc-MYJY').slideUp(200);
-			// $('.RighTB').fadeIn(100)
 			state.visible = false
 		}
 		const handleConfirm = () => {
@@ -67,9 +64,9 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .content {
-	width: 40%;
-	min-width: 280px;
-	max-width: 600px;
+	width: 45%;
+	min-width: 400px;
+	max-width: 680px;
 	position:fixed;
 	z-index:1000;
 	background:#222245;
