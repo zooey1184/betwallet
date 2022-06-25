@@ -121,7 +121,7 @@
 </template>
 
 <script>
-import { defineComponent, inject, reactive, ref, computed } from "vue";
+import { defineComponent, inject, reactive, ref, computed, watch } from "vue";
 import BetInput from "../bet-input.vue";
 import BetItem from "../bet-item.vue";
 import { Tooltip } from "ant-design-vue";
@@ -138,49 +138,22 @@ export default defineComponent({
     Tooltip,
     BetPane,
   },
-  props: {},
-  emits: ["walletVisible"],
+  props: {
+    visible: {
+      type: Boolean
+    }
+  },
+  emits: ["walletVisible", 'update:visible'],
   setup(props, { emit }) {
     const state = reactive({
-      visible: false,
+      visible: props.visible,
       active: 0,
       slipActive: "single",
       doneActive: "undone",
       
       // TODO 投注的列表 历史 || 进行时
       myBetList: [
-        {
-          label: "myBetList",
-          value: "12",
-        },
-        {
-          label: "myBetList",
-          value: "12",
-        },
-        {
-          label: "myBetList",
-          value: "12",
-        },
-        {
-          label: "myBetList",
-          value: "12",
-        },
-        {
-          label: "myBetList",
-          value: "12",
-        },
-        {
-          label: "myBetList",
-          value: "12",
-        },
-        {
-          label: "myBetList",
-          value: "12",
-        },
-        {
-          label: "myBetList",
-          value: "12",
-        },
+        
         {
           label: "myBetList",
           value: "12",
@@ -190,6 +163,15 @@ export default defineComponent({
     const ACCOUNTS = inject("ACCOUNTS");
     const SPORT_BET = inject("SPORT_BET");
     const BET = inject("BET");
+
+    watch(() => props.visible, (n) => {
+      state.visible = n
+    }, {
+      immediate: true
+    })
+    watch(() => state.visible, (n)=> {
+      emit('update:visible', n)
+    })
     const getSportBetList = computed(() => SPORT_BET.getList.value);
     const getBetType = computed(() => {
       return BET.value?.betType;

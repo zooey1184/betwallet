@@ -36,11 +36,6 @@
         <div v-else>
           <div class="betItem" v-for="item in getSportBetList">
             <BetItem
-              left="item.data"
-              right="dddd"
-              title="helo"
-              desc="desc"
-              subTitle="scubtitle"
               :info='item'
               :showInput="getBetType !== 'combo'"
               v-model:value='item.betValue'

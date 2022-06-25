@@ -5,13 +5,11 @@
 
     <LeftSider :options='state.sportItemList' v-model:active='state.schedule' />
 
-    <RightSider @walletVisible="handleWalletVisible" />
+    <RightSider @walletVisible="handleWalletVisible" v-model:visible='state.visible' />
 
     <Content />
 
     <WalletPane v-model:visible="state.walletVisible" />
-
-    <!-- <BetModal v-model:visible='state.visible' /> -->
   </div>
 </template>
 
@@ -52,7 +50,7 @@ export default defineComponent({
     })
 
     const SPORTS = inject('SPORTS')
-
+    const SPORT_BET = inject('SPORT_BET')
     const methods = inject('methods')
     const SPORTS_ITEM_LIST = inject('SPORTS_ITEM_LIST')
     
@@ -66,6 +64,16 @@ export default defineComponent({
     watch(() =>SPORTS_ITEM_LIST.value, (n)=> {
       if (n?.length) {
         state.sportItemList = n
+      }
+    })
+
+    const getSportBetList = computed(() => {
+      return SPORT_BET.getBetList.value
+    })
+
+    watch(() => getSportBetList.value, (n, o) => {
+      if (n?.length && !o?.length) {
+        state.visible = true
       }
     })
 

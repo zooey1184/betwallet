@@ -12,8 +12,8 @@
       <close-square-outlined style="font-size: 18px" @click='handleDelete' class="hover_active" />
     </div>
     <div>
-      <div class="title">{{title}}</div>
-      <div class="desc">{{desc}}</div>
+      <div class="title">{{getTitle}}</div>
+      <div class="desc">{{getDesc}}</div>
     </div>
     <div>
       <bet-input :showInput="showInput" v-model:value='state.value'>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, ref, watch } from 'vue'
+import { computed, defineComponent, reactive, ref, watch } from 'vue'
 import betInput from './bet-input.vue'
 import {CloseSquareOutlined, TagOutlined} from '@ant-design/icons-vue'
 import useCompetitors from './useHooks/use-competitors'
@@ -82,6 +82,17 @@ export default defineComponent({
     })
 
     const getCompetitors = useCompetitors(props.info.data)
+    const getTitle = computed(() => {
+      const info = props.info
+      if (info?.active === 'left') {
+        return getCompetitors.value?.[0]?.title
+      } else if (info?.active === 'right') {
+        return getCompetitors.value?.[1]?.title
+      } else if (info?.active === 'middle') {
+        return 'Draw'
+      }
+    })
+    const getDesc = computed(() => 'Match Winner')
 
     const handleDelete = () => {
       emit('delete')
@@ -89,6 +100,8 @@ export default defineComponent({
 
     return {
       state,
+      getDesc,
+      getTitle,
       getCompetitors,
       handleDelete
     }

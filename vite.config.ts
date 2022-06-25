@@ -22,7 +22,7 @@ export default defineConfig({
       input: {
         web: path.resolve(__dirname, './web.html'),
         bet: path.resolve(__dirname, './bet.html'),
-        index: path.resolve(__dirname, './web.html'),
+        index: path.resolve(__dirname, './index.html'),
         sport: path.resolve(__dirname, './sport.html'),
       }
     }
