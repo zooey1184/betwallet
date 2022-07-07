@@ -51,12 +51,6 @@ import {message} from 'ant-design-vue'
 
 export default defineComponent({
   components: {
-<<<<<<< HEAD:src/App.vue
-    InitProvider,
-    Page,
-    Web3Provider,
-    SportProvider
-=======
     Footer,
     ValueDescription,
     HeaderPane,
@@ -67,10 +61,9 @@ export default defineComponent({
     DropdownRewardClaimed,
     NavPane,
     DownloadModal,
->>>>>>> f/web:src/bet/App.vue
   },
+  props: {},
   setup(props) {
-<<<<<<< HEAD
     const state = reactive({
       web3: undefined,
       downloadModalVisible: false,
@@ -227,13 +220,6 @@ export default defineComponent({
       addressHide,
       handleConnect,
     }
-=======
-    onMounted(() => {
-      $(window).resize(function () {          //当浏览器大小变化时
-        if($('body').width()>959){$('.wapNav').removeClass('wapNavO');$('.wapMenu').slideUp(100);}
-      });
-    })
->>>>>>> a9ec1c615ad6ccac108b35998329ea69d49845a1
   }
 })
 </script>
