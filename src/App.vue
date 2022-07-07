@@ -50,19 +50,13 @@ import {getBonusInfo} from './api'
 
 export default defineComponent({
   components: {
-    Footer,
-    ValueDescription,
-    HeaderPane,
-    DescriptionDropdown2,
-    Header,
-    DropdownState,
-    DropdownReward,
-    DropdownRewardClaimed,
-    NavPane,
-    DownloadModal
+    InitProvider,
+    Page,
+    Web3Provider,
+    SportProvider
   },
-  props: {},
   setup(props) {
+<<<<<<< HEAD
     const state = reactive({
       downloadModalVisible: false,
       userInfo: undefined,
@@ -162,6 +156,13 @@ export default defineComponent({
       addressHide,
       handleConnect,
     }
+=======
+    onMounted(() => {
+      $(window).resize(function () {          //当浏览器大小变化时
+        if($('body').width()>959){$('.wapNav').removeClass('wapNavO');$('.wapMenu').slideUp(100);}
+      });
+    })
+>>>>>>> a9ec1c615ad6ccac108b35998329ea69d49845a1
   }
 })
 </script>
