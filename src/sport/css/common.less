@@ -1,0 +1,70 @@
+::-webkit-scrollbar {
+  background: #eeeeee62;
+  height: 3px;
+  width: 0;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.89);
+  border-radius: 40px;
+}
+::-webkit-scrollbar-track {
+  background: #22222233;
+}
+
+.flex {
+  display: flex;
+}
+.items-center {
+  align-items: center;
+}
+.justify-end {
+  justify-content: end;
+}
+.justify-between {
+  justify-content: space-between;
+}
+
+body {
+  .active {
+    box-shadow: 0 0 10px #16bdf9;
+    background-color: #1c7293 !important;
+    border-color: #16bdf9 !important;
+    border: 1px solid;
+    color: #fff;
+  }
+  .pos-r {
+    position: relative;
+  }
+  .pos-a {
+    position: absolute;
+  }
+  .pos-f {
+    position: fixed;
+  }
+}
+.default_color {
+  color: #6c829d;
+}
+.title_color {
+  color: #becde3;
+}
+.hover_active {
+  &:hover {
+    color: #16bdf9 !important;;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"]{
+  -moz-appearance: textfield;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.justify-center {
+  justify-content: center;
+}
