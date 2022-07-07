@@ -7,10 +7,10 @@
       </MouseTrack>
       
       <div style="z-index: 9; width: 48vw">
-        <div class="title-md fade-left" :class="{'fade-right': data.show[0]}">The first Betweb3.0  
+        <div class="title-md fade-left" :class="{'fade-right': data.show[0]}">
           <div class="title-md">
-            Sports betting platform to achieve decentralized
-            <span class="title-md linear-color">sports betting on the blockchain</span>
+            The Decentralized 
+            <span class="title-md linear-color">Sports Betting Protocol</span>
           </div>
         </div>
 
@@ -25,7 +25,7 @@
           <div class="mx-16">
             <img :src='Logo' class="logo" alt="">
           </div>
-          <div class="link desc">and more</div>
+          <div class=" desc">and more</div>
         </div>
       </div>
       <div style="width: 25vw; height: 28vw; top: 0" class="pos-r overflow-hidden">

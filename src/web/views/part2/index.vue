@@ -3,7 +3,7 @@
     <template #default='data'>
       <div class="color-white gutter_col">
         <div style="min-height: 50px">
-          <h2 :class="{fadein: data.show[1]}" class="fadeout title-lg pos-r linear-color text-align-center">Creating new sports betting experiences on Betweb3.0</h2>
+          <h2 :class="{fadein: data.show[1]}" class="fadeout title-lg pos-r linear-color text-align-center">Creating new sports betting experiences on Web3.0</h2>
         </div>
         
         <div class="fadeout" :class="{fadein: data.show[2]}">

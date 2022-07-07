@@ -25,6 +25,8 @@ import Steps from '../../components/steps'
 import Wrap from '@/web/components/wrap'
 import MouseTrack from '@/web/components/mouse-track'
 import BgImg from '../../assets/part5-bg.png'
+import {options} from './constant'
+
 export default defineComponent({
   components: {
     Steps,
@@ -34,28 +36,7 @@ export default defineComponent({
   props: {},
   setup(props) {
     return {
-      options: [
-        {
-          label: 'connect walle',
-          desc: 'Choose a wallet and connect'
-        },
-        {
-          label: 'Choose game',
-          desc: 'Choose football, basketball, eSports events'
-        },
-        {
-          label: 'place a bet',
-          desc: 'Choose the market and bet amount, and bet within the limits'
-        },
-        {
-          label: 'send transaction',
-          desc: 'Complete the betting transaction after waiting for the block to be confirmed'
-        },
-        {
-          label: 'bet wins',
-          desc: 'The capital pool will automatically transfer USDT to the winning address through the smart contract'
-        },
-      ],
+      options: options,
       BgImg
     }
   }

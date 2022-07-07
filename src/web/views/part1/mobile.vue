@@ -8,10 +8,10 @@
       <div style="z-index: 9;">
         <img src="../../assets/part1-bg.png" class="bg_img" alt="">
         <transition name='fade'>
-          <div class="title-md text-align-center" >The first Betweb3.0  
+          <div class="title-md text-align-center" >
             <div class="title-md">
-              Sports betting platform to achieve decentralized
-              <span class="title-md linear-color">sports betting on the blockchain</span>
+              The Decentralized 
+              <span class="title-md linear-color">Sports Betting Protocol</span>
             </div>
           </div>
         </transition>
@@ -32,7 +32,7 @@
             <div class="mx-16">
               <img src="../../assets/logo.png" class="logo" alt="">
             </div>
-            <div class="link desc">and more</div>
+            <div class=" desc">and more</div>
           </div>
         </transition>
       </div>
