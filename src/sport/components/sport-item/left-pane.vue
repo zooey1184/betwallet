@@ -48,7 +48,6 @@ export default defineComponent({
   components: {
     RightOutlined,
   },
-  emits: ["detail"],
   props: {
     time: {
       type: String,
@@ -58,6 +57,7 @@ export default defineComponent({
     },
     count: Number,
   },
+  emits: ["detail"],
   setup(props, { emit }) {
     const handleDetail = () => {
       emit("detail");

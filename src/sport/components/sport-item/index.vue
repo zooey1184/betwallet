@@ -1,6 +1,10 @@
 <template>
   <div class="wrap">
-    <left-pane :name="info?.venue?.name" :time="getScheduleTime"></left-pane>
+    <left-pane
+      :name="info?.venue?.name"
+      :time="getScheduleTime"
+      @detail="handleGoDetail"
+    ></left-pane>
 
     <div class="flex items-center pc-item">
       <!-- left -->
@@ -61,7 +65,6 @@
         :leftValue="getLeftValue"
         :middleValue="getMiddleValue"
         :count="count"
-        @detail="handleGoDetail"
         :rightTitle="getCompetitors[1].title"
         :rightValue="getRightValue"
       />
@@ -179,7 +182,7 @@ export default defineComponent({
 
     const handleGoDetail = () => {
       router.push({
-        path: "/detail",
+        name: "detail",
       });
     };
 
