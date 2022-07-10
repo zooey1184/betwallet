@@ -8,15 +8,17 @@
     </div>
     <div class="flex items-center">
       <div class="flex items-center">
-        <a href='https://twitter.com/BetWeb3' target='_blank'>
+        <a href='https://twitter.com/betweb3' target='_blank'>
           <img class="icon cursor-pointer" src='../../assets/icon-t.png' alt="">
         </a>
         <a href='https://medium.com/@betweb3official' target='_blank'>
-          <img class="icon cursor-pointer" src='../../assets/icon-m.png' alt="">
+          <img class="icon" src='../../assets/icon-m.png' alt="">
         </a>
         
-        <img class="icon cursor-pointer" src="../../assets/icon-discord.png" alt="">
-        <img class="icon cursor-pointer" src="../../assets/icon-g.png" alt="">
+        <img class="icon" src="../../assets/icon-discord.png" alt="">
+        <a href="https://curry-steven.gitbook.io/untitled/" target="_blank">
+          <img class="icon" src="../../assets/icon-g.png" alt="">
+        </a>
       </div>
       <div class="text cursor-pointer link">Disclaimers</div>
     </div>

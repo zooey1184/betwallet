@@ -5,10 +5,16 @@
 				<div class="ftLog"><img src="../images/ftlogo.png"></div>
 				<div class="ftC">©2021 - Nesting - All Rights Reserved</div>
 				<div class="ftI flexC">
-					<a href="javascript:;" class="ftIa"><img src="../images/ftI01.png"></a>
-					<a href="javascript:;" class="ftIa"><img src="../images/ftI02.png"></a>
-					<a href="javascript:;" class="ftIa"><img src="../images/ftI03.png"></a>
-					<a href="javascript:;" class="ftIa"><img src="../images/ftI04.png"></a>
+					<a class="ftIa"  href='https://twitter.com/betweb3' target='_blank'>
+						<img src="../images/ftI01.png">
+					</a>
+					<a class="ftIa" href='https://medium.com/@betweb3official' target='_blank'>
+						<img src="../images/ftI02.png">
+					</a>
+					<a class="ftIa"><img src="../images/ftI03.png"></a>
+					<a class="ftIa" href="https://curry-steven.gitbook.io/untitled/" target="_blank">
+						<img src="../images/ftI04.png">
+					</a>
 				</div>				
 				<a href="javascript:;" class="ftMZ">Disclaimer</a>
 			</div>

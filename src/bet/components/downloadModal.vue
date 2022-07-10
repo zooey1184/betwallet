@@ -1,50 +1,62 @@
 <template>
-  <div class="mask" @touchmove.prevent v-if='state.visible'>
+  <div class="mask" @touchmove.prevent v-if="state.visible">
     <div class="content">
-      <img src="../images/close.png" @click='state.visible=false' class="closeImg" alt="">
-      <div class="_title">
-        Authorize your wallet
-      </div>
+      <img
+        src="../images/close.png"
+        @click="state.visible = false"
+        class="closeImg"
+        alt=""
+      />
+      <div class="_title">Authorize your wallet</div>
       <div class="_desc">
-        We found that the browser has not added metamask yet. Once you have it installed, go ahead and refresh the page.
+        We found that the browser has not added metamask yet. Once you have it
+        installed, go ahead and refresh the page.
       </div>
-      <a class="_btn" href='https://metamask.io/'>
-        <img style="width: 35px; height: 35px" src="../images/metamask.png" alt="">
-        <div style="margin-left: 16px">
-          Install Metamask
-        </div>
+      <a class="_btn" href="https://metamask.io/">
+        <img
+          style="width: 35px; height: 35px"
+          src="../images/metamask.png"
+          alt=""
+        />
+        <div style="margin-left: 16px">Install Metamask</div>
       </a>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, reactive, ref, watch } from 'vue'
+import { defineComponent, reactive, ref, watch } from "vue";
 
 export default defineComponent({
   components: {},
   props: {
     visible: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
-  emits: ['update:visible'],
-  setup(props, {emit, expose}) {
+  emits: ["update:visible"],
+  setup(props, { emit, expose }) {
     const state = reactive({
-      visible: props.visible
-    })
-    watch(() => props.visible, (n) => {
-      state.visible = n
-    })
-    watch(() => state.visible, (n) => {
-      emit('update:visible', n)
-    })
+      visible: props.visible,
+    });
+    watch(
+      () => props.visible,
+      (n) => {
+        state.visible = n;
+      }
+    );
+    watch(
+      () => state.visible,
+      (n) => {
+        emit("update:visible", n);
+      }
+    );
 
     return {
-      state
-    }
-  }
-})
+      state,
+    };
+  },
+});
 </script>
 
 <style lang="less" scoped>
@@ -96,8 +108,14 @@ export default defineComponent({
     height: 50px;
     line-height: 50px;
     text-align: center;
-    background: -webkit-linear-gradient(359.94deg,#a86acf .05%,#46fcd2 99.95%),#0c0c30!important;
-    background: linear-gradient(90.06deg,#a86acf .05%,#46fcd2 99.95%),#0c0c30!important;
+    background: -webkit-linear-gradient(
+        359.94deg,
+        #a86acf 0.05%,
+        #46fcd2 99.95%
+      ),
+      #0c0c30 !important;
+    background: linear-gradient(90.06deg, #a86acf 0.05%, #46fcd2 99.95%),
+      #0c0c30 !important;
     border-radius: 10px;
     border: none;
     margin: 0 auto;

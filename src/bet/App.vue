@@ -9,7 +9,7 @@
 		<section class="ward">
 			<HeaderPane :userInfo="state.userInfo" :account="state.total_bet_today" />
 
-			<section class="IndBet Huans flex fl-bet">
+			<!-- <section class="IndBet Huans flex fl-bet">
 				<div class="IndBetT wow slideInUp flexC IndBetW" data-wow-duration="1s">
 					<div class="IndBetTI IndBac1"><img src="./images/icon04.png"></div>
 					<div class="IndBetTN">
@@ -21,7 +21,7 @@
         <DropdownState :userInfo="state.userInfo" />
 				<DropdownReward :userInfo="state.userInfo" />
 				<DropdownRewardClaimed :userInfo="state.userInfo" />
-			</section>
+			</section> -->
 
 			<ValueDescription />
 		</section>

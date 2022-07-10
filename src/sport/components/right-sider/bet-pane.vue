@@ -36,10 +36,10 @@
         <div v-else>
           <div class="betItem" v-for="item in getSportBetList">
             <BetItem
-              :info='item'
+              :info="item"
               :showInput="getBetType !== 'combo'"
-              v-model:value='item.betValue'
-              @delete='handleDeleteItem(item)'
+              v-model:value="item.betValue"
+              @delete="handleDeleteItem(item)"
             ></BetItem>
           </div>
         </div>
@@ -50,43 +50,39 @@
             <a href="javascript:;" class="RighDGDa">Your bet</a>
             
           </div> -->
-          <div v-if='getBetType === "single"'>
-            <BetInput v-model:value='state.betSingleValue'>
+          <div v-if="getBetType === 'single'">
+            <BetInput v-model:value="state.betSingleValue">
               <template #title>
-                <div>
-                  Single share:
-                </div>
+                <div>Single share:</div>
               </template>
             </BetInput>
             <div class="RighDGD flexC fl-bet">
               <div class="RighDGH">Total shares：</div>
-              <div class="RighDGS">{{getTotal}}</div>
+              <div class="RighDGS">{{ getTotal }}</div>
             </div>
             <div class="RighDGD flexC fl-bet" style="color: #376efc">
               <div class="RighDGH">Potential victory：</div>
-              <div class="RighDGS">{{getWin}}</div>
+              <div class="RighDGS">{{ getWin }}</div>
             </div>
           </div>
-          <div v-if='getBetType === "combo"'>
-            <BetInput v-model:value='state.betComboValue'>
+          <div v-if="getBetType === 'combo'">
+            <BetInput v-model:value="state.betComboValue">
               <template #title>
-                <div>
-                  Amount:
-                </div>
+                <div>Amount:</div>
               </template>
               <template #desc>
-                <div style='text-align: right' class="default_color">
+                <div style="text-align: right" class="default_color">
                   Amount required
                 </div>
               </template>
             </BetInput>
             <div class="RighDGD flexC fl-bet">
               <div class="RighDGH">Odds:</div>
-              <div class="RighDGS">{{getOdds}}</div>
+              <div class="RighDGS">{{ getOdds }}</div>
             </div>
             <div class="RighDGD flexC fl-bet" style="color: #376efc">
               <div class="RighDGH">Potential victory：</div>
-              <div class="RighDGS">{{getWinCombo}}</div>
+              <div class="RighDGS">{{ getWinCombo }}</div>
             </div>
           </div>
           <a href="javascript:;" class="RighDGod">
@@ -96,24 +92,27 @@
         </div>
       </div>
 
-      <a href="javascript:;" class="RighA RighXZ" @click="handleBet">{{isLink ? 'Bet' : 'Login And Bet'}}</a>
+      <a href="javascript:;" class="RighA RighXZ" @click="handleBet">{{
+        isLink ? "Bet" : "Login And Bet"
+      }}</a>
     </div>
   </div>
-  <BetModal v-model:visible='state.visible' />
+  <BetModal v-model:visible="state.visible" />
 </template>
 
 <script>
 import { defineComponent, inject, ref, computed, watch, reactive } from "vue";
 import BetItem from "../bet-item.vue";
-import DeleteIcon from './icon-delete-all.vue'
-import BetInput from '../bet-input.vue'
-import BetModal from '../transaction'
+import DeleteIcon from "./icon-delete-all.vue";
+import BetInput from "../bet-input.vue";
+import BetModal from "../transaction";
+
 export default defineComponent({
   components: {
     BetItem,
     BetInput,
     DeleteIcon,
-    BetModal
+    BetModal,
   },
   props: {},
   emits: ["bet"],
@@ -121,11 +120,11 @@ export default defineComponent({
     const state = reactive({
       betSingleValue: undefined,
       betComboValue: undefined,
-      visible: false
-    })
+      visible: false,
+    });
     const ACCOUNTS = inject("ACCOUNTS");
     const SPORT_BET = inject("SPORT_BET");
-    const BET_MODAL = inject('BET_MODAL')
+    const BET_MODAL = inject("BET_MODAL");
     const BET = inject("BET");
 
     const handleChangeBetType = (e) => {
@@ -135,52 +134,51 @@ export default defineComponent({
       return BET.value?.betType;
     });
     const getSportBetList = computed(() => {
-      return SPORT_BET.getBetList.value
-    })
-    const isLink = computed(() => ACCOUNTS.isLink?.value)
+      return SPORT_BET.getBetList.value;
+    });
+    const isLink = computed(() => ACCOUNTS.isLink?.value);
     const getTotal = computed(() => {
-      const list = getSportBetList.value
-      let s = 0
-      for(let i=0; i<list.length; i++) {
-        const item = list[i]
-        const val = +(item.betValue || 0)
-        s+=val
+      const list = getSportBetList.value;
+      let s = 0;
+      for (let i = 0; i < list.length; i++) {
+        const item = list[i];
+        const val = +(item.betValue || 0);
+        s += val;
       }
-      return s
-    })
+      return s;
+    });
 
-    
     const getWin = computed(() => {
-      const list = getSportBetList.value
-      let s = 0
-      for(let i=0; i<list.length; i++) {
-        const item = list[i]
-        const val = +(item.betValue || 0)*(item.activeValue)
-        s+=val
+      const list = getSportBetList.value;
+      let s = 0;
+      for (let i = 0; i < list.length; i++) {
+        const item = list[i];
+        const val = +(item.betValue || 0) * item.activeValue;
+        s += val;
       }
-      return s
-    })
+      return s;
+    });
     const getOdds = computed(() => {
-      const list = getSportBetList.value
-      let s = 0
-      const arr = []
-      for(let i=0; i<list.length; i++) {
-        const item = list[i]
-        const val = +(item.activeValue || 0)
-        arr.push(val)
+      const list = getSportBetList.value;
+      let s = 0;
+      const arr = [];
+      for (let i = 0; i < list.length; i++) {
+        const item = list[i];
+        const val = +(item.activeValue || 0);
+        arr.push(val);
       }
-      s = arr.reduce((p,n) => p*n, 1)
-      return parseFloat(s.toFixed(2))
-    })
+      s = arr.reduce((p, n) => p * n, 1);
+      return parseFloat(s.toFixed(2));
+    });
     const getWinCombo = computed(() => {
-      const val = state.betComboValue || 0
-      const odds = getOdds.value
-      return parseFloat((val*odds).toFixed(2))
-    })
+      const val = state.betComboValue || 0;
+      const odds = getOdds.value;
+      return parseFloat((val * odds).toFixed(2));
+    });
     const handleBet = () => {
       if (isLink.value) {
         emit("bet");
-        state.visible = true
+        state.visible = true;
       } else {
         ACCOUNTS.link();
       }
@@ -190,14 +188,17 @@ export default defineComponent({
     };
 
     const handleDeleteItem = (item) => {
-      SPORT_BET.delete(item)
-    }
-    watch(() => state.betSingleValue, (n) => {
-      const list = getSportBetList.value
-      list.forEach(item => {
-        item.betValue = n
-      });
-    })
+      SPORT_BET.delete(item);
+    };
+    watch(
+      () => state.betSingleValue,
+      (n) => {
+        const list = getSportBetList.value;
+        list.forEach((item) => {
+          item.betValue = n;
+        });
+      }
+    );
     return {
       state,
       isLink,
@@ -210,7 +211,7 @@ export default defineComponent({
       handleChangeBetType,
       handleDeleteItem,
       getOdds,
-      getWinCombo
+      getWinCombo,
     };
   },
 });

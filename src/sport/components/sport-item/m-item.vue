@@ -1,23 +1,27 @@
 <template>
   <!-- left -->
   <div class="flex justify-between title_color" style="margin-bottom: 8px">
-    <div class="flex items-center">
+    <div class="flex items-center pos-r">
       <div class="icon"></div>
-      <div>{{leftTitle}}</div>
+      <div>{{ leftTitle }}</div>
     </div>
     <div>
       <input
         type="text"
         :value="leftValue"
-        @click='handlePick("left")'
-        class="zyqulNI" 
-        :class="{'active': state.active==='left'}"
+        @click="handlePick('left')"
+        class="zyqulNI"
+        :class="{ active: state.active === 'left' }"
         readonly
       />
     </div>
   </div>
   <!-- middle -->
-  <div class="flex justify-between title_color" style="margin-bottom: 8px" v-if='middleValue'>
+  <div
+    class="flex justify-between title_color"
+    style="margin-bottom: 8px"
+    v-if="middleValue"
+  >
     <div class="flex items-center">
       <div class="icon" style="background: transparent"></div>
       <div class="default_color">Draw</div>
@@ -26,9 +30,9 @@
       <input
         type="text"
         :value="middleValue"
-        @click='handlePick("middle")'
-        class="zyqulNI" 
-        :class="{'active': state.active==='middle'}"
+        @click="handlePick('middle')"
+        class="zyqulNI"
+        :class="{ active: state.active === 'middle' }"
         readonly
       />
     </div>
@@ -37,15 +41,15 @@
   <div class="flex justify-between title_color">
     <div class="flex items-center">
       <div class="icon"></div>
-      <div>{{rightTitle}}</div>
+      <div>{{ rightTitle }}</div>
     </div>
     <div>
       <input
         type="text"
         :value="rightValue"
-        @click='handlePick("right")'
-        class="zyqulNI" 
-        :class="{'active': state.active==='right'}"
+        @click="handlePick('right')"
+        class="zyqulNI"
+        :class="{ active: state.active === 'right' }"
         readonly
       />
     </div>
@@ -53,7 +57,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, ref, watch } from 'vue'
+import { defineComponent, reactive, ref, watch } from "vue";
 
 export default defineComponent({
   components: {},
@@ -62,49 +66,56 @@ export default defineComponent({
       type: String,
     },
     leftValue: {
-      type: String
+      type: String,
     },
     rightTitle: {
-      type: String
+      type: String,
     },
     rightValue: {
-      type: String
+      type: String,
     },
     middleValue: {
-      type: String
+      type: String,
     },
     active: {
-      type: [String, Number]
-    }
+      type: [String, Number],
+    },
   },
-  emits: ['change', 'update:active'],
-  setup(props, {emit}) {
-    const state  = reactive({
-      active: props.active
-    })
-    watch(() => props.active, (n) => {
-      state.active = n
-    }, {
-      immediate: true
-    })
-    watch(() => state.active, (n) => {
-      emit('update:active', n)
-    })
+  emits: ["change", "update:active"],
+  setup(props, { emit }) {
+    const state = reactive({
+      active: props.active,
+    });
+    watch(
+      () => props.active,
+      (n) => {
+        state.active = n;
+      },
+      {
+        immediate: true,
+      }
+    );
+    watch(
+      () => state.active,
+      (n) => {
+        emit("update:active", n);
+      }
+    );
     const handlePick = (e) => {
       if (e === state.active) {
-        state.active =''
+        state.active = "";
       } else {
-        state.active = e
+        state.active = e;
       }
-      emit('change', e)
-    }
+      emit("change", e);
+    };
 
     return {
       state,
-      handlePick
-    }
-  }
-})
+      handlePick,
+    };
+  },
+});
 </script>
 
 <style lang="less" scoped>
@@ -112,7 +123,7 @@ export default defineComponent({
   width: 24px;
   height: 24px;
   border-radius: 4px;
-  background-color: rgba(108,130,157,.4);
+  background-color: rgba(108, 130, 157, 0.4);
   border: 1px solid transparent;
   margin-right: 8px;
 }
