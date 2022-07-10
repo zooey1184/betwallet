@@ -10,9 +10,22 @@
 ::-webkit-scrollbar-track {
   background: #22222233;
 }
-
+.ellipsis_2 {
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+  -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+  -webkit-line-clamp: 2; /** 显示的行数 **/
+  overflow: hidden; /** 隐藏超出的内容 **/
+}
 .flex {
   display: flex;
+}
+.flex-1 {
+  flex-grow: 1;
+}
+.flex-0 {
+  flex-shrink: 0;
 }
 .items-center {
   align-items: center;
@@ -25,6 +38,9 @@
 }
 
 body {
+  .bg_linear_to {
+    background-color: #366efc;
+  }
   .active {
     box-shadow: 0 0 10px #16bdf9;
     background-color: #1c7293 !important;
@@ -41,6 +57,12 @@ body {
   .pos-f {
     position: fixed;
   }
+  .sticky {
+    position: sticky;
+  }
+  .text-align-center {
+    text-align: center;
+  }
 }
 .default_color {
   color: #6c829d;
@@ -52,6 +74,9 @@ body {
   &:hover {
     color: #16bdf9 !important;;
   }
+}
+.bg-item {
+  background-color: #1b222c;
 }
 
 input::-webkit-outer-spin-button,
@@ -67,4 +92,7 @@ input[type="number"]{
 }
 .justify-center {
   justify-content: center;
+}
+.mt-8 {
+  margin-top: 8px;
 }

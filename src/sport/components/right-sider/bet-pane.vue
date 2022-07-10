@@ -124,7 +124,7 @@ export default defineComponent({
     });
     const ACCOUNTS = inject("ACCOUNTS");
     const SPORT_BET = inject("SPORT_BET");
-    const BET_MODAL = inject("BET_MODAL");
+    
     const BET = inject("BET");
 
     const handleChangeBetType = (e) => {

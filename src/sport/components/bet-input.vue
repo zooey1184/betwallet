@@ -10,9 +10,11 @@
   <slot name='desc'></slot>
 
   <div class="collapse-wrap flex items-center justify-between" :class="{'collapse-show': state.visible}">
-    <div class="collapse-item" :class="{'gutter': index !== 0, 'active': state.value === item.value}" @click="handlePickItem(item)" v-for="(item, index) in options">
-      {{item.label}}
-    </div>
+    <template v-for="(item, index) in options" :key='index'>
+      <div class="collapse-item" :class="{'gutter': index !== 0, 'active': state.value === item.value}" @focus="handleFocus" @blur="handleBlur" :tabindex="index" @click="handlePickItem(item)" >
+        {{item.label}}
+      </div>
+    </template>
   </div>
 </template>
 
@@ -73,21 +75,12 @@ export default defineComponent({
       if (props.options?.length) {
         state.visible = true
       }
-      setTimeout(() => {
-        state.isPickItem = false
-      })
     }
 
     const handlePickItem  = (item) => {
-      state.visible = true
-      inputRef.value.focus()
       state.isPickItem = true
-      setTimeout(() => {
-        state.isPickItem = false
-      }, 50)
-      
       state.value = item.value
-      
+      inputRef.value?.focus()
     }
 
     const handleBlur = () => {
@@ -95,12 +88,7 @@ export default defineComponent({
         message.warning('Amount must be greater than 0')
         state.value = ''
       }
-      setTimeout(() => {
-        if (!state.isPickItem) {
-          state.visible = false
-        }
-      })
-      // state.visible = false
+      state.visible = false
     }
 
     return {

@@ -105,7 +105,7 @@ export default defineComponent({
       state.active = item.value;
       const _router = router.currentRoute.value;
       console.log(_router);
-      if (_router.name === "detail") {
+      if (_router.name !== "main") {
         router.push({
           name: "main",
         });

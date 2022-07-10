@@ -4,6 +4,7 @@
       :name="info?.venue?.name"
       :time="getScheduleTime"
       @detail="handleGoDetail"
+      :count="count"
     ></left-pane>
 
     <div class="flex items-center pc-item">
@@ -64,7 +65,7 @@
         :leftTitle="getCompetitors[0].title"
         :leftValue="getLeftValue"
         :middleValue="getMiddleValue"
-        :count="count"
+        
         :rightTitle="getCompetitors[1].title"
         :rightValue="getRightValue"
       />
@@ -99,7 +100,7 @@ export default defineComponent({
       type: Number,
     },
   },
-  emits: ["udpate:active", "change"],
+  emits: ["update:active", "change"],
   setup(props, { emit }) {
     const router = useRouter();
     const state = reactive({
@@ -203,7 +204,7 @@ export default defineComponent({
 <style lang="less" scoped>
 .wrap {
   padding: 12px;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   border-radius: 8px;
   overflow: hidden;
   background: #16162f;
