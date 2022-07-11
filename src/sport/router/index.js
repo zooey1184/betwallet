@@ -12,7 +12,12 @@ const router = createRouter({
     {
       path: '/detail',
       name: 'detail',
-      component: () => import('@/sport/views/detail.vue')
+      component: () => import('@/sport/views/detail/index.vue')
+    },
+    {
+      path: '/bet',
+      name: 'bet',
+      component: () => import('@/bet/views/app.vue')
     },
   ],
 })

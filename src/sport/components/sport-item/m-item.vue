@@ -63,19 +63,19 @@ export default defineComponent({
   components: {},
   props: {
     leftTitle: {
-      type: String,
+      type: [String, Number],
     },
     leftValue: {
-      type: String,
+      type: [String, Number],
     },
     rightTitle: {
-      type: String,
+      type: [String, Number],
     },
     rightValue: {
-      type: String,
+      type: [String, Number],
     },
     middleValue: {
-      type: String,
+      type: [String, Number],
     },
     active: {
       type: [String, Number],

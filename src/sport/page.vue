@@ -1,10 +1,12 @@
 <template>
   <div>
-    <Header
+    <div ref='headerRef'>
+      <Header
       v-model:active="state.active"
       :options="state.sports"
-      @link="handleConnect"
+      
     />
+    </div>
     <MNav v-model:active="state.active" :options="state.sports" />
 
     <LeftSider :options="state.sportItemList" v-model:active="state.schedule" />
@@ -13,10 +15,13 @@
       @walletVisible="handleWalletVisible"
       v-model:visible="state.visible"
     />
-    <div class="zyqDk Huans">
+    <!-- <div class="zyqDk Huans">
       <div class="zyqDD Huans">
         <router-view />
       </div>
+    </div> -->
+    <div class="wrap">
+      <router-view />
     </div>
 
     <!-- <Content /> -->
@@ -60,6 +65,7 @@ export default defineComponent({
   },
   props: {},
   setup(props) {
+    const headerRef = ref()
     const state = reactive({
       walletVisible: false,
       active: "", // footer , baskatball ...,
@@ -146,19 +152,41 @@ export default defineComponent({
       getScheduleList,
       getScheduleItem,
     });
-    // provide('BET_MODAL', {
-    //   visible: (n) => {
-    //     state.visible = n
-    //   }
-    // })
 
     const handleWalletVisible = () => {
       state.walletVisible = true;
     };
     return {
       state,
+      headerRef,
       handleWalletVisible,
     };
   },
 });
 </script>
+
+<style lang="less" scoped>
+.wrap {
+  color: #fff;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  padding: 0 10% 0;
+  height: calc(100vh - 80px);
+  top: 80px;
+  overflow: auto;
+  overflow-x: hidden;
+  @media (min-width: 960px) and (max-width: 1440px) {
+    height: calc(100vh - 70px);
+    top: 70px;
+  }
+  @media (max-width: 960px) {
+    height: calc(100vh - 60px);
+    top: 60px;
+  }
+  @media (max-width: 639px) {
+    height: calc(100vh - 0.42rem);
+    top: 0.42rem
+  }
+}
+</style>
