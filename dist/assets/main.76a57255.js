@@ -1,0 +1,1 @@
+import{C as t}from"./sport.2961a677.js";import{_ as e,d as s,g as p,a as r,s as a}from"./plugin-vue_export-helper.638f1dcd.js";import"./antd.64d46600.js";const c=s({components:{Content:t},props:{},setup(o){}});function m(o,_,f,i,d,C){const n=p("Content");return r(),a(n)}var x=e(c,[["render",m]]);export{x as default};

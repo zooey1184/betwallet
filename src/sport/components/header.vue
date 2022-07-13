@@ -57,9 +57,11 @@
 
 <script>
 import { computed, defineComponent, inject, reactive, ref, watch } from "vue";
-
+import Mask from "@/sport/components/mask";
 export default defineComponent({
-  components: {},
+  components: {
+    Mask,
+  },
   props: {
     userInfo: {
       type: Object,

@@ -1,20 +1,35 @@
 <template>
   <Wrap>
-    <template #default='data'>
+    <template #default="data">
       <div class="mb-48 pos-r">
-        <img v-lazy='BgImg1' class="abs-bg1" alt="">
+        <img v-lazy="BgImg1" class="abs-bg1" alt="" />
         <div class="abs-bg2">
-          <MouseTrack><img v-lazy='BgImg2' class="w-100p" alt=""></MouseTrack>
+          <MouseTrack><img v-lazy="BgImg2" class="w-100p" alt="" /></MouseTrack>
         </div>
-        
-        <div style="margin-bottom: 26px" class="inline-block linear-color title-lg">Road map</div>
-        <div class="subTitle"  style="margin-bottom: 12vh">We are also working on ex、panding the Web3bet ecosystem.Stay tuned…</div>
+
+        <div
+          style="margin-bottom: 26px"
+          class="inline-block linear-color title-lg"
+        >
+          Road map
+        </div>
+        <div class="subTitle" style="margin-bottom: 12vh">
+          We are also working on ex、panding the Web3bet ecosystem.Stay tuned…
+        </div>
         <div class="flex items-center justify-around">
-          <div class="slideout-left" style="width: 47%;" :class="{'slidein-right': data.show[0]}">
-            <Steps align="around" :options="options" v-model:active='state.active' />
+          <div
+            class="slideout-left"
+            style="width: 55%"
+            :class="{ 'slidein-right': data.show[0] }"
+          >
+            <Steps
+              align="around"
+              :options="options"
+              v-model:active="state.active"
+            />
           </div>
-          <div class="slideout-right" :class="{'slidein-left': data.show[0]}">
-            <CircleMap v-model:active='state.active' />
+          <div class="slideout-right" :class="{ 'slidein-left': data.show[0] }">
+            <CircleMap v-model:active="state.active" />
           </div>
         </div>
       </div>
@@ -22,39 +37,37 @@
   </Wrap>
 </template>
 
-
 <script>
-import { defineComponent, reactive, ref } from 'vue'
-import Steps from '../../components/steps/steps.vue'
-import CircleMap from './circle-map'
-import Wrap from '@/web/components/wrap'
-import BgImg1 from '../../assets/part8-bg1.png'
-import BgImg2 from '../../assets/part8-bg2.png'
-import MouseTrack from '@/web/components/mouse-track'
-import {options} from './constant'
+import { defineComponent, reactive, ref } from "vue";
+import Steps from "../../components/steps/steps.vue";
+import CircleMap from "./circle-map";
+import Wrap from "@/web/components/wrap";
+import BgImg1 from "../../assets/part8-bg1.png";
+import BgImg2 from "../../assets/part8-bg2.png";
+import MouseTrack from "@/web/components/mouse-track";
+import { options } from "./constant";
 
 export default defineComponent({
   components: {
     Steps,
     CircleMap,
     Wrap,
-    MouseTrack
+    MouseTrack,
   },
   props: {},
   setup(props) {
     const state = reactive({
       active: 0,
-    })
+    });
     return {
       state,
       options: options,
       BgImg1,
-      BgImg2
-    }
-  }
-})
+      BgImg2,
+    };
+  },
+});
 </script>
-
 
 <style lang="less" scoped>
 .abs-bg1 {
