@@ -21,7 +21,7 @@
 
     <div class="zyqhdR flexC">
       <div class="zyqhdwal flexC fl-bet">
-        <div class="text-align-center w-100p">激活房间号</div>
+        <div class="text-align-center w-100p" @click='handleShowMask'>激活房间号</div>
       </div>
       <!-- wallet -->
       <div class="zyqhdwal flexC fl-bet" v-if="isLink">
@@ -52,6 +52,12 @@
         >link wallet</a
       >
     </div>
+
+    <Mask v-model:visible='state.visible'>
+      <div style="width: 400px; height: 300px;" class="bg-white">
+        handleConnect
+      </div>
+    </Mask>
   </header>
 </template>
 
@@ -80,6 +86,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const state = reactive({
       active: props.active,
+      visible: false
     });
 
     const SPORTS = inject("SPORTS");
@@ -115,6 +122,10 @@ export default defineComponent({
       emit("link");
     };
 
+    const handleShowMask = () => {
+      state.visible = true
+    }
+
     const handleShowNav = () => {
       if (!$(".wapNav").hasClass("wapNavO")) {
         $(".wapNav").addClass("wapNavO");
@@ -134,6 +145,7 @@ export default defineComponent({
       getId,
       SPORTS,
       isLink,
+      handleShowMask,
     };
   },
 });

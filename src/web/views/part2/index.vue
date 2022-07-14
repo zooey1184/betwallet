@@ -13,13 +13,13 @@
 
         <div class="fadeout" :class="{ fadein: data.show[2] }">
           <p class="text-align-center mt-32 desc line-height-24">
-            With the advent of Web3, The global sports beta industry is worth
-            over $250bn
+            The Global Sports Betting Industry is Worth Over $250Bn, With the advent of Web3, we try to decentralize Sports Betting.
           </p>
           <p class="text-align-center desc line-height-24">
-            we try to decentralize Sports Betting. Anyone can become a banker of
-            a gambling company through agreement, and as a player,you only need
-            to connect your wallet to bet with USDT
+            
+          </p>
+          <p class="text-align-center desc line-height-24">
+            Anyone can become a banker of a gambling company through agreement, and as a player,you only need to connect your wallet to bet with USDT
           </p>
         </div>
 
