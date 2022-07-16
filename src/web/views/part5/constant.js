@@ -4,11 +4,11 @@ export const options = [
     desc: 'Choose a wallet and connect'
   },
   {
-    label: '加入赌场',
-    desc: '输入编码加入赌场'
+    label: 'click [join casino]',
+    desc: 'to enter the casino number'
   },
   {
-    label: 'Choose game',
+    label: 'choose game',
     desc: 'Choose football, basketball, eSports events'
   },
   {

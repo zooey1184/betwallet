@@ -13,7 +13,9 @@
         v-if="state.visible"
         :style="{ transitionDelay: '20ms' }"
       >
-        <div class="content">heleo</div>
+        <div class="content">
+          <slot></slot>
+        </div>
       </div>
     </transition>
   </div>
@@ -82,7 +84,7 @@ export default defineComponent({
   opacity: 0;
 }
 .full {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -120,7 +122,7 @@ export default defineComponent({
   .full;
   .content {
     width: 90%;
-    max-width: 450px;
+    max-width: 650px;
     overflow: hidden;
     display: block;
     margin: 0 auto;
@@ -128,54 +130,8 @@ export default defineComponent({
     position: relative;
     border-radius: 10px;
     text-align: center;
-    .mark_content_main {
-      padding: 20px;
-    }
-    .content__title {
-      text-align: center;
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      line-height: 18px;
-    }
-    .content__desc {
-      color: #999;
-      margin-top: 15px;
-    }
-    .icon_close {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-      width: 20px;
-    }
-    .btn__group {
-      position: relative;
-      .noSelect;
-      .flex;
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: 1px;
-        background: #eee;
-        left: 0;
-      }
-      p {
-        display: inline-block;
-        vertical-align: middle;
-        .flex_0;
-        .flex_1;
-        height: 45px;
-        line-height: 45px;
-        text-align: center;
-        font-size: 18px;
-        font-weight: 600;
-        &:active {
-          background: #fff0f0;
-        }
-      }
-    }
+    top: 35%;
+    transform: translateY(-50%);
   }
 }
 </style>

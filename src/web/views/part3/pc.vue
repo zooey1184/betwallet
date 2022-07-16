@@ -35,7 +35,7 @@
               <div>
                 Anyone can freely add their own usdt pool. After adding, you will get a unique casino code and become a bookmaker. Players must use the casino code to find the corresponding usdt pool before betting.
               </div>
-              <div>
+              <div class="mt-8">
                 After adding the usdt pool, you don't need to worry about anything else. Just go to the community and social media to invite your friends to participate in betting!
               </div>
             </div>
@@ -76,19 +76,19 @@
                 :class="{ fadein: data.show[0] }"
                 style="margin-bottom: 4px"
               >
-                无处不在的Token奖励！
+                Ubiquitous Token Rewards!
               </div>
               <div
                 :class="{ fadein: data.show[2] }"
                 class="fadeout grey"
                 style="margin-top: 6px; margin-bottom: 55px"
               >
-                <div>无论是建立USDT池还是参与博彩，你都将获得Token奖励</div>
-                <div>
-                  我们将在官方渠道发布详细的规则以激励所有的参与协议交互的行为
+                <div>Whether you are building a USDT pool or participating in betting, you will be rewarded with Tokens</div>
+                <div class="mt-8">
+                  We will publish detailed rules in official channels to incentivize all behaviors involved in protocol interaction.
                 </div>
-                <div>快去建立USDT池邀请小伙伴参与投注吧</div>
-                <div>当然，也可以去找到一个USDT池参与投注！</div>
+                <div class="mt-8">Go ahead and build a USDT pool and invite friends to participate in betting</div>
+                <div class="mt-8">Of course, you can also find a USDT pool to participate in betting!</div>
               </div>
             </div>
           </div>
