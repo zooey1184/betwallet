@@ -33,7 +33,7 @@
 			</a>
 		</div>
 
-		<a href="javascript:;" v-if='!isLink' class="hdBut IndBac1">link wallet</a>
+		<!-- <a href="javascript:;" v-if='!isLink' class="hdBut IndBac1">link wallet</a> -->
 	</div>    
 </template>
 

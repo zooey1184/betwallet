@@ -3,7 +3,7 @@
 	
 	<article class="IndBak Huans">
 		<section class="ward">
-			<HeaderPane :account="state.total_bet_today" />
+			<HeaderPane />
 
 			<ValueDescription />
 		</section>
@@ -16,9 +16,9 @@
 import { computed, defineComponent, onMounted, provide, reactive, ref } from 'vue'
 import Footer from '../components/footer.vue'
 import ValueDescription from '../components/value-description.vue'
-import HeaderPane from '../components/header-pane.vue'
+import HeaderPane from '../components/v2/header.vue'
 import {getBonusInfo} from '../api'
-import {message} from 'ant-design-vue'
+
 
 export default defineComponent({
   components: {

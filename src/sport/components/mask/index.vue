@@ -1,31 +1,36 @@
 <template>
   <div>
-    <transition name="fade">
+    <Transition name="fade">
       <div
         class="mark--full"
         v-if="state.visible"
         :style="{ background: 'rgba(0, 0, 0, 0.5)' }"
       ></div>
-    </transition>
-    <transition name="fade">
+    </Transition>
+    <Transition name="slide-fade">
       <div
         class="alert__content"
         v-if="state.visible"
-        :style="{ transitionDelay: '20ms' }"
       >
-        <div class="content">
+        <div class="content" @click.stop>
           <slot></slot>
+          <div class="close-icon" @click='handleClose'>
+            <close-circle-outlined style="font-size: 24px" />
+          </div>
         </div>
+        
       </div>
-    </transition>
+    </Transition>
   </div>
 </template>
 
 <script>
 import { defineComponent, reactive, ref, watch } from "vue";
-
+import {CloseCircleOutlined} from '@ant-design/icons-vue'
 export default defineComponent({
-  components: {},
+  components: {
+    CloseCircleOutlined
+  },
   props: {
     visible: {
       type: Boolean,
@@ -35,6 +40,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const state = reactive({
       visible: false,
+      test: false
     });
 
     watch(
@@ -52,10 +58,15 @@ export default defineComponent({
       (n) => {
         emit("update:visible", n);
       }
-    );
+    )
+
+    const handleClose = () => {
+      state.visible = false
+    }
 
     return {
       state,
+      handleClose
     };
   },
 });
@@ -83,6 +94,21 @@ export default defineComponent({
 .fade-leave-to {
   opacity: 0;
 }
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: scaleY(0.6) translateY(120px);
+  opacity: 0;
+}
+
+
 .full {
   position: fixed;
   top: 0;
@@ -122,16 +148,26 @@ export default defineComponent({
   .full;
   .content {
     width: 90%;
-    max-width: 650px;
-    overflow: hidden;
+    max-width: 400px;
     display: block;
     margin: 0 auto;
-    background: #fffbfb;
+    background: #222242;
     position: relative;
-    border-radius: 10px;
-    text-align: center;
+    border-radius: 12px;
     top: 35%;
     transform: translateY(-50%);
+    padding: 16px;
+    min-height: 100px;
+  }
+}
+.close-icon {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #666;
+  &:hover {
+    color: #fff;
   }
 }
 </style>

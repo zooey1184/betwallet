@@ -54,8 +54,8 @@
     </div>
 
     <Mask v-model:visible='state.visible'>
-      <div style="width: 400px; height: 300px;" class="bg-white">
-        handleConnect
+      <div>
+        <RoomPool />
       </div>
     </Mask>
   </header>
@@ -64,9 +64,20 @@
 <script>
 import { computed, defineComponent, inject, reactive, ref, watch } from "vue";
 import Mask from "@/sport/components/mask";
+import RoomInit from './room-modal/init-modal.vue'
+import RoomConfirmId from './room-modal/confirm-id.vue'
+import RoomConfrimCreate from './room-modal/confirm-create.vue'
+import RoomSubmitIng from './room-modal/submit-ing.vue'
+import RoomPool from './room-modal/pool-pane.vue'
+
 export default defineComponent({
   components: {
     Mask,
+    RoomInit,
+    RoomConfirmId,
+    RoomConfrimCreate,
+    RoomSubmitIng,
+    RoomPool
   },
   props: {
     userInfo: {
