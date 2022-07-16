@@ -1,16 +1,21 @@
 <template>
   <div>
     <transition name="fade">
-      <img v-if='state.visible' class="w-100p" :src='src' alt="" />
+      <img v-if="state.visible" class="w-100p" :src="src" alt="" />
     </transition>
-    <transition name="fade">
-      <img v-if='state.coverVisible && cover' class="w-100p" :src='cover' alt="" />
+    <transition name="fade flex items-center">
+      <img
+        v-if="state.coverVisible && cover"
+        class="w-100p"
+        :src="cover"
+        alt=""
+      />
     </transition>
   </div>
 </template>
 
 <script>
-import { defineComponent, onMounted, reactive, ref } from 'vue'
+import { defineComponent, onMounted, reactive, ref } from "vue";
 
 export default defineComponent({
   components: {},
@@ -21,38 +26,38 @@ export default defineComponent({
   setup(props) {
     const state = reactive({
       visible: false,
-      coverVisible: false
-    })
+      coverVisible: false,
+    });
 
     const loadImg = (src) => {
       return new Promise((resolve) => {
-        const Img = new Image()
-        Img.src = src
+        const Img = new Image();
+        Img.src = src;
         Img.onload = () => {
-          resolve()
-        }
-      })
-    }
+          resolve();
+        };
+      });
+    };
 
     onMounted(() => {
       if (props.cover) {
         loadImg(props.cover).then(() => {
-          state.coverVisible = true
+          state.coverVisible = true;
           loadImg(props.src).then(() => {
             setTimeout(() => {
-              state.coverVisible = false
-            }, 300)
+              state.coverVisible = false;
+            }, 300);
             setTimeout(() => {
-              state.visible = true
-            }, 1500)
-          })
-        })
+              state.visible = true;
+            }, 1500);
+          });
+        });
       }
-    })
+    });
 
     return {
-      state
-    }
-  }
-})
+      state,
+    };
+  },
+});
 </script>
