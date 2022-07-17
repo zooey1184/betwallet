@@ -37,7 +37,7 @@
                   must use the casino code to find the corresponding usdt pool
                   before betting.
                 </div>
-                <div class="mt-8">
+                <div class="mt-16">
                   After adding the usdt pool, you don't need to worry about
                   anything else. Just go to the community and social media to
                   invite your friends to participate in betting!
@@ -84,13 +84,23 @@
                 >
                   Ubiquitous Token Rewards!
                 </div>
-                <div class="grey" style="margin-top: 6px; margin-bottom: 55px">
-                  <div>Whether you are building a USDT pool or participating in betting, you will be rewarded with Tokens</div>
-                <div class="mt-8">
-                  We will publish detailed rules in official channels to incentivize all behaviors involved in protocol interaction.
-                </div>
-                <div class="mt-8">Go ahead and build a USDT pool and invite friends to participate in betting</div>
-                <div class="mt-8">Of course, you can also find a USDT pool to participate in betting!</div>
+                <div class="grey mt-8" style="margin-bottom: 55px">
+                  <div class="cc">
+                    Whether you are building a USDT pool or participating in
+                    betting, you will be rewarded with Tokens
+                  </div>
+                  <div class="mt-16 cc">
+                    We will publish detailed rules in official channels to
+                    incentivize all behaviors involved in protocol interaction.
+                  </div>
+                  <div class="mt-16 cc">
+                    Go ahead and build a USDT pool and invite friends to
+                    participate in betting
+                  </div>
+                  <div class="mt-16 cc">
+                    Of course, you can also find a USDT pool to participate in
+                    betting!
+                  </div>
                 </div>
               </div>
             </transition>
