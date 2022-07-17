@@ -8,17 +8,13 @@
       ></div>
     </Transition>
     <Transition name="slide-fade">
-      <div
-        class="alert__content"
-        v-if="state.visible"
-      >
+      <div class="alert__content" v-if="state.visible">
         <div class="content" @click.stop>
           <slot></slot>
-          <div class="close-icon" @click='handleClose'>
+          <div class="close-icon" @click="handleClose">
             <close-circle-outlined style="font-size: 24px" />
           </div>
         </div>
-        
       </div>
     </Transition>
   </div>
@@ -26,10 +22,10 @@
 
 <script>
 import { defineComponent, reactive, ref, watch } from "vue";
-import {CloseCircleOutlined} from '@ant-design/icons-vue'
+import { CloseCircleOutlined } from "@ant-design/icons-vue";
 export default defineComponent({
   components: {
-    CloseCircleOutlined
+    CloseCircleOutlined,
   },
   props: {
     visible: {
@@ -40,7 +36,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const state = reactive({
       visible: false,
-      test: false
+      test: false,
     });
 
     watch(
@@ -58,15 +54,15 @@ export default defineComponent({
       (n) => {
         emit("update:visible", n);
       }
-    )
+    );
 
     const handleClose = () => {
-      state.visible = false
-    }
+      state.visible = false;
+    };
 
     return {
       state,
-      handleClose
+      handleClose,
     };
   },
 });
@@ -107,7 +103,6 @@ export default defineComponent({
   transform: scaleY(0.6) translateY(120px);
   opacity: 0;
 }
-
 
 .full {
   position: fixed;
@@ -154,7 +149,7 @@ export default defineComponent({
     background: #222242;
     position: relative;
     border-radius: 12px;
-    top: 35%;
+    top: 45%;
     transform: translateY(-50%);
     padding: 16px;
     min-height: 100px;

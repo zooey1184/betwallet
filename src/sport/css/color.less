@@ -3,7 +3,7 @@
   --bg: #020318;
   --primary-main: #c17bfd;
   --primary-sub: #376dfa;
-  --scrollbar: #617199;
+  --scrollbar: #2c52b0;
 }
 .bg {
   background: var(--bg);
@@ -16,8 +16,8 @@
 }
 .linear-color {
   background-image: linear-gradient(to right, var(--primary-main), var(--primary-sub));
-  background-clip:text;
   -webkit-background-clip:text;
+  background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 .linear-bg {
@@ -28,6 +28,7 @@
     border: 1px solid transparent;
     border-radius: 2px;
     position: relative;
+    -webkit-background-clip: padding-box, border-box;
     background-clip: padding-box, border-box;
     color: #fff;
     background-origin: padding-box, border-box;
