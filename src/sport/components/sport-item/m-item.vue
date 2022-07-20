@@ -9,9 +9,9 @@
       <input
         type="text"
         :value="leftValue"
-        @click="handlePick('left')"
+        @click="handlePick('home')"
         class="zyqulNI"
-        :class="{ active: state.active === 'left' }"
+        :class="{ active: state.active === 'home' }"
         readonly
       />
     </div>
@@ -47,9 +47,9 @@
       <input
         type="text"
         :value="rightValue"
-        @click="handlePick('right')"
+        @click="handlePick('away')"
         class="zyqulNI"
-        :class="{ active: state.active === 'right' }"
+        :class="{ active: state.active === 'away' }"
         readonly
       />
     </div>

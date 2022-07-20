@@ -4,30 +4,45 @@
       <div class="countdown">开始倒数</div>
       <div class="flex items-center justify-center" style="margin-bottom: 24px">
         <img src="../../images/zyq0425/IconTime01.png" style="margin: 0 12px" />
-        <div class=" m-flex">
-          <TimePane  />
+        <div class="m-flex">
+          <TimePane :time="time" v-if="time" />
         </div>
-        
       </div>
     </div>
 
     <!-- pc -->
     <div class="flex items-center justify-between pc-pane">
-      <div class="left flex items-center  justify-between" style="width: 34%">
+      <div class="left flex items-center justify-between" style="width: 34%">
         <div class="logo"></div>
         <div>
-          <div class="name"  style="text-align: right">name</div>
-          <div style="float: right" class="bet-pane bg-item">{{leftValue}}</div>
+          <div class="name" style="text-align: right">{{ homeInfo.name }}</div>
+          <div
+            style="float: right"
+            class="bet-pane bg-item"
+            @click="handlePickItem('home')"
+            :class="{ active: getBetActive === 'home' }"
+          >
+            {{ homeInfo.odds }}
+          </div>
         </div>
       </div>
 
       <div class="middle flex-0">
-        <TimePane />
+        <TimePane :time="time" v-if="time" />
       </div>
-      <div class="right flex items-center justify-between" >
+      <div
+        class="right flex items-center justify-between flex-0"
+        style="width: 34%"
+      >
         <div>
-          <div class="name" >namefwefwefwefwfwefwefwefefwefwe</div>
-          <div class="bet-pane bg-item">{{leftValue}}</div>
+          <div class="name">{{ awayInfo.name }}</div>
+          <div
+            class="bet-pane bg-item"
+            @click="handlePickItem('away')"
+            :class="{ active: getBetActive === 'away' }"
+          >
+            {{ awayInfo.odds }}
+          </div>
         </div>
         <div class="logo"></div>
       </div>
@@ -41,10 +56,18 @@
         </div>
         <div>
           <div class="flex justify-end">
-            <div class="name" style="text-align: right">name</div>
+            <div class="name" style="text-align: right">
+              {{ homeInfo.name }}
+            </div>
           </div>
           <div class="flex justify-end">
-            <div class="bet-pane bg-item">{{leftValue}}</div>
+            <div
+              class="bet-pane bg-item"
+              @click="handlePickItem('home')"
+              :class="{ active: getBetActive === 'home' }"
+            >
+              {{ homeInfo.odds }}
+            </div>
           </div>
         </div>
       </div>
@@ -53,33 +76,87 @@
       <div class="right" style="width: 34%">
         <div class="logo"></div>
         <div>
-          <div class="name">namefwefwefwefwfwefwefwefefwefwe</div>
-          <div class="bet-pane bg-item">{{leftValue}}</div>
+          <div class="name">{{ awayInfo.name }}</div>
+          <div
+            class="bet-pane bg-item"
+            @click="handlePickItem('away')"
+            :class="{ active: getBetActive === 'away' }"
+          >
+            {{ awayInfo.odds }}
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-
 <script>
-import {ref, defineComponent} from 'vue'
-import TimePane from './time-pane.vue'
+import { ref, defineComponent, reactive, onMounted } from "vue";
+import TimePane from "./time-pane.vue";
+import useActive from "@/sport/components/useHooks/use-active";
 
 export default defineComponent({
   components: {
-    TimePane
+    TimePane,
   },
   props: {
     leftValue: {
       type: [String, Number],
-      default: '1.72'
-    }
+      default: "1.72",
+    },
+    time: {
+      type: [String, Number],
+    },
+    oddsId: {
+      type: [String, Number],
+    },
+    homeInfo: {
+      type: Object,
+    },
+    awayInfo: {
+      type: Object,
+    },
   },
-  setup() {
-    
-  }
-})
+  setup(props, { emit }) {
+    const params = reactive({
+      w: 1920,
+      isMobile: false,
+    });
+
+    const { getBetActive, state, setState } = useActive(
+      props,
+      { id: props.oddsId, homeInfo: props.homeInfo, awayInfo: props.awayInfo },
+      {
+        emit,
+      }
+    );
+    const handlePickItem = (e) => {
+      if (state.active === e) {
+        // state.active = "";
+        setState({ active: "" });
+      } else {
+        // state.active = e;
+        setState({ active: e });
+      }
+    };
+    onMounted(() => {
+      const w = window.innerWidth;
+      if (w >= 600) {
+        params.isMobile = false;
+      } else {
+        params.isMobile = true;
+      }
+      console.log(w);
+    });
+
+    return {
+      state,
+      params,
+      getBetActive,
+      handlePickItem,
+    };
+  },
+});
 </script>
 
 <style lang="less" scoped>
@@ -125,11 +202,11 @@ export default defineComponent({
 }
 
 .countdown {
-    font-size: 18px;
-    font-weight: 600;
-    margin-top: 16px;
-    margin-bottom: 8px;
-  }
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
 .bet-pane {
   width: 82px;
   height: 34px;

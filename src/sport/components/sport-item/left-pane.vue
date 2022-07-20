@@ -5,17 +5,20 @@
         <div class="scheduleIcon"></div>
         <div class="scheduleTime">{{ time }}</div>
       </div>
-      <div>
-        {{ name || "--" }}
+      <div v-if="!!live" class="flex items-center">
+        <VideoCameraOutlined class="color-blue mr-8 font-size-22" />
+        LIVE
       </div>
     </div>
 
     <div class="default_color leftInfoPane2">
       <div class="flex items-center">
-        <div class="scheduleIcon"></div>
-        <div>
-          {{ name || "--" }}
+        <!-- <div class="scheduleIcon"></div> -->
+        <div v-if="!!live" class="flex items-center">
+          <VideoCameraOutlined class="color-blue mr-8 font-size-22" />
+          LIVE
         </div>
+        <div v-else style="height: 24px"></div>
       </div>
       <div class="scheduleTime2">{{ time }}</div>
     </div>
@@ -24,9 +27,12 @@
       <div class="flex items-center">
         <div class="scheduleIcon"></div>
         <div class="scheduleTime">
-          {{ time }}
-          <div>
-            {{ name || "--" }}
+          <div v-if="!!live" class="flex items-center">
+            <VideoCameraOutlined class="color-blue mr-8 font-size-22" />
+            <div class="mr-16">LIVE</div>
+            <div>
+              {{ time }}
+            </div>
           </div>
         </div>
       </div>
@@ -43,10 +49,11 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-import { RightOutlined } from "@ant-design/icons-vue";
+import { RightOutlined, VideoCameraOutlined } from "@ant-design/icons-vue";
 export default defineComponent({
   components: {
     RightOutlined,
+    VideoCameraOutlined,
   },
   props: {
     time: {
@@ -56,6 +63,9 @@ export default defineComponent({
       type: String,
     },
     count: Number,
+    live: {
+      type: [Boolean, Number],
+    },
   },
   emits: ["detail"],
   setup(props, { emit }) {
@@ -152,5 +162,8 @@ export default defineComponent({
   @media screen and (max-width: 1400px) {
     display: block;
   }
+}
+.color-blue {
+  color: #1890ff;
 }
 </style>

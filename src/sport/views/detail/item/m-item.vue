@@ -1,18 +1,17 @@
 <template>
   <div class="itemWrap">
-
-    <div class="title">Best of 3 Correct Match Score</div>
+    <div class="title">{{ name }}</div>
 
     <div class="flex items-center justify-between">
       <div class="flex items-center sideItem">
         <div class="logo" style="margin-right: 6px"></div>
         <div class="flex justify-end flex-1" style="width: calc(50% - 55px)">
-          <div class="betNum ellipsis_2">EHOMEfdfsdfsfwefwefwefedf</div>
+          <div class="betNum ellipsis_2">{{ homeInfo.name }}</div>
         </div>
       </div>
       <div class="flex items-center sideItem">
         <div class="flex flex-1" style="width: calc(50% - 55px)">
-          <div class="betNum">EHOME</div>
+          <div class="betNum">{{ awayInfo.name }}</div>
         </div>
         <div class="logo" style="margin-left: 6px"></div>
       </div>
@@ -20,28 +19,83 @@
 
     <div class="flex items-center justify-between" style="margin-top: 8px">
       <div class="flex items-center sideItem justify-end">
-        <div class="betNum" style="margin-right: 8px">+1.4</div>
+        <div class="betNum" style="margin-right: 8px">
+          {{ homeInfo.handicap }}
+        </div>
         <input
           type="text"
-          :value="111"
+          :value="homeInfo.odds"
+          :class="{ active: getBetActive === 'home' }"
+          @click="handlePickItem('home')"
           class="zyqulNI"
           readonly
         />
       </div>
 
       <div class="flex items-center sideItem">
-        
         <input
           type="text"
-          :value="111"
+          :value="awayInfo.odds"
           class="zyqulNI"
+          :class="{ active: getBetActive === 'away' }"
+          @click="handlePickItem('away')"
           readonly
         />
-        <div class="betNum" style="margin-left: 8px">+1.4</div>
+        <div class="betNum" style="margin-left: 8px">
+          {{ awayInfo.handicap }}
+        </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import { defineComponent, reactive } from "vue";
+import useActive from "@/sport/components/useHooks/use-active";
+
+export default defineComponent({
+  components: {},
+  props: {
+    name: {
+      type: String,
+    },
+    homeInfo: {
+      type: Object,
+    },
+    awayInfo: {
+      type: Object,
+    },
+    oddsId: {
+      type: [String, Number],
+    },
+    active: {
+      type: String,
+    },
+  },
+  setup(props, { emit }) {
+    const { getBetActive, state, setState } = useActive(
+      props,
+      { id: props.oddsId, homeInfo: props.homeInfo, awayInfo: props.awayInfo },
+      {
+        emit,
+      }
+    );
+    const handlePickItem = (e) => {
+      if (e === state.active) {
+        state.active = "";
+      } else {
+        state.active = e;
+      }
+    };
+
+    return {
+      state,
+      getBetActive,
+      handlePickItem,
+    };
+  },
+});
+</script>
 
 <style lang="less" scoped>
 .itemWrap {

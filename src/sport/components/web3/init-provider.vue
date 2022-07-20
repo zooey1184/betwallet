@@ -2,17 +2,26 @@
   <div>
     <slot></slot>
   </div>
-  <DownloadModal v-model:visible='state.downloadModalVisible' />
+  <DownloadModal v-model:visible="state.downloadModalVisible" />
 </template>
 
 <script>
-import { message } from 'ant-design-vue'
-import { defineComponent, reactive, ref, provide, computed, watch, onMounted } from 'vue'
-import DownloadModal from '../download-modal.vue'
+import { message } from "ant-design-vue";
+import {
+  defineComponent,
+  reactive,
+  ref,
+  provide,
+  computed,
+  watch,
+  onMounted,
+} from "vue";
+import DownloadModal from "../download-modal.vue";
+import { getConfig, getBonusInfo } from "@/sport/api/index";
 
 export default defineComponent({
   components: {
-    DownloadModal
+    DownloadModal,
   },
   props: {},
   setup(props) {
@@ -21,101 +30,122 @@ export default defineComponent({
       id: undefined,
       downloadModalVisible: false,
       userInfo: undefined,
-    })
+      address: undefined,
+    });
     // 点击连接钱包
     const handleConnect = () => {
-      if (typeof window.ethereum !== 'undefined') {
+      if (typeof window.ethereum !== "undefined") {
         if (!state.accounts?.length) {
-          ethereum.request({ method: 'eth_requestAccounts' })
-          .then(res => {
-            state.accounts = res
-            window.location.reload()
-            window.localStorage.setItem('isLINK', 'true')
-          })
-          .catch((e) => {
-            // toast(e.message)
-            message.error(e.message)
-            window.localStorage.setItem('isLINK', 'false')
-          });
+          ethereum
+            .request({ method: "eth_requestAccounts" })
+            .then((res) => {
+              state.accounts = res;
+              window.location.reload();
+              window.localStorage.setItem("isLINK", "true");
+            })
+            .catch((e) => {
+              // toast(e.message)
+              message.error(e.message);
+              window.localStorage.setItem("isLINK", "false");
+            });
         } else {
-          window.localStorage.setItem('isLINK', 'true')
-          window.location.reload()
+          window.localStorage.setItem("isLINK", "true");
+          window.location.reload();
         }
       } else {
-        state.downloadModalVisible = true
+        state.downloadModalVisible = true;
       }
-    }
+    };
 
     const addressHide = computed(() => {
       if (state.id) {
-        const len = state.id.length
-        return state.id.substring(0, 3) + '...' + state.id.substring(len-4)
+        const len = state.id.length;
+        return state.id.substring(0, 3) + "..." + state.id.substring(len - 4);
       }
-      return '**'
-    })
+      return "**";
+    });
     const isLink = computed(() => {
-      const isLINK = window.localStorage.getItem('isLINK')
-      return isLINK && isLINK === 'true' && state.accounts?.length
-    })
-    const getAccounts = computed(() => state.accounts)
+      const isLINK = window.localStorage.getItem("isLINK");
+      return isLINK && isLINK === "true" && state.accounts?.length;
+    });
+    const getAccounts = computed(() => state.accounts);
 
-    provide('accounts', getAccounts)
-    
-    provide('ACCOUNTS', {
+    provide("accounts", getAccounts);
+
+    provide("ACCOUNTS", {
       accounts: getAccounts,
       id: getAccounts.value?.[0],
       accountHide: addressHide,
       isLink,
       link: handleConnect,
       disLink: () => {
-        window.localStorage.removeItem('isLINK')
+        window.localStorage.removeItem("isLINK");
         setTimeout(() => {
-          window.location.reload()
-        })
-      }
-    })
+          window.location.reload();
+        });
+      },
+    });
 
-    const init =  async () => {
-      if (typeof web3 !== 'undefined') {
+    const init = async () => {
+      if (typeof web3 !== "undefined") {
         web3 = new Web3(web3.currentProvider);
-        const accounts = await ethereum.request({ method: 'eth_accounts' })
+        const accounts = await ethereum.request({ method: "eth_accounts" });
         setTimeout(() => {
           web3.givenProvider.on("accountsChanged", (accounts) => {
-            window.location.reload()
+            window.location.reload();
           });
           web3.givenProvider.on("chainChanged", (chainId) => {
-            window.location.reload()
+            window.location.reload();
           });
           web3.givenProvider.on("disconnect", (code, reason) => {
-            window.location.reload()
+            window.location.reload();
           });
-        })
+        });
         if (accounts?.length) {
-          state.accounts = accounts
-          state.id = accounts[0]
-          const isLINK = window.localStorage.getItem('isLINK')
+          state.accounts = accounts;
+          state.id = accounts[0];
+          const isLINK = window.localStorage.getItem("isLINK");
           // TODO 初始化合约
-          if (isLINK && isLINK === 'true') {
+          if (isLINK && isLINK === "true") {
             state.userInfo = {
-              _accounts: accounts
-            }
-            window.localStorage.setItem('isLINK', 'true')
+              _accounts: accounts,
+            };
+            window.localStorage.setItem("isLINK", "true");
             // TODO 获取余额
           }
         } else {
-          console.log('未连接');
+          console.log("未连接");
         }
       } else {
-        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        web3 = new Web3(
+          new Web3.providers.HttpProvider("http://localhost:8545")
+        );
       }
-    }
+    };
+
+    const getWeb3Config = () => {
+      getConfig().then((res) => {
+        state.address = res;
+      });
+    };
+
+    const getAddress = computed(() => state.address);
+    provide("ADDRESS", getAddress);
+
+    const getBounsInfoFn = () => {
+      getBonusInfo().then((res) => {
+        console.log("object", res);
+      });
+    };
 
     onMounted(() => {
-      init()
-    })
+      init();
+      getWeb3Config();
+      getBounsInfoFn();
+    });
     return {
-      state
-    }
-  }
-})
+      state,
+    };
+  },
+});
 </script>

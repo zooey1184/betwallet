@@ -26,7 +26,7 @@
       </div>
       <div class="zyqTis">即将开始</div>
       <ul class="zyqul">
-        <sport-item v-for="item in getScheduleList" :info="item"></sport-item>
+        <sport-item v-for="item in getMatchList" :info="item"></sport-item>
       </ul>
     </section>
   </div>
@@ -49,6 +49,10 @@ export default defineComponent({
     const getScheduleItem = computed(() => SCHEDULE.getScheduleItem.value);
     const getScheduleList = computed(() => SCHEDULE.getScheduleList.value);
 
+    const MATCH_LIST = inject("MATCH_LIST", {
+      value: [],
+    });
+    const getMatchList = computed(() => MATCH_LIST.value);
     const state = reactive({
       sportsList: [],
     });
@@ -56,6 +60,7 @@ export default defineComponent({
       state,
       getScheduleItem,
       getScheduleList,
+      getMatchList,
     };
   },
 });

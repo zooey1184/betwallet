@@ -21,7 +21,7 @@
 
 <script>
 import { defineComponent, onMounted, reactive, ref, nextTick } from "vue";
-import { getBanner } from "../api";
+import { getBanner } from "@/sport/api/index.js";
 
 export default defineComponent({
   components: {},

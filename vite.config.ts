@@ -14,7 +14,8 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/v1': 'http://47.242.226.50:7011'
+      '/v1': 'http://47.242.226.50:7020',
+      '/v2': 'http://47.242.226.50:7020'
     }
   },
   build: {

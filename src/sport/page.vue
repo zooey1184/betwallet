@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div ref='headerRef'>
-      <Header
-      v-model:active="state.active"
-      :options="state.sports"
-      
-    />
+    <div ref="headerRef">
+      <!-- <Header
+        v-model:active="state.active"
+        :options="state.sports"
+      /> -->
+      <Header />
     </div>
     <MNav v-model:active="state.active" :options="state.sports" />
 
-    <LeftSider :options="state.sportItemList" v-model:active="state.schedule" />
+    <LeftSider :options="getCompetitionName" v-model:active="state.schedule" />
 
     <RightSider
       @walletVisible="handleWalletVisible"
@@ -65,7 +65,7 @@ export default defineComponent({
   },
   props: {},
   setup(props) {
-    const headerRef = ref()
+    const headerRef = ref();
     const state = reactive({
       walletVisible: false,
       active: "", // footer , baskatball ...,
@@ -156,10 +156,16 @@ export default defineComponent({
     const handleWalletVisible = () => {
       state.walletVisible = true;
     };
+
+    const COMPETITION_NAME = inject("COMPETITION_NAME", {
+      value: [],
+    });
+    const getCompetitionName = computed(() => COMPETITION_NAME.value);
     return {
       state,
       headerRef,
       handleWalletVisible,
+      getCompetitionName,
     };
   },
 });
@@ -186,7 +192,7 @@ export default defineComponent({
   }
   @media (max-width: 639px) {
     height: calc(100vh - 0.42rem);
-    top: 0.42rem
+    top: 0.42rem;
   }
 }
 </style>

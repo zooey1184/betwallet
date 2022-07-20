@@ -2,25 +2,26 @@
   <div class="wrap">
     <left-pane
       :name="info?.venue?.name"
+      :live="info.isLive"
       :time="getScheduleTime"
       @detail="handleGoDetail"
-      :count="count"
+      :count="getCount"
     ></left-pane>
 
     <div class="flex items-center pc-item">
       <!-- left -->
       <div class="left flex items-center justify-end">
         <div class="leftTitle">
-          {{ getCompetitors[0].title }}
+          {{ HomeTeam }}
         </div>
         <div class="flex items-center leftIcon">
           <div class="icon"></div>
           <input
             type="text"
             :value="getLeftValue"
-            @click="handlePick('left')"
+            @click="handlePick('home')"
             class="zyqulNI"
-            :class="{ active: getBetActive === 'left' }"
+            :class="{ active: getBetActive === 'home' }"
             readonly
           />
         </div>
@@ -43,15 +44,15 @@
           <input
             type="text"
             :value="getRightValue"
-            @click="handlePick('right')"
+            @click="handlePick('away')"
             class="zyqulNI"
-            :class="{ active: getBetActive === 'right' }"
+            :class="{ active: getBetActive === 'away' }"
             readonly
           />
           <div class="icon"></div>
         </div>
         <div class="rightTitle">
-          {{ getCompetitors[1].title }}
+          {{ AwayTeam }}
         </div>
       </div>
       <div class="itemarrow" @click="handleGoDetail">
@@ -62,11 +63,10 @@
     <div class="m-item">
       <MItem
         v-model:active="state.active"
-        :leftTitle="getCompetitors[0].title"
+        :leftTitle="HomeTeam"
         :leftValue="getLeftValue"
         :middleValue="getMiddleValue"
-        
-        :rightTitle="getCompetitors[1].title"
+        :rightTitle="AwayTeam"
         :rightValue="getRightValue"
       />
     </div>
@@ -124,7 +124,7 @@ export default defineComponent({
     );
 
     const getBetActive = computed(() => {
-      const id = props.info.id;
+      const id = props.info.oddsId;
       const map = SPORT_BET.getBetMap.value;
       const item = map?.[id];
       if (item && item?.active) {
@@ -134,16 +134,29 @@ export default defineComponent({
     });
 
     const getScheduleTime = computed(() => {
-      const time = props.info.scheduled;
+      const time = props.info.startTime;
       const d = time ? dayjs(time).format("MM-DD hh:mm") : "--";
       return d;
     });
     const getCompetitors = useCompetitors(props.info);
 
-    const getLeftValue = computed(() => 4.2);
-    const getMiddleValue = computed(() => 3.5);
-    const getRightValue = computed(() => 1.0);
+    const SelectionsMap = computed(() => {
+      const map = {};
+      props.info?.selections.forEach((item) => {
+        map[item.type] = item;
+      });
+      return map;
+    });
 
+    const getLeftValue = computed(() => SelectionsMap.value["home"].odds);
+    const getMiddleValue = computed(
+      () => SelectionsMap.value["down"]?.odds || ""
+    );
+    const getRightValue = computed(() => SelectionsMap.value["away"].odds);
+    const getCount = computed(() => props.info.detailCount);
+
+    const HomeTeam = computed(() => props.info.team_home_name);
+    const AwayTeam = computed(() => props.info.team_away_name);
     const handlePick = (e) => {
       if (state.active === e) {
         state.active = "";
@@ -158,22 +171,26 @@ export default defineComponent({
       (n) => {
         SPORT_BET.setMap((map) => {
           const obj = {
-            left: getLeftValue,
-            right: getRightValue,
+            home: getLeftValue,
+            away: getRightValue,
             middle: getMiddleValue,
           };
           if (map) {
-            map[props.info.id] = {
+            map[props.info.oddsId] = {
               active: n,
               activeValue: n ? obj?.[n] || undefined : undefined,
               data: props.info,
+              homeInfo: props.info?.selections[0],
+              awayInfo: props.info?.selections[1],
             };
           } else {
             map = {
-              [props.info.id]: {
+              [props.info.oddsId]: {
                 active: n,
                 activeValue: n ? obj?.[n] || undefined : undefined,
                 data: props.info,
+                homeInfo: props.info?.selections[0],
+                awayInfo: props.info?.selections[1],
               },
             };
           }
@@ -184,7 +201,11 @@ export default defineComponent({
     const handleGoDetail = () => {
       router.push({
         name: "detail",
+        query: {
+          id: props.info.id,
+        },
       });
+      window.sessionStorage.setItem("sportDetail", JSON.stringify(props.info));
     };
 
     return {
@@ -197,6 +218,10 @@ export default defineComponent({
       getRightValue,
       getBetActive,
       handleGoDetail,
+      SelectionsMap,
+      getCount,
+      HomeTeam,
+      AwayTeam,
     };
   },
 });
@@ -275,6 +300,7 @@ export default defineComponent({
   color: #1890ff;
   font-size: 18px;
   font-weight: 600;
+  top: 0;
   // top: 50%;
   // transform: translateY(-50%);
   height: 100%;

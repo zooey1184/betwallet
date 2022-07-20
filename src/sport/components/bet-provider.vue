@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { computed, defineComponent, provide, reactive, ref } from 'vue'
+import { computed, defineComponent, provide, reactive, ref } from "vue";
 
 export default defineComponent({
   components: {},
@@ -11,47 +11,47 @@ export default defineComponent({
   setup(props) {
     const state = reactive({
       betList: [],
-      betMap: {}
-    })
+      betMap: {},
+    });
 
     const getBetList = computed(() => {
-      const map = state.betMap
-      const list = []
+      const map = state.betMap;
+      const list = [];
       // item => {active, activeValue, data}
-      for(let i in map) {
+      for (let i in map) {
         if (map[i]?.active) {
-          list.push(map[i])
+          list.push(map[i]);
         }
       }
-      return list
-    })
-    const getBetMap = computed(() => state.betMap)
+      return list;
+    });
+    const getBetMap = computed(() => state.betMap);
     const handleDeleteItem = (item) => {
-      const id = item?.data?.id
+      const id = item?.data?.oddsId;
       if (id && state.betMap?.[id]) {
-        state.betMap[id] = undefined
+        state.betMap[id] = undefined;
       }
-    }
+    };
 
-    provide('SPORT_BET', {
+    provide("SPORT_BET", {
       getBetList: getBetList,
       getBetMap,
       getMap: () => {
-        return state.betMap
+        return state.betMap;
       },
       setMap: (cb) => {
-        cb && typeof cb === 'function' && cb(state.betMap)
+        cb && typeof cb === "function" && cb(state.betMap);
       },
       addItem: (item) => {
-        state.betList.push(item)
+        state.betList.push(item);
       },
       clear: () => {
-        state.betMap = {}
+        state.betMap = {};
       },
       delete: (item) => {
-        handleDeleteItem(item)
-      }
-    })
-  }
-})
+        handleDeleteItem(item);
+      },
+    });
+  },
+});
 </script>

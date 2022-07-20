@@ -1,6 +1,10 @@
 <template>
   <div class="arrow flex items-center mt-8">
-    <LeftOutlined class="primary" style="font-size: 24px; font-weight: 600" @click='$router.back()' />
+    <LeftOutlined
+      class="primary"
+      style="font-size: 24px; font-weight: 600"
+      @click="$router.back()"
+    />
     <div class="logo" style="margin-left: 8px"></div>
   </div>
   <div class="top-pane flex items-center justify-between bg-item">
@@ -8,12 +12,15 @@
       <div class="logo"></div>
       <div class="flex items-center flex-wrap">
         <div class="gutter">
-        BO 3
-      </div>
-      <div class="flex items-center gutter">
-        <img style="margin-right: 8px; width: 18px" src="../../images/zyq0425/IconTime01.png" />
-        7月6日 16:00
-      </div>
+          {{ address }}
+        </div>
+        <div class="flex items-center gutter" v-if="getTime">
+          <img
+            style="margin-right: 8px; width: 18px"
+            src="../../images/zyq0425/IconTime01.png"
+          />
+          {{ getTime }}
+        </div>
       </div>
     </div>
     <div class="info linear-color">报注信息</div>
@@ -22,28 +29,43 @@
 </template>
 
 <script>
-import {ref, defineComponent} from 'vue'
-import {LeftOutlined} from '@ant-design/icons-vue'
+import { ref, defineComponent, computed } from "vue";
+import { LeftOutlined } from "@ant-design/icons-vue";
+import dayjs from "dayjs";
 
 export default defineComponent({
   components: {
-    LeftOutlined
+    LeftOutlined,
   },
-  setup() {
-    
-  }
-})
+  props: {
+    address: {
+      type: String,
+    },
+    time: {
+      type: [String, Number],
+    },
+  },
+  setup(props) {
+    const getTime = computed(() => {
+      return props.time ? dayjs(props.time).format("MM-DD HH:mm") : undefined;
+    });
+
+    return {
+      getTime,
+    };
+  },
+});
 </script>
 
 <style lang="less" scoped>
 .logo {
-    width: 32px;
-    height: 32px;
-    background: #999;
-  }
-  .arrow {
-    display: none;
-  }
+  width: 32px;
+  height: 32px;
+  background: #999;
+}
+.arrow {
+  display: none;
+}
 .top-pane {
   margin: 20px auto;
   margin-bottom: 0;
@@ -69,13 +91,17 @@ export default defineComponent({
       width: 100%;
       height: 6px;
       left: 0;
-      background-image:linear-gradient(to right, var(--primary-main), var(--primary-sub));
+      background-image: linear-gradient(
+        to right,
+        var(--primary-main),
+        var(--primary-sub)
+      );
     }
   }
   .gutter {
     margin-left: 48px;
   }
-  
+
   @media (max-width: 960px) {
     margin-top: 8px;
     padding: 12px 12px;
@@ -92,11 +118,11 @@ export default defineComponent({
 }
 @media (max-width: 960px) {
   .arrow {
-      display: flex;
-      .logo {
-        width: 24px;
-        height: 24px;
-      }
+    display: flex;
+    .logo {
+      width: 24px;
+      height: 24px;
     }
+  }
 }
 </style>

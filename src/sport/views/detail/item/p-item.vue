@@ -2,28 +2,30 @@
   <div class="itemWrap">
     <div class="flex items-center">
       <div class="flex-1 sideItem flex items-center justify-between">
-        <div class="logo">
-        </div>
+        <div class="logo"></div>
         <div class="flex-1">
           <div class="flex items-center justify-between flex-1 insideItem">
-            <div class="name betNum ellipsis_2">HOME</div>
+            <div class="name betNum ellipsis_2">
+              {{ homeInfo.name }}
+            </div>
             <div class="flex items-center">
-              <div class="gray betNum">+1.5</div>
+              <div class="gray betNum">{{ homeInfo.handicap }}</div>
               <input
                 type="text"
-                :value="111"
+                :class="{ active: getBetActive === 'home' }"
+                @click="handlePickItem('home')"
+                :value="homeInfo.odds"
                 class="zyqulNI"
                 readonly
               />
             </div>
           </div>
-          
         </div>
       </div>
 
       <!-- 中间说明 -->
       <div class="mid">
-        Best of 3 Correct Match Score
+        {{ name }}
       </div>
 
       <div class="flex-1 sideItem flex items-center justify-between">
@@ -32,22 +34,67 @@
             <div class="flex items-center">
               <input
                 type="text"
-                :value="111"
+                :class="{ active: getBetActive === 'away' }"
+                @click="handlePickItem('away')"
+                :value="awayInfo.odds"
                 class="zyqulNI"
                 readonly
               />
-              <div class="gray betNum">+1.5</div>
+              <div class="gray betNum">{{ awayInfo.handicap }}</div>
             </div>
-            <div class="name betNum ellipsis_2">HOME</div>
+            <div class="name betNum ellipsis_2">{{ awayInfo.name }}</div>
           </div>
-          
         </div>
-        <div class="logo">
-        </div>
+        <div class="logo"></div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import { defineComponent, reactive } from "vue";
+import useActive from "@/sport/components/useHooks/use-active";
+
+export default defineComponent({
+  components: {},
+  props: {
+    name: {
+      type: String,
+    },
+    homeInfo: {
+      type: Object,
+    },
+    awayInfo: {
+      type: Object,
+    },
+    oddsId: {
+      type: [String, Number],
+    },
+  },
+  setup(props, { emit }) {
+    const { getBetActive, state, setState } = useActive(
+      props,
+      { id: props.oddsId, homeInfo: props.homeInfo, awayInfo: props.awayInfo },
+      {
+        emit,
+      }
+    );
+    const handlePickItem = (e) => {
+      if (e === state.active) {
+        state.active = "";
+      } else {
+        state.active = e;
+      }
+    };
+
+    return {
+      state,
+      getBetActive,
+      handlePickItem,
+    };
+  },
+});
+</script>
 
 <style lang="less" scoped>
 .itemWrap {
