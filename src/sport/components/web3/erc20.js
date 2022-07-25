@@ -1,5 +1,4 @@
 
-
 const abi = {
 	ERC20_ABI: [{ "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "spender", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "value", "type": "uint256" }], "name": "Approval", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "from", "type": "address" }, { "indexed": true, "internalType": "address", "name": "to", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "value", "type": "uint256" }], "name": "Transfer", "type": "event" }, { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }, { "internalType": "address", "name": "spender", "type": "address" }], "name": "allowance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "spender", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "approve", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }], "name": "balanceOf", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "decimals", "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "spender", "type": "address" }, { "internalType": "uint256", "name": "subtractedValue", "type": "uint256" }], "name": "decreaseAllowance", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "spender", "type": "address" }, { "internalType": "uint256", "name": "addedValue", "type": "uint256" }], "name": "increaseAllowance", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "name", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "symbol", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalSupply", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "recipient", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "transfer", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "sender", "type": "address" }, { "internalType": "address", "name": "recipient", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "transferFrom", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }],
 	BONUS_ABI: [
@@ -578,39 +577,24 @@ const abi = {
 	],
 	FOOTBALL_ABI: [
 		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "_betToken",
-					"type": "address"
-				},
-				{
-					"internalType": "address",
-					"name": "_repoPool",
-					"type": "address"
-				},
-				{
-					"internalType": "address",
-					"name": "_dividendPool",
-					"type": "address"
-				}
-			],
-			"stateMutability": "nonpayable",
-			"type": "constructor"
-		},
-		{
 			"anonymous": false,
 			"inputs": [
 				{
 					"indexed": false,
 					"internalType": "uint256",
-					"name": "round",
+					"name": "marketId",
 					"type": "uint256"
 				},
 				{
 					"indexed": false,
+					"internalType": "address",
+					"name": "betPool",
+					"type": "address"
+				},
+				{
+					"indexed": false,
 					"internalType": "uint256",
-					"name": "market",
+					"name": "betId",
 					"type": "uint256"
 				},
 				{
@@ -622,50 +606,20 @@ const abi = {
 				{
 					"indexed": false,
 					"internalType": "uint256",
-					"name": "betAmount",
+					"name": "amount",
 					"type": "uint256"
 				},
 				{
 					"indexed": false,
-					"internalType": "enum Football.BetType",
-					"name": "betType",
-					"type": "uint8"
+					"internalType": "uint256",
+					"name": "odds",
+					"type": "uint256"
 				},
 				{
 					"indexed": false,
-					"internalType": "enum Football.BetSide",
+					"internalType": "uint8",
 					"name": "betSide",
 					"type": "uint8"
-				},
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "betSideAScore",
-					"type": "uint256"
-				},
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "betSideBScore",
-					"type": "uint256"
-				},
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "oddsFromUser",
-					"type": "uint256"
-				},
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "slip",
-					"type": "uint256"
-				},
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "oddsFromMap",
-					"type": "uint256"
 				}
 			],
 			"name": "Bet",
@@ -677,53 +631,9 @@ const abi = {
 				{
 					"indexed": false,
 					"internalType": "uint256",
-					"name": "round",
+					"name": "betId",
 					"type": "uint256"
 				},
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "betEndBlockNo",
-					"type": "uint256"
-				}
-			],
-			"name": "BetInit",
-			"type": "event"
-		},
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "round",
-					"type": "uint256"
-				},
-				{
-					"indexed": false,
-					"internalType": "enum Football.BetSide",
-					"name": "winSide",
-					"type": "uint8"
-				},
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "betSideAScore",
-					"type": "uint256"
-				},
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "betSideBScore",
-					"type": "uint256"
-				}
-			],
-			"name": "CalcWinBet",
-			"type": "event"
-		},
-		{
-			"anonymous": false,
-			"inputs": [
 				{
 					"indexed": false,
 					"internalType": "address",
@@ -746,17 +656,17 @@ const abi = {
 				{
 					"indexed": false,
 					"internalType": "address",
-					"name": "oldAdmin",
+					"name": "pool",
 					"type": "address"
 				},
 				{
 					"indexed": false,
-					"internalType": "address",
-					"name": "newAdmin",
-					"type": "address"
+					"internalType": "uint256",
+					"name": "amount",
+					"type": "uint256"
 				}
 			],
-			"name": "NewAdmin",
+			"name": "ClaimFundPool",
 			"type": "event"
 		},
 		{
@@ -765,17 +675,61 @@ const abi = {
 				{
 					"indexed": false,
 					"internalType": "address",
-					"name": "oldDev",
+					"name": "user",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "amount",
+					"type": "uint256"
+				}
+			],
+			"name": "CreateFundPool",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "marketId",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "betEndBlockNo",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256[3]",
+					"name": "odds",
+					"type": "uint256[3]"
+				}
+			],
+			"name": "CreateMarket",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "address",
+					"name": "oldOracle",
 					"type": "address"
 				},
 				{
 					"indexed": false,
 					"internalType": "address",
-					"name": "newDev",
+					"name": "newOracle",
 					"type": "address"
 				}
 			],
-			"name": "NewDev",
+			"name": "NewOracle",
 			"type": "event"
 		},
 		{
@@ -802,98 +756,109 @@ const abi = {
 			"inputs": [
 				{
 					"indexed": false,
+					"internalType": "uint256",
+					"name": "marketId",
+					"type": "uint256"
+				}
+			],
+			"name": "PauseMarket",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "marketId",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256[3]",
+					"name": "odds",
+					"type": "uint256[3]"
+				}
+			],
+			"name": "RefreshOdds",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "marketId",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint8",
+					"name": "winSide",
+					"type": "uint8"
+				}
+			],
+			"name": "ResolveMarket",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "marketId",
+					"type": "uint256"
+				}
+			],
+			"name": "RestartMarket",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
 					"internalType": "address",
-					"name": "oldPendingOwner",
+					"name": "pool",
 					"type": "address"
 				},
 				{
 					"indexed": false,
-					"internalType": "address",
-					"name": "newPendingOwner",
-					"type": "address"
+					"internalType": "bool",
+					"name": "toStopFlag",
+					"type": "bool"
 				}
 			],
-			"name": "NewPendingOwner",
+			"name": "UpdateFundPoolStopFlag",
 			"type": "event"
 		},
 		{
-			"inputs": [],
-			"name": "acceptOwner",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
 			"inputs": [
 				{
 					"internalType": "uint256",
-					"name": "_amount",
+					"name": "marketId",
 					"type": "uint256"
-				}
-			],
-			"name": "addFundsPool",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "admin",
-			"outputs": [
+				},
 				{
 					"internalType": "address",
-					"name": "",
+					"name": "betPool",
 					"type": "address"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "_round",
-					"type": "uint256"
 				},
 				{
 					"internalType": "uint256",
-					"name": "_market",
+					"name": "amount",
 					"type": "uint256"
 				},
 				{
-					"internalType": "uint256",
-					"name": "_betAmount",
-					"type": "uint256"
-				},
-				{
-					"internalType": "enum Football.BetType",
-					"name": "_betType",
-					"type": "uint8"
-				},
-				{
-					"internalType": "enum Football.BetSide",
-					"name": "_betSide",
+					"internalType": "uint8",
+					"name": "betSide",
 					"type": "uint8"
 				},
 				{
 					"internalType": "uint256",
-					"name": "_betSideAScore",
-					"type": "uint256"
-				},
-				{
-					"internalType": "uint256",
-					"name": "_betSideBScore",
-					"type": "uint256"
-				},
-				{
-					"internalType": "uint256",
-					"name": "_odds",
-					"type": "uint256"
-				},
-				{
-					"internalType": "uint256",
-					"name": "_slip",
+					"name": "minOdds",
 					"type": "uint256"
 				}
 			],
@@ -903,33 +868,8 @@ const abi = {
 			"type": "function"
 		},
 		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"name": "betPoolInfos",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"name": "betRoundInfos",
+			"inputs": [],
+			"name": "betToDaoRate",
 			"outputs": [
 				{
 					"internalType": "uint256",
@@ -945,7 +885,7 @@ const abi = {
 			"name": "betToken",
 			"outputs": [
 				{
-					"internalType": "contract IERC20",
+					"internalType": "contract IERC20Upgradeable",
 					"name": "",
 					"type": "address"
 				}
@@ -957,59 +897,120 @@ const abi = {
 			"inputs": [
 				{
 					"internalType": "uint256",
-					"name": "_round",
-					"type": "uint256"
-				},
-				{
-					"internalType": "enum Football.BetSide",
-					"name": "_winSide",
-					"type": "uint8"
-				},
-				{
-					"internalType": "uint256",
-					"name": "betSideAScore",
+					"name": "",
 					"type": "uint256"
 				},
 				{
 					"internalType": "uint256",
-					"name": "betSideBScore",
+					"name": "",
 					"type": "uint256"
 				}
 			],
-			"name": "calcWinBet",
+			"name": "bets",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "betId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "betPool",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "betAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "amount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "odds",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint8",
+					"name": "betSide",
+					"type": "uint8"
+				},
+				{
+					"internalType": "bool",
+					"name": "claimed",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "marketId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "betId",
+					"type": "uint256"
+				}
+			],
+			"name": "claim",
 			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
 			"inputs": [],
-			"name": "dev",
-			"outputs": [
+			"name": "claimFundPool",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
 				{
-					"internalType": "address",
-					"name": "",
-					"type": "address"
+					"internalType": "uint256",
+					"name": "amount",
+					"type": "uint256"
 				}
 			],
-			"stateMutability": "view",
+			"name": "createFundPool",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "marketId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "betEndBlockNo",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256[3]",
+					"name": "odds",
+					"type": "uint256[3]"
+				}
+			],
+			"name": "createMarket",
+			"outputs": [],
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
 			"inputs": [],
-			"name": "dividendPool",
-			"outputs": [
-				{
-					"internalType": "address",
-					"name": "",
-					"type": "address"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "fundsAmount",
+			"name": "currentBetId",
 			"outputs": [
 				{
 					"internalType": "uint256",
@@ -1021,28 +1022,142 @@ const abi = {
 			"type": "function"
 		},
 		{
+			"inputs": [],
+			"name": "dao",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
 			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "marketId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "betId",
+					"type": "uint256"
+				}
+			],
+			"name": "getBetInfo",
+			"outputs": [
 				{
 					"components": [
 						{
 							"internalType": "uint256",
-							"name": "round",
+							"name": "betId",
+							"type": "uint256"
+						},
+						{
+							"internalType": "address",
+							"name": "betPool",
+							"type": "address"
+						},
+						{
+							"internalType": "address",
+							"name": "betAddress",
+							"type": "address"
+						},
+						{
+							"internalType": "uint256",
+							"name": "amount",
 							"type": "uint256"
 						},
 						{
 							"internalType": "uint256",
-							"name": "betEndBlockNo",
+							"name": "odds",
 							"type": "uint256"
+						},
+						{
+							"internalType": "uint8",
+							"name": "betSide",
+							"type": "uint8"
+						},
+						{
+							"internalType": "bool",
+							"name": "claimed",
+							"type": "bool"
 						}
 					],
-					"internalType": "struct Football.BetRoundInfo[]",
-					"name": "_betRoundInfo",
-					"type": "tuple[]"
+					"internalType": "struct IBetCore.BetInfo",
+					"name": "",
+					"type": "tuple"
 				}
 			],
-			"name": "initGame",
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_betToken",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "_dao",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_betToDaoRate",
+					"type": "uint256"
+				}
+			],
+			"name": "initialize",
 			"outputs": [],
 			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "markets",
+			"outputs": [
+				{
+					"internalType": "uint8",
+					"name": "winSide",
+					"type": "uint8"
+				},
+				{
+					"internalType": "uint256",
+					"name": "betEndBlockNo",
+					"type": "uint256"
+				},
+				{
+					"internalType": "enum IBetCore.MarketState",
+					"name": "state",
+					"type": "uint8"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "oracle",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
 			"type": "function"
 		},
 		{
@@ -1059,13 +1174,52 @@ const abi = {
 			"type": "function"
 		},
 		{
-			"inputs": [],
-			"name": "pendingOwner",
-			"outputs": [
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "marketId",
+					"type": "uint256"
+				}
+			],
+			"name": "pauseMarket",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
 				{
 					"internalType": "address",
 					"name": "",
 					"type": "address"
+				}
+			],
+			"name": "pools",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "initAmount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "betTotalAmount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "payForTotalAmount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxMarketId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bool",
+					"name": "stopBet",
+					"type": "bool"
 				}
 			],
 			"stateMutability": "view",
@@ -1075,25 +1229,13 @@ const abi = {
 			"inputs": [
 				{
 					"internalType": "uint256",
-					"name": "_round",
+					"name": "marketId",
 					"type": "uint256"
 				},
 				{
-					"components": [
-						{
-							"internalType": "uint256",
-							"name": "market",
-							"type": "uint256"
-						},
-						{
-							"internalType": "uint256",
-							"name": "odds",
-							"type": "uint256"
-						}
-					],
-					"internalType": "struct Football.OddsInfo[]",
-					"name": "_oddsInfo",
-					"type": "tuple[]"
+					"internalType": "uint256[3]",
+					"name": "odds",
+					"type": "uint256[3]"
 				}
 			],
 			"name": "refreshOdds",
@@ -1102,63 +1244,32 @@ const abi = {
 			"type": "function"
 		},
 		{
-			"inputs": [],
-			"name": "renounceOwnership",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "repoPool",
-			"outputs": [
-				{
-					"internalType": "address",
-					"name": "",
-					"type": "address"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
 			"inputs": [
 				{
 					"internalType": "uint256",
-					"name": "",
+					"name": "marketId",
 					"type": "uint256"
 				},
 				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
+					"internalType": "uint8",
+					"name": "winSide",
+					"type": "uint8"
 				}
 			],
-			"name": "roundOdds",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "market",
-					"type": "uint256"
-				},
-				{
-					"internalType": "uint256",
-					"name": "odds",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
+			"name": "resolveMarket",
+			"outputs": [],
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
 			"inputs": [
 				{
-					"internalType": "address",
-					"name": "newAdmin",
-					"type": "address"
+					"internalType": "uint256",
+					"name": "marketId",
+					"type": "uint256"
 				}
 			],
-			"name": "setAdmin",
+			"name": "restartMarket",
 			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
@@ -1167,92 +1278,56 @@ const abi = {
 			"inputs": [
 				{
 					"internalType": "address",
-					"name": "newDev",
+					"name": "newOracle",
 					"type": "address"
 				}
 			],
-			"name": "setDev",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "_dividendPool",
-					"type": "address"
-				}
-			],
-			"name": "setDividendPool",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "_repoPool",
-					"type": "address"
-				}
-			],
-			"name": "setRepoPool",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "_pendingOwner",
-					"type": "address"
-				}
-			],
-			"name": "transferOwnership",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "",
-					"type": "address"
-				}
-			],
-			"name": "users",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "claimedReward",
-					"type": "uint256"
-				},
-				{
-					"internalType": "uint256",
-					"name": "rewardToClaim",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "withdraw",
+			"name": "setOracle",
 			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
 			"inputs": [],
-			"name": "withdrawFundsPool",
+			"name": "test",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "rate",
+					"type": "uint256"
+				}
+			],
+			"name": "updateBetToDaoRate",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_dao",
+					"type": "address"
+				}
+			],
+			"name": "updateDao",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "updateFundPoolStopFlag",
 			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
 		}
 	]
 };
+
 export default abi

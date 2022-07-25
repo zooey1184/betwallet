@@ -116,7 +116,7 @@ export default defineComponent({
 .betNum {
   font-size: 15px;
   color: #6c829d;
-  line-height: 16px;
+  line-height: 24px;
 }
 .pane1 {
   width: 45%;

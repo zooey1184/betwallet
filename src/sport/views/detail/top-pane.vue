@@ -49,9 +49,11 @@ export default defineComponent({
     const getTime = computed(() => {
       return props.time ? dayjs(props.time).format("MM-DD HH:mm") : undefined;
     });
+    // const {state, showTime} = useTime()
 
     return {
       getTime,
+      // state, showTime
     };
   },
 });

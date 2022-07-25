@@ -1,6 +1,6 @@
 import http from '@/sport/js/http'
 
-const HOST = window.location.host.match(/localhost/g) ? '' : 'http://47.242.226.50:7020'
+const HOST = window.location.host.match(/(localhost|39.107.224.254)/g) ? '' : 'http://47.242.226.50:7020'
 
 // ## 查看赛事举办方的列表，如LCS/PSC等
 export const queryCompetitionName = async() => {

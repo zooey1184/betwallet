@@ -123,6 +123,7 @@ export default defineComponent({
       }
     };
 
+    // 获取地址
     const getWeb3Config = () => {
       getConfig().then((res) => {
         state.address = res;
@@ -132,6 +133,7 @@ export default defineComponent({
     const getAddress = computed(() => state.address);
     provide("ADDRESS", getAddress);
 
+    // 质押信息
     const getBounsInfoFn = () => {
       getBonusInfo().then((res) => {
         console.log("object", res);

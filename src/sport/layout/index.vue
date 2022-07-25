@@ -1,0 +1,323 @@
+<template>
+  <div>
+    <div class="layout_header flex items-center justify-between">
+      <div class="flex items-center">
+        <div class="mx-lg-show" @click="handleShowNavmask">====</div>
+        <img src="../images/zyq0425/logo.png" />
+        <div class="flex items-center md-show">
+          <div>电竞</div>
+          <div>足球</div>
+          <div>篮球</div>
+        </div>
+        <div>start The Game</div>
+      </div>
+      <div class="flex items-center sm-show">
+        <div>info</div>
+        <div class="lg-show">Sell you Art</div>
+      </div>
+    </div>
+    <div class="body flex">
+      <!-- >1560px 出现 表示弹性 -->
+      <div
+        class="sider flex-0"
+        :style="{ width: state.collapse ? '60px' : '250px' }"
+      ></div>
+
+      <!-- 真实侧边栏 -->
+      <div
+        class="sider-real"
+        :style="{ width: state.collapse ? '60px' : '250px' }"
+      >
+        <Sider :collapse="state.collapse" />
+        <div class="sider-bottom">
+          <RightOutlined @click="handleToggleCollapse" />
+        </div>
+      </div>
+
+      <!-- 内容区 -->
+      <div class="content flex-1" :class="{ 'bg-blur': !state.collapse }">
+        <!-- <=1200px 出现 -->
+        <div class="flex items-center slide-h">
+          <div
+            v-for="item in state.options"
+            class="slider-h-wrap flex flex-col items-center justify-center"
+          >
+            <div class="logo bg flex items-center justify-center">
+              <img src="../images/zyq0425/LIcon01.png" alt="" />
+            </div>
+            <div>{{ item.label }}</div>
+            <div>{{ item.count }}</div>
+          </div>
+        </div>
+
+        <slot></slot>
+        <div style="height: 60px" class="btm-pane"></div>
+      </div>
+      <div class="right-sider flex-0"></div>
+
+      <div class="btm-nav color-black flex items-center justify-around">
+        <div>电竞</div>
+        <div>投注</div>
+        <div>我的</div>
+      </div>
+
+      <transition name="slide-fade">
+        <div class="slide-mask" v-if="state.visible">
+          <div @click="handleCloseMask">close</div>
+        </div>
+      </transition>
+
+      <!-- 导航条的内容区域 -->
+      <transition name="slide-down">
+        <div class="slide-mask" v-if="state.visibleNav">
+          <div>电竞</div>
+          <div>足球</div>
+          <div>篮球</div>
+          <div>info</div>
+          <div>set your art</div>
+          <div @click="handleCloseNavMask">close</div>
+        </div>
+      </transition>
+    </div>
+  </div>
+</template>
+
+<script>
+import { defineComponent, reactive, inject, computed } from "vue";
+import Sider from "./sider.vue";
+import { RightOutlined } from "@ant-design/icons-vue";
+export default defineComponent({
+  components: {
+    Sider,
+    RightOutlined,
+  },
+  props: {
+    slideOptions: {
+      type: Array,
+    },
+  },
+  setup(props) {
+    const state = reactive({
+      collapse: true,
+      visible: false,
+      visibleNav: false,
+      height: "calc(100vh - 160px)",
+      options: [
+        {
+          label: "dsdsd",
+          value: "dsffdf",
+          count: 11,
+        },
+        {
+          label: "dsdsd",
+          value: "dsffdf",
+          count: 11,
+        },
+      ],
+    });
+    const COMPETITION_NAME = inject("COMPETITION_NAME", {
+      value: [],
+    });
+    const getCompetitionName = computed(() => COMPETITION_NAME.value);
+
+    const handleToggleCollapse = () => {
+      console.log("object");
+      state.collapse = !state.collapse;
+    };
+    const handleShowMask = () => {
+      state.visible = true;
+    };
+    const handleCloseMask = () => {
+      state.visible = false;
+    };
+    const handleShowNavmask = () => {
+      state.visibleNav = true;
+    };
+    const handleCloseNavMask = () => {
+      state.visibleNav = false;
+    };
+
+    return {
+      state,
+      getCompetitionName,
+      handleToggleCollapse,
+      handleShowMask,
+      handleCloseMask,
+      handleShowNavmask,
+      handleCloseNavMask,
+    };
+  },
+});
+</script>
+
+<style lang="less" scoped>
+@h: 60px;
+@sider: 260px;
+.layout_header {
+  height: @h;
+  width: 100%;
+  position: relative;
+  background: #222;
+  padding: 0 16px;
+}
+.body {
+  height: calc(100vh - @h);
+  position: absolute;
+  width: 100%;
+  top: @h;
+  left: 0;
+  overflow: hidden;
+  .sider {
+    width: @sider;
+    height: 100%;
+    background: #555;
+    transition: all 250ms linear;
+    position: relative;
+    @media screen and (max-width: 1560px) {
+      display: none;
+    }
+  }
+  .content {
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+  }
+  .right-sider {
+    width: @sider;
+    height: 100%;
+    overflow-y: auto;
+    background: #ddd;
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
+  }
+  .sider-bottom {
+    position: absolute;
+    z-index: 9;
+    width: 90%;
+    height: 40px;
+    border-radius: 8px;
+    padding: 8px;
+    background: #fff;
+    color: #333;
+    bottom: 10px;
+    left: 5%;
+  }
+  .sider-real {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 250px;
+    height: calc(100vh - 60px);
+    padding: 8px;
+    padding-bottom: 0;
+    transition: all 200ms linear;
+    z-index: 5;
+
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
+    @media screen and (min-width: 1200px) {
+      display: block;
+    }
+  }
+  .bg-blur {
+    @media (min-width: 1200px) and (max-width: 1560px) {
+      filter: blur(10px);
+    }
+  }
+  .logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+  }
+  .slide-h {
+    width: 100%;
+    overflow: auto;
+    padding: 8px 0;
+    display: none;
+    @media screen and (max-width: 1200px) {
+      display: flex;
+    }
+  }
+  .slider-h-wrap {
+    width: 80px;
+  }
+  .btm-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    left: 0;
+    background: #fff;
+    @media screen and (min-width: 700px) {
+      display: none;
+    }
+  }
+  .btm-pane {
+    display: block;
+    @media screen and (min-width: 700px) {
+      display: none;
+    }
+  }
+  .slide-mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    background: #333;
+  }
+  .slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+  }
+
+  .slide-fade-leave-active {
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+
+  .slide-fade-enter-from,
+  .slide-fade-leave-to {
+    transform: translateY(100vh);
+    // opacity: 0.6;
+  }
+  .slide-down-enter-active {
+    transition: all 0.3s ease-out;
+  }
+
+  .slide-down-leave-active {
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+
+  .slide-down-enter-from,
+  .slide-down-leave-to {
+    transform: translateY(-100vh);
+    // opacity: 0.6;
+  }
+}
+.lg-show {
+  display: none;
+  @media screen and (min-width: 1000px) {
+    display: block;
+  }
+}
+.md-show {
+  display: none;
+  @media screen and (min-width: 800px) {
+    display: flex;
+  }
+}
+.sm-show {
+  display: none;
+  @media screen and (min-width: 700px) {
+    display: flex;
+  }
+}
+.mx-lg-show {
+  display: block;
+  @media screen and (min-width: 1000px) {
+    display: none;
+  }
+}
+</style>

@@ -14,7 +14,7 @@ span{margin:0; padding:0; cursor: auto;}
 span:focus,div:focus {outline: none;}
 
 .Huans{-webkit-box-sizing: border-box;box-sizing: border-box;}
-.flex{display:-webkit-box;display: -ms-flexbox;display:flex;flex-wrap:wrap;align-items:flex-start;}
+/* .flex{display:-webkit-box;display: -ms-flexbox;display:flex;flex-wrap:wrap;align-items:flex-start;} */
 .flexC{display:-webkit-box;display: -ms-flexbox;display:flex;align-items:center; flex-wrap:wrap;}
 .flexE{display:-webkit-box;display: -ms-flexbox;display:flex;align-items:flex-end; flex-wrap:wrap;}
 .fl-bet{-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content:space-between;}

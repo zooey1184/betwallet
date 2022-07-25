@@ -9,22 +9,70 @@
     </div>
 
     <div class="flex items-center justify-between my-24">
-      <div class="roombtn">寻找奖池</div>
-      <div class="roombtn linear-bg " style="border: 1px solid transparent">创建奖池</div>
+      <div
+        class="roombtn bg"
+        v-for="item in state.btns"
+        @click="handlePick(item)"
+        :class="{
+          bg: state.active !== item.value,
+          'linear-bg': state.active === item.value,
+        }"
+      >
+        {{ item.label }}
+      </div>
+      <!-- <div
+        class="roombtn"
+        :class="{ bg: state.active === 0, 'linear-bg': state.active === 1 }"
+      >
+        创建奖池
+      </div> -->
     </div>
 
     <div class="input-wrap flex items-center">
-      <input class="flex-1 input" placeholder="请输入金额" />
-      <div class="roomConfirm">
-        确认
-      </div>
+      <input class="flex-1 input" placeholder="请输入房间号" />
+      <div class="roomConfirm" @click="handleConfirm">确认</div>
     </div>
 
     <div class="flex items-center color-gray mt-24 mb-32">
-      没有发现你参与的流动性资金池？ <div class="importBtn">导入</div>
+      没有发现你参与的流动性资金池？
+      <div class="importBtn">导入</div>
     </div>
   </div>
 </template>
+
+<script>
+import { defineComponent, reactive } from "vue";
+
+export default defineComponent({
+  components: {},
+  props: {},
+  setup(props) {
+    const state = reactive({
+      active: 1,
+      btns: [
+        {
+          label: "寻找奖池",
+          value: 0,
+        },
+        {
+          label: "创建奖池",
+          value: 1,
+        },
+      ],
+    });
+    const handlePick = (item) => {
+      state.active = item.value;
+    };
+
+    const handleConfirm = () => {};
+
+    return {
+      state,
+      handlePick,
+    };
+  },
+});
+</script>
 
 <style lang="less" scoped>
 .pane {
@@ -41,7 +89,7 @@
   line-height: 42px;
   text-align: center;
   width: 45%;
-  border: 1px solid #eee;
+  // border: 1px solid #eee;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
@@ -70,6 +118,7 @@
   line-height: 42px;
   font-size: 18px;
   transition: all 300ms linear;
+  cursor: pointer;
   &:hover {
     background: #1890ff;
     color: #fff;

@@ -1,11 +1,11 @@
 <template>
   <div class="pos-r vs-pane">
-    <div class="text-align-center">
+    <div class="text-align-center" v-if="showTime">
       <div class="countdown">开始倒数</div>
       <div class="flex items-center justify-center" style="margin-bottom: 24px">
         <img src="../../images/zyq0425/IconTime01.png" style="margin: 0 12px" />
         <div class="m-flex">
-          <TimePane :time="time" v-if="time" />
+          <TimePane :time="timeState" v-if="time" />
         </div>
       </div>
     </div>
@@ -27,8 +27,8 @@
         </div>
       </div>
 
-      <div class="middle flex-0">
-        <TimePane :time="time" v-if="time" />
+      <div class="middle flex-0" v-if="showTime">
+        <TimePane :time="timeState" v-if="time" />
       </div>
       <div
         class="right flex items-center justify-between flex-0"
@@ -94,6 +94,7 @@
 import { ref, defineComponent, reactive, onMounted } from "vue";
 import TimePane from "./time-pane.vue";
 import useActive from "@/sport/components/useHooks/use-active";
+import useTime from "./use-time";
 
 export default defineComponent({
   components: {
@@ -122,6 +123,8 @@ export default defineComponent({
       w: 1920,
       isMobile: false,
     });
+
+    const { timeState, showTime } = useTime(props.time);
 
     const { getBetActive, state, setState } = useActive(
       props,
@@ -154,6 +157,8 @@ export default defineComponent({
       params,
       getBetActive,
       handlePickItem,
+      timeState,
+      showTime,
     };
   },
 });
