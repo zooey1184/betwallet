@@ -5,7 +5,7 @@ export const options = [
   },
   {
     label: 'click [join casino]',
-    desc: 'to enter the casino number'
+    desc: 'to enter the casino code'
   },
   {
     label: 'choose game',

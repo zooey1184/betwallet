@@ -3,7 +3,7 @@
 /*通用*/
 *{ margin:0; padding:0;}
 html{}
-body{margin:0;color:#FFF; position: relative; font-family: "Arial"; background-color:#020218; background-image: url("../images/back.png"); background-repeat: no-repeat; background-position: top center; background-size: 100%; background-attachment: fixed}
+body{margin:0;color:#FFF; position: relative; font-family: "Arial"; background-color:#020218;  background-repeat: no-repeat; background-position: top center; background-size: 100%; background-attachment: fixed}
 ul,li,p,h1,h2,h3,h4,h5,h6,dl,dt,dd {margin:0px;padding:0px;border:none;list-style:none; font-weight: normal;}
 a{outline: none; text-decoration:none;  text-shadow:none;font-weight:normal;-webkit-tap-highlight-color: rgba(255, 255, 255, 0);-webkit-user-select: none;-moz-user-focus: none;-moz-user-select: none;}
 ul{list-style:none;}

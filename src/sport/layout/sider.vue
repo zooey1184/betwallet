@@ -11,7 +11,7 @@
     <div
       class="leftItem flex items-center justify-between"
       v-for="(item, index) in state.options"
-      :class="{ 'bg-active': state.active === item.value }"
+      :class="{ 'active-bg': state.active === item.value }"
       :style="{ width: collapse ? '40px' : '230px' }"
       @click="handlePick(item)"
     >
@@ -19,7 +19,9 @@
         <i class="leftIcon flex-0 LeftI1"></i>
         <p>{{ item.label }}0000000000000000000000</p>
       </div>
-      <div class="count flex-0 flex items-center justify-center">8</div>
+      <div class="count active-bg flex-0 flex items-center justify-center">
+        8
+      </div>
     </div>
   </div>
 </template>
@@ -148,9 +150,10 @@ export default defineComponent({
   border-radius: 10px;
   padding-right: 8px;
   position: relative;
+  margin: 8px 0;
   padding-right: 8px;
   &:hover {
-    background: #520c57;
+    background: #ff0083;
     width: 230px !important;
   }
   p {
@@ -160,20 +163,17 @@ export default defineComponent({
   }
 }
 .count {
-  background: #c91c7e;
   border-radius: 20px;
   width: 16px;
   height: 16px;
 }
-.bg-active {
-  background: #c91c7e;
-}
+
 .pane {
   position: absolute;
   left: 100px;
   width: 200px;
   height: 40px;
-  background: #520c57;
+  background: #ff0083;
   color: #fff;
   top: 0;
 }

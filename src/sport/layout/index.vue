@@ -1,31 +1,61 @@
 <template>
   <div>
-    <div class="layout_header flex items-center justify-between">
+    <div class="layout_header primary-bg flex items-center justify-between">
       <div class="flex items-center">
-        <div class="mx-lg-show" @click="handleShowNavmask">====</div>
-        <img src="../images/zyq0425/logo.png" />
-        <div class="flex items-center md-show">
-          <div>电竞</div>
-          <div>足球</div>
-          <div>篮球</div>
+        <div class="mx-lg-show" @click="handleShowNavmask">
+          <MenuOutlined class="color-white mr-8 font-size-24" />
         </div>
-        <div>start The Game</div>
+        <img
+          src="../images/zyq0425/logo.png"
+          style="height: 40px; margin-right: 50px"
+        />
+        <div class="flex items-center lg-show">
+          <div
+            class="flex flex-col items-center justify-center header_active_item active-bg"
+          >
+            <img src="../images/v2/esport.png" style="height: 40px" alt="" />
+            ELECTRONICS
+          </div>
+          <div
+            class="flex flex-col items-center justify-center header_active_item"
+          >
+            <img
+              src="../images/v2/basketball.png"
+              style="height: 40px"
+              alt=""
+            />
+            <p class="font-weight-400 text-color">Basketball</p>
+          </div>
+          <div
+            class="flex flex-col items-center justify-center header_active_item"
+          >
+            <img src="../images/v2/football.png" style="height: 40px" alt="" />
+            <p class="font-weight-400 text-color">Football</p>
+          </div>
+        </div>
+        <div class="start ml-24">START THE GAME</div>
       </div>
       <div class="flex items-center sm-show">
-        <div>info</div>
-        <div class="lg-show">Sell you Art</div>
+        <div>
+          <Info />
+        </div>
+        <div class="lg-show sellBtn active-color ml-24">
+          <CloudUploadOutlined />
+          Sell Your Art
+        </div>
       </div>
     </div>
+
     <div class="body flex">
       <!-- >1560px 出现 表示弹性 -->
       <div
-        class="sider flex-0"
+        class="sider flex-0 primary-bg"
         :style="{ width: state.collapse ? '60px' : '250px' }"
       ></div>
 
       <!-- 真实侧边栏 -->
       <div
-        class="sider-real"
+        class="sider-real primary-bg"
         :style="{ width: state.collapse ? '60px' : '250px' }"
       >
         <Sider :collapse="state.collapse" />
@@ -50,12 +80,17 @@
           </div>
         </div>
 
-        <slot></slot>
+        <div class="w-100p color-white">
+          <slot></slot>
+        </div>
+
         <div style="height: 60px" class="btm-pane"></div>
       </div>
-      <div class="right-sider flex-0"></div>
+      <div class="right-sider primary-bg flex-0"></div>
 
-      <div class="btm-nav color-black flex items-center justify-around">
+      <div
+        class="btm-nav primary-bg color-black flex items-center justify-around"
+      >
         <div>电竞</div>
         <div>投注</div>
         <div>我的</div>
@@ -85,11 +120,20 @@
 <script>
 import { defineComponent, reactive, inject, computed } from "vue";
 import Sider from "./sider.vue";
-import { RightOutlined } from "@ant-design/icons-vue";
+import {
+  RightOutlined,
+  CloudUploadOutlined,
+  MenuOutlined,
+} from "@ant-design/icons-vue";
+import Info from "./info.vue";
+
 export default defineComponent({
   components: {
     Sider,
+    Info,
     RightOutlined,
+    CloudUploadOutlined,
+    MenuOutlined,
   },
   props: {
     slideOptions: {
@@ -151,14 +195,15 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@h: 60px;
+@h: 80px;
 @sider: 260px;
 .layout_header {
   height: @h;
   width: 100%;
   position: relative;
-  background: #222;
-  padding: 0 16px;
+  padding: 0 24px;
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.3);
+  z-index: 19;
 }
 .body {
   height: calc(100vh - @h);
@@ -170,7 +215,6 @@ export default defineComponent({
   .sider {
     width: @sider;
     height: 100%;
-    background: #555;
     transition: all 250ms linear;
     position: relative;
     @media screen and (max-width: 1560px) {
@@ -186,8 +230,7 @@ export default defineComponent({
     width: @sider;
     height: 100%;
     overflow-y: auto;
-    background: #ddd;
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 700px) {
       display: none;
     }
   }
@@ -205,10 +248,10 @@ export default defineComponent({
   }
   .sider-real {
     position: fixed;
-    top: 60px;
+    top: @h;
     left: 0;
     width: 250px;
-    height: calc(100vh - 60px);
+    height: calc(100vh - @h);
     padding: 8px;
     padding-bottom: 0;
     transition: all 200ms linear;
@@ -249,7 +292,6 @@ export default defineComponent({
     width: 100%;
     height: 60px;
     left: 0;
-    background: #fff;
     @media screen and (min-width: 700px) {
       display: none;
     }
@@ -298,7 +340,7 @@ export default defineComponent({
 }
 .lg-show {
   display: none;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1200px) {
     display: block;
   }
 }
@@ -316,8 +358,50 @@ export default defineComponent({
 }
 .mx-lg-show {
   display: block;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1200px) {
     display: none;
   }
+}
+
+.header_active_item {
+  padding: 10px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  font-weight: 600;
+  margin: 0 8px;
+}
+.start {
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 0 10px #ff0083;
+  background-color: #ff008479;
+  border-color: #ff0083 !important;
+  border: 1px solid;
+  color: #fff;
+  animation: shane 2000ms linear infinite;
+  &:hover {
+    cursor: pointer;
+    background: #ff0083 !important;
+  }
+}
+@keyframes shane {
+  0% {
+    box-shadow: 0 0 10px #ff0083;
+    opacity: 0.8;
+  }
+  50% {
+    box-shadow: 0 0 15px #ff319c;
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 0 0 10px #ff0083;
+    opacity: 0.8;
+  }
+}
+.sellBtn {
+  padding: 8px 12px;
+  background: #fff;
+  border-radius: 12px;
 }
 </style>
