@@ -23,7 +23,9 @@ export const saveTenant = async(data) => {
 }
 
 // ## 创建奖池
-
+export const createTenant = async(data) => {
+  return await http.post(`${HOST}/v2/create/tenant`, {data})
+}
 
 // ## 查询当前钱包地址关联的奖池，即邀请码，需要传递给链上
 export const queryTenant = async(data) => {

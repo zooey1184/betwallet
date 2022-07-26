@@ -52,11 +52,10 @@ req: http://47.242.226.50:7020/v2/query/competitionName
 ## 创建奖池
 ```js
   method: POST
-  url: /v2/save/tenant
+  url: /v2/create/tenant
   params: 
     wallet: 钱包地址
     tenant: 租户id、即：邀请码
-    amount: 初始金额
   req: http://47.242.226.50:7020/v2/save/tenant
 ```
 
@@ -99,6 +98,8 @@ req: http://47.242.226.50:7020/v2/query/competitionName
   req: http://47.242.226.50:7020/v1/system/getBannerList
 ```
 
+
+## 合约交互
 ## bet合约下注调用
 ```contract
   method: bet
@@ -108,4 +109,17 @@ req: http://47.242.226.50:7020/v2/query/competitionName
   uint256 amount     下注数量
   uint8 betSide      下注队伍 0:Side 主队,1:Side 客队,2:Equal 平
   uint256 minOdds    最小接受的赔率 (当前赔率*(100-滑点))
+```
+
+## 创建奖池
+```contract
+  method: createFundPool
+  params:
+  uint256 amount     初始奖池金额
+```
+
+## 提取奖池金额
+```contract
+  method: claimFundPool
+  params: 无
 ```

@@ -41,7 +41,8 @@
 </template>
 
 <script>
-import { defineComponent, reactive } from "vue";
+import { defineComponent, onMounted, reactive } from "vue";
+import usePermission from '@/sport/components/useHooks/use-permission'
 
 export default defineComponent({
   components: {},
@@ -64,11 +65,18 @@ export default defineComponent({
       state.active = item.value;
     };
 
+    const {hasPermission} = usePermission()
     const handleConfirm = () => {};
+
+    onMounted(async() => {
+      const t = await hasPermission()
+      console.log(t)
+    })
 
     return {
       state,
       handlePick,
+      hasPermission,
     };
   },
 });

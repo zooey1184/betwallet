@@ -18,6 +18,7 @@ import {
 } from "vue";
 import DownloadModal from "../download-modal.vue";
 import { getConfig, getBonusInfo } from "@/sport/api/index";
+import {abi} from './index'
 
 export default defineComponent({
   components: {
@@ -31,6 +32,7 @@ export default defineComponent({
       downloadModalVisible: false,
       userInfo: undefined,
       address: undefined,
+      contract: {}
     });
     // 点击连接钱包
     const handleConnect = () => {
@@ -127,6 +129,7 @@ export default defineComponent({
     const getWeb3Config = () => {
       getConfig().then((res) => {
         state.address = res;
+        initContract(res.bet_address, res.usdt_address)
       });
     };
 
@@ -139,6 +142,22 @@ export default defineComponent({
         console.log("object", res);
       });
     };
+
+    const initContract = (bet_address, usdt_address) => {
+      const {ERC20_ABI, BONUS_ABI, FOOTBALL_ABI} = abi
+      const erc_contract = new web3.eth.Contract(ERC20_ABI, bet_address);
+      const bonus_contract = new web3.eth.Contract(BONUS_ABI, bet_address);
+      const football_contract = new web3.eth.Contract(FOOTBALL_ABI, usdt_address);
+      state.contract = {
+        erc_contract,
+        bonus_contract,
+        football_contract
+      }
+    }
+
+    const getCnotract = computed(() => state.contract)
+
+    provide('CONTRACT', getCnotract)
 
     onMounted(() => {
       init();
