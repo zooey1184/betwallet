@@ -19,7 +19,7 @@ import InitProvider from "./components/init-provider.vue";
 import Page from "./page.vue";
 import Web3Provider from "./components/web3";
 import SportProvider from "./components/bet-provider.vue";
-import RoomProvider from "./components/room-provider.vue";
+import RoomProvider from "./components/room/init-provider.vue";
 import Layout from "./layout";
 
 export default defineComponent({

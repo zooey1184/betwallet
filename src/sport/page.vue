@@ -5,16 +5,16 @@
         v-model:active="state.active"
         :options="state.sports"
       /> -->
-      <Header />
+      <!-- <Header /> -->
     </div>
-    <MNav v-model:active="state.active" :options="state.sports" />
+    <!-- <MNav v-model:active="state.active" :options="state.sports" /> -->
 
-    <LeftSider :options="getCompetitionName" v-model:active="state.schedule" />
+    <!-- <LeftSider :options="getCompetitionName" v-model:active="state.schedule" /> -->
 
-    <RightSider
+    <!-- <RightSider
       @walletVisible="handleWalletVisible"
       v-model:visible="state.visible"
-    />
+    /> -->
     <!-- <div class="zyqDk Huans">
       <div class="zyqDD Huans">
         <router-view />
@@ -26,7 +26,7 @@
 
     <!-- <Content /> -->
 
-    <WalletPane v-model:visible="state.walletVisible" />
+    <!-- <WalletPane v-model:visible="state.walletVisible" /> -->
   </div>
 </template>
 

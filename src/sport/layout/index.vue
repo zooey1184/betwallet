@@ -33,13 +33,14 @@
             <p class="font-weight-400 text-color">Football</p>
           </div>
         </div>
-        <div class="start ml-24">START THE GAME</div>
+        <!-- <div class="start ml-24">START THE GAME</div> -->
+        <RoomBtn />
       </div>
       <div class="flex items-center sm-show">
         <div>
           <Info />
         </div>
-        <div class="lg-show sellBtn active-color ml-24">
+        <div class="lg-show items-center sellBtn active-color ml-24">
           <CloudUploadOutlined />
           Sell Your Art
         </div>
@@ -119,6 +120,7 @@
 
 <script>
 import { defineComponent, reactive, inject, computed } from "vue";
+import RoomBtn from "../components/room/room-btn.vue";
 import Sider from "./sider.vue";
 import {
   RightOutlined,
@@ -131,6 +133,7 @@ export default defineComponent({
   components: {
     Sider,
     Info,
+    RoomBtn,
     RightOutlined,
     CloudUploadOutlined,
     MenuOutlined,
@@ -341,7 +344,7 @@ export default defineComponent({
 .lg-show {
   display: none;
   @media screen and (min-width: 1200px) {
-    display: block;
+    display: flex;
   }
 }
 .md-show {
@@ -371,7 +374,7 @@ export default defineComponent({
   margin: 0 8px;
 }
 .start {
-  padding: 8px 12px;
+  padding: 4px 12px;
   border-radius: 12px;
   font-weight: 600;
   box-shadow: 0 0 10px #ff0083;
@@ -400,7 +403,7 @@ export default defineComponent({
   }
 }
 .sellBtn {
-  padding: 8px 12px;
+  padding: 4px 12px;
   background: #fff;
   border-radius: 12px;
 }

@@ -19,11 +19,11 @@
 import { defineComponent, reactive } from "vue";
 import HeaderRoomBtn from "./header-room-btn.vue";
 import Mask from "@/sport/components/mask";
-import RoomInit from "./room-modal/init-modal.vue";
-import RoomConfirmId from "./room-modal/confirm-id.vue";
-import RoomConfrimCreate from "./room-modal/confirm-create.vue";
-import RoomSubmitIng from "./room-modal/submit-ing.vue";
-import RoomPool from "./room-modal/pool-pane.vue";
+import RoomInit from "./room/init-modal.vue";
+import RoomConfirmId from "./room/confirm-id.vue";
+import RoomConfrimCreate from "./room/confirm-create.vue";
+import RoomSubmitIng from "./room/submit-ing.vue";
+import RoomPool from "./room/pool-pane.vue";
 
 export default defineComponent({
   components: {
