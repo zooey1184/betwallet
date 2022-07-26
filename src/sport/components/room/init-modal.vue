@@ -66,11 +66,15 @@ export default defineComponent({
     };
 
     const {hasPermission} = usePermission()
-    const handleConfirm = () => {};
+    const handleConfirm = async() => {
+      
+    };
+    const handleInit = async () => {
+      hasPermission()
+    }
 
-    onMounted(async() => {
-      const t = await hasPermission()
-      console.log(t)
+    onMounted(() => {
+      handleInit()
     })
 
     return {
