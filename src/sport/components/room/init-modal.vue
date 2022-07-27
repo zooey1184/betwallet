@@ -20,12 +20,6 @@
       >
         {{ item.label }}
       </div>
-      <!-- <div
-        class="roombtn"
-        :class="{ bg: state.active === 0, 'linear-bg': state.active === 1 }"
-      >
-        创建奖池
-      </div> -->
     </div>
 
     <div class="input-wrap flex items-center">
@@ -42,7 +36,7 @@
 
 <script>
 import { defineComponent, onMounted, reactive } from "vue";
-import usePermission from '@/sport/components/useHooks/use-permission'
+import usePermission from "@/sport/components/useHooks/use-permission";
 
 export default defineComponent({
   components: {},
@@ -65,17 +59,15 @@ export default defineComponent({
       state.active = item.value;
     };
 
-    const {hasPermission} = usePermission()
-    const handleConfirm = async() => {
-      
-    };
+    const { hasPermission } = usePermission();
+    const handleConfirm = async () => {};
     const handleInit = async () => {
-      hasPermission()
-    }
+      hasPermission();
+    };
 
     onMounted(() => {
-      handleInit()
-    })
+      handleInit();
+    });
 
     return {
       state,

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <slot name="headerExtra"></slot>
     <Swiper />
 
     <section class="zyqTD zyqTDall">

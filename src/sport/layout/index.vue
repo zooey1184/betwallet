@@ -37,11 +37,11 @@
         <RoomBtn />
       </div>
       <div class="flex items-center sm-show">
-        <div>
-          <Info />
+        <div v-if="isLink">
+          <Info :address="getAccounts" />
         </div>
         <div class="lg-show items-center sellBtn active-color ml-24">
-          <CloudUploadOutlined />
+          <CloudUploadOutlined class="mr-8" />
           Sell Your Art
         </div>
       </div>
@@ -53,13 +53,14 @@
         class="sider flex-0 primary-bg"
         :style="{ width: state.collapse ? '60px' : '250px' }"
       ></div>
+      <div class="sider-real-sm flex-0" style="width: 60px"></div>
 
       <!-- 真实侧边栏 -->
       <div
         class="sider-real primary-bg"
         :style="{ width: state.collapse ? '60px' : '250px' }"
       >
-        <Sider :collapse="state.collapse" />
+        <Sider :collapse="state.collapse" :options="slideOptions" />
         <div class="sider-bottom">
           <RightOutlined @click="handleToggleCollapse" />
         </div>
@@ -68,18 +69,22 @@
       <!-- 内容区 -->
       <div class="content flex-1" :class="{ 'bg-blur': !state.collapse }">
         <!-- <=1200px 出现 -->
-        <div class="flex items-center slide-h">
+        <!-- <div class="flex slide-h">
           <div
-            v-for="item in state.options"
+            v-for="item in slideOptions"
             class="slider-h-wrap flex flex-col items-center justify-center"
           >
-            <div class="logo bg flex items-center justify-center">
-              <img src="../images/zyq0425/LIcon01.png" alt="" />
+            <div
+              class="logo bg-dark50 flex items-center overflow-hidden justify-center"
+            >
+              <img src="../images/zyq0425/LIcon02.png" alt="" />
             </div>
-            <div>{{ item.label }}</div>
-            <div>{{ item.count }}</div>
+            <div class="ellipsis-1 grey text-align-center" :title="item.label">
+              {{ item.label }}
+            </div>
+            <div class="gray">{{ item.count }}</div>
           </div>
-        </div>
+        </div> -->
 
         <div class="w-100p color-white">
           <slot></slot>
@@ -87,7 +92,9 @@
 
         <div style="height: 60px" class="btm-pane"></div>
       </div>
-      <div class="right-sider primary-bg flex-0"></div>
+      <div class="right-sider primary-bg flex-0">
+        <slot name="bet"></slot>
+      </div>
 
       <div
         class="btm-nav primary-bg color-black flex items-center justify-around"
@@ -162,6 +169,11 @@ export default defineComponent({
         },
       ],
     });
+    const ACCOUNTS = inject("ACCOUNTS");
+    const getAccounts = computed(() => ACCOUNTS.accountHide.value);
+    const isLink = computed(() => {
+      return ACCOUNTS.isLink.value;
+    });
     const COMPETITION_NAME = inject("COMPETITION_NAME", {
       value: [],
     });
@@ -192,6 +204,8 @@ export default defineComponent({
       handleCloseMask,
       handleShowNavmask,
       handleCloseNavMask,
+      getAccounts,
+      isLink,
     };
   },
 });
@@ -222,6 +236,12 @@ export default defineComponent({
     position: relative;
     @media screen and (max-width: 1560px) {
       display: none;
+    }
+  }
+  .sider-real-sm {
+    display: none;
+    @media (min-width: 1200px) and (max-width: 1560px) {
+      display: block;
     }
   }
   .content {
@@ -273,21 +293,22 @@ export default defineComponent({
     }
   }
   .logo {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 40px;
   }
   .slide-h {
     width: 100%;
     overflow: auto;
-    padding: 8px 0;
+    padding: 0 16px;
+    padding-top: 16px;
     display: none;
     @media screen and (max-width: 1200px) {
       display: flex;
     }
   }
   .slider-h-wrap {
-    width: 80px;
+    width: 100px;
   }
   .btm-nav {
     position: fixed;

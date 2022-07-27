@@ -1,19 +1,19 @@
 <template>
-  <div class="RighNK Huans pos-r">
-    <div class="RighNTit flexC fl-bet">
-      <a
+  <div class="pos-r mt-8 tabWrap primary-dark-bg m-8">
+    <div class="flex items-center justify-around pb-8">
+      <span
         href="javascript:;"
-        class="RighNTita SRighNTita"
         @click="handleChangeBetType('single')"
-        :class="{ on: getBetType === 'single' }"
-        >Single</a
+        class="tabItem"
+        :class="{ 'active-bg': getBetType === 'single' }"
+        >SINGLE</span
       >
-      <a
+      <span
         href="javascript:;"
-        class="RighNTita SRighNTita"
         @click="handleChangeBetType('combo')"
-        :class="{ on: getBetType === 'combo' }"
-        >Combo</a
+        class="tabItem"
+        :class="{ 'active-bg': getBetType === 'combo' }"
+        >COMBO</span
       >
       <div>
         <DeleteIcon
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="RighNZ SRighNZ Huans">
+    <div class="">
       <div style="max-height: calc(100vh - 340px); overflow: auto">
         <div class="RighKong flexC fl-cen" v-if="!getSportBetList?.length">
           <div class="RighKongN">
@@ -92,9 +92,9 @@
         </div>
       </div>
 
-      <a href="javascript:;" class="RighA RighXZ" @click="handleBet">{{
-        isLink ? "Bet" : "Login And Bet"
-      }}</a>
+      <div class="bet-btn" href="javascript:;" @click="handleBet">
+        {{ isLink ? "PLACE  BET" : "Login And Bet" }}
+      </div>
     </div>
   </div>
   <BetModal v-model:visible="state.visible" />
@@ -124,7 +124,7 @@ export default defineComponent({
     });
     const ACCOUNTS = inject("ACCOUNTS");
     const SPORT_BET = inject("SPORT_BET");
-    
+
     const BET = inject("BET");
 
     const handleChangeBetType = (e) => {
@@ -231,5 +231,26 @@ export default defineComponent({
   right: 4px;
   font-size: 18px;
   color: #6d819c;
+}
+.tabWrap {
+  padding: 8px;
+}
+.tabItem {
+  width: 40%;
+  text-align: center;
+  border-radius: 12px;
+  padding: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.bet-btn {
+  height: 38px;
+  text-align: center;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  line-height: 38px;
+  border-radius: 12px;
 }
 </style>

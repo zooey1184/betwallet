@@ -10,17 +10,17 @@
   >
     <div
       class="leftItem flex items-center justify-between"
-      v-for="(item, index) in state.options"
+      v-for="(item, index) in options"
       :class="{ 'active-bg': state.active === item.value }"
       :style="{ width: collapse ? '40px' : '230px' }"
       @click="handlePick(item)"
     >
       <div class="flex items-center flex-1" style="max-width: 200px">
-        <i class="leftIcon flex-0 LeftI1"></i>
-        <p>{{ item.label }}0000000000000000000000</p>
+        <i class="leftIcon flex-0 LeftI2"></i>
+        <p>{{ item.label }}</p>
       </div>
       <div class="count active-bg flex-0 flex items-center justify-center">
-        8
+        {{ item.count }}
       </div>
     </div>
   </div>
@@ -35,83 +35,13 @@ export default defineComponent({
     collapse: {
       type: Boolean,
     },
+    options: {
+      type: Array,
+    },
   },
   setup(props) {
     const state = reactive({
-      options: [
-        {
-          label: "我是1",
-          value: "0",
-        },
-        {
-          label: "我是1",
-          value: "1",
-        },
-        {
-          label: "我是1",
-          value: "2",
-        },
-        {
-          label: "我是1",
-          value: "3",
-        },
-        {
-          label: "我是1",
-          value: "4",
-        },
-        {
-          label: "我是1",
-          value: "5",
-        },
-        {
-          label: "我是1",
-          value: "6",
-        },
-        {
-          label: "我是1",
-          value: "7",
-        },
-        {
-          label: "我是1",
-          value: "8",
-        },
-        {
-          label: "我是1",
-          value: "9",
-        },
-        {
-          label: "我是1",
-          value: "10",
-        },
-        {
-          label: "我是1",
-          value: "11",
-        },
-        {
-          label: "我是1",
-          value: "12",
-        },
-        {
-          label: "我是1",
-          value: "13",
-        },
-        {
-          label: "我是1",
-          value: "14",
-        },
-        {
-          label: "我是1",
-          value: "15",
-        },
-        {
-          label: "我是1",
-          value: "16",
-        },
-        {
-          label: "我是1",
-          value: "133",
-        },
-      ],
+      options: [],
       active: "",
     });
 
@@ -164,8 +94,8 @@ export default defineComponent({
 }
 .count {
   border-radius: 20px;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
 }
 
 .pane {
