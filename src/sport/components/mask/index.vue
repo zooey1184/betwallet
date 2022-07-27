@@ -146,7 +146,7 @@ export default defineComponent({
     max-width: 400px;
     display: block;
     margin: 0 auto;
-    background: #222242;
+    background: #fff;
     position: relative;
     border-radius: 12px;
     top: 45%;

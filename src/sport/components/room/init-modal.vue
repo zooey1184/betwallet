@@ -1,11 +1,17 @@
 <template>
   <div>
     <div class="linear-bg pane">
-      <div class="title">流动性提供者奖励</div>
+      <div class="title">CASINO INSTRUCTIONS</div>
       <div class="font-size-14 my-8">
-        流动性提供者在所有交易中按其所占份额的比例收取0.3%的费用，费用会实时添加到池中，并且可以通过移除流动资金来获取
+        AFTER CREATE CASINO AND ADD USDT POOL USERS IMMEDIATELY GENERATE THEIR
+        OWN “CASINO CODE” AND BECOME BOOKMAKERS, OTHERS CAN ENTER THE CASINO BY
+        INPUTTING THE “CASINO CODE”THE USDT POOL CAN BE WITHDRAWN AT ANY TIME IF
+        NO BETS ARE IN PROGRESS
       </div>
-      <div class="title">阅读更多关于提供流动性</div>
+      <div class="title">
+        IF OTHER USERS ARE BETTING IN YOUR CASINO, YOU WILL RECEIVE A MASSIVE
+        BET TOKEN REWARD.
+      </div>
     </div>
 
     <div class="flex items-center justify-between my-24">
