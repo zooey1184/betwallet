@@ -1,5 +1,5 @@
-import { computed, inject, onMounted } from "vue"
-import {abi} from '@/sport/components/web3'
+import { computed, inject } from "vue"
+
 const usePermission = () => {
   const ADDRESS = inject('ADDRESS')
   const ACCOUNTS = inject('ACCOUNTS')
@@ -13,7 +13,7 @@ const usePermission = () => {
     const amount = web3.utils.toHex('10000000000000000000000000')
     const obj = await CONTRACT.value.erc_contract?.methods?.allowance(wallet_addr.value, ADDRESS.value.bet_address).call()
     console.log('permission: ', obj)
-    if (obj < 1e+28) {
+    if (obj < 1e+25) {
       // getPermission()
       return false
     } else {
@@ -21,7 +21,22 @@ const usePermission = () => {
       return true
     }
   }
-  const getPermission = async(callback, receipt, error) => {
+
+  const createPool = async(amout) => {
+    const AMOUNT = web3.utils.toHex('10000000000000000000000000')
+    const obj = CONTRACT.value.erc_contract.methods['approve'](ADDRESS.value.bet_address, AMOUNT).encodeABI()
+    const gasPrice = await web3.eth.getGasPrice()
+    const t = await CONTRACT.value.football_contract?.methods.createFundPool(amout).call({
+      from: wallet_addr.value,
+      to: ADDRESS.value.bet_address.value,
+      gasPrice: gasPrice,
+      gasLimit: 100000,
+      data: obj,
+      value: '0x00'
+    })
+    return t
+  }
+  const getPermission = async({callback, receipt, error}) => {
     const erc_contract = CONTRACT.value.erc_contract
     const amount = web3.utils.toHex('10000000000000000000000000')
     // const block = await web3.eth.getBlock("latest")
@@ -48,15 +63,11 @@ const usePermission = () => {
       error && error(null, null, e)
     })
   }
-
-  // onMounted(() => {
-  //   console.log(CONTRACT.value.erc_contract.methods)
-    
-  // })
-
+  
   return {
     getPermission,
     hasPermission,
+    createPool,
   }
 }
 

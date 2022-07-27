@@ -149,7 +149,7 @@ export default defineComponent({
       const bonus_contract = new web3.eth.Contract(BONUS_ABI, bet_address);
       const football_contract = new web3.eth.Contract(
         FOOTBALL_ABI,
-        usdt_address
+        bet_address
       );
       state.contract = {
         erc_contract,

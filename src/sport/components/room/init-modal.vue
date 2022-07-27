@@ -43,11 +43,13 @@
 <script>
 import { defineComponent, onMounted, reactive } from "vue";
 import usePermission from "@/sport/components/useHooks/use-permission";
+import { message } from "ant-design-vue";
 
 export default defineComponent({
   components: {},
   props: {},
-  setup(props) {
+  emits: ['next'],
+  setup(props, {emit}) {
     const state = reactive({
       active: 1,
       btns: [
@@ -65,10 +67,25 @@ export default defineComponent({
       state.active = item.value;
     };
 
-    const { hasPermission } = usePermission();
+    const { hasPermission, getPermission } = usePermission();
     const handleConfirm = async () => {};
     const handleInit = async () => {
-      hasPermission();
+      const hasP = await hasPermission();
+      if (!hasP) {
+        getPermission({
+          callback: () => {
+            message.info('Permission verification sent Success, Please wait link')
+          },
+          receipt: () => {
+            message.success('Successfully linked')
+            emit('next')
+          },
+          error: (e) => {
+            const msg = e.message?.split('{')?.[0] || 'Verification failed'
+            message.error(msg)
+          }
+        })
+      }
     };
 
     onMounted(() => {
