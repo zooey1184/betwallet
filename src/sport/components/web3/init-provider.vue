@@ -145,7 +145,7 @@ export default defineComponent({
 
     const initContract = (bet_address, usdt_address) => {
       const { ERC20_ABI, BONUS_ABI, FOOTBALL_ABI } = abi;
-      const erc_contract = new web3.eth.Contract(ERC20_ABI, bet_address);
+      const erc_contract = new web3.eth.Contract(ERC20_ABI, usdt_address);
       const bonus_contract = new web3.eth.Contract(BONUS_ABI, bet_address);
       const football_contract = new web3.eth.Contract(
         FOOTBALL_ABI,
