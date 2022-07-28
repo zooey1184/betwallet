@@ -1,3 +1,4 @@
+import { message } from "ant-design-vue"
 import { computed, inject } from "vue"
 
 const usePermission = () => {
@@ -22,17 +23,49 @@ const usePermission = () => {
     }
   }
 
-  const createPool = async(amout) => {
-    const AMOUNT = web3.utils.toHex('10000000000000000000000000')
-    const obj = CONTRACT.value.erc_contract.methods['approve'](ADDRESS.value.bet_address, AMOUNT).encodeABI()
+  const createPool = async(amout, options) => {
+    // const AMOUNT = web3.utils.toHex('10000000000000000000000000')
+    // const obj = CONTRACT.value.erc_contract.methods['approve'](ADDRESS.value.bet_address, AMOUNT).encodeABI()
+    
+    
+
     const gasPrice = await web3.eth.getGasPrice()
-    const t = await CONTRACT.value.football_contract?.methods.createFundPool(amout).call({
+    const t = await CONTRACT.value.football_contract?.methods.createFundPool(amout).encodeABI()
+    console.log('createFound ', t, CONTRACT.value.football_contract?.methods)
+
+    // const block = await web3.eth.getBlock("latest")
+    
+    // const gasLimit = block.gasLimit
+    // return 
+    const params = {
       from: wallet_addr.value,
-      to: ADDRESS.value.bet_address.value,
+      to: ADDRESS.value.bet_address,
       gasPrice: gasPrice,
       gasLimit: 100000,
-      data: obj,
+      data: t,
       value: '0x00'
+    }
+
+    window.web3.eth.sendTransaction(params)
+    .on('transactionHash', (hash) => {
+      message.info('Transaction sent Success, Please wait link')
+      if (options?.callback && typeof options.callback === 'function') {
+        options.callback(hash)
+      }
+    })
+    .on('receipt', (r) => {
+      message.success('Successfully linked')
+      if (options?.receipt && typeof options.receipt === 'function') {
+        options.receipt(r)
+      }
+      // receipt && receipt(null, r, null)
+    })
+    .on('error', (e) => {
+      // error && error(null, null, e)
+      message.error('Transaction Error')
+      if (options?.error && typeof options.error === 'function') {
+        options.error(e)
+      }
     })
     return t
   }
@@ -54,9 +87,11 @@ const usePermission = () => {
     }
     window.web3.eth.sendTransaction(params)
     .on('transactionHash', (hash) => {
+      
       callback && callback(hash, null, null)
     })
     .on('receipt', (r) => {
+      
       receipt && receipt(null, r, null)
     })
     .on('error', (e) => {

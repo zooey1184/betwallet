@@ -4,6 +4,7 @@
 
     <button @click='handleCreateRoom'>createRoom</button>
     <button @click='handleCreatePool'>createPool</button>
+    <button @click='getTrent' class="color-black bg-white px-16">trent</button>
   </div>
 </template>
 
@@ -33,16 +34,29 @@ export default defineComponent({
       })
     }
 
+    const getTrent = () => {
+      // web3.eth.subscribe("pendingTransactions", function (error, result) {})
+      // .on("data", function (transactionHash) {
+      //   console.log("transactionHash: ", transactionHash);
+      //   web3.eth.getTransaction(transactionHash).then(function (transaction) {
+      //     console.log(transaction.from, transaction.to);
+      //   });
+      // })
+      web3.eth.getTransactionCount("0x02e506591c68d03d00f0c528e92e61f6f2b7e296").then(res => {
+        console.log(res)
+      })
+    }
+
     const handleCreatePool = async() => {
       const t = await hasPermission()
       if (t) {
-        const amount = web3.utils.toWei('1', 'mwei')
+        const amount = web3.utils.toWei('4', 'mwei')
         createPool(amount).then(res => {
           console.log(res)
         })
-        const a = await CONTRACT.value.erc_contract?.methods.decimals().call()
+        // const a = await CONTRACT.value.erc_contract?.methods.decimals().call()
         
-        console.log(amount)
+        // console.log(amount)
       } else {
         getPermission({
           callback: () => {
@@ -66,7 +80,8 @@ export default defineComponent({
     return {
       state,
       handleCreateRoom,
-      handleCreatePool
+      handleCreatePool,
+      getTrent
     }
   }
 })
