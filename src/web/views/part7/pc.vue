@@ -1,58 +1,71 @@
 <template>
-
   <Wrap>
-    <template #default='data'>
+    <template #default="data">
       <div class="flex justify-between gutter_col">
-        <div style="height: 16.5vw; width: 30vw;" class="pos-r flex-0 mr-40tv">
-          <img class="w-100p coin-img" src="../../assets/part7_2.png" alt="">
-          <img class="w-100p" src="../../assets/part7_1.jpg" alt="">
+        <div style="height: 16.5vw; width: 30vw" class="pos-r flex-0 mr-40tv">
+          <img class="w-100p coin-img" src="../../assets/part7_2.png" alt="" />
+          <img class="w-100p" src="../../assets/part7_1.jpg" alt="" />
         </div>
         <div>
-          <div :class="{fadein: data.show[0]}" class="fadeout title-lg linear-color inline-block">Tokenomics</div>
+          <div
+            :class="{ fadein: data.show[0] }"
+            class="fadeout title-lg linear-color inline-block"
+          >
+            Tokenomics
+          </div>
           <!-- <div class="mt-8 subTitle">Web3bet 正在扩展以将体育投注体验带到所有兼容的网络  Tokenomics</div> -->
           <div class="flex mt-24">
-            <div class="w-25p fadeout" :class="{fadein: data.show[1]}">
+            <div class="w-25p fadeout" :class="{ fadein: data.show[1] }">
               <div class="gray-9d desc desc_mb-24">Token Name</div>
-              <div class="desc">Web3bet Token</div>
+              <div class="desc">BetWeb3 Token</div>
             </div>
-            
-            <div :class="{fadein: data.show[2]}" class="w-25p fadeout">
+
+            <div :class="{ fadein: data.show[2] }" class="w-25p fadeout">
               <div class="gray-9d desc desc_mb-24">Token ticker</div>
               <div class="desc">BET</div>
             </div>
-              
-            <div :class="{fadein: data.show[3]}" class="w-25p fadeout">
+
+            <div :class="{ fadein: data.show[3] }" class="w-25p fadeout">
               <div class="gray-9d desc desc_mb-24">Token type</div>
               <div class="desc">ERC-20</div>
             </div>
-            
-            <div :class="{fadein: data.show[4]}" class="w-25p fadeout">
-                <div class="gray-9d desc desc_mb-24">Token supply</div>
-                <div class="desc">1,000,000,000</div>
-              </div>
+
+            <div :class="{ fadein: data.show[4] }" class="w-25p fadeout">
+              <div class="gray-9d desc desc_mb-24">Token supply</div>
+              <div class="desc">1,000,000,000</div>
+            </div>
           </div>
           <div class="flex mt-60tv">
-            
-            <div :class="{fadein: data.show[5]}" class="w-50p flex fadeout">
-                <img class="icon_w" src="../../assets/part7-1.png" alt="">
-                <div class="ml-50tv">
-                  <div class="desc_title">Governance</div>
-                  <div class="desc">Hold BET tokens to gain voting rights on the protocol</div>
+            <div :class="{ fadein: data.show[5] }" class="w-50p flex fadeout">
+              <img class="icon_w" src="../../assets/part7-1.png" alt="" />
+              <div class="ml-50tv">
+                <div class="desc_title">Governance</div>
+                <div class="desc">
+                  Hold BET tokens to gain voting rights on the protocol
                 </div>
               </div>
-            
-            <div :class="{fadein: data.show[6]}" class="w-50p flex fadeout">
-                <img class="icon_w" src="../../assets/part7-2.png" alt="">
-                <div class="ml-50tv">
-                  <div class="desc_title">Staking Reward</div>
-                  <div class="desc">Earn 50% of the profit of the capital pool since staking BET tokens</div>
+            </div>
+
+            <div :class="{ fadein: data.show[6] }" class="w-50p flex fadeout">
+              <img class="icon_w" src="../../assets/part7-2.png" alt="" />
+              <div class="ml-50tv">
+                <div class="desc_title">Staking Reward</div>
+                <div class="desc">
+                  Earn 50% of the profit of the capital pool since staking BET
+                  tokens
                 </div>
               </div>
+            </div>
           </div>
           <div class="flex mt-48">
-            <LinearBox :class="{fadein: data.show[7]}" class='fadeout'>
-              <div class="primary font-size-14 info_btn px-48 py-8">More information
-                <img style="margin-left: 4px" src="../../assets/arrow.png" alt="">
+            <LinearBox :class="{ fadein: data.show[7] }" class="fadeout">
+              <div class="primary font-size-14 info_btn px-48 py-8">
+                More information
+                <img
+                  style="margin-left: 4px"
+                  src="../../assets/arrow.png"
+                  alt=""
+                />
               </div>
             </LinearBox>
           </div>
@@ -63,18 +76,18 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import LinearBox from '../../components/linear-box'
-import Wrap from '@/web/components/wrap'
+import { defineComponent, ref } from "vue";
+import LinearBox from "../../components/linear-box";
+import Wrap from "@/web/components/wrap";
 
 export default defineComponent({
   components: {
     LinearBox,
-    Wrap
+    Wrap,
   },
   props: {},
-  setup(props) {}
-})
+  setup(props) {},
+});
 </script>
 
 <style lang="less" scoped>
@@ -131,7 +144,7 @@ export default defineComponent({
   margin-right: 2vw;
 }
 .ml-50tv {
-  margin-left: 2.6vw
+  margin-left: 2.6vw;
 }
 .icon_w {
   width: 40px;

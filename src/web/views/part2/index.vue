@@ -12,7 +12,7 @@
         </div>
 
         <div class="fadeout" :class="{ fadein: data.show[2] }">
-          <p class="text-align-center mt-32 desc line-height-24">
+          <p class="text-align-center mt-24 desc line-height-24">
             The Global Sports Betting Industry is Worth Over $250Bn, With the
             advent of Web3, we try to decentralize Sports Betting.
           </p>
@@ -24,11 +24,8 @@
           </p>
         </div>
 
-        <div
-          style="height: 34vw"
-          class="mt-48 flex items-center justify-center"
-        >
-          <video controls style="width: 100%">
+        <div class="mt-24 flex items-center justify-center">
+          <video controls style="width: 100%" loop>
             <source src="../../assets/video.mp4" type="video/mp4" />
             您的浏览器不支持Video标签。
           </video>
