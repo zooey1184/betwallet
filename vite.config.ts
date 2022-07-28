@@ -21,7 +21,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        // web: path.resolve(__dirname, './web.html'),
+        web: path.resolve(__dirname, './web.html'),
         // bet: path.resolve(__dirname, './bet.html'),
         // index: path.resolve(__dirname, './index.html'),
         // index: path.resolve(__dirname, './sport.html'),

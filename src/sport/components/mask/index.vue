@@ -143,7 +143,7 @@ export default defineComponent({
   .full;
   .content {
     width: 90%;
-    max-width: 400px;
+    max-width: 450px;
     display: block;
     margin: 0 auto;
     background: #fff;
@@ -151,8 +151,9 @@ export default defineComponent({
     border-radius: 12px;
     top: 45%;
     transform: translateY(-50%);
-    padding: 16px;
+    padding: 16px 24px;
     min-height: 100px;
+    color: #333;
   }
 }
 .close-icon {
@@ -160,9 +161,9 @@ export default defineComponent({
   bottom: -60px;
   left: 50%;
   transform: translateX(-50%);
-  color: #666;
+  color: #fff;
   &:hover {
-    color: #fff;
+    color: var(--primary-main);
   }
 }
 </style>

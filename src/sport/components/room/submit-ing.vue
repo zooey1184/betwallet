@@ -1,59 +1,50 @@
 <template>
   <div>
-    <div class="color-gray font-size-18 font-weight-600">
-      正在提交
-      <question-circle-outlined class="font-size-16" />
+    <div class="active-color font-size-18 font-weight-600 text-align-center">
+      SUBMITTING
     </div>
-    <div class="mt-48 mb-16">
-      <Circle>
-        <img class="pos-a" style="top: 0; width: 160px; top: 0" src="../../images/zyq0425/zyqTcN01.png" />
-      </Circle>
+    <div class="mt-48 mb-32 flex justify-center">
+      <img style="width: 150px" src="../../images/v2/room-up.png" />
     </div>
-    <div class="text-align-center color-gray">Transcation Submitted</div>
-    <div class="text-align-center color-link">view on etherscan</div>
+    <div class="text-align-center color-black">TRANSCATION SUBMITTED</div>
+    <div class="text-align-center gray-link">VIEW ON ETHERSCAN</div>
 
-    
-    <div class="confirmBtn linear-bg mt-48 mb-32">
-      关闭
-    </div>
+    <div class="confirmBtn active-bg mt-48 mb-32">CLOSE</div>
   </div>
 </template>
 
 <script>
-  import { reactive, defineComponent } from 'vue'
-  import { QuestionCircleOutlined, LoadingOutlined} from '@ant-design/icons-vue'
-  import Circle from './circle.vue'
+import { reactive, defineComponent } from "vue";
+import { QuestionCircleOutlined, LoadingOutlined } from "@ant-design/icons-vue";
+import Circle from "./circle.vue";
 
-  export default defineComponent({
-    components: {
-      QuestionCircleOutlined,
-      LoadingOutlined,
-      Circle
-    },
-    setup() {
-      const state = reactive({})
+export default defineComponent({
+  components: {
+    QuestionCircleOutlined,
+    LoadingOutlined,
+    Circle,
+  },
+  setup() {
+    const state = reactive({});
 
-      
-
-      return {
-        state
-      }
-    }
-  })
+    return {
+      state,
+    };
+  },
+});
 </script>
-
 
 <style lang="less" scoped>
 .spin {
-	animation: loading 3s linear infinite;
+  animation: loading 3s linear infinite;
 }
 @keyframes loading {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .confirmBtn {
   height: 42px;
@@ -63,5 +54,9 @@
   border-radius: 8px;
   font-size: 18px;
   font-weight: 500;
+}
+.gray-link {
+  color: #bbb;
+  text-decoration: underline;
 }
 </style>

@@ -7,7 +7,7 @@
 
   <Mask v-model:visible="state.visible">
     <div>
-      <RoomInit />
+      <UnableSwitch />
     </div>
   </Mask>
 </template>
@@ -20,12 +20,21 @@ import RoomConfirmId from "./confirm-id.vue";
 import RoomConfrimCreate from "./confirm-create.vue";
 import RoomSubmitIng from "./submit-ing.vue";
 import RoomPool from "./pool-pane.vue";
+import WaitConfirm from "./wait-confirm.vue";
+import IntoRoom from "./into-room.vue";
+import UnableSwitch from "./unable-switch.vue";
 
 export default defineComponent({
   components: {
     Mask,
     RoomInit,
     RoomConfirmId,
+    RoomConfrimCreate,
+    RoomSubmitIng,
+    RoomPool,
+    WaitConfirm,
+    IntoRoom,
+    UnableSwitch,
   },
   emits: ["init"],
   setup(props, { emit }) {

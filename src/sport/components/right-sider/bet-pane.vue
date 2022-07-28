@@ -45,11 +45,6 @@
         </div>
 
         <div class="RighDG Huans">
-          <!-- <div class="RighDGD flexC fl-bet">
-            <div class="RighDGH">Single share：</div>
-            <a href="javascript:;" class="RighDGDa">Your bet</a>
-            
-          </div> -->
           <div v-if="getBetType === 'single'">
             <BetInput v-model:value="state.betSingleValue">
               <template #title>
@@ -92,8 +87,14 @@
         </div>
       </div>
 
-      <div class="bet-btn" href="javascript:;" @click="handleBet">
-        {{ isLink ? "PLACE  BET" : "Login And Bet" }}
+      <div>
+        <div class="active-color text-align-center font-size-12">
+          NOT ENOUGH BALANCE TO PLACE A BET.
+        </div>
+        
+        <div class="bet-btn" href="javascript:;" @click="handleBet">
+          {{ isLink ? "PLACE  BET" : "Login And Bet" }}
+        </div>
       </div>
     </div>
   </div>

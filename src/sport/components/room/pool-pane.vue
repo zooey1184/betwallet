@@ -1,30 +1,40 @@
 <template>
   <div>
-    <div class="color-gray font-size-18 font-weight-600">奖池赛事</div>
-    <div class="color-gray mt-16">奖池所有资金</div>
-    <div class="flex mt-8" style="align-items: end">
-      <div style="font-size: 28px; line-height: 28px; margin-right: 4px">
-        $10000
-      </div>
-      <div class="font-size-14">(USDT)</div>
+    <div class="active-color font-size-18 font-weight-600 text-align-center">
+      CASINO INFORMATION
+    </div>
+    <div class="color-black text-align-center mt-16">
+      AMOUNT OF THE USDT POOL
+    </div>
+    <div
+      class="flex justify-center mt-8 font-weight-600 active-color"
+      style="font-size: 48px"
+    >
+      $10000 USDT
     </div>
 
     <div class="flex items-center justify-between my-24">
       <div
         class="roombtn"
-        :class="{ ' linear-bg': state.active === '0' }"
+        :class="{
+          'active-bg': state.active === '0',
+          'active-color': state.active !== '0',
+          'color-white': state.active === '0',
+        }"
         @click="handlePick('0')"
-        :style="{ border: state.active === '1' ? '1px solid #999' : 'none' }"
       >
-        赛事进行中
+        ONGOING
       </div>
       <div
         class="roombtn"
-        :class="{ ' linear-bg': state.active === '1' }"
+        :class="{
+          ' active-bg': state.active === '1',
+          'active-color': state.active !== '1',
+          'color-white': state.active === '1',
+        }"
         @click="handlePick('1')"
-        :style="{ border: state.active === '0' ? '1px solid #999' : 'none' }"
       >
-        历史赛事
+        HISTORY
       </div>
     </div>
     <div class="content overflow-hidden">
@@ -44,7 +54,7 @@
       </div>
     </div>
 
-    <div class="confirmBtn linear-bg mt-16 mb-8">取消投注</div>
+    <div class="confirmBtn active-bg mt-16 mb-8">CLOSE THE CASINO</div>
   </div>
 </template>
 
@@ -79,11 +89,11 @@ export default defineComponent({
 <style lang="less" scoped>
 .roombtn {
   height: 42px;
-  border-radius: 50px;
+  border-radius: 10px;
   line-height: 42px;
   text-align: center;
   width: 45%;
-  border: 1px solid #eee;
+  border: 1px solid var(--primary-main);
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
@@ -99,6 +109,7 @@ export default defineComponent({
   border-radius: 8px;
   font-size: 18px;
   font-weight: 500;
+  color: #fff;
 }
 .content {
   max-height: 250px;
