@@ -37,11 +37,6 @@ const useActive = (props, {id, homeInfo, awayInfo},  {emit}) => {
     () => state.active,
     (n) => {
       SPORT_BET.setMap((map) => {
-        // const obj = {
-        //   home: getLeftValue,
-        //   away: getRightValue,
-        //   middle: getMiddleValue,
-        // };
         if (map) {
           map[id] = {
             active: n,

@@ -44,7 +44,7 @@
 import { computed, defineComponent, reactive, ref, watch } from "vue";
 import betInput from "./bet-input.vue";
 import { CloseSquareOutlined, TagOutlined } from "@ant-design/icons-vue";
-import useCompetitors from "./useHooks/use-competitors";
+// import useCompetitors from "./useHooks/use-competitors";
 
 export default defineComponent({
   components: {
@@ -107,7 +107,7 @@ export default defineComponent({
       return map;
     });
 
-    const getCompetitors = useCompetitors(props.info.data);
+    // const getCompetitors = useCompetitors(props.info.data);
     const getLeftValue = computed(() => SelectionsMap.value["home"].odds);
     const getMiddleValue = computed(
       () => SelectionsMap.value["down"]?.odds || ""
@@ -143,7 +143,7 @@ export default defineComponent({
       getRightValue,
       HomeTeam,
       AwayTeam,
-      getCompetitors,
+      // getCompetitors,
       handleDelete,
     };
   },

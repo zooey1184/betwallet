@@ -25,10 +25,10 @@
     </div>
 
     <div class="">
-      <div style="max-height: calc(100vh - 340px); overflow: auto">
-        <div class="RighKong flexC fl-cen" v-if="!getSportBetList?.length">
-          <div class="RighKongN">
-            <img src="../../images/zyq0425/kongL.png" />
+      <div style="max-height: calc(100vh - 470px); overflow: auto">
+        <div class="" v-if="!getSportBetList?.length">
+          <div class="flex flex-col items-center justify-center">
+            <img src="../../images/zyq0425/kongL.png" style="width: 120px" />
             <p>Your betting unit is empty</p>
             <a href="javascript:;">Click on odds to add selection</a>
           </div>
@@ -45,7 +45,7 @@
         </div>
 
         <div class="RighDG Huans">
-          <div v-if="getBetType === 'single'">
+          <!-- <div v-if="getBetType === 'single'">
             <BetInput v-model:value="state.betSingleValue">
               <template #title>
                 <div>Single share:</div>
@@ -59,8 +59,8 @@
               <div class="RighDGH">Potential victory：</div>
               <div class="RighDGS">{{ getWin }}</div>
             </div>
-          </div>
-          <div v-if="getBetType === 'combo'">
+          </div> -->
+          <!-- <div v-if="getBetType === 'combo'">
             <BetInput v-model:value="state.betComboValue">
               <template #title>
                 <div>Amount:</div>
@@ -79,26 +79,86 @@
               <div class="RighDGH">Potential victory：</div>
               <div class="RighDGS">{{ getWinCombo }}</div>
             </div>
-          </div>
-          <a href="javascript:;" class="RighDGod">
+          </div> -->
+          <!-- <a href="javascript:;" class="RighDGod">
             <i></i>
             <p>Good luck！</p>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <div class="active-color text-align-center font-size-12">
-          NOT ENOUGH BALANCE TO PLACE A BET.
-        </div>
-        
-        <div class="bet-btn" href="javascript:;" @click="handleBet">
-          {{ isLink ? "PLACE  BET" : "Login And Bet" }}
+          </a> -->
         </div>
       </div>
     </div>
   </div>
-  <BetModal v-model:visible="state.visible" />
+
+  <div class="pos-r mt-8 py-16 px-8 primary-dark-bg m-8">
+    <div class="active-color text-align-center font-size-12 mb-8">
+      NOT ENOUGH BALANCE TO PLACE A BET.
+    </div>
+    <div v-if="getBetType === 'single'">
+      <BetInput v-model:value="state.betSingleValue">
+        <template #title>
+          <div class="font-size-12">SINGLE SHARE:</div>
+        </template>
+      </BetInput>
+      <div class="flex items-center mt-8 justify-between">
+        <div class="font-size-12">TOTAL STAKE</div>
+        <div>{{ getTotal }}</div>
+      </div>
+      <div class="flex items-center justify-between mt-8">
+        <div class="active-color font-weight-600 font-size-12">
+          POTENTIAL WIN:
+        </div>
+        <div class="font-weight-600 active-color flex items-center">
+          <img
+            src="../../images/v2/coin-icon-red.png"
+            style="width: 12px"
+            class="mr-8"
+            alt=""
+          />
+          {{ getWin }}
+        </div>
+      </div>
+    </div>
+
+    <div v-if="getBetType === 'combo'">
+      <BetInput v-model:value="state.betComboValue">
+        <template #title>
+          <div class="font-size-12">AMOUNT (REQUIRED):</div>
+        </template>
+        <!-- <template #desc>
+          <div style="text-align: right" class="default_color">
+            Amount required
+          </div>
+        </template> -->
+      </BetInput>
+      <div class="flex items-center justify-between mt-8">
+        <div class="font-size-12">ODDS:</div>
+        <div>{{ getOdds }}</div>
+      </div>
+      <div class="flex items-center justify-between mt-8">
+        <div class="active-color font-weight-600 font-size-12">
+          POTENTIAL WIN:
+        </div>
+        <div class="font-weight-600 active-color flex items-center">
+          <img
+            src="../../images/v2/coin-icon-red.png"
+            style="width: 12px"
+            class="mr-8"
+            alt=""
+          />
+          {{ getWinCombo }}
+        </div>
+      </div>
+    </div>
+
+    <div class="bet-btn mt-8" href="javascript:;" @click="handleBet">
+      {{ isLink ? "PLACE  BET" : "Login And Bet" }}
+    </div>
+  </div>
+  <Mask v-model:visible="state.visible">
+    <div>
+      <BetPane />
+    </div>
+  </Mask>
 </template>
 
 <script>
@@ -107,6 +167,9 @@ import BetItem from "../bet-item.vue";
 import DeleteIcon from "./icon-delete-all.vue";
 import BetInput from "../bet-input.vue";
 import BetModal from "../transaction";
+import Mask from "@/sport/components/mask";
+import Speed from "@/sport/components/bet-modal/speed.vue";
+import BetPane from "@/sport/components/bet-modal/bet.vue";
 
 export default defineComponent({
   components: {
@@ -114,6 +177,9 @@ export default defineComponent({
     BetInput,
     DeleteIcon,
     BetModal,
+    Mask,
+    Speed,
+    BetPane,
   },
   props: {},
   emits: ["bet"],
@@ -253,5 +319,11 @@ export default defineComponent({
   color: #333;
   line-height: 38px;
   border-radius: 12px;
+  cursor: pointer;
+  &:hover {
+    // background: var(--primary-main);
+    color: var(--primary-main);
+    // color: #fff;
+  }
 }
 </style>

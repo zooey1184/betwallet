@@ -78,7 +78,7 @@ import { computed, defineComponent, inject, reactive, ref, watch } from "vue";
 import LeftPane from "./left-pane.vue";
 import MItem from "./m-item.vue";
 import dayjs from "dayjs";
-import useCompetitors from "../useHooks/use-competitors";
+// import useCompetitors from "../useHooks/use-competitors";
 import { RightOutlined } from "@ant-design/icons-vue";
 import { useRouter } from "vue-router";
 
@@ -138,7 +138,7 @@ export default defineComponent({
       const d = time ? dayjs(time).format("MM-DD hh:mm") : "--";
       return d;
     });
-    const getCompetitors = useCompetitors(props.info);
+    // const getCompetitors = useCompetitors(props.info);
 
     const SelectionsMap = computed(() => {
       const map = {};
@@ -211,7 +211,7 @@ export default defineComponent({
     return {
       handlePick,
       state,
-      getCompetitors,
+      // getCompetitors,
       getScheduleTime,
       getLeftValue,
       getMiddleValue,
