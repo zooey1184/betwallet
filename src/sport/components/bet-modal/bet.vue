@@ -65,6 +65,7 @@ export default defineComponent({
       const _list = [];
       list.forEach((item) => {
         const AMOUNT = web3.utils.toWei(`${item.betValue}`, "mwei");
+        console.log(ROOM?.roomAddress?.value)
         _list.push({
           marketId: item.oddsId,
           tenant: ROOM?.code?.value,

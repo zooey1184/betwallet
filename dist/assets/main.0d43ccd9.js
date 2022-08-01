@@ -1,1 +1,0 @@
-import{_ as e,d as t,C as s,r as p,o as r,c as a}from"./index.d591567c.js";const c=t({components:{Content:s},props:{},setup(o){}});function _(o,m,f,d,i,C){const n=p("Content");return r(),a(n)}var l=e(c,[["render",_]]);export{l as default};

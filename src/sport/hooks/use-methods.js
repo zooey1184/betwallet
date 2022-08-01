@@ -118,6 +118,7 @@ export const useBet = () => {
   const ADDRESS = inject('ADDRESS')
   const ACCOUNTS = inject('ACCOUNTS')
   const wallet_addr = computed(() => ACCOUNTS.accounts.value[0])
+  const ROOM = inject('ROOM')
   
   const handleBet = async(params, callback) => {
     state.loading = true
@@ -126,7 +127,8 @@ export const useBet = () => {
       marketId, tenant, amount, betSide, minOdds
     } = params
     console.log(marketId, tenant, amount, betSide, minOdds);
-    const t = await CONTRACT.value.football_contract?.methods.bet(marketId, '0x02E506591c68D03D00F0c528E92e61F6F2b7e296', amount, `${betSide}`, `${minOdds}`).encodeABI()
+
+    const t = await CONTRACT.value.football_contract?.methods.bet(marketId, ROOM?.roomAddress?.value, amount, `${betSide}`, `${minOdds}`).encodeABI()
     const PARAMS = {
       from: wallet_addr.value,
       to: ADDRESS.value.bet_address,

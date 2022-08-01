@@ -142,17 +142,17 @@ export default defineComponent({
 
     const SelectionsMap = computed(() => {
       const map = {};
-      props.info?.selections.forEach((item) => {
+      props.info?.selections?.forEach((item) => {
         map[item.type] = item;
       });
       return map;
     });
 
-    const getLeftValue = computed(() => SelectionsMap.value["home"].odds);
+    const getLeftValue = computed(() => SelectionsMap.value["home"]?.odds);
     const getMiddleValue = computed(
       () => SelectionsMap.value["down"]?.odds || ""
     );
-    const getRightValue = computed(() => SelectionsMap.value["away"].odds);
+    const getRightValue = computed(() => SelectionsMap.value["away"]?.odds);
     const getCount = computed(() => props.info.detailCount);
 
     const HomeTeam = computed(() => props.info.team_home_name);

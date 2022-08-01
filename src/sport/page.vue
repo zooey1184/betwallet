@@ -27,7 +27,7 @@ import Content from "./components/content.vue";
 import WalletPane from "./components/wallet-pane.vue";
 import MNav from "./components/m-nav.vue";
 import InitProvider from "./components/init-provider.vue";
-import { getSportTournament } from "./api";
+// import { getSportTournament } from "./apis";
 import { message } from "ant-design-vue";
 import BetModal from "./components/transaction";
 import Layout from "@/sport/layout";
@@ -109,14 +109,14 @@ export default defineComponent({
     watch(
       () => state.schedule,
       (n) => {
-        getSportTournament(n, {
-          // scheduled: '2022-06-11',
-          status: "not_started",
-        }).then((res) => {
-          if (res.data) {
-            state.scheduleList = res.data;
-          }
-        });
+        // getSportTournament(n, {
+        //   // scheduled: '2022-06-11',
+        //   status: "not_started",
+        // }).then((res) => {
+        //   if (res.data) {
+        //     state.scheduleList = res.data;
+        //   }
+        // });
       }
     );
     const getSchedule = computed(() => state.schedule);

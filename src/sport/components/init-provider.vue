@@ -14,7 +14,8 @@ import {
   reactive,
   ref,
 } from "vue";
-import { getSports, getSportList } from "../api";
+// import { getSports, getSportList } from "../apis";
+import {getSportList} from '@/sport/api'
 import { Spin } from "ant-design-vue";
 import { queryCompetitionName, queryMatches } from "@/sport/api/index.js";
 
@@ -31,29 +32,29 @@ export default defineComponent({
       competitionList: [], // 举办方信息
       matchList: [], // 所有比赛
     });
-    const handleGetSports = async () => {
-      const res = await getSports();
-      const list = res.data;
-      const _list = [];
-      const icons = {
-        footerball: "hdNavI1",
-        足球: "hdNavI1",
-        soccer: "hdNavI1",
-        basketball: "hdNavI2",
-        篮球: "hdNavI2",
-        Esports: "hdNavI3",
-        电竞: "hdNavI3",
-      };
-      list.forEach((item) => {
-        _list.push({
-          label: item.name,
-          value: item.id,
-          icon: icons[item.name] || "",
-          ...item,
-        });
-      });
-      state.sportsList = _list;
-    };
+    // const handleGetSports = async () => {
+    //   const res = await getSports();
+    //   const list = res.data;
+    //   const _list = [];
+    //   const icons = {
+    //     footerball: "hdNavI1",
+    //     足球: "hdNavI1",
+    //     soccer: "hdNavI1",
+    //     basketball: "hdNavI2",
+    //     篮球: "hdNavI2",
+    //     Esports: "hdNavI3",
+    //     电竞: "hdNavI3",
+    //   };
+    //   list.forEach((item) => {
+    //     _list.push({
+    //       label: item.name,
+    //       value: item.id,
+    //       icon: icons[item.name] || "",
+    //       ...item,
+    //     });
+    //   });
+    //   state.sportsList = _list;
+    // };
     const getSportsList = computed(() => {
       return [
         ...state.sportsList,
@@ -210,7 +211,6 @@ export default defineComponent({
     provide("MATCH_LIST", getMatchList);
 
     onMounted(() => {
-      // handleGetSports();
       getCompetitionName();
       handleGetMatchList();
     });

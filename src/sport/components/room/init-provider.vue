@@ -11,7 +11,7 @@ import {
   reactive,
   watch,
 } from "vue";
-import { queryTenant } from "@/sport/api/index";
+import { queryTenant, getRoomAddress } from "@/sport/api/index";
 
 export default defineComponent({
   components: {},
@@ -20,10 +20,20 @@ export default defineComponent({
     const state = reactive({
       code: undefined,
       otherCode: undefined,
+      roomAddress: undefined
     });
     const ACCOUNTS = inject("ACCOUNTS");
 
     const getAccounts = computed(() => ACCOUNTS.accounts.value);
+
+    const handleGetRoomAddress = (tenant) => {
+      getRoomAddress({
+        tenant: tenant
+      }).then(res => {
+        console.log(res)
+        state.roomAddress = res
+      })
+    }
 
     const handleGetCode = () => {
       const n = getAccounts?.value;
@@ -31,6 +41,10 @@ export default defineComponent({
       if (id) {
         queryTenant({ wallet: id }).then((res) => {
           state.code = res?.length ? res : "";
+          if (state.code) {
+            handleGetRoomAddress(state.code)
+          }
+          
         });
       }
     };
@@ -46,10 +60,12 @@ export default defineComponent({
 
     const getCode = computed(() => state.code);
     const getOtherCode = computed(() => state.otherCode);
+    const getRoomAddressC = computed(() => state.roomAddress);
 
     provide("ROOM", {
       code: getCode,
       otherCode: getOtherCode,
+      roomAddress: getRoomAddressC,
       handleGetCode,
       setState: (data) => {
         for (let i in data) {
