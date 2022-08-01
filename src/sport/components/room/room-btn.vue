@@ -1,19 +1,61 @@
 <template>
-  <div class="start ml-24" v-if="!isLink" @click="handleConnect">
+  <div class="start ml-24 ff" v-if="!isLink" @click="handleConnect">
     START THE GAME
   </div>
 
-  <div class="start ml-24" v-if="isLink" @click="handleInRoom">JOIN ROOM</div>
+  <div class="start ml-24" v-if="isLink">
+    <div v-if="getCode" class="flex items-center">
+      <Icon>
+        <template #component="svgProps">
+          <svg
+            t="1659105446797"
+            class="icon"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="16832"
+            width="128"
+            height="128"
+            v-bind="svgProps"
+          >
+            <path
+              d="M448 456V96q0-12.992 9.504-22.496T480 64h192q14.016 0 23.008 8.992T704 96t-8.992 23.008T672 128h-160v128h160q14.016 0 23.008 8.992T704 288t-8.992 23.008T672 320h-160v128q104 2.016 175.008 69.504t80 170.496q4 104-58.496 179.488T544 957.984q-104 11.008-183.008-46.496T260 752q-16.992-102.016 35.488-184.992T448 456zM512 896q82.016-2.016 136-56T704 704q-2.016-82.016-56-136T512 512q-82.016 2.016-136 56T320 704q2.016 82.016 56 136T512 896z"
+              p-id="16833"
+            ></path>
+          </svg>
+        </template>
+      </Icon>
+      <span>{{ getCode }}</span>
+      <Copy :text="getCode" />
+      <!-- <span class="mx-8">|</span>
+      <span class="cursor-pointer" @click="handleSwitch"
+        >SWITCH<QuestionCircleOutlined
+      /></span> -->
+    </div>
+
+    <div v-else @click="handleInRoom">JOIN ROOM</div>
+  </div>
 
   <Mask v-model:visible="state.visible">
     <div>
-      <UnableSwitch />
+      <RoomInit
+        v-if="state.status === 'init'"
+        :type="state.type"
+        @next="state.status = 'confirmCreate'"
+        @ok="state.visible = false"
+      />
+      <RoomConfrimCreate
+        v-if="state.status === 'confirmCreate'"
+        @next="handleNextConfirmCreate"
+      />
+      <RoomSubmitIng v-if="state.status === 'submit'" @close="handleClose" />
+      <!-- <UnableSwitch /> -->
     </div>
   </Mask>
 </template>
 
 <script>
-import { defineComponent, reactive, computed, inject } from "vue";
+import { defineComponent, reactive, computed, inject, onMounted } from "vue";
 import Mask from "@/sport/components/mask";
 import RoomInit from "./init-modal.vue";
 import RoomConfirmId from "./confirm-id.vue";
@@ -23,6 +65,9 @@ import RoomPool from "./pool-pane.vue";
 import WaitConfirm from "./wait-confirm.vue";
 import IntoRoom from "./into-room.vue";
 import UnableSwitch from "./unable-switch.vue";
+import Icon, { QuestionCircleOutlined } from "@ant-design/icons-vue";
+import { message, Typography } from "ant-design-vue";
+import Copy from "@/sport/components/copy";
 
 export default defineComponent({
   components: {
@@ -35,13 +80,21 @@ export default defineComponent({
     WaitConfirm,
     IntoRoom,
     UnableSwitch,
+    Icon,
+    Copy,
+    "a-typography-paragraph": Typography.Paragraph,
+    QuestionCircleOutlined,
   },
   emits: ["init"],
   setup(props, { emit }) {
     const state = reactive({
       visible: false,
+      status: "init",
+      type: "create",
     });
     const ACCOUNTS = inject("ACCOUNTS");
+    const ROOM = inject("ROOM");
+    const getCode = computed(() => ROOM.code.value);
     const isLink = computed(() => {
       return ACCOUNTS.isLink.value;
     });
@@ -49,8 +102,38 @@ export default defineComponent({
       ACCOUNTS.link();
     };
 
+    const getStatus = computed(() => {
+      if (getCode.value) {
+        return "in-room";
+      }
+      return "init";
+    });
+
     const handleInRoom = () => {
-      // emit("init");
+      if (!getCode?.value) {
+        state.type = "create";
+        state.status = "init";
+        state.visible = true;
+      }
+    };
+
+    const handleSwitch = () => {
+      state.type = "other";
+      state.status = "init";
+      state.visible = true;
+    };
+
+    const handleNextConfirmCreate = () => {
+      state.status = "submit";
+      ROOM.handleGetCode();
+    };
+
+    const handleClose = () => {
+      state.visible = false;
+    };
+
+    const testfn = () => {
+      state.status = "confirmCreate";
       state.visible = true;
     };
 
@@ -59,6 +142,12 @@ export default defineComponent({
       isLink,
       handleConnect,
       handleInRoom,
+      getCode,
+      getStatus,
+      handleSwitch,
+      testfn,
+      handleClose,
+      handleNextConfirmCreate,
     };
   },
 });

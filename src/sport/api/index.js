@@ -29,7 +29,7 @@ export const createTenant = async(data) => {
 
 // ## 查询当前钱包地址关联的奖池，即邀请码，需要传递给链上
 export const queryTenant = async(data) => {
-  return await http.get(`${HOST}/v2/query/tenant`, {data})
+  return await http.get(`${HOST}/v2/query/tenant`, {data, hideMsg: true})
 }
 
 // ## 下单-预校验，是否允许本次下单

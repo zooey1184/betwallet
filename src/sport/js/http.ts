@@ -1,5 +1,6 @@
 import axios from 'axios'
 import type { AxiosRequestConfig } from 'axios'
+import { message } from 'ant-design-vue'
 const CancelToken = axios.CancelToken
 const source = CancelToken.source()
 
@@ -43,7 +44,15 @@ const http = (options: any) => {
   }, errorHandler)
 
   service.interceptors.response.use(response => {
-    return Promise.resolve(response.data)
+    const success = response.data.success ?? true
+    if (success) {
+      const data = response.data?.data ?? response.data
+      return Promise.resolve(data)
+    } else {
+      !options.hideMsg && message.error(response.data.errorMsg || 'error')
+      return Promise.reject(response.data)
+    }
+    
   }, errorHandler)
   return service(options)
 }

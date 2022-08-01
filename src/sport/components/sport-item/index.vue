@@ -180,6 +180,7 @@ export default defineComponent({
               active: n,
               activeValue: n ? obj?.[n] || undefined : undefined,
               data: props.info,
+              oddsId: props.info?.oddsId,
               homeInfo: props.info?.selections[0],
               awayInfo: props.info?.selections[1],
             };
@@ -189,6 +190,7 @@ export default defineComponent({
                 active: n,
                 activeValue: n ? obj?.[n] || undefined : undefined,
                 data: props.info,
+                oddsId: props.info?.oddsId,
                 homeInfo: props.info?.selections[0],
                 awayInfo: props.info?.selections[1],
               },

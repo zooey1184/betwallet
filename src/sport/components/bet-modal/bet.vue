@@ -38,9 +38,70 @@
       IS XXX. THE BET WILL AUTOMATICALLY BE CANCELED IF SLIPPAGE BEYOND ITS
       RANGE
     </div>
-    <div class="confirmBtn">PLACE BET</div>
+    <div class="confirmBtn" @click="handleBetFn">PLACE BET</div>
   </div>
 </template>
+
+<script>
+import { defineComponent, inject, reactive } from "vue";
+import { preCheck } from "@/sport/api/index";
+import { useBet } from "@/sport/hooks/use-methods";
+import { message } from "ant-design-vue";
+
+export default defineComponent({
+  components: {},
+  props: {},
+  setup(props) {
+    const state = reactive({});
+    const CONTRACT = inject("CONTRACT");
+    const SPORT_BET = inject("SPORT_BET");
+    const ROOM = inject("ROOM");
+
+    const handleGetParams = () => {
+      const getMyBetInfo = SPORT_BET.getMyBetInfo.value;
+      const list = getMyBetInfo.data?.filter(
+        (item) => item.active && item.betValue
+      );
+      const _list = [];
+      list.forEach((item) => {
+        const AMOUNT = web3.utils.toWei(`${item.betValue}`, "mwei");
+        _list.push({
+          marketId: item.oddsId,
+          tenant: ROOM?.code?.value,
+          amount: AMOUNT,
+          betSide: item.active === "home" ? 0 : item.active === "away" ? 1 : 2,
+          minOdds: item.activeValue * (100 - 20), // (当前赔率*(100-滑点))
+        });
+      });
+      return _list;
+    };
+    const { handleBet } = useBet();
+
+    const handleBetFn = () => {
+      const list = handleGetParams();
+      const params = list[0];
+      preCheck(params).then((res) => {
+        if (res) {
+          console.log("通过");
+        } else {
+          console.log("不通过");
+          console.log(CONTRACT.value.football_contract?.methods);
+          handleBet(params, (h, r, e) => {
+            if (r) {
+              message.success("下注成功");
+            }
+          });
+        }
+      });
+    };
+
+    return {
+      state,
+      handleBetFn,
+    };
+  },
+});
+</script>
 
 <style lang="less" scoped>
 .bet-pane {

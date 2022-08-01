@@ -19,20 +19,25 @@ export default defineComponent({
   setup(props) {
     const state = reactive({
       code: undefined,
+      otherCode: undefined,
     });
     const ACCOUNTS = inject("ACCOUNTS");
+
     const getAccounts = computed(() => ACCOUNTS.accounts.value);
+
+    const handleGetCode = () => {
+      const n = getAccounts?.value;
+      const id = n?.[0];
+      if (id) {
+        queryTenant({ wallet: id }).then((res) => {
+          state.code = res?.length ? res : "";
+        });
+      }
+    };
     watch(
       () => getAccounts?.value,
       (n) => {
-        console.log(n);
-        const id = n?.[0];
-        if (id) {
-          queryTenant({ wallet: id }).then((res) => {
-            console.log(res);
-            state.code = res.data;
-          });
-        }
+        handleGetCode();
       },
       {
         immediate: true,
@@ -40,9 +45,17 @@ export default defineComponent({
     );
 
     const getCode = computed(() => state.code);
+    const getOtherCode = computed(() => state.otherCode);
 
     provide("ROOM", {
       code: getCode,
+      otherCode: getOtherCode,
+      handleGetCode,
+      setState: (data) => {
+        for (let i in data) {
+          state[i] = data[i];
+        }
+      },
     });
 
     return {

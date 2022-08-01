@@ -156,7 +156,7 @@ export default defineComponent({
 .wrap {
   // color: #fff;
   // top: 0;
-  // position: absolute;
+  position: relative;
   // width: 100%;
   // padding: 0 10% 0;
   // height: calc(100vh - 80px);

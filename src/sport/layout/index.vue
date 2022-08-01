@@ -68,32 +68,15 @@
 
       <!-- 内容区 -->
       <div class="content flex-1" :class="{ 'bg-blur': !state.collapse }">
-        <!-- <=1200px 出现 -->
-        <!-- <div class="flex slide-h">
-          <div
-            v-for="item in slideOptions"
-            class="slider-h-wrap flex flex-col items-center justify-center"
-          >
-            <div
-              class="logo bg-dark50 flex items-center overflow-hidden justify-center"
-            >
-              <img src="../images/zyq0425/LIcon02.png" alt="" />
-            </div>
-            <div class="ellipsis-1 grey text-align-center" :title="item.label">
-              {{ item.label }}
-            </div>
-            <div class="gray">{{ item.count }}</div>
-          </div>
-        </div> -->
-
         <div class="w-100p color-white">
           <slot></slot>
         </div>
 
         <div style="height: 60px" class="btm-pane"></div>
       </div>
-      <div class="right-sider primary-bg flex-0">
+      <div class="right-sider pos-r primary-bg flex-0">
         <slot name="bet"></slot>
+        <div class="mine-pane" v-if="state.infoVisible"></div>
       </div>
 
       <div
@@ -155,6 +138,7 @@ export default defineComponent({
       collapse: true,
       visible: false,
       visibleNav: false,
+      infoVisible: false,
       height: "calc(100vh - 160px)",
       options: [
         {
@@ -427,5 +411,13 @@ export default defineComponent({
   padding: 4px 12px;
   background: #fff;
   border-radius: 12px;
+}
+.mine-pane {
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  z-index: 8;
+  top: 0;
 }
 </style>

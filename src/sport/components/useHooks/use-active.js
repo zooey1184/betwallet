@@ -37,11 +37,13 @@ const useActive = (props, {id, homeInfo, awayInfo},  {emit}) => {
     () => state.active,
     (n) => {
       SPORT_BET.setMap((map) => {
+        const activeValue = n === 'home' ? homeInfo.odds : n=== 'away' ? awayInfo.odds : undefined
         if (map) {
           map[id] = {
             active: n,
-            // activeValue: n ? obj?.[n] || undefined : undefined,
+            activeValue: activeValue,
             data: props.info,
+            oddsId: id,
             homeInfo: homeInfo,
             awayInfo: awayInfo,
           };
@@ -49,8 +51,8 @@ const useActive = (props, {id, homeInfo, awayInfo},  {emit}) => {
           map = {
             [id]: {
               active: n,
-
-              // activeValue: n ? obj?.[n] || undefined : undefined,
+              oddsId: id,
+              activeValue: activeValue,
               data: props.info,
               homeInfo: homeInfo,
             awayInfo: awayInfo,

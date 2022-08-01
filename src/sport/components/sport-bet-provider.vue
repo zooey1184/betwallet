@@ -12,6 +12,7 @@ export default defineComponent({
     const state = reactive({
       betList: [],
       betMap: {},
+      myBetInfo: undefined,
     });
 
     const getBetList = computed(() => {
@@ -33,9 +34,18 @@ export default defineComponent({
       }
     };
 
+    const setState = (data) => {
+      for (let i in data) {
+        state[i] = data[i];
+      }
+    };
+    const getMyBetInfo = computed(() => state.myBetInfo);
+
     provide("SPORT_BET", {
       getBetList: getBetList,
       getBetMap,
+      getMyBetInfo,
+      setState,
       getMap: () => {
         return state.betMap;
       },

@@ -166,7 +166,7 @@ export default defineComponent({
     onMounted(() => {
       init();
       getWeb3Config();
-      getBounsInfoFn();
+      // getBounsInfoFn();
     });
     return {
       state,

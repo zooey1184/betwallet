@@ -69,7 +69,7 @@ export default defineComponent({
 
     const getSportItemListFn = async (id) => {
       state.loading = true;
-      const { data } = await getSportList(id);
+      const data = await getSportList(id);
       state.loading = false;
       const _data = [];
       data.forEach((item) => {
@@ -112,7 +112,7 @@ export default defineComponent({
     // 获取举办方信息
     const getCompetitionName = () => {
       queryCompetitionName().then((res) => {
-        state.competitionList = res.data.map((item, index) => {
+        state.competitionList = res.map((item, index) => {
           item.label = item.competition_name;
           item.value = item.competition_name;
           item.icon = `LeftI${index + 1}`;
@@ -146,7 +146,7 @@ export default defineComponent({
     const handleGetMatchList = () => {
       queryMatches().then((res) => {
         console.log(res);
-        state.matchList = res.data;
+        state.matchList = res;
       });
       // state.matchList = [
       //   {
@@ -210,7 +210,7 @@ export default defineComponent({
     provide("MATCH_LIST", getMatchList);
 
     onMounted(() => {
-      handleGetSports();
+      // handleGetSports();
       getCompetitionName();
       handleGetMatchList();
     });

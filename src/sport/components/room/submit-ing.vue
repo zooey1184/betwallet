@@ -9,7 +9,9 @@
     <div class="text-align-center color-black">TRANSCATION SUBMITTED</div>
     <div class="text-align-center gray-link">VIEW ON ETHERSCAN</div>
 
-    <div class="confirmBtn active-bg mt-48 mb-32">CLOSE</div>
+    <div class="confirmBtn active-bg mt-48 mb-32" @click="handleClose">
+      CLOSE
+    </div>
   </div>
 </template>
 
@@ -24,11 +26,15 @@ export default defineComponent({
     LoadingOutlined,
     Circle,
   },
-  setup() {
+  emits: ["close"],
+  setup(props, { emit }) {
     const state = reactive({});
-
+    const handleClose = () => {
+      emit("close");
+    };
     return {
       state,
+      handleClose,
     };
   },
 });

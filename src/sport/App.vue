@@ -15,7 +15,7 @@ import { defineComponent, onMounted } from "vue";
 import InitProvider from "./components/init-provider.vue";
 import Page from "./page.vue";
 import Web3Provider from "./components/web3";
-import SportProvider from "./components/bet-provider.vue";
+import SportProvider from "./components/sport-bet-provider.vue";
 import RoomProvider from "./components/room/init-provider.vue";
 import Test from "@/sport/components/test.vue";
 

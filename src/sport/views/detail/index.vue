@@ -66,7 +66,7 @@ export default defineComponent({
       const { query } = router.currentRoute.value;
       getMatchOdds(query.id).then((res) => {
         console.log(res);
-        state.list = res.data.map((item) => {
+        state.list = res.map((item) => {
           item.oddsId = item.id;
           return item;
         });
@@ -111,17 +111,17 @@ export default defineComponent({
   object-fit: cover;
   object-position: center;
 }
-.wrapPane {
-  width: 80%;
-  margin: 0 auto;
+// .wrapPane {
+//   width: 80%;
+//   margin: 0 auto;
 
-  @media (min-width: 960px) and (max-width: 1440px) {
-    width: 90%;
-  }
-  @media (max-width: 960px) {
-    width: 98%;
-  }
-}
+//   @media (min-width: 960px) and (max-width: 1440px) {
+//     width: 90%;
+//   }
+//   @media (max-width: 960px) {
+//     width: 98%;
+//   }
+// }
 
 :deep(.tab-pane) .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
   color: transparent;

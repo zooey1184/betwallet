@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <Spin :spinning="state.loading">
     <div class="flex items-center justify-center">
       <img src="../../images/v2/room-logo.png" style="width: 200px" alt="" />
     </div>
@@ -26,6 +26,7 @@
         @click="handlePick(item)"
         :class="{
           'bg-white': state.active !== item.value,
+          'color-white': state.active === item.value,
           'active-color': state.active !== item.value,
           'active-bg': state.active === item.value,
         }"
@@ -41,41 +42,125 @@
         placeholder="请输入房间号(8位数字)"
         :maxlength="8"
       />
-      <div class="roomConfirm active-bg" @click="handleConfirm">CONFIRM</div>
+      <div class="roomConfirm active-bg color-white" @click="handleConfirm">
+        CONFIRM
+      </div>
     </div>
-  </div>
+  </Spin>
 </template>
 
 <script>
-import { defineComponent, onMounted, reactive } from "vue";
+import {
+  defineComponent,
+  onMounted,
+  reactive,
+  inject,
+  computed,
+  watch,
+} from "vue";
 import usePermission from "@/sport/components/useHooks/use-permission";
 import { message } from "ant-design-vue";
+import { createTenant, saveTenant } from "@/sport/api/index";
+import { Spin } from "ant-design-vue";
 
 export default defineComponent({
-  components: {},
-  props: {},
-  emits: ["next"],
+  components: {
+    Spin,
+  },
+  props: {
+    type: {
+      type: String,
+    },
+  },
+  emits: ["next", "ok"],
   setup(props, { emit }) {
     const state = reactive({
-      active: 1,
+      active: "create",
       code: "",
       btns: [
         {
           label: "LOOK FOR CASINO",
-          value: 0,
+          value: "other",
         },
         {
           label: "CREAT CASINO",
-          value: 1,
+          value: "create",
         },
       ],
+      loading: false,
     });
+
+    watch(
+      () => props.type,
+      (n) => {
+        if (n) {
+          state.active = n;
+        }
+      },
+      {
+        immediate: true,
+      }
+    );
+    const ACCOUNTS = inject("ACCOUNTS");
+    const ROOM = inject("ROOM");
+    const accounts = computed(() => ACCOUNTS.accounts.value);
+    const handleCreate = (roomId) => {
+      state.loading = true;
+      createTenant({
+        wallet: accounts.value[0],
+        tenant: roomId,
+      })
+        .then((res) => {
+          console.log(res);
+          emit("next");
+        })
+        .finally(() => {
+          state.loading = false;
+        });
+    };
+
+    const handleJoinOther = (roomId) => {
+      state.loading = true;
+      saveTenant({
+        wallet: accounts.value[0],
+        tenant: roomId,
+      })
+        .then((res) => {
+          console.log(res);
+          if (res) {
+            // ROOM.setState({
+            //   otherCode: roomId,
+            // });
+            // 第一期暂时这样
+            if (res) {
+              ROOM.setState({
+                code: roomId,
+              });
+            }
+          }
+          emit("ok", state.active);
+        })
+        .finally(() => {
+          state.loading = false;
+        });
+    };
     const handlePick = (item) => {
       state.active = item.value;
     };
 
     const { hasPermission, getPermission } = usePermission();
-    const handleConfirm = async () => {};
+    const handleConfirm = async () => {
+      if (state.code?.match(/^\d{8}$/g)) {
+        if (state.active === "create") {
+          handleCreate(state.code);
+        } else if (state.active == "other") {
+          handleJoinOther(state.code);
+        }
+      } else {
+        message.warning("房间号格式为8位数字");
+      }
+    };
+
     const handleInit = async () => {
       const hasP = await hasPermission();
       if (!hasP) {

@@ -128,7 +128,9 @@ export default defineComponent({
         return "Draw";
       }
     });
-    const getDesc = computed(() => "Match Winner");
+    const getDesc = computed(() =>
+      props.info?.homeInfo?.handicap ? "Match Handicap" : "Match Winner"
+    );
 
     const handleDelete = () => {
       emit("delete");

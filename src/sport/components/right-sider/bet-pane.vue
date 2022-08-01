@@ -4,14 +4,14 @@
       <span
         href="javascript:;"
         @click="handleChangeBetType('single')"
-        class="tabItem"
+        class="tabItem ff"
         :class="{ 'active-bg': getBetType === 'single' }"
         >SINGLE</span
       >
       <span
         href="javascript:;"
         @click="handleChangeBetType('combo')"
-        class="tabItem"
+        class="tabItem ff"
         :class="{ 'active-bg': getBetType === 'combo' }"
         >COMBO</span
       >
@@ -43,48 +43,6 @@
             ></BetItem>
           </div>
         </div>
-
-        <div class="RighDG Huans">
-          <!-- <div v-if="getBetType === 'single'">
-            <BetInput v-model:value="state.betSingleValue">
-              <template #title>
-                <div>Single share:</div>
-              </template>
-            </BetInput>
-            <div class="RighDGD flexC fl-bet">
-              <div class="RighDGH">Total shares：</div>
-              <div class="RighDGS">{{ getTotal }}</div>
-            </div>
-            <div class="RighDGD flexC fl-bet" style="color: #376efc">
-              <div class="RighDGH">Potential victory：</div>
-              <div class="RighDGS">{{ getWin }}</div>
-            </div>
-          </div> -->
-          <!-- <div v-if="getBetType === 'combo'">
-            <BetInput v-model:value="state.betComboValue">
-              <template #title>
-                <div>Amount:</div>
-              </template>
-              <template #desc>
-                <div style="text-align: right" class="default_color">
-                  Amount required
-                </div>
-              </template>
-            </BetInput>
-            <div class="RighDGD flexC fl-bet">
-              <div class="RighDGH">Odds:</div>
-              <div class="RighDGS">{{ getOdds }}</div>
-            </div>
-            <div class="RighDGD flexC fl-bet" style="color: #376efc">
-              <div class="RighDGH">Potential victory：</div>
-              <div class="RighDGS">{{ getWinCombo }}</div>
-            </div>
-          </div> -->
-          <!-- <a href="javascript:;" class="RighDGod">
-            <i></i>
-            <p>Good luck！</p>
-          </a> -->
-        </div>
       </div>
     </div>
   </div>
@@ -93,7 +51,7 @@
     <div class="active-color text-align-center font-size-12 mb-8">
       NOT ENOUGH BALANCE TO PLACE A BET.
     </div>
-    <div v-if="getBetType === 'single'">
+    <div v-if="getBetType === 'single' && getSportBetList?.length">
       <BetInput v-model:value="state.betSingleValue">
         <template #title>
           <div class="font-size-12">SINGLE SHARE:</div>
@@ -119,16 +77,11 @@
       </div>
     </div>
 
-    <div v-if="getBetType === 'combo'">
+    <div v-if="getBetType === 'combo' && getSportBetList?.length">
       <BetInput v-model:value="state.betComboValue">
         <template #title>
           <div class="font-size-12">AMOUNT (REQUIRED):</div>
         </template>
-        <!-- <template #desc>
-          <div style="text-align: right" class="default_color">
-            Amount required
-          </div>
-        </template> -->
       </BetInput>
       <div class="flex items-center justify-between mt-8">
         <div class="font-size-12">ODDS:</div>
@@ -170,6 +123,7 @@ import BetModal from "../transaction";
 import Mask from "@/sport/components/mask";
 import Speed from "@/sport/components/bet-modal/speed.vue";
 import BetPane from "@/sport/components/bet-modal/bet.vue";
+import { message } from "ant-design-vue";
 
 export default defineComponent({
   components: {
@@ -223,7 +177,7 @@ export default defineComponent({
         const val = +(item.betValue || 0) * item.activeValue;
         s += val;
       }
-      return s;
+      return parseFloat(s?.toFixed(2));
     });
     const getOdds = computed(() => {
       const list = getSportBetList.value;
@@ -244,6 +198,16 @@ export default defineComponent({
     });
     const handleBet = () => {
       if (isLink.value) {
+        const params = handleGetBetInfo();
+        SPORT_BET.setState({
+          myBetInfo: params,
+        });
+        if (params?.data?.length && params.stake > 0) {
+          console.log(params);
+        } else {
+          message.warning("请先下注");
+          return;
+        }
         emit("bet");
         state.visible = true;
       } else {
@@ -252,6 +216,17 @@ export default defineComponent({
     };
     const handleDelete = () => {
       SPORT_BET.clear();
+    };
+
+    // 获取投注信息
+    const handleGetBetInfo = () => {
+      return {
+        type: getBetType.value, // single combo
+        stake: getTotal.value,
+        odds: getBetType.value === "single" ? undefined : getOdds.value,
+        win: getBetType.value === "single" ? getWin.value : getWinCombo.value,
+        data: getSportBetList.value,
+      };
     };
 
     const handleDeleteItem = (item) => {
@@ -307,7 +282,6 @@ export default defineComponent({
   text-align: center;
   border-radius: 12px;
   padding: 4px;
-  font-weight: 600;
   cursor: pointer;
 }
 .bet-btn {
