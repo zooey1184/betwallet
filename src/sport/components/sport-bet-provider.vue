@@ -13,6 +13,7 @@ export default defineComponent({
       betList: [],
       betMap: {},
       myBetInfo: undefined,
+      betConfig: undefined,
     });
 
     const getBetList = computed(() => {
@@ -40,11 +41,13 @@ export default defineComponent({
       }
     };
     const getMyBetInfo = computed(() => state.myBetInfo);
+    const getBetConfig = computed(() => state.betConfig);
 
     provide("SPORT_BET", {
       getBetList: getBetList,
       getBetMap,
       getMyBetInfo,
+      getBetConfig,
       setState,
       getMap: () => {
         return state.betMap;

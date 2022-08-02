@@ -52,10 +52,11 @@ req: http://47.242.226.50:7020/v2/query/competitionName
 ## 创建奖池
 ```js
   method: POST
-  url: /v2/create/tenant
+  url: /v2/save/tenant
   params: 
     wallet: 钱包地址
     tenant: 租户id、即：邀请码
+    amount: 初始金额
   req: http://47.242.226.50:7020/v2/save/tenant
 ```
 
@@ -68,12 +69,25 @@ req: http://47.242.226.50:7020/v2/query/competitionName
   req: http://47.242.226.50:7020/v2/query/tenant
 ```
 
+## 查询指定租户对应的创建者钱包地址
+```js
+  method: GET
+  url: /v2/query/pool/creator
+  params: 
+    tenant: 租户码
+  req: http://47.242.226.50:7020/v2/query/pool/creator
+```
+
 ## 下单-预校验，是否允许本次下单
 ```js
   method: POST
   url: /v2/bet/order/preCheck
   params: 
-    直接传递 - 链上数据
+    tenant：租户id，即：邀请码
+    amount：下单金额
+    odds：赔率
+    marketId：比赛
+    odddId： 盘口id
   req: http://47.242.226.50:7020/v2/bet/order/preCheck
 ```
 
@@ -97,9 +111,9 @@ req: http://47.242.226.50:7020/v2/query/competitionName
   url: /v1/system/getBannerList
   req: http://47.242.226.50:7020/v1/system/getBannerList
 ```
-
-
-## 合约交互
+## ######################## 
+## 以下为合约调用
+## ######################## 
 ## bet合约下注调用
 ```contract
   method: bet
@@ -115,11 +129,27 @@ req: http://47.242.226.50:7020/v2/query/competitionName
 ```contract
   method: createFundPool
   params:
-  uint256 amount     初始奖池金额
+  uint256 amount     奖池初始投入数量
+```
+
+## 暂停/重启奖池
+```contract
+  method: updateFundPoolStopFlag
+  params:
+  无
 ```
 
 ## 提取奖池金额
 ```contract
   method: claimFundPool
-  params: 无
+  params:
+  无
+```
+
+## 用户提取下注盈利
+```contract
+  method: claim
+  params:
+  uint256 marketId     盘口id
+  uint256 betId        本次投注链上id(服务端获取)
 ```

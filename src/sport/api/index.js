@@ -2,6 +2,10 @@ import http from '@/sport/js/http'
 
 const HOST = window.location.host.match(/(localhost|39.107.224.254)/g) ? '' : 'http://47.242.226.50:7020'
 
+export const getSportList = async(id) => {
+  return await http.get(`${HOST}/v1/tournaments/${id}`)
+}
+
 // ## 查看赛事举办方的列表，如LCS/PSC等
 export const queryCompetitionName = async() => {
   return await http.get(`${HOST}/v2/query/competitionName`)
@@ -50,4 +54,8 @@ export const getBonusInfo = async() => {
 // 取banner信息
 export const getBanner = async() => {
   return await http.get(`${HOST}/v1/system/getBannerList`)
+}
+
+export const getRoomAddress = async(data) => {
+  return await http.get(`${HOST}/v2/query/pool/creator`, {data})
 }

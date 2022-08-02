@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <div class="active-color font-size-18 font-weight-600 text-align-center">
+  <Spin :spinning="getLoading">
+    <div class="active-color f4 font-size-18 font-weight-600 text-align-center">
       CASINO INFORMATION
     </div>
-    <div class="color-black text-align-center mt-16">
+    <div class="color-black f3 text-align-center mt-16">
       AMOUNT OF THE USDT POOL
     </div>
     <div
-      class="flex justify-center mt-8 font-weight-600 active-color"
+      class="flex justify-center f5 mt-8 font-weight-600 active-color"
       style="font-size: 48px"
     >
       $10000 USDT
@@ -15,7 +15,7 @@
 
     <div class="flex items-center justify-between my-24">
       <div
-        class="roombtn"
+        class="roombtn f4"
         :class="{
           'active-bg': state.active === '0',
           'active-color': state.active !== '0',
@@ -26,7 +26,7 @@
         ONGOING
       </div>
       <div
-        class="roombtn"
+        class="roombtn f4"
         :class="{
           ' active-bg': state.active === '1',
           'active-color': state.active !== '1',
@@ -37,39 +37,49 @@
         HISTORY
       </div>
     </div>
-    <div class="content overflow-hidden">
-      <div class="content scrollbar overflow-auto bg">
-        <div class="gray-9 font-size-14" v-for="item in 10">
+    <div class="overflow-hidden" style="border-radius: 8px">
+      <div
+        class="content scrollbar overflow-auto bg"
+        style="padding: 16px 24px"
+      >
+        <div class="color-white3 f5 font-size-14 mb-24" v-for="item in 10">
           <div class="flex items-center">
-            <div style="width: 40%">EDG VS LGD</div>
-            <div style="width: 20%" class="text-align-center">1.17</div>
-            <div style="width: 40%" class="text-align-right">11.06 5:00AM</div>
+            <div style="width: 30%">USER: 12***</div>
+            <div style="width: 20%" class="text-align-center">07.21</div>
+            <div style="width: 20%" class="text-align-right">5:00AM</div>
+            <div style="width: 30%" class="text-align-right">EDG VS LGD</div>
           </div>
 
           <div class="flex items-center justify-between">
-            <div class="color-blue">投注金额</div>
-            <div>800 USDT</div>
+            <div>EDG 1.07</div>
+            <div>BETTING AMOUNT:800USDT</div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="confirmBtn active-bg mt-16 mb-8">CLOSE THE CASINO</div>
-  </div>
+    <div class="confirmBtn active-bg mt-16 mb-8 f4" @click="handleStopPool">
+      CLOSE THE CASINO
+    </div>
+  </Spin>
 </template>
 
 <script>
 import { reactive, defineComponent } from "vue";
 import { QuestionCircleOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 import Circle from "./circle.vue";
+import { message, Spin } from "ant-design-vue";
+import useMethods from "@/sport/hooks/useFootballMethods";
 
 export default defineComponent({
   components: {
     QuestionCircleOutlined,
     LoadingOutlined,
     Circle,
+    Spin,
   },
-  setup() {
+  emits: ["ok"],
+  setup(props, { emit }) {
     const state = reactive({
       active: "0",
     });
@@ -77,10 +87,24 @@ export default defineComponent({
     const handlePick = (e) => {
       state.active = e;
     };
+    const { handleMethods, getLoading } = useMethods();
 
+    const handleStopPool = () => {
+      handleMethods({
+        name: "updateFundPoolStopFlag",
+        callback: (h, r, e) => {
+          if (r) {
+            message.success("成功停止投注");
+            emit("ok");
+          }
+        },
+      });
+    };
     return {
       state,
       handlePick,
+      getLoading,
+      handleStopPool,
     };
   },
 });
@@ -108,12 +132,17 @@ export default defineComponent({
   line-height: 42px;
   border-radius: 8px;
   font-size: 18px;
-  font-weight: 500;
   color: #fff;
+  cursor: pointer;
 }
 .content {
   max-height: 250px;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 16px;
+}
+.color-white3 {
+  color: #f9f9f9;
+  &:hover {
+    color: #ffbdbd;
+  }
 }
 </style>

@@ -25,7 +25,7 @@
           </svg>
         </template>
       </Icon>
-      <span>{{ getCode }}</span>
+      <span @click="handleCloseCasino">{{ getCode }}</span>
       <Copy :text="getCode" />
       <!-- <span class="mx-8">|</span>
       <span class="cursor-pointer" @click="handleSwitch"
@@ -49,6 +49,7 @@
         @next="handleNextConfirmCreate"
       />
       <RoomSubmitIng v-if="state.status === 'submit'" @close="handleClose" />
+      <PoolPane v-if="state.status === 'close'" @ok="handleClose" />
       <!-- <UnableSwitch /> -->
     </div>
   </Mask>
@@ -68,6 +69,7 @@ import UnableSwitch from "./unable-switch.vue";
 import Icon, { QuestionCircleOutlined } from "@ant-design/icons-vue";
 import { message, Typography } from "ant-design-vue";
 import Copy from "@/sport/components/copy";
+import PoolPane from "./pool-pane.vue";
 
 export default defineComponent({
   components: {
@@ -82,8 +84,8 @@ export default defineComponent({
     UnableSwitch,
     Icon,
     Copy,
-    "a-typography-paragraph": Typography.Paragraph,
     QuestionCircleOutlined,
+    PoolPane,
   },
   emits: ["init"],
   setup(props, { emit }) {
@@ -130,6 +132,17 @@ export default defineComponent({
 
     const handleClose = () => {
       state.visible = false;
+      ROOM.handleGetCode();
+    };
+
+    const handleCloseCasino = () => {
+      const roomAddress = ROOM.roomAddress.value;
+      const id = ACCOUNTS.accounts.value[0];
+
+      if (id === roomAddress) {
+        state.status = "close";
+        state.visible = true;
+      }
     };
 
     const testfn = () => {
@@ -148,6 +161,7 @@ export default defineComponent({
       testfn,
       handleClose,
       handleNextConfirmCreate,
+      handleCloseCasino,
     };
   },
 });

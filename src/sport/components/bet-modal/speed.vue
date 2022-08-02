@@ -11,6 +11,7 @@
         class="item"
         :class="{ 'item-active': state.speedValue === item.value }"
         v-for="item in state.speed"
+        @click="handlePickSpeed(item)"
       >
         {{ item.label }}
       </div>
@@ -28,6 +29,7 @@
         class="item"
         :class="{ 'item-active': state.toleranceValue === item.value }"
         v-for="item in state.tolerance"
+        @click="handlePickTolerance(item)"
       >
         {{ item.label }}
       </div>
@@ -44,24 +46,26 @@
         class="item"
         :class="{ 'item-active': state.timeCutValue === item.value }"
         v-for="item in state.timeCut"
+        @click="handlePickTimecut(item)"
       >
         {{ item.label }}
       </div>
     </div>
 
-    <div class="confirmBtn">PLACE BET</div>
+    <div class="confirmBtn" @click="handleConfirm">PLACE BET</div>
   </div>
 </template>
 
 <script>
-import { defineComponent, reactive } from "vue";
+import { defineComponent, inject, reactive } from "vue";
 import { QuestionCircleOutlined } from "@ant-design/icons-vue";
 export default defineComponent({
   components: {
     QuestionCircleOutlined,
   },
   props: {},
-  setup(props) {
+  emits: ["ok"],
+  setup(props, { emit }) {
     const state = reactive({
       // 响应速度
       speed: [
@@ -101,11 +105,37 @@ export default defineComponent({
           value: "20",
         },
       ],
-      timeCutValue: "",
+      timeCutValue: "20",
     });
+
+    const SPORT_BET = inject("SPORT_BET");
+    const handlePickSpeed = (item) => {
+      state.speedValue = item.value;
+    };
+    const handlePickTolerance = (item) => {
+      state.toleranceValue = item.value;
+    };
+    const handlePickTimecut = (item) => {
+      state.timeCutValue = item.value;
+    };
+
+    const handleConfirm = () => {
+      SPORT_BET.setState({
+        betConfig: {
+          tolerance: state.toleranceValue,
+          speed: state.speedValue,
+          timeCut: state.timeCutValue,
+        },
+      });
+      emit("ok");
+    };
 
     return {
       state,
+      handlePickSpeed,
+      handlePickTolerance,
+      handlePickTimecut,
+      handleConfirm,
     };
   },
 });

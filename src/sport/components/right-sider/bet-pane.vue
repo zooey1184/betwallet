@@ -109,7 +109,8 @@
   </div>
   <Mask v-model:visible="state.visible">
     <div>
-      <BetPane />
+      <Speed v-if="state.step === 'speed'" @ok="state.step = 'bet'" />
+      <BetPane v-if="state.step === 'bet'" />
     </div>
   </Mask>
 </template>
@@ -142,6 +143,7 @@ export default defineComponent({
       betSingleValue: undefined,
       betComboValue: undefined,
       visible: false,
+      step: "speed",
     });
     const ACCOUNTS = inject("ACCOUNTS");
     const SPORT_BET = inject("SPORT_BET");

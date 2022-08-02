@@ -118,6 +118,7 @@ export const useBet = () => {
   const ADDRESS = inject('ADDRESS')
   const ACCOUNTS = inject('ACCOUNTS')
   const wallet_addr = computed(() => ACCOUNTS.accounts.value[0])
+  const ROOM = inject('ROOM')
   
   const handleBet = async(params, callback) => {
     state.loading = true
@@ -126,7 +127,67 @@ export const useBet = () => {
       marketId, tenant, amount, betSide, minOdds
     } = params
     console.log(marketId, tenant, amount, betSide, minOdds);
-    const t = await CONTRACT.value.football_contract?.methods.bet(marketId, '0x02E506591c68D03D00F0c528E92e61F6F2b7e296', amount, `${betSide}`, `${minOdds}`).encodeABI()
+
+    const t = await CONTRACT.value.football_contract?.methods.bet(marketId, ROOM?.roomAddress?.value, amount, `${betSide}`, `${minOdds}`).encodeABI()
+    const PARAMS = {
+      from: wallet_addr.value,
+      to: ADDRESS.value.bet_address,
+      gasPrice: gasPrice,
+      gasLimit: 100000,
+      data: t,
+      value: '0x00'
+    }
+
+    window.web3.eth.sendTransaction(PARAMS)
+    .on('transactionHash', (hash) => {
+      setTimeout(() => {
+        message.info('Transaction sent Success, Please wait link')
+        callback && callback(hash, null, null)
+      }, 200)
+    })
+    .on('receipt', (r) => {
+      setTimeout(() => {
+        state.loading = false
+        message.success('Successfully linked')
+        callback && callback(null, r, null)
+      }, 200)
+    })
+    .on('error', (e) => {
+      message.error('Transaction Error')
+      state.loading = false
+      console.log(e);
+      callback && callback(null, null, e)
+    })
+    return t
+  }
+
+  const getLoading = computed(() => state.loading)
+  return {
+    handleBet,
+    getLoading
+  }
+}
+
+
+export const stopPool = () => {
+  const state = reactive({
+    loading: false
+  })
+  const CONTRACT = inject('CONTRACT')
+  const ADDRESS = inject('ADDRESS')
+  const ACCOUNTS = inject('ACCOUNTS')
+  const wallet_addr = computed(() => ACCOUNTS.accounts.value[0])
+  const ROOM = inject('ROOM')
+  
+  const handleBet = async(params, callback) => {
+    state.loading = true
+    const gasPrice = await web3.eth.getGasPrice()
+    const {
+      marketId, tenant, amount, betSide, minOdds
+    } = params
+    console.log(marketId, tenant, amount, betSide, minOdds);
+
+    const t = await CONTRACT.value.football_contract?.methods.bet(marketId, ROOM?.roomAddress?.value, amount, `${betSide}`, `${minOdds}`).encodeABI()
     const PARAMS = {
       from: wallet_addr.value,
       to: ADDRESS.value.bet_address,
