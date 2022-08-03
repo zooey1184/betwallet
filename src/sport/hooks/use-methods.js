@@ -34,7 +34,7 @@ const usePermission = () => {
       from: wallet_addr.value,
       to: ADDRESS.value.bet_address,
       gasPrice: gasPrice,
-      gasLimit: 100000,
+      gasLimit: 1000000,
       data: t,
       value: '0x00'
     }
@@ -73,7 +73,7 @@ const usePermission = () => {
       from: wallet_addr.value,
       to: usdt_address.value,
       gasPrice: gasPrice,
-      gasLimit: 100000,
+      gasLimit: 1000000,
       data: obj,
       value: '0x00'
     }
@@ -133,7 +133,7 @@ export const useBet = () => {
       from: wallet_addr.value,
       to: ADDRESS.value.bet_address,
       gasPrice: gasPrice,
-      gasLimit: 100000,
+      gasLimit: 1000000,
       data: t,
       value: '0x00'
     }
@@ -192,7 +192,7 @@ export const stopPool = () => {
       from: wallet_addr.value,
       to: ADDRESS.value.bet_address,
       gasPrice: gasPrice,
-      gasLimit: 100000,
+      gasLimit: 1000000,
       data: t,
       value: '0x00'
     }

@@ -25,7 +25,7 @@ const useMethods = () => {
       from: wallet_addr.value,
       to: ADDRESS.value.bet_address,
       gasPrice: gasPrice,
-      gasLimit: 100000,
+      gasLimit: 1000000,
       data: t,
       value: '0x00'
     }
