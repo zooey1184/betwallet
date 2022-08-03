@@ -1,17 +1,43 @@
 <template>
   <Wrap>
-    <template #default='data'>
+    <template #default="data">
       <div class="gutter_col flex justify-between pos-r">
-        <img :src='BgImg' class='abs-bg' alt="">
-        <div :class="{'slidein-right': data.show[1]}" class="slideout-left" style="width: 40%; padding-top: 11vh">
-          <Steps :options="options" />
+        <img :src="BgImg" class="abs-bg" alt="" />
+        <div
+          :class="{ 'slidein-right': data.show[1] }"
+          class="slideout-left"
+          style="width: 40%; padding-top: 11vh"
+        >
+          <Steps :options="options" v-model:active="state.active" />
         </div>
-        
-        <div  :class="{'slidein-left': data.show[1]}" class="slideout-right" style='width: 50%'>
-          <div class="linear-color title-lg inline-block">Easy to use product</div>
-          <div class="mt-24 desc">Betweb3 uses blockchain technology to restore and optimize the interactive experience of traditional sports betting platforms for ease of use</div>
+
+        <div
+          :class="{ 'slidein-left': data.show[1] }"
+          class="slideout-right"
+          style="width: 50%"
+        >
+          <div class="linear-color title-lg inline-block">
+            Easy to use product
+          </div>
+          <div class="mt-24 desc">
+            Betweb3 uses blockchain technology to restore and optimize the
+            interactive experience of traditional sports betting platforms for
+            ease of use
+          </div>
           <div class="flex justify-end" style="margin-top: 10vh">
-            <div style="height: 16.5vw; width: 24vw" class="bg-gray-30"></div>
+            <img
+              src="../../assets/1.png"
+              v-if="state.active === 0"
+              style="width: 70%"
+              alt=""
+            />
+            <img
+              src="../../assets/2.png"
+              v-if="state.active === 1"
+              style="width: 70%"
+              alt=""
+            />
+            <!-- <div style="height: 16.5vw; width: 24vw" class="bg-gray-30"></div> -->
           </div>
         </div>
       </div>
@@ -20,27 +46,31 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import Steps from '../../components/steps'
-import Wrap from '@/web/components/wrap'
-import MouseTrack from '@/web/components/mouse-track'
-import BgImg from '../../assets/part5-bg.png'
-import {options} from './constant'
+import { defineComponent, reactive, ref } from "vue";
+import Steps from "../../components/steps";
+import Wrap from "@/web/components/wrap";
+import MouseTrack from "@/web/components/mouse-track";
+import BgImg from "../../assets/part5-bg.png";
+import { options } from "./constant";
 
 export default defineComponent({
   components: {
     Steps,
     Wrap,
-    MouseTrack
+    MouseTrack,
   },
   props: {},
   setup(props) {
+    const state = reactive({
+      active: 0,
+    });
     return {
       options: options,
-      BgImg
-    }
-  }
-})
+      BgImg,
+      state,
+    };
+  },
+});
 </script>
 
 <style lang="less" scoped>
