@@ -10,8 +10,8 @@
       v-if="state.detail.selections"
       :time="state.detail.startTime"
       :oddsId="state.detail.oddsId"
-      :homeInfo="state.detail?.selections?.[0]"
-      :awayInfo="state.detail?.selections?.[1]"
+      :homeInfo="state.detail?.selections?.find(item => item.type === 'home' )"
+      :awayInfo="state.detail?.selections?.find(item => item.type === 'away' )"
     />
 
     <div class="tab-pane" style="margin-top: 16px">
@@ -23,8 +23,8 @@
                 <Item
                   :name="item.name"
                   :oddsId="item.id"
-                  :homeInfo="item.selections[0]"
-                  :awayInfo="item.selections[1]"
+                  :homeInfo="item.selections?.find(item => item.type === 'home')"
+                  :awayInfo="item.selections?.find(item => item.type === 'away' )"
                 />
               </div>
             </template>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { ref, defineComponent, onMounted, onActivated, reactive } from "vue";
+import { ref, defineComponent, onMounted, onActivated, reactive, computed } from "vue";
 import TopPane from "./top-pane.vue";
 import VsPane from "./vs-pane.vue";
 import { Tabs } from "ant-design-vue";

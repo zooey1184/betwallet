@@ -181,8 +181,8 @@ export default defineComponent({
               activeValue: n ? obj?.[n] || undefined : undefined,
               data: props.info,
               oddsId: props.info?.oddsId,
-              homeInfo: props.info?.selections[0],
-              awayInfo: props.info?.selections[1],
+              homeInfo: props.info?.selections?.find(item => item.type === 'home'),
+              awayInfo: props.info?.selections?.find(item => item.type === 'away'),
             };
           } else {
             map = {
@@ -191,8 +191,8 @@ export default defineComponent({
                 activeValue: n ? obj?.[n] || undefined : undefined,
                 data: props.info,
                 oddsId: props.info?.oddsId,
-                homeInfo: props.info?.selections[0],
-                awayInfo: props.info?.selections[1],
+                homeInfo: props.info?.selections?.find(item => item.type === 'home'),
+                awayInfo: props.info?.selections?.find(item => item.type === 'away'),
               },
             };
           }
