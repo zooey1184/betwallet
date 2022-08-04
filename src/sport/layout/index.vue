@@ -2,8 +2,18 @@
   <div>
     <div class="layout_header primary-bg flex items-center justify-between">
       <div class="flex items-center">
-        <div class="mx-lg-show" @click="handleShowNavmask">
-          <MenuOutlined class="color-white mr-8 font-size-24" />
+        <div class="mx-lg-show mr-16">
+          <!-- <CloseOutlined
+            v-if="state.visibleNav"
+            class="color-white mr-8 font-size-24"
+            @click="state.visibleNav = false"
+          />
+          <MenuOutlined
+            v-else
+            @click="handleShowNavmask"
+            class="color-white mr-8 font-size-24"
+          /> -->
+          <MenuIcon v-model:value="state.visibleNav" />
         </div>
         <img
           src="../images/zyq0425/logo.png"
@@ -38,11 +48,14 @@
       </div>
       <div class="flex items-center sm-show">
         <div v-if="isLink">
-          <Info :address="getAccounts" />
+          <Info
+            :address="getAccounts"
+            @info="state.infoVisible = !state.infoVisible"
+          />
         </div>
-        <div class="lg-show items-center sellBtn active-color ml-24">
+        <div v-else class="items-center sellBtn active-color ml-24">
           <CloudUploadOutlined class="mr-8" />
-          Sell Your Art
+          Wallet
         </div>
       </div>
     </div>
@@ -76,12 +89,17 @@
       </div>
       <div class="right-sider pos-r primary-bg flex-0">
         <slot name="bet"></slot>
-        <div class="mine-pane" v-if="state.infoVisible"></div>
+        <div
+          class="mine-pane primary-bg"
+          :style="{ right: !state.infoVisible ? '-100%' : 0 }"
+        >
+          <div class="mine-pane">
+            <InfoPane />
+          </div>
+        </div>
       </div>
 
-      <div
-        class="btm-nav primary-bg color-black flex items-center justify-around"
-      >
+      <div class="btm-nav color-black flex items-center justify-around">
         <div>电竞</div>
         <div>投注</div>
         <div>我的</div>
@@ -96,6 +114,7 @@
       <!-- 导航条的内容区域 -->
       <transition name="slide-down">
         <div class="slide-mask" v-if="state.visibleNav">
+          <div style="height: 120px"></div>
           <div>电竞</div>
           <div>足球</div>
           <div>篮球</div>
@@ -116,8 +135,11 @@ import {
   RightOutlined,
   CloudUploadOutlined,
   MenuOutlined,
+  CloseOutlined,
 } from "@ant-design/icons-vue";
-import Info from "./info.vue";
+import Info from "./info-btn.vue";
+import MenuIcon from "./menu-icon.vue";
+import InfoPane from "./info-pane.vue";
 
 export default defineComponent({
   components: {
@@ -127,6 +149,9 @@ export default defineComponent({
     RightOutlined,
     CloudUploadOutlined,
     MenuOutlined,
+    CloseOutlined,
+    MenuIcon,
+    InfoPane,
   },
   props: {
     slideOptions: {
@@ -300,6 +325,8 @@ export default defineComponent({
     width: 100%;
     height: 60px;
     left: 0;
+    color: #fff;
+    background: #2a333f;
     @media screen and (min-width: 700px) {
       display: none;
     }
@@ -317,7 +344,7 @@ export default defineComponent({
     top: 0;
     left: 0;
     z-index: 9;
-    background: #333;
+    background: #000001;
   }
   .slide-fade-enter-active {
     transition: all 0.3s ease-out;
@@ -414,10 +441,11 @@ export default defineComponent({
 }
 .mine-pane {
   position: absolute;
-  background: #fff;
   width: 100%;
   height: 100%;
   z-index: 8;
+  transition: all 200ms linear;
+  overflow: hidden;
   top: 0;
 }
 </style>

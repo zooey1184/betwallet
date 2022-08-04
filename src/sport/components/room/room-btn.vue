@@ -26,7 +26,7 @@
         </template>
       </Icon>
       <span @click="handleCloseCasino">{{ getCode }}</span>
-      <Copy :text="getCode" />
+      <Copy :text="getCode" id="room" />
       <!-- <span class="mx-8">|</span>
       <span class="cursor-pointer" @click="handleSwitch"
         >SWITCH<QuestionCircleOutlined
@@ -181,6 +181,17 @@ export default defineComponent({
   &:hover {
     cursor: pointer;
     background: #ff0083 !important;
+  }
+}
+@keyframes shane {
+  0% {
+    background-color: #ff00843d;
+  }
+  50% {
+    background-color: #ff00848b;
+  }
+  100% {
+    background-color: #ff00843d;
   }
 }
 </style>

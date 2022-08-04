@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center">
-    <div class="around">
+    <div class="around" @click="handleShowInfo">
       <img style="width: 36px" src="../images/v2/coin-icon-gray.png" alt="" />
     </div>
     <div>
@@ -23,11 +23,16 @@ export default defineComponent({
       default: "****",
     },
   },
-  setup(props) {
+  emits: ["info"],
+  setup(props, { emit }) {
     const state = reactive({});
 
+    const handleShowInfo = () => {
+      emit("info");
+    };
     return {
       state,
+      handleShowInfo,
     };
   },
 });

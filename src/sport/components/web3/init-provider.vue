@@ -33,6 +33,9 @@ export default defineComponent({
       userInfo: undefined,
       address: undefined,
       contract: {},
+      eth: 0,
+      bet: 0,
+      usdt: 0,
     });
     // 点击连接钱包
     const handleConnect = () => {
@@ -74,12 +77,18 @@ export default defineComponent({
 
     provide("accounts", getAccounts);
 
+    const getBet = computed(() => state.bet);
+    const getUsdt = computed(() => state.usdt);
+    const getEth = computed(() => state.eth);
     provide("ACCOUNTS", {
       accounts: getAccounts,
       id: getAccounts.value?.[0],
       accountHide: addressHide,
       isLink,
       link: handleConnect,
+      bet: getBet,
+      eth: getEth,
+      usdt: getUsdt,
       disLink: () => {
         window.localStorage.removeItem("isLINK");
         setTimeout(() => {
@@ -114,6 +123,7 @@ export default defineComponent({
             };
             window.localStorage.setItem("isLINK", "true");
             // TODO 获取余额
+            handleGetEth(state.id);
           }
         } else {
           console.log("未连接");
@@ -152,11 +162,34 @@ export default defineComponent({
         FOOTBALL_ABI,
         bet_address
       );
+      console.log(football_contract.methods, bonus_contract.methods);
+
       state.contract = {
         erc_contract,
         bonus_contract,
         football_contract,
       };
+      getBalanceOf(erc_contract, bet_address, "mWei").then((res) => {
+        console.log("bet", res);
+        state.bet = res;
+      });
+      getBalanceOf(erc_contract, state.id, "mWei").then((res) => {
+        console.log("usdt", res);
+        state.usdt = res;
+      });
+    };
+
+    const getBalanceOf = async (contract, account, unit = "wei") => {
+      const res = await contract.methods.balanceOf(account).call();
+      return web3.utils.fromWei(res, unit);
+    };
+
+    const handleGetEth = async (account) => {
+      web3.eth.getBalance(account, (err, wei) => {
+        const balance = web3.utils.fromWei(wei, "ether");
+        state.eth = balance;
+        // res(balance);
+      });
     };
 
     const getCnotract = computed(() => state.contract);

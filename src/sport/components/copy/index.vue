@@ -1,7 +1,13 @@
 <template>
   <div :id="getId" @click="handleCopy" class="flex items-center">
     <slot></slot>
-    <CopyOutlined style="margin-left: 4px" v-if="!state.copyStatus" />
+    <img
+      src="../../images/icons/doc.png"
+      style="width: 12px; margin-left: 4px"
+      v-if="!state.copyStatus"
+      alt=""
+    />
+    <!-- <CopyOutlined style="margin-left: 4px" /> -->
     <CheckOutlined style="margin-left: 4px" v-else />
   </div>
 </template>
@@ -33,6 +39,9 @@ export default defineComponent({
       return props.id || `copy_${+new Date()}`;
     });
     const handleCopy = () => {
+      state.clipboard = new Clipboard(`#${getId.value}`, {
+        text: () => props.text,
+      });
       state.clipboard.on("success", (e) => {
         state.copyStatus = true;
         message.success("复制成功");
@@ -41,12 +50,8 @@ export default defineComponent({
           state.copyStatus = false;
         }, 2500);
       });
+      setTimeout(() => state.clipboard.destroy());
     };
-    onMounted(() => {
-      state.clipboard = new Clipboard(`#${getId.value}`, {
-        text: () => props.text,
-      });
-    });
 
     return {
       state,
