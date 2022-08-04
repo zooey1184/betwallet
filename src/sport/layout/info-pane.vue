@@ -62,11 +62,38 @@
           />
         </div>
         <div class="flex items-center mt-16">
-          <img src="../images/icons/doc.png" alt="" />
+          <img
+            src="../images/icons/doc.png"
+            style="width: 12px; margin-right: 4px"
+            alt=""
+          />
           <div>{{ accountHide }}</div>
         </div>
       </div>
-      <div class="info-itempane flex-0 primary-bg"></div>
+      <div class="info-itempane flex-0 primary-bg">
+        <div class="pos-r flex justify-center">
+          <Progress
+            type="circle"
+            stroke-color="#ff0083"
+            trailColor="#3b3b5b"
+            :strokeWidth="5"
+            :percent="state.percent"
+            :format="() => ''"
+            :width="85"
+          ></Progress>
+          <div
+            class="pos-a"
+            style="top: 50%; left: 50%; transform: translate(-50%, -50%)"
+          >
+            <img
+              style="width: 40px"
+              src="../images/icons/logo-red.png"
+              alt=""
+            />
+            <p class="font-size-12 text-align-center active-color">40%</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -74,14 +101,18 @@
 <script>
 import { computed, defineComponent, inject, reactive } from "vue";
 import CopyIcon from "@/sport/components/copy";
+import { Progress } from "ant-design-vue";
 
 export default defineComponent({
   components: {
     CopyIcon,
+    Progress,
   },
   props: {},
   setup(props) {
-    const state = reactive({});
+    const state = reactive({
+      percent: 40,
+    });
     const ACCOUNTS = inject("ACCOUNTS");
 
     const accountHide = computed(() => ACCOUNTS.accountHide.value);

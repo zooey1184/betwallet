@@ -3,7 +3,9 @@
     <InitProvider>
       <RoomProvider>
         <SportProvider>
-          <Page />
+          <ResultProvider>
+            <Page />
+          </ResultProvider>
         </SportProvider>
       </RoomProvider>
     </InitProvider>
@@ -18,6 +20,7 @@ import Web3Provider from "./components/web3";
 import SportProvider from "./components/sport-bet-provider.vue";
 import RoomProvider from "./components/room/init-provider.vue";
 import Test from "@/sport/components/test.vue";
+import ResultProvider from "@/sport/components/result/result-provider.vue";
 
 export default defineComponent({
   components: {
@@ -27,6 +30,7 @@ export default defineComponent({
     SportProvider,
     RoomProvider,
     Test,
+    ResultProvider,
   },
 });
 </script>

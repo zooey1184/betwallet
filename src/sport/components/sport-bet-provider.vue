@@ -29,7 +29,7 @@ export default defineComponent({
     });
     const getBetMap = computed(() => state.betMap);
     const handleDeleteItem = (item) => {
-      const id = item?.data?.oddsId;
+      const id = item?.oddsId;
       if (id && state.betMap?.[id]) {
         state.betMap[id] = undefined;
       }

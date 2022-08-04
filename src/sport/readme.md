@@ -78,6 +78,15 @@ req: http://47.242.226.50:7020/v2/query/competitionName
   req: http://47.242.226.50:7020/v2/query/pool/creator
 ```
 
+## 查询指定钱包的下单列表
+```js
+  method: GET
+  url: /v2/query/myBetList
+  params: 
+    wallet: 钱包地址
+  req: http://47.242.226.50:7020/v2/query/myBetList?wallet=0xF873Ad938E8041C9c39f8A8DFd3505528240C302
+```
+
 ## 下单-预校验，是否允许本次下单
 ```js
   method: POST
@@ -152,4 +161,8 @@ req: http://47.242.226.50:7020/v2/query/competitionName
   params:
   uint256 marketId     盘口id
   uint256 betId        本次投注链上id(服务端获取)
+```
+
+```js
+// 备注：如果要结算某场比赛，更新 matches表中的result字段即可，数据格式：数字序列化后的字符串，例如 [3,1]
 ```

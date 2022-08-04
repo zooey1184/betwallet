@@ -26,7 +26,6 @@ const useActive = (props, {id, homeInfo, awayInfo},  {emit}) => {
   const getBetActive = computed(() => {
     const map = SPORT_BET.getBetMap.value;
     const item = map?.[id];
-    console.log('====',map, id);
     if (item && item?.active) {
       return item.active;
     }

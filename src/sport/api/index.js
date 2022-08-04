@@ -59,3 +59,8 @@ export const getBanner = async() => {
 export const getRoomAddress = async(data) => {
   return await http.get(`${HOST}/v2/query/pool/creator`, {data})
 }
+
+// 查询指定钱包的下单列表
+export const getBetList = async(data) => {
+  return await http.get(`${HOST}/v2/query/myBetList`, {data})
+}

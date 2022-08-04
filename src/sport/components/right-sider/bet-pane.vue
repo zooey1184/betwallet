@@ -25,7 +25,7 @@
     </div>
 
     <div class="">
-      <div style="max-height: calc(100vh - 470px); overflow: auto">
+      <div style="height: calc(100vh - 475px); overflow: auto">
         <div class="" v-if="!getSportBetList?.length">
           <div class="flex flex-col items-center justify-center">
             <img src="../../images/zyq0425/kongL.png" style="width: 120px" />

@@ -45,7 +45,7 @@
         class="font-weight-600 mt-8 text-color pr-8"
         :class="{ 'color-white': state.active === 'mybet' }"
       >
-        Football
+        MY BET
       </div>
     </div>
   </div>
