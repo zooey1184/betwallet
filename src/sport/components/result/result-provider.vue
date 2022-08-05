@@ -24,7 +24,8 @@ export default defineComponent({
     const walletAddress = computed(() => ACCOUNTS?.accounts?.value?.[0]);
     const handleGetBetList = () => {
       if (walletAddress?.value) {
-        const a = "0xF873Ad938E8041C9c39f8A8DFd3505528240C302";
+        // const a = "0xF873Ad938E8041C9c39f8A8DFd3505528240C302";
+        const a = false
         getBetList({ wallet: a || walletAddress.value }).then((res) => {
           console.log(res);
           state.resultList = res;

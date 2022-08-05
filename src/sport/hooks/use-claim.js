@@ -20,8 +20,7 @@ const useMethods = () => {
     } = options
     const gasPrice = await web3.eth.getGasPrice()
 
-    console.log(CONTRACT.value.football_contract?.methods);
-    const t = await CONTRACT.value.football_contract?.methods[name](...params).call()
+    const t = await CONTRACT.value.football_contract?.methods[name](...params).encodeABI()
     const PARAMS = {
       from: ADDRESS.value.bet_address,
       to: wallet_addr.value,
@@ -31,25 +30,25 @@ const useMethods = () => {
       value: '0x00'
     }
 
-  //   window.web3.eth.sendTransaction(PARAMS)
-  //   .on('transactionHash', (hash) => {
-  //     setTimeout(() => {
-  //       showTip && message.info('Transaction sent Success, Please wait link')
-  //       callback && callback(hash, null, null)
-  //     }, 200)
-  //   })
-  //   .on('receipt', (r) => {
-  //     setTimeout(() => {
-  //       state.loading = false
-  //       showTip && message.success('Successfully linked')
-  //       callback && callback(null, r, null)
-  //     }, 200)
-  //   })
-  //   .on('error', (e) => {
-  //     showTip && message.error('Transaction Error')
-  //     state.loading = false
-  //     callback && callback(null, null, e)
-  //   })
+    window.web3.eth.sendTransaction(PARAMS)
+    .on('transactionHash', (hash) => {
+      setTimeout(() => {
+        showTip && message.info('Transaction sent Success, Please wait link')
+        callback && callback(hash, null, null)
+      }, 200)
+    })
+    .on('receipt', (r) => {
+      setTimeout(() => {
+        state.loading = false
+        showTip && message.success('Successfully linked')
+        callback && callback(null, r, null)
+      }, 200)
+    })
+    .on('error', (e) => {
+      showTip && message.error('Transaction Error')
+      state.loading = false
+      callback && callback(null, null, e)
+    })
     return t
   }
 

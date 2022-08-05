@@ -162,7 +162,6 @@ export default defineComponent({
         FOOTBALL_ABI,
         bet_address
       );
-      console.log(football_contract.methods, bonus_contract.methods);
 
       state.contract = {
         erc_contract,
@@ -170,10 +169,9 @@ export default defineComponent({
         football_contract,
       };
       getBalanceOf(erc_contract, bet_address, "mWei").then((res) => {
-        console.log("bet", res);
         state.bet = res;
       });
-      getBalanceOf(erc_contract, state.id, "mWei").then((res) => {
+      getBalanceOf(erc_contract, usdt_address, "mWei").then((res) => {
         console.log("usdt", res);
         state.usdt = res;
       });

@@ -1,11 +1,16 @@
 <template>
   <div class="wrap primary-bg" v-if="info.isSettled">
-    <div class="win-logo ff" v-if="info.amount > 0">WIN</div>
-    <div>score : {{ info.score }}</div>
-    <div>Amount: {{ info.amount }}</div>
+    <div class="win-logo ff" v-if="info.win_amount > 0">WIN</div>
+    
+    <div>bet : {{ info.bet_amount }}</div>
+    <div class="flex">
+      <div>odds : {{ info.odds }}</div>
+      <div class="ml-8">score : {{ info.score }}</div>
+    </div>
+    <div>Amount: {{ info.win_amount }}</div>
 
     <div
-      v-if="info.amount > 0 && info.is_claimed === '0'"
+      v-if="info.win_amount > 0 && info.is_claimed === '0'"
       class="itembtn pos-r active-bg mt-8"
       @click="handleClaim(info)"
     >
