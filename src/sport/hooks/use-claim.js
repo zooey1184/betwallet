@@ -22,8 +22,8 @@ const useMethods = () => {
 
     const t = await CONTRACT.value.football_contract?.methods[name](...params).encodeABI()
     const PARAMS = {
-      from: ADDRESS.value.bet_address,
-      to: wallet_addr.value,
+      to: ADDRESS.value.bet_address,
+      from: wallet_addr.value,
       gasPrice: gasPrice,
       gasLimit: 1000000,
       data: t,
