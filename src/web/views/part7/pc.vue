@@ -21,17 +21,17 @@
             </div>
 
             <div :class="{ fadein: data.show[2] }" class="w-25p fadeout">
-              <div class="gray-9d desc desc_mb-24">Token ticker</div>
+              <div class="gray-9d desc desc_mb-24">Currency Symbol</div>
               <div class="desc">BET</div>
             </div>
 
             <div :class="{ fadein: data.show[3] }" class="w-25p fadeout">
-              <div class="gray-9d desc desc_mb-24">Token type</div>
+              <div class="gray-9d desc desc_mb-24">Token Standards</div>
               <div class="desc">ERC-20</div>
             </div>
 
             <div :class="{ fadein: data.show[4] }" class="w-25p fadeout">
-              <div class="gray-9d desc desc_mb-24">Token supply</div>
+              <div class="gray-9d desc desc_mb-24">Total supply</div>
               <div class="desc">1,000,000,000</div>
             </div>
           </div>
@@ -39,7 +39,7 @@
             <div :class="{ fadein: data.show[5] }" class="w-50p flex fadeout">
               <img class="icon_w" src="../../assets/part7-1.png" alt="" />
               <div class="ml-50tv">
-                <div class="desc_title">Governance</div>
+                <div class="desc_title">protocol voting rights</div>
                 <div class="desc">
                   Hold BET tokens to gain voting rights on the protocol
                 </div>
@@ -49,10 +49,9 @@
             <div :class="{ fadein: data.show[6] }" class="w-50p flex fadeout">
               <img class="icon_w" src="../../assets/part7-2.png" alt="" />
               <div class="ml-50tv">
-                <div class="desc_title">Staking Reward</div>
+                <div class="desc_title">Staking rewards</div>
                 <div class="desc">
-                  Earn 50% of the profit of the capital pool since staking BET
-                  tokens
+                  Stake BET tokens to get 50% of the protocol profits
                 </div>
               </div>
             </div>

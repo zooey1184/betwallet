@@ -26,19 +26,19 @@
 
             <transition name="slideBottom">
               <div class="w-50p mb-16">
-                <div class="gray-9d desc desc_mb-24">Token ticker</div>
+                <div class="gray-9d desc desc_mb-24">Currency Symbol</div>
                 <div class="desc">BET</div>
               </div>
             </transition>
             <transition name="slideBottom">
               <div class="w-50p mb-16">
-                <div class="gray-9d desc desc_mb-24">Token type</div>
+                <div class="gray-9d desc desc_mb-24">Token Standards</div>
                 <div class="desc">ERC-20</div>
               </div>
             </transition>
             <transition name="slideBottom">
               <div class="w-50p mb-16">
-                <div class="gray-9d desc desc_mb-24">Token supply</div>
+                <div class="gray-9d desc desc_mb-24">Total supply</div>
                 <div class="desc">1,000,000,000</div>
               </div>
             </transition>
@@ -48,7 +48,7 @@
               <div class="w-50p">
                 <div class="flex items-center">
                   <img class="icon_w" src="../../assets/part7-1.png" alt="" />
-                  <div class="desc_title ml-8">Governance</div>
+                  <div class="desc_title ml-8">protocol voting rights</div>
                 </div>
                 <div class="ml-50tv grey">
                   <div class="desc">
@@ -61,12 +61,11 @@
               <div class="w-50p">
                 <div class="flex items-center">
                   <img class="icon_w" src="../../assets/part7-2.png" alt="" />
-                  <div class="desc_title ml-8">Staking Reward</div>
+                  <div class="desc_title ml-8">Staking rewards</div>
                 </div>
                 <div class="ml-50tv grey">
                   <div class="desc">
-                    Earn 50% of the profit of the capital pool since staking BET
-                    tokens
+                    Stake BET tokens to get 50% of the protocol profits
                   </div>
                 </div>
               </div>

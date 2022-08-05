@@ -1,24 +1,31 @@
 <template>
-  <div v-if='isMobile'>
+  <div v-if="isMobile">
     <div class="m_nav bg pos-f flex items-center justify-between">
-      <More v-model:value='state.visible' />
+      <More v-model:value="state.visible" />
       <div class="color-white">
-        <img style="height: 30px" src='../../assets/logo.png'/>
+        <img style="height: 30px" src="../../assets/logo.png" />
       </div>
-      <div>
-        
-      </div>
+      <div></div>
     </div>
-    <transition name='slide'>
-      <div v-if='state.visible' class="m_nav_content">
+    <transition name="slide">
+      <div v-if="state.visible" class="m_nav_content">
         <div style="height: 80px"></div>
-        <div class="m_item" @click="handleClickMenuItem(item.value)" :class="{'primary': state.active === item.value}" v-for='item in options'>{{item.label}}</div>
+        <div
+          class="m_item"
+          @click="handleClickMenuItem(item?.value)"
+          :class="{ primary: state.active === item.value }"
+          v-for="item in options"
+        >
+          {{ item.label }}
+        </div>
 
         <div class="mt-40">
-          <LinearBox v-for='item in btnList' class="mb-32">
-            <div class="primary m_btn_px ">{{item.label}}</div>
+          <LinearBox v-for="item in btnList" class="mb-32">
+            <div class="primary m_btn_px">{{ item.label }}</div>
           </LinearBox>
-          <div class="linear-bg m_btn_px" style="border-radius: 2px">{{launch}}</div>
+          <div class="linear-bg m_btn_px" style="border-radius: 2px">
+            {{ launch }}
+          </div>
         </div>
       </div>
     </transition>
@@ -27,99 +34,117 @@
   <div v-else class="pc_nav bg">
     <div class="flex items-center">
       <div>
-        <img style="height: 43px" src='../../assets/logo.png'/>
+        <img style="height: 43px" src="../../assets/logo.png" />
       </div>
       <div class="flex items-ceneter justify-between ml-40">
-        <div class="ml-40 cursor-pointer left_btn inline-block" @click="handleClickMenuItem(item.value)" :class="{'primary': state.active === item.value}" v-for='item in options'>{{item.label}}</div>
+        <div
+          class="ml-40 cursor-pointer left_btn inline-block"
+          @click="handleClickMenuItem(item.value)"
+          :class="{ primary: state.active === item.value }"
+          v-for="item in options"
+        >
+          {{ item.label }}
+        </div>
       </div>
     </div>
     <div class="flex items-center">
-      <LinearBox v-for='item in btnList' class=" ml-24">
-        <div class="primary pc_btn_px ">{{item.label}}</div>
+      <LinearBox v-for="item in btnList" class="ml-24">
+        <div class="primary pc_btn_px">{{ item.label }}</div>
       </LinearBox>
-      <div class="linear-bg ml-24 pc_btn_px" style="border-radius: 2px">{{launch}}</div>
+      <div class="linear-bg ml-24 pc_btn_px" style="border-radius: 2px">
+        {{ launch }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, onMounted, reactive, ref, watch } from 'vue'
-import More from './more-icon.vue'
-import LinearBox from '../linear-box'
+import { defineComponent, onMounted, reactive, ref, watch } from "vue";
+import More from "./more-icon.vue";
+import LinearBox from "../linear-box";
 
 export default defineComponent({
   components: {
     More,
-    LinearBox
+    LinearBox,
   },
   props: {
     options: {
       type: Array,
-      default: () => ([
+      default: () => [
         {
-          label: 'Product',
-          value: 'product'
+          label: "Tokenomics",
+          value: "token",
         },
         {
-          label: 'Token economy',
-          value: 'token'
+          label: "Roadmap",
+          value: "map",
         },
         {
-          label: 'Road Map',
-          value: 'map'
-        }
-      ])
+          label: "Stake",
+          // value: "stake",
+        },
+      ],
     },
     active: {
       type: String,
-      default: 'product'
+      default: "",
     },
     btnList: {
       type: Array,
-      default: () => ([
+      default: () => [
         {
-          label: 'Pledge Of Shares',
-          value: 'pledge'
+          label: "rewards",
+          value: "pledge",
         },
         {
-          label: 'Docs',
-          value: 'doc'
+          label: "Docs",
+          value: "doc",
         },
-      ]),
-      
+      ],
     },
     launch: {
       type: String,
-      default: 'Launch App'
+      default: "Launch App",
     },
-    isMobile: Boolean
+    isMobile: Boolean,
   },
-  emits: ['change', 'update:active'],
-  setup(props, {emit, expose}) {
-    const isMobile = ref(false)
+  emits: ["change", "update:active"],
+  setup(props, { emit, expose }) {
+    const isMobile = ref(false);
     const state = reactive({
       visible: false,
-      active: props.active
-    })
-    watch(() => props.active, (n) => {
-      state.active = n
-    })
-    watch(() => state.active, (n) => {
-      emit('update:active', n)
-    })
+      active: props.active,
+    });
+    watch(
+      () => props.active,
+      (n) => {
+        state.active = n;
+      }
+    );
+    watch(
+      () => state.active,
+      (n) => {
+        emit("update:active", n);
+      }
+    );
 
     const handleClickMenuItem = (item) => {
-      state.visible = false
-      emit('change', item)
-      emit('update:active', item)
-    }
-    
+      state.visible = false;
+      if (item) {
+        emit("change", item);
+        emit("update:active", item);
+      } else {
+        console.log(item);
+      }
+    };
+
     return {
       state,
-      handleClickMenuItem
-    }
-  }
-})
+      handleClickMenuItem,
+    };
+  },
+});
 </script>
 
 <style lang="less" scoped>
@@ -133,9 +158,9 @@ export default defineComponent({
   top: 0;
 }
 .m_nav {
- .m__nav;
- z-index: 99;
- height: @height;
+  .m__nav;
+  z-index: 99;
+  height: @height;
 }
 .m_nav_content {
   height: 100%;
@@ -147,11 +172,13 @@ export default defineComponent({
   background: #020318f5;
   .m__nav;
 }
-.slide-enter-active, .slide-leave-active {
-  transition: all .5s ease;
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.5s ease;
 }
 
-.slide-enter-from, .slide-leave-to {
+.slide-enter-from,
+.slide-leave-to {
   opacity: 0;
   transform: translateY(-200px);
 }

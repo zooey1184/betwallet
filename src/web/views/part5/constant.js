@@ -1,26 +1,26 @@
 export const options = [
   {
-    label: 'connect wallet',
-    desc: 'Choose a wallet and connect'
+    label: 'Connect wallet',
+    desc: 'Choose and connect a wallet'
   },
   {
-    label: 'click [join casino]',
+    label: 'Find casino',
     desc: 'to enter the casino code'
   },
   {
-    label: 'choose game',
+    label: 'Choose game',
     desc: 'Choose football, basketball, eSports events'
   },
   {
-    label: 'place a bet',
+    label: 'Place a bet',
     desc: 'Choose the market and bet amount, and bet within the limits'
   },
   {
-    label: 'send transaction',
+    label: 'Transaction sent',
     desc: 'Complete the betting transaction after waiting for the block to be confirmed'
   },
   {
-    label: 'bet wins',
+    label: 'Bets won',
     desc: 'The capital pool will automatically transfer USDT to the winning address through the smart contract'
   },
 ]

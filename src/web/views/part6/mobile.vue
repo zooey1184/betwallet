@@ -1,8 +1,12 @@
 <template>
   <div>
-    <div class="text-align-center mb-8">Betweb3 is expanding to more blockchain networks</div>
+    <div class="text-align-center mb-8">
+      Betweb3 is compatible with a range of disparate blockchains
+    </div>
     <div class="flex justify-center">
-      <div class="title-lg linear-color text-align-center">Multi-chain technology and scaling</div>
+      <div class="title-lg linear-color text-align-center">
+        Multi-chain technology and scalability
+      </div>
     </div>
   </div>
 
@@ -12,14 +16,14 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import Circle from '../../components/circle'
+import { defineComponent, ref } from "vue";
+import Circle from "../../components/circle";
 
 export default defineComponent({
   components: {
-    Circle
+    Circle,
   },
   props: {},
-  setup(props) {}
-})
+  setup(props) {},
+});
 </script>

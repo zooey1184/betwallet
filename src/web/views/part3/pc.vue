@@ -23,7 +23,7 @@
               :class="{ fadein: data.show[0] }"
               style="margin-bottom: 4px"
             >
-              Everyone can be the bookmaker!
+              Everyone could be a banker !
             </div>
             <!-- <div :class="{fadein: data.show[1]}" class="fadeout subTitle font-weight-600 mt-48 mb-32">USDT decentralized capital pool</div> -->
 
@@ -33,11 +33,12 @@
               style="margin-top: 6px; margin-bottom: 55px"
             >
               <div>
-                Anyone can freely add their own usdt pool. After adding, you will get a unique casino code and become a bookmaker. Players must use the casino code to find the corresponding usdt pool before betting.
+                Everyone can build their own USDT pool freely, you will get a
+                unique casino code and become a banker after building. Players
+                must type the code to find the corresponding USDT pool before
+                betting. You don't need to do anything else after building.
               </div>
-              <div class="mt-8">
-                After adding the usdt pool, you don't need to worry about anything else. Just go to the community and social media to invite your friends to participate in betting!
-              </div>
+              <div class="mt-8">Invite your friends to participate in.</div>
             </div>
 
             <!-- <div class="item fadeout" :class="{ fadein: data.show[3] }">
@@ -76,19 +77,25 @@
                 :class="{ fadein: data.show[0] }"
                 style="margin-bottom: 4px"
               >
-                Ubiquitous Token Rewards!
+                Token Rewards everywhere !
               </div>
               <div
                 :class="{ fadein: data.show[2] }"
                 class="fadeout grey"
                 style="margin-top: 6px; margin-bottom: 55px"
               >
-                <div>Whether you are building a USDT pool or participating in betting, you will be rewarded with Tokens</div>
-                <div class="mt-8">
-                  We will publish detailed rules in official channels to incentivize all behaviors involved in protocol interaction.
+                <div>
+                  You will get tokens rewards whether adding a USDT pool or
+                  participating in betting, it is for encouraging all the
+                  behaviors in the protocol interaction.
                 </div>
-                <div class="mt-8">Go ahead and build a USDT pool and invite friends to participate in betting</div>
-                <div class="mt-8">Of course, you can also find a USDT pool to participate in betting!</div>
+                <div class="mt-8">
+                  Detailed information will be launched soon.
+                </div>
+                <div class="mt-8">
+                  Build a USDT pool and invite friends to place bet or just find
+                  a pool to bet.
+                </div>
               </div>
             </div>
           </div>

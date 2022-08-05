@@ -7,20 +7,20 @@
             :class="{ fadein: data.show[1] }"
             class="fadeout title-lg pos-r linear-color text-align-center"
           >
-            Creating new sports betting experiences on Web3.0
+            New sports betting experiences on Web 3.0
           </h2>
         </div>
 
         <div class="fadeout" :class="{ fadein: data.show[2] }">
           <p class="text-align-center mt-24 desc line-height-24">
-            The Global Sports Betting Industry is Worth Over $250Bn, With the
-            advent of Web3, we try to decentralize Sports Betting.
+            The Global Sports Betting Market Worth more than $250 billion, We're
+            trying to build up a decentralized sports betting platform on web
+            3.0.
           </p>
           <p class="text-align-center desc line-height-24"></p>
           <p class="text-align-center desc line-height-24">
-            Anyone can become a banker of a gambling company through agreement,
-            and as a player,you only need to connect your wallet to bet with
-            USDT
+            Everyone could be a banker through the new protocol. And all you
+            need is to connect your wallet to bet with USDT if you are a player.
           </p>
         </div>
 

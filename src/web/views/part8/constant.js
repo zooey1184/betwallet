@@ -8,36 +8,36 @@ export const options = [
       // 'Sports betting platform V1 officially released, covering football, basketball and e-sports',
       // 'Token pledge officially launched',
       // 'Released on Binance Smart Chain, Polygon, Avalanche, Arwave, Solana'
-      'Officially release V1 version covering football basketball and E-sports',
-      'Sports Betting Platform Testnet Online',
-      'Complete contract audit',
+      'The Decentralized Sports Betting Protocol (V1) release',
+      'Football, basketball and e-sports covered.',
+      'The sports betting platform testnet launch.',
+      'Contract audit completed.'
     ]
   },
   {
     label: 'Q4 2022',
     value: 'q402',
     desc: [
-      'Launch the overall publicity plan of the world cup ',
-      'Launch AI bot developed in partnership with top sports betting data firm',
-      'Release on Binance Smart Chain, Polygon, Avalanche, Solana one after another',
-      'Launch Token Staking'
+      'World Cup publicity plan launch',
+      'AI bot developed in partnership with top sports betting data company release Token stake open on Binance Smart Chain, Polygon, Avalanche, Solana'
     ]
   },
   {
     label: 'Q1 2023',
     value: 'q103',
     desc: [
-      'Sports category expansion, horse racing，golf, tennis, darts, baseball, snooker, tennis, etc.',
-      'Expansion of entertainment methods such as lottery, blackjack, baccarat, and "Horse" machine',
-      'The exclusive community governance platform "Congress" is launched'
+      'Golf, tennis, darts, baseball, snooker, badminton, etc. covered.',
+      'Lottery, Blackjack, Baccarat, Slot added.',
+      'The exclusive community governance platform "Congress" launch.'
     ]
   },
   {
     label: 'Q2 2023',
     value: 'q203',
     desc: [
-      'Complete the upgrade of the sports betting game, add the play of Rolling Ball Game',
-      'Release the community governance plan officially',
+      'Sports betting method upgrade.',
+      'Roulette added.',
+      'Community governance plan release.'
     ]
   },
 ]

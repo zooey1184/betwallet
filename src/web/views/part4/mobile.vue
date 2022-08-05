@@ -1,67 +1,72 @@
 <template>
   <Wrap>
-    <template #default='data'>
+    <template #default="data">
       <div class="flex gutter_col justify-between">
-      
-        <div class="color-white" >
-          <transition name='slideBottom'>
-            <div class="linear-color mb-24 text-align-center title-lg">The core process of smart contract execution</div>
+        <div class="color-white">
+          <transition name="slideBottom">
+            <div class="linear-color mb-24 text-align-center title-lg">
+              Smart contract execution process
+            </div>
           </transition>
 
           <!-- <div style="height: 16.5vh;" class="bg-gray-30 mb-24"></div> -->
-          <img src="../../assets/part4_gif.gif" class="w-100p" alt="">
+          <img src="../../assets/part4_gif.gif" class="w-100p" alt="" />
 
-          <transition name='slideBottom'>
+          <transition name="slideBottom">
             <div class="grey mb-24">
-              <div>The decentralization of the workflow, from user betting, user compensation and other links to achieve decentralization; The event data results in-depth cooperation with Sportradar Group AG (NASDAQ: SRAD) and data delivery through Chainlink"</div>
+              <div>
+                Decentralization is achieved from user betting, user
+                compensation and other steps. The data is delivered through
+                Chainlink, and we are in-depth cooperation with Sportradar Group
+                AG (NASDAQ: SRAD) on the results of event data.
+              </div>
             </div>
           </transition>
-          <transition name='slideBottom'>
-            <div class="my-16 color-blue mb-24">Decentralization is the first premise of the project</div>
+          <transition name="slideBottom">
+            <div class="my-16 color-blue mb-24">
+              Decentralization is our premise
+            </div>
           </transition>
 
           <div class="flex items-center justify-between">
-            <transition name='slideBottom'>
+            <transition name="slideBottom">
               <div class="item">
-                <div><img src="../../assets/part4-1.png" alt=""></div>
-                <p class="ml-8">Fair</p>
+                <div><img src="../../assets/part4-1.png" alt="" /></div>
+                <p class="ml-8">Fairness</p>
               </div>
             </transition>
-            <transition name='slideBottom'>
+            <transition name="slideBottom">
               <div class="item">
-                <div><img src="../../assets/part4-2.png" alt=""></div>
-                <p class="ml-8">Just</p>
+                <div><img src="../../assets/part4-2.png" alt="" /></div>
+                <p class="ml-8">Justice</p>
               </div>
             </transition>
-            <transition name='slideBottom'>
+            <transition name="slideBottom">
               <div class="flex">
-                <div><img src="../../assets/part4-3.png" alt=""></div>
-                <p class="ml-8">Transparent</p>
+                <div><img src="../../assets/part4-3.png" alt="" /></div>
+                <p class="ml-8">Transparency</p>
               </div>
             </transition>
           </div>
         </div>
-        
       </div>
     </template>
   </Wrap>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import Wrap from '@/web/components/wrap'
-import MouseTrack from '@/web/components/mouse-track'
+import { defineComponent, ref } from "vue";
+import Wrap from "@/web/components/wrap";
+import MouseTrack from "@/web/components/mouse-track";
 
 export default defineComponent({
   components: {
     Wrap,
-    MouseTrack
+    MouseTrack,
   },
   props: {},
-  setup(props) {
-
-  }
-})
+  setup(props) {},
+});
 </script>
 
 <style lang="less" scoped>

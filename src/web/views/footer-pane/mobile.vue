@@ -2,7 +2,7 @@
   <div class="">
     <div class="">
       <div class="flex justify-center mb-16">
-        <img style="height: 24px" src="../../assets/footer-logo.png" alt="">
+        <img style="height: 24px" src="../../assets/footer-logo.png" alt="" />
       </div>
       <div class="text-align-center mb-16">
         ©2021 - Nesting - All Rights Reserved
@@ -10,23 +10,32 @@
     </div>
     <div class="flex items-center">
       <div class="flex items-center">
-        <a href='https://twitter.com/betweb3' target='_blank'>
-          <img class="icon cursor-pointer" src='../../assets/icon-t.png' alt="">
+        <a href="https://twitter.com/betweb3" target="_blank">
+          <img
+            class="icon cursor-pointer"
+            src="../../assets/icon-t.png"
+            alt=""
+          />
         </a>
-        <a href='https://medium.com/@betweb3official' target='_blank'>
-          <img class="icon" src='../../assets/icon-m.png' alt="">
+        <a href="https://medium.com/@betweb3official" target="_blank">
+          <img class="icon" src="../../assets/icon-m.png" alt="" />
         </a>
-        
-        <img class="icon" src="../../assets/icon-discord.png" alt="">
+
+        <img class="icon" src="../../assets/icon-discord.png" alt="" />
         <a href="https://curry-steven.gitbook.io/untitled/" target="_blank">
-          <img class="icon" src="../../assets/icon-g.png" alt="">
+          <img class="icon" src="../../assets/icon-g.png" alt="" />
         </a>
       </div>
       <div class="text cursor-pointer link">Disclaimers</div>
     </div>
   </div>
   <div style="margin-top: 26px" class="text-align-center gray-9 font-size-12">
-    indicative of future performance. Any investment in blockchain assets involves the risk of losing part or all of your investment. The value of your exchange’s blockchain assets is affected by market and other investment risks
+    Any investment in blockchain assets involves the risk of losing part or all
+    of your investment.
+  </div>
+  <div style="margin-top: 4px" class="text-align-center gray-9 font-size-12">
+    The value of your exchange’s blockchain assets is affected by market and
+    other investment risks.
   </div>
 </template>
 

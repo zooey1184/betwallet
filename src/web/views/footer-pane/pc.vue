@@ -1,40 +1,47 @@
 <template>
   <div class="flex items-center justify-between">
     <div class="flex items-center">
-      <img v-lazy='logo' alt="">
-      <div class="right">
-        ©2021 - Nesting - All Rights Reserved
-      </div>
+      <img v-lazy="logo" alt="" />
+      <div class="right">©2021 - Nesting - All Rights Reserved</div>
     </div>
     <div class="flex items-center">
       <div class="flex items-center">
-        <a href='https://twitter.com/betweb3' target='_blank'>
-          <img class="icon cursor-pointer" src='../../assets/icon-t.png' alt="">
+        <a href="https://twitter.com/betweb3" target="_blank">
+          <img
+            class="icon cursor-pointer"
+            src="../../assets/icon-t.png"
+            alt=""
+          />
         </a>
-        <a href='https://medium.com/@betweb3official' target='_blank'>
-          <img class="icon" src='../../assets/icon-m.png' alt="">
+        <a href="https://medium.com/@betweb3official" target="_blank">
+          <img class="icon" src="../../assets/icon-m.png" alt="" />
         </a>
-        
-        <img class="icon" src="../../assets/icon-discord.png" alt="">
+
+        <img class="icon" src="../../assets/icon-discord.png" alt="" />
         <a href="https://curry-steven.gitbook.io/untitled/" target="_blank">
-          <img class="icon" src="../../assets/icon-g.png" alt="">
+          <img class="icon" src="../../assets/icon-g.png" alt="" />
         </a>
       </div>
       <div class="text cursor-pointer link">Disclaimers</div>
     </div>
   </div>
   <div style="margin-top: 26px" class="text-align-center gray-9 font-size-12">
-    indicative of future performance. Any investment in blockchain assets involves the risk of losing part or all of your investment. The value of your exchange’s blockchain assets is affected by market and other investment risks
+    Any investment in blockchain assets involves the risk of losing part or all
+    of your investment.
+  </div>
+  <div style="margin-top: 4px" class="text-align-center gray-9 font-size-12">
+    The value of your exchange’s blockchain assets is affected by market and
+    other investment risks.
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import logo from '../../assets/footer-logo.png'
-import Icon_t from '../../assets/icon-t.png'
-import Icon_m from '../../assets/icon-m.png'
-import Icon_d from '../../assets/icon-discord.png'
-import Icon_g from '../../assets/icon-g.png'
+import { defineComponent, ref } from "vue";
+import logo from "../../assets/footer-logo.png";
+import Icon_t from "../../assets/icon-t.png";
+import Icon_m from "../../assets/icon-m.png";
+import Icon_d from "../../assets/icon-discord.png";
+import Icon_g from "../../assets/icon-g.png";
 export default defineComponent({
   components: {},
   props: {},
@@ -44,10 +51,10 @@ export default defineComponent({
       Icon_t,
       Icon_m,
       Icon_d,
-      Icon_g
-    }
-  }
-})
+      Icon_g,
+    };
+  },
+});
 </script>
 
 <style lang="less" scoped>

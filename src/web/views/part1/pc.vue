@@ -1,70 +1,92 @@
 <template>
-<Wrap>
-  <template #default='data'>
-    <div style="padding-top: 10vw; min-height: 85vh" class="box flex color-white justify-between">
-      <MouseTrack>
-        <img v-lazy='BgImg' class="bg_img" alt="">
-      </MouseTrack>
-      
-      <div style="z-index: 9; width: 48vw">
-        <div class="title-md fade-left" :class="{'fade-right': data.show[0]}">
-          <div class="title-md">
-            The Decentralized 
-            <span class="title-md linear-color">Sports Betting Protocol</span>
-          </div>
-        </div>
+  <Wrap>
+    <template #default="data">
+      <div
+        style="padding-top: 10vw; min-height: 85vh"
+        class="box flex color-white justify-between"
+      >
+        <MouseTrack>
+          <img v-lazy="BgImg" class="bg_img" alt="" />
+        </MouseTrack>
 
-        <div style="margin-top: 4vw">
-          <div :class="{'fade-right': data.show[1]}" class="fade-left linear-bg inline-block launch_btn launch_btn_act">Launch APP</div>
-        </div>
-        <div style="margin-top: 0.5vw">
-          <div :class="{'fade-right': data.show[2]}" class="fade-left color-blue inline-block launch_btn">No sign-up required</div>
-        </div>
-        <div :class="{'fade-right': data.show[3]}" class="fade-left flex mt-24 items-center">
-          <div class="gray desc">Audited by</div>
-          <div class="mx-16">
-            <img :src='Logo' class="logo" alt="">
+        <div style="z-index: 9; width: 48vw">
+          <div
+            class="title-md fade-left"
+            :class="{ 'fade-right': data.show[0] }"
+          >
+            <div class="title-md">
+              Decentralized
+              <span class="title-md linear-color">Sports Betting Protocol</span>
+            </div>
           </div>
-          <div class=" desc">and more</div>
+
+          <div style="margin-top: 4vw">
+            <div
+              :class="{ 'fade-right': data.show[1] }"
+              class="fade-left linear-bg inline-block launch_btn launch_btn_act"
+            >
+              Launch APP
+            </div>
+          </div>
+          <div style="margin-top: 0.5vw">
+            <div
+              :class="{ 'fade-right': data.show[2] }"
+              class="fade-left color-blue inline-block launch_btn"
+            >
+              No registration required
+            </div>
+          </div>
+          <div
+            :class="{ 'fade-right': data.show[3] }"
+            class="fade-left flex mt-24 items-center"
+          >
+            <div class="gray desc">Audited by</div>
+            <div class="mx-16">
+              <img :src="Logo" class="logo" alt="" />
+            </div>
+            <div class="desc">and more</div>
+          </div>
+        </div>
+        <div
+          style="width: 25vw; height: 28vw; top: 0"
+          class="pos-r overflow-hidden"
+        >
+          <FadeLogo />
         </div>
       </div>
-      <div style="width: 25vw; height: 28vw; top: 0" class="pos-r overflow-hidden">
-        <FadeLogo />
-      </div>
-    </div>
-  </template>
-</Wrap>
+    </template>
+  </Wrap>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import FadeLogo from '@/web/components/fade-logo'
-import Wrap from '@/web/components/wrap'
-import MouseTrack from '@/web/components/mouse-track'
-import BgImg from '../../assets/part1-bg.png'
-import Logo from '../../assets/logo.png'
+import { defineComponent, ref } from "vue";
+import FadeLogo from "@/web/components/fade-logo";
+import Wrap from "@/web/components/wrap";
+import MouseTrack from "@/web/components/mouse-track";
+import BgImg from "../../assets/part1-bg.png";
+import Logo from "../../assets/logo.png";
 
 export default defineComponent({
   components: {
     FadeLogo,
     Wrap,
-    MouseTrack
+    MouseTrack,
   },
   props: {},
   setup(props) {
     return {
       BgImg,
-      Logo
-    }
-  }
-})
+      Logo,
+    };
+  },
+});
 </script>
 
 <style lang="less" scoped>
 .bg_img {
   position: absolute;
   left: 7vw;
-  top: 1.8vw
+  top: 1.8vw;
 }
 .launch_btn {
   padding: 8px 0;
@@ -127,5 +149,4 @@ export default defineComponent({
     height: 33px;
   }
 }
-
 </style>

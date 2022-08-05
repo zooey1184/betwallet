@@ -11,10 +11,10 @@
           style="margin-bottom: 26px"
           class="inline-block linear-color title-lg"
         >
-          Road map
+          Roadmap
         </div>
         <div class="subTitle" style="margin-bottom: 12vh">
-          We are also working on ex、panding the Web3bet ecosystem.Stay tuned…
+          We are working on expanding the BetWeb3 ecosystem. Stay tuned.
         </div>
         <div class="flex items-center justify-around">
           <div

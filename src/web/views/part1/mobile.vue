@@ -1,61 +1,66 @@
 <template>
-<Wrap>
-  <template #default='data'>
-    <div style="min-height: 85vh; padding-bottom: 15vh; margin-top: 10vh" class="box color-white">
-      <div class="mb-32 mt-48">
-        <FadeLogo  />
-      </div>
-      <div style="z-index: 9;">
-        <img src="../../assets/part1-bg.png" class="bg_img" alt="">
-        <transition name='fade'>
-          <div class="title-md text-align-center" >
-            <div class="title-md">
-              The Decentralized 
-              <span class="title-md linear-color">Sports Betting Protocol</span>
+  <Wrap>
+    <template #default="data">
+      <div
+        style="min-height: 85vh; padding-bottom: 15vh; margin-top: 10vh"
+        class="box color-white"
+      >
+        <div class="mb-32 mt-48">
+          <FadeLogo />
+        </div>
+        <div style="z-index: 9">
+          <img src="../../assets/part1-bg.png" class="bg_img" alt="" />
+          <transition name="fade">
+            <div class="title-md text-align-center">
+              <div class="title-md">
+                Decentralized
+                <span class="title-md linear-color"
+                  >Sports Betting Protocol</span
+                >
+              </div>
             </div>
-          </div>
-        </transition>
+          </transition>
 
-        <div style="margin-top: 4vw; z-index: 9">
-          <transition name='slideLeft'>
-            <div class="linear-bg launch_btn launch_btn_act">Launch APP</div>
-          </transition>
-        </div>
-        <div style="margin-top: 0.5vw; z-index: 9">
-          <transition name='slideLeft'>
-            <div class="color-blue launch_btn">No sign-up required</div>
-          </transition>
-        </div>
-        <transition name='slideLeft'>
-          <div class="flex mt-24 justify-center items-center">
-            <div class="gray desc">Audited by</div>
-            <div class="mx-16">
-              <img src="../../assets/logo.png" class="logo" alt="">
-            </div>
-            <div class=" desc">and more</div>
+          <div style="margin-top: 4vw; z-index: 9">
+            <transition name="slideLeft">
+              <div class="linear-bg launch_btn launch_btn_act">Launch APP</div>
+            </transition>
           </div>
-        </transition>
+          <div style="margin-top: 0.5vw; z-index: 9">
+            <transition name="slideLeft">
+              <div class="color-blue launch_btn">No registration required</div>
+            </transition>
+          </div>
+          <transition name="slideLeft">
+            <div class="flex mt-24 justify-center items-center">
+              <div class="gray desc">Audited by</div>
+              <div class="mx-16">
+                <img src="../../assets/logo.png" class="logo" alt="" />
+              </div>
+              <div class="desc">and more</div>
+            </div>
+          </transition>
+        </div>
       </div>
-    </div>
-  </template>
-</Wrap>
+    </template>
+  </Wrap>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import FadeLogo from '@/web/components/fade-logo'
-import Wrap from '@/web/components/wrap'
-import MouseTrack from '@/web/components/mouse-track'
+import { defineComponent, ref } from "vue";
+import FadeLogo from "@/web/components/fade-logo";
+import Wrap from "@/web/components/wrap";
+import MouseTrack from "@/web/components/mouse-track";
 
 export default defineComponent({
   components: {
     FadeLogo,
     Wrap,
-    MouseTrack
+    MouseTrack,
   },
   props: {},
-  setup(props) {}
-})
+  setup(props) {},
+});
 </script>
 
 <style lang="less" scoped>
@@ -125,5 +130,4 @@ export default defineComponent({
     height: 33px;
   }
 }
-
 </style>

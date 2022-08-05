@@ -7,12 +7,11 @@
         <transition name="slideRight">
           <div>
             <div class="linear-color title-lg text-align-center">
-              Easy to use product
+              Easy to use
             </div>
             <div class="mt-24 desc mb-24">
-              Betweb3 uses blockchain technology to restore and optimize the
-              interactive experience of traditional sports betting platforms for
-              ease of use
+              While utilizing blockchain technology, BetWeb3 optimizes the
+              interactive experience of traditional sports betting platforms.
             </div>
             <!-- <div style="height: 16.5vh" class="bg-gray-30"></div> -->
             <div class="flex justify-center">
