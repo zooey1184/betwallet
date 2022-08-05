@@ -53,6 +53,9 @@
                 params: [item.market_id, item.bet_id]
               })
             }
+            if (e) {
+              console.log(e)
+            }
           })
         }
       }
