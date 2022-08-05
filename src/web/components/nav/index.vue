@@ -80,10 +80,10 @@ export default defineComponent({
           label: "Roadmap",
           value: "map",
         },
-        {
-          label: "Stake",
-          // value: "stake",
-        },
+        // {
+        //   label: "Stake",
+        //   // value: "stake",
+        // },
       ],
     },
     active: {
