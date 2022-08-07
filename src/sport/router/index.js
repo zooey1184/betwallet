@@ -17,7 +17,7 @@ const router = createRouter({
     {
       path: '/bet',
       name: 'bet',
-      component: () => import('@/bet/views/app.vue')
+      component: () => import('@/sport/views/bet')
     },
   ],
 })

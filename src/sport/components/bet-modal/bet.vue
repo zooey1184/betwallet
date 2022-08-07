@@ -129,17 +129,22 @@ export default defineComponent({
     const handleBetFn = () => {
       const list = handleGetParams();
       const params = list[0];
-      preCheck(params).then((res) => {
-        if (res) {
-          console.log("通过");
-        } else {
-          console.log("不通过");
-          console.log(CONTRACT.value.football_contract?.methods);
-          handleBet(params, (h, r, e) => {
-            if (r) {
-              message.success("下注成功");
-            }
-          });
+      // preCheck(params).then((res) => {
+      //   if (res) {
+      //     console.log("通过");
+      //   } else {
+      //     console.log("不通过");
+      //     console.log(CONTRACT.value.football_contract?.methods);
+      //     handleBet(params, (h, r, e) => {
+      //       if (r) {
+      //         message.success("下注成功");
+      //       }
+      //     });
+      //   }
+      // });
+      handleBet(params, (h, r, e) => {
+        if (r) {
+          message.success("下注成功");
         }
       });
     };

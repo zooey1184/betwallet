@@ -1,25 +1,27 @@
 <template>
-  <Content>
-    <template #headerExtra>
-      <!-- <=1200px 出现 -->
-      <div class="flex slide-h">
-        <div
-          v-for="item in getCompetitionName"
-          class="slider-h-wrap flex flex-col items-center justify-center"
-        >
+  <div class="px-24 py-16">
+    <Content>
+      <template #headerExtra>
+        <!-- <=1200px 出现 -->
+        <div class="flex slide-h">
           <div
-            class="logo bg-dark50 flex items-center overflow-hidden justify-center"
+            v-for="item in getCompetitionName"
+            class="slider-h-wrap flex flex-col items-center justify-center"
           >
-            <img src="../images/zyq0425/LIcon02.png" alt="" />
+            <div
+              class="logo bg-dark50 flex items-center overflow-hidden justify-center"
+            >
+              <img src="../images/zyq0425/LIcon02.png" alt="" />
+            </div>
+            <div class="ellipsis-1 grey text-align-center" :title="item.label">
+              {{ item.label }}
+            </div>
+            <div class="gray">{{ item.count }}</div>
           </div>
-          <div class="ellipsis-1 grey text-align-center" :title="item.label">
-            {{ item.label }}
-          </div>
-          <div class="gray">{{ item.count }}</div>
         </div>
-      </div>
-    </template>
-  </Content>
+      </template>
+    </Content>
+  </div>
 </template>
 
 <script>

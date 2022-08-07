@@ -34,10 +34,13 @@
               {{ time }}
             </div>
           </div>
+          <div v-else>{{ time }}</div>
         </div>
       </div>
     </div>
-    <div class="itemarrow" @click="handleDetail" v-if="count">+{{ count }}</div>
+    <div class="itemarrow active-color" @click="handleDetail" v-if="count">
+      +{{ count }}
+    </div>
     <RightOutlined
       class="itemarrow"
       @click="handleDetail"
@@ -126,7 +129,6 @@ export default defineComponent({
 .itemarrow {
   position: absolute;
   right: -12px;
-  color: #1890ff;
   font-size: 18px;
   font-weight: 600;
   height: 34px;

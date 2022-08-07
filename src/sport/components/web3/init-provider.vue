@@ -97,7 +97,7 @@ export default defineComponent({
       },
     });
 
-    const init = async () => {
+    const init = async (cb) => {
       if (typeof web3 !== "undefined") {
         web3 = new Web3(web3.currentProvider);
         const accounts = await ethereum.request({ method: "eth_accounts" });
@@ -124,6 +124,7 @@ export default defineComponent({
             window.localStorage.setItem("isLINK", "true");
             // TODO 获取余额
             handleGetEth(state.id);
+            cb && cb();
           }
         } else {
           console.log("未连接");
@@ -171,8 +172,7 @@ export default defineComponent({
       getBalanceOf(erc_contract, bet_address, "mWei").then((res) => {
         state.bet = res;
       });
-      getBalanceOf(erc_contract, usdt_address, "mWei").then((res) => {
-        console.log("usdt", res);
+      getBalanceOf(erc_contract, state.id, "mWei").then((res) => {
         state.usdt = res;
       });
     };
@@ -195,8 +195,10 @@ export default defineComponent({
     provide("CONTRACT", getCnotract);
 
     onMounted(() => {
-      init();
-      getWeb3Config();
+      init(() => {
+        getWeb3Config();
+      });
+
       // getBounsInfoFn();
     });
     return {

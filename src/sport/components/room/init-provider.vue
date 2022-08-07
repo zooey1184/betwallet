@@ -20,7 +20,7 @@ export default defineComponent({
     const state = reactive({
       code: undefined,
       otherCode: undefined,
-      roomAddress: undefined
+      roomAddress: undefined,
     });
     const ACCOUNTS = inject("ACCOUNTS");
 
@@ -28,12 +28,12 @@ export default defineComponent({
 
     const handleGetRoomAddress = (tenant) => {
       getRoomAddress({
-        tenant: tenant
-      }).then(res => {
-        console.log(res)
-        state.roomAddress = res
-      })
-    }
+        tenant: tenant,
+      }).then((res) => {
+        console.log(res);
+        state.roomAddress = res;
+      });
+    };
 
     const handleGetCode = () => {
       const n = getAccounts?.value;
@@ -42,9 +42,8 @@ export default defineComponent({
         queryTenant({ wallet: id }).then((res) => {
           state.code = res?.length ? res : "";
           if (state.code) {
-            handleGetRoomAddress(state.code)
+            handleGetRoomAddress(state.code);
           }
-          
         });
       }
     };
@@ -52,6 +51,17 @@ export default defineComponent({
       () => getAccounts?.value,
       (n) => {
         handleGetCode();
+      },
+      {
+        immediate: true,
+      }
+    );
+    watch(
+      () => state?.code,
+      (n) => {
+        if (state.code) {
+          handleGetRoomAddress(state.code);
+        }
       },
       {
         immediate: true,

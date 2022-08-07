@@ -1,17 +1,13 @@
 <template>
-  <img
-    class="bg"
-    src="https://s3.bmp.ovh/imgs/2022/07/10/ee03e78f6e28b99e.png"
-    alt=""
-  />
+  <div class="imgBg"></div>
   <div class="wrapPane">
     <TopPane :address="state.detail.address" :time="state.detail.startTime" />
     <VsPane
       v-if="state.detail.selections"
       :time="state.detail.startTime"
       :oddsId="state.detail.oddsId"
-      :homeInfo="state.detail?.selections?.find(item => item.type === 'home' )"
-      :awayInfo="state.detail?.selections?.find(item => item.type === 'away' )"
+      :homeInfo="state.detail?.selections?.find((item) => item.type === 'home')"
+      :awayInfo="state.detail?.selections?.find((item) => item.type === 'away')"
     />
 
     <div class="tab-pane" style="margin-top: 16px">
@@ -23,8 +19,12 @@
                 <Item
                   :name="item.name"
                   :oddsId="item.id"
-                  :homeInfo="item.selections?.find(item => item.type === 'home')"
-                  :awayInfo="item.selections?.find(item => item.type === 'away' )"
+                  :homeInfo="
+                    item.selections?.find((item) => item.type === 'home')
+                  "
+                  :awayInfo="
+                    item.selections?.find((item) => item.type === 'away')
+                  "
                 />
               </div>
             </template>
@@ -40,7 +40,14 @@
 </template>
 
 <script>
-import { ref, defineComponent, onMounted, onActivated, reactive, computed } from "vue";
+import {
+  ref,
+  defineComponent,
+  onMounted,
+  onActivated,
+  reactive,
+  computed,
+} from "vue";
 import TopPane from "./top-pane.vue";
 import VsPane from "./vs-pane.vue";
 import { Tabs } from "ant-design-vue";
@@ -111,18 +118,26 @@ export default defineComponent({
   object-fit: cover;
   object-position: center;
 }
-// .wrapPane {
-//   width: 80%;
-//   margin: 0 auto;
+.wrapPane {
+  // width: 80%;
+  // margin: 0 auto;
 
-//   @media (min-width: 960px) and (max-width: 1440px) {
-//     width: 90%;
-//   }
-//   @media (max-width: 960px) {
-//     width: 98%;
-//   }
-// }
-
+  // @media (min-width: 960px) and (max-width: 1440px) {
+  //   width: 90%;
+  // }
+  // @media (max-width: 960px) {
+  //   width: 98%;
+  // }
+  padding: 16px 24px;
+}
+.imgBg {
+  background: url("../../images/imgBg.png");
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 :deep(.tab-pane) .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
   color: transparent;
   background-image: linear-gradient(

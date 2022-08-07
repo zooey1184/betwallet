@@ -175,6 +175,5 @@ export default defineComponent({
   //   height: calc(100vh - 0.42rem);
   //   top: 0.42rem;
   // }
-  padding: 16px 24px;
 }
 </style>
