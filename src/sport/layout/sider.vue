@@ -11,7 +11,7 @@
     <div
       class="leftItem flex items-center justify-between"
       v-for="(item, index) in options"
-      :class="{ 'active-bg': state.active === item.value }"
+      :class="{ 'active-bg': COMPETITION_ACTIVE === item.value }"
       :style="{ width: collapse ? '40px' : '230px' }"
       @click="handlePick(item)"
     >
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive } from "vue";
+import { computed, defineComponent, inject, reactive } from "vue";
 
 export default defineComponent({
   components: {},
@@ -44,14 +44,20 @@ export default defineComponent({
       options: [],
       active: "",
     });
+    const COMPETITION = inject("COMPETITION");
+    const COMPETITION_ACTIVE = computed(() => COMPETITION.active.value);
 
     const handlePick = (e) => {
       state.active = e.value;
+      COMPETITION.setState({
+        active: e.value,
+      });
     };
 
     return {
       state,
       handlePick,
+      COMPETITION_ACTIVE,
     };
   },
 });

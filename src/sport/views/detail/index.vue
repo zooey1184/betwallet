@@ -137,17 +137,19 @@ export default defineComponent({
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: -1;
 }
 :deep(.tab-pane) .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-  color: transparent;
-  background-image: linear-gradient(
-    to right,
-    var(--primary-main),
-    var(--primary-sub)
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  // color: transparent;
+  // background-image: linear-gradient(
+  //   to right,
+  //   var(--primary-main),
+  //   var(--primary-sub)
+  // );
+  // background-clip: text;
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+  color: var(--primary-main);
 }
 :deep(.tab-pane) .ant-tabs-tab-btn {
   color: #fff;
@@ -155,11 +157,12 @@ export default defineComponent({
   font-weight: 600;
 }
 :deep(.tab-pane) .ant-tabs-ink-bar {
-  background-image: linear-gradient(
-    to right,
-    var(--primary-main),
-    var(--primary-sub)
-  );
+  // background-image: linear-gradient(
+  //   to right,
+  //   var(--primary-main),
+  //   var(--primary-sub)
+  // );
+  background: var(--primary-main);
   height: 4px;
 }
 </style>

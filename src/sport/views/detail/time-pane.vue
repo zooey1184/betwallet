@@ -4,17 +4,17 @@
     v-if="time.d >= 0 && time.h >= 0 && time.m >= 0"
   >
     <div class="time">
-      <div class="leftcolor time_title">{{ time.d }}</div>
+      <div class="active-color time_title">{{ time.d }}</div>
       <div class="time-desc">天</div>
     </div>
     <div class="spliteCode">:</div>
     <div class="time">
-      <div class="linear-color time_title">{{ time.h }}</div>
+      <div class="active-color time_title">{{ time.h }}</div>
       <div class="time-desc">小时</div>
     </div>
     <div class="spliteCode">:</div>
     <div class="time">
-      <div class="rightcolor time_title">{{ time.m }}</div>
+      <div class="active-color time_title">{{ time.m }}</div>
       <div class="time-desc">分钟</div>
     </div>
   </div>

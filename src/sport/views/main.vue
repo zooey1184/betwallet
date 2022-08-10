@@ -7,16 +7,26 @@
           <div
             v-for="item in getCompetitionName"
             class="slider-h-wrap flex flex-col items-center justify-center"
+            @click="handleSetActive(item)"
           >
             <div
               class="logo bg-dark50 flex items-center overflow-hidden justify-center"
             >
               <img src="../images/zyq0425/LIcon02.png" alt="" />
             </div>
-            <div class="ellipsis-1 grey text-align-center" :title="item.label">
+            <div
+              class="ellipsis-1 grey cursor-pointer text-align-center"
+              :class="{ 'active-color': COMPETITION_ACTIVE === item.value }"
+              :title="item.label"
+            >
               {{ item.label }}
             </div>
-            <div class="gray">{{ item.count }}</div>
+            <div
+              class="gray cursor-pointer"
+              :class="{ 'active-color': COMPETITION_ACTIVE === item.value }"
+            >
+              {{ item.count }}
+            </div>
           </div>
         </div>
       </template>
@@ -37,9 +47,18 @@ export default defineComponent({
     const COMPETITION_NAME = inject("COMPETITION_NAME", {
       value: [],
     });
+    const COMPETITION = inject("COMPETITION");
+    const COMPETITION_ACTIVE = computed(() => COMPETITION.active.value);
+    const handleSetActive = (item) => {
+      COMPETITION.setState({
+        active: item.value,
+      });
+    };
     const getCompetitionName = computed(() => COMPETITION_NAME.value);
     return {
       getCompetitionName,
+      handleSetActive,
+      COMPETITION_ACTIVE,
     };
   },
 });

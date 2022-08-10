@@ -11,7 +11,7 @@ import {
   computed,
   watch,
 } from "vue";
-import { getBetList } from "@/sport/api/index";
+import { getBetList, getAllBetList } from "@/sport/api/index";
 
 export default defineComponent({
   components: {},
@@ -21,8 +21,10 @@ export default defineComponent({
       resultList: [],
       totalWin: 0,
       totalBet: 0,
+      allBetList: [],
     });
     const ACCOUNTS = inject("ACCOUNTS");
+    const ROOM = inject("ROOM");
     const walletAddress = computed(() => ACCOUNTS?.accounts?.value?.[0]);
     const handleGetBetList = () => {
       if (walletAddress?.value) {
@@ -41,6 +43,20 @@ export default defineComponent({
 
           state.totalWin = win.reduce((pre, next) => pre + next, 0);
           state.totalBet = bet.reduce((pre, next) => pre + next, 0);
+        });
+
+        handleGetAllBetList();
+      }
+    };
+
+    const handleGetAllBetList = () => {
+      const roomAddress = ROOM.roomAddress.value;
+      console.log(walletAddress?.value === roomAddress);
+      if (walletAddress?.value === roomAddress) {
+        getAllBetList({
+          wallet: "0xF873Ad938E8041C9c39f8A8DFd3505528240C302",
+        }).then((res) => {
+          state.allBetList = res;
         });
       }
     };
@@ -71,12 +87,14 @@ export default defineComponent({
       () => parseFloat((getTotalWin.value / getTotalbet.value)?.toFixed(2)) || 0
     );
 
+    const getAllBetListC = computed(() => state.allBetList);
     provide("RESULT", {
       resultList: getResultList,
       handleGetResultList: handleGetBetList,
       totalBet: getTotalbet,
       totalWin: getTotalWin,
       winRate: getWinRate,
+      allBetList: getAllBetListC,
     });
     return {
       state,

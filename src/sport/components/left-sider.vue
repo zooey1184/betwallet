@@ -15,7 +15,7 @@
         <a
           href="javascript:;"
           class="LeftUla flexC"
-          :class="{ on: state.active === item.value }"
+          :class="{ on: COMPETITION_ACTIVE === item.value }"
         >
           <i class="LeftI" :class="item.icon"></i>
           <p :title="item.label">{{ item.label }}</p>
@@ -75,6 +75,9 @@ export default defineComponent({
       height: "calc(100vh - 160px)",
     });
 
+    const COMPETITION = inject("COMPETITION");
+    const COMPETITION_ACTIVE = computed(() => COMPETITION.active.value);
+
     watch(
       () => props.active,
       (n) => {
@@ -103,8 +106,11 @@ export default defineComponent({
 
     const handlePickItem = (item) => {
       state.active = item.value;
+      console.log(item);
       const _router = router.currentRoute.value;
-      console.log(_router);
+      COMPETITION.setState({
+        active: item.value,
+      });
       if (_router.name !== "main") {
         router.push({
           name: "main",
@@ -115,6 +121,7 @@ export default defineComponent({
     return {
       state,
       handlePickItem,
+      COMPETITION_ACTIVE,
       handleToggleVisible,
     };
   },

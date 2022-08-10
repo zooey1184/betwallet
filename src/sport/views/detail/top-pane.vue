@@ -23,8 +23,8 @@
         </div>
       </div>
     </div>
-    <div class="info linear-color">报注信息</div>
-    <div class="linear-bg shadow"></div>
+    <div class="info active-color">报注信息</div>
+    <div class="active-bg shadow"></div>
   </div>
 </template>
 
@@ -99,11 +99,7 @@ export default defineComponent({
       width: 100%;
       height: 6px;
       left: 0;
-      background-image: linear-gradient(
-        to right,
-        var(--primary-main),
-        var(--primary-sub)
-      );
+      background: var(--primary-main);
     }
   }
   .gutter {

@@ -35,8 +35,8 @@
         v-if="!isMineRoom"
         >SWITCH</span
       > -->
-      <span class="mx-8">|</span>
-      <span class="cursor-pointer" @click="handleSwitch"
+      <span class="mx-8" v-if="!isMineRoom">|</span>
+      <span class="cursor-pointer" v-if="!isMineRoom" @click="handleSwitch"
         >SWITCH<QuestionCircleOutlined
       /></span>
     </div>

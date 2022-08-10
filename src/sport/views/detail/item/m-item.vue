@@ -101,8 +101,8 @@ export default defineComponent({
 .itemWrap {
   color: #fff;
   padding: 12px;
-  background-color: #1b222c;
-  border: 2px solid #1b222c;
+  background-color: #16162f;
+  border: 2px solid #16162f;
   border-radius: 8px;
   box-shadow: 12px 12px 10px 2px rgb(0 0 0 / 30%);
   min-height: 40px;

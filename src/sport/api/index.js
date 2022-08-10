@@ -64,3 +64,8 @@ export const getRoomAddress = async(data) => {
 export const getBetList = async(data) => {
   return await http.get(`${HOST}/v2/query/myBetList`, {data})
 }
+
+// allBetList
+export const getAllBetList = async(data) => {
+  return await http.get(`${HOST}/v2/query/allBetList`, {data})
+}

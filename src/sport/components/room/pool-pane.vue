@@ -41,18 +41,57 @@
       <div
         class="content scrollbar overflow-auto bg"
         style="padding: 16px 24px"
+        v-if="state.active === '0'"
       >
-        <div class="color-white3 f5 font-size-14 mb-24" v-for="item in 10">
+        <div
+          class="color-white3 f5 font-size-14 mb-24"
+          v-for="item in getAllBetList.pending"
+        >
           <div class="flex items-center">
             <div style="width: 30%">USER: 12***</div>
             <div style="width: 20%" class="text-align-center">07.21</div>
-            <div style="width: 20%" class="text-align-right">5:00AM</div>
-            <div style="width: 30%" class="text-align-right">EDG VS LGD</div>
+            <!-- <div style="width: 20%" class="text-align-right">5:00AM</div> -->
+            <div style="width: 50%" class="text-align-right flex items-center">
+              <div class="item">{{ getVsInfo(item).home.name }}</div>
+              <div style="margin: 0 4px" class="gray-9">vs</div>
+              <div class="item text-align-right">
+                {{ getVsInfo(item).away.name }}
+              </div>
+            </div>
           </div>
 
           <div class="flex items-center justify-between">
             <div>EDG 1.07</div>
-            <div>BETTING AMOUNT:800USDT</div>
+            <div>BETTING AMOUNT:{{ item.bet_amount }}USDT</div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="content scrollbar overflow-auto bg"
+        style="padding: 16px 24px"
+        v-if="state.active === '1'"
+      >
+        <div
+          class="color-white3 f5 font-size-14 mb-24"
+          v-for="item in getAllBetList.history"
+        >
+          <div class="flex items-center">
+            <div style="width: 30%">USER: 12***</div>
+            <div style="width: 20%" class="text-align-center">07.21</div>
+            <!-- <div style="width: 20%" class="text-align-right">5:00AM</div> -->
+            <div style="width: 50%" class="text-align-right flex items-center">
+              <div class="item">{{ getVsInfo(item).home.name }}</div>
+              <div style="margin: 0 2px" class="gray-9">vs</div>
+              <div class="item text-align-right">
+                {{ getVsInfo(item).away.name }}
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <div>EDG 1.07</div>
+            <div>BETTING AMOUNT:{{ item.bet_amount }}USDT</div>
           </div>
         </div>
       </div>
@@ -65,7 +104,7 @@
 </template>
 
 <script>
-import { reactive, defineComponent } from "vue";
+import { reactive, defineComponent, inject, computed } from "vue";
 import { QuestionCircleOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 import Circle from "./circle.vue";
 import { message, Spin } from "ant-design-vue";
@@ -84,6 +123,27 @@ export default defineComponent({
       active: "0",
     });
 
+    const RESULT = inject("RESULT");
+    const getAllBetList = computed(() => {
+      const pending = RESULT.allBetList.value?.filter(
+        (item) => !item.isSettled
+      );
+      const history = RESULT.allBetList.value?.filter((item) => item.isSettled);
+      return {
+        pending,
+        history,
+      };
+    });
+
+    const getVsInfo = (info) => {
+      const selections = info.selections;
+      const home = selections.find((item) => item.type === "home");
+      const away = selections.find((item) => item.type === "away");
+      return {
+        home,
+        away,
+      };
+    };
     const handlePick = (e) => {
       state.active = e;
     };
@@ -105,6 +165,8 @@ export default defineComponent({
       handlePick,
       getLoading,
       handleStopPool,
+      getAllBetList,
+      getVsInfo,
     };
   },
 });
@@ -144,5 +206,12 @@ export default defineComponent({
   &:hover {
     color: #ffbdbd;
   }
+}
+.item {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 14px;
+  width: 80px;
 }
 </style>
