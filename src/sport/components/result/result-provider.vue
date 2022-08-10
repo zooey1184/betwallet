@@ -67,8 +67,8 @@ export default defineComponent({
     const getResultList = computed(() => state.resultList);
     const getTotalbet = computed(() => state.totalBet);
     const getTotalWin = computed(() => state.totalWin);
-    const getWinRate = computed(() =>
-      parseFloat((getTotalWin.value / getTotalbet.value)?.toFixed(2))
+    const getWinRate = computed(
+      () => parseFloat((getTotalWin.value / getTotalbet.value)?.toFixed(2)) || 0
     );
 
     provide("RESULT", {

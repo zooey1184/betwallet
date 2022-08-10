@@ -3,7 +3,7 @@
     <LeftOutlined
       class="primary"
       style="font-size: 24px; font-weight: 600"
-      @click="$router.back()"
+      @click="handleGoBack"
     />
     <div class="logo" style="margin-left: 8px"></div>
   </div>
@@ -32,6 +32,7 @@
 import { ref, defineComponent, computed } from "vue";
 import { LeftOutlined } from "@ant-design/icons-vue";
 import dayjs from "dayjs";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   components: {
@@ -49,10 +50,15 @@ export default defineComponent({
     const getTime = computed(() => {
       return props.time ? dayjs(props.time).format("MM-DD HH:mm") : undefined;
     });
+    const router = useRouter();
+    const handleGoBack = () => {
+      router.back();
+    };
     // const {state, showTime} = useTime()
 
     return {
       getTime,
+      handleGoBack,
       // state, showTime
     };
   },

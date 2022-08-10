@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <Spin :spinning="state.loading">
     <div
       class="active-color mt-24 f4 font-size-20 font-weight-600 text-align-center"
     >
@@ -59,26 +59,32 @@
       SLIPPAGE BEYOND ITS RANGE
     </div>
     <div class="confirmBtn" @click="handleBetFn">PLACE BET</div>
-  </div>
+  </Spin>
 </template>
 
 <script>
 import { computed, defineComponent, inject, reactive } from "vue";
 import { preCheck } from "@/sport/api/index";
 import { useBet } from "@/sport/hooks/use-methods";
-import { message } from "ant-design-vue";
+import { message, Spin } from "ant-design-vue";
 
 export default defineComponent({
-  components: {},
+  components: {
+    Spin,
+  },
   props: {},
   setup(props) {
-    const state = reactive({});
+    const state = reactive({
+      loading: false,
+    });
     const CONTRACT = inject("CONTRACT");
     const SPORT_BET = inject("SPORT_BET");
     const ROOM = inject("ROOM");
 
     const getBetInfo = computed(() => SPORT_BET.getMyBetInfo?.value);
+    const getBetConfig = computed(() => SPORT_BET.getBetConfig?.value);
     const getBetList = computed(() => getBetInfo?.value?.data);
+    const RESULT = inject("RESULT");
 
     const handleGetParams = () => {
       const getMyBetInfo = getBetInfo.value;
@@ -88,20 +94,19 @@ export default defineComponent({
       const _list = [];
       list.forEach((item) => {
         const AMOUNT = web3.utils.toWei(`${item.betValue}`, "mwei");
-        console.log(ROOM?.roomAddress?.value);
+
+        const tolerance = getBetConfig?.value?.tolerance || 0;
+        const minOdds = parseInt(item.activeValue * (100 - tolerance));
         _list.push({
           marketId: item.oddsId,
           tenant: ROOM?.code?.value,
           amount: AMOUNT,
           betSide: item.active === "home" ? 0 : item.active === "away" ? 1 : 2,
-          minOdds: item.activeValue * (100 - 20), // (当前赔率*(100-滑点))
+          minOdds: minOdds, // (当前赔率*(100-滑点))
         });
       });
       return _list;
     };
-    const getBetConfig = computed(() => {
-      return SPORT_BET.getBetConfig.value;
-    });
 
     const getMinMax = computed(() => {
       const t = getBetConfig.value.tolerance;
@@ -129,22 +134,35 @@ export default defineComponent({
     const handleBetFn = () => {
       const list = handleGetParams();
       const params = list[0];
-      // preCheck(params).then((res) => {
-      //   if (res) {
-      //     console.log("通过");
-      //   } else {
-      //     console.log("不通过");
-      //     console.log(CONTRACT.value.football_contract?.methods);
-      //     handleBet(params, (h, r, e) => {
-      //       if (r) {
-      //         message.success("下注成功");
-      //       }
-      //     });
-      //   }
-      // });
-      handleBet(params, (h, r, e) => {
-        if (r) {
-          message.success("下注成功");
+      state.loading = true;
+      preCheck({
+        tenant: params.tenant,
+        amount: params.amount,
+        odds: params.minOdds,
+      }).then((res) => {
+        if (res) {
+          handleBet(params, (h, r, e) => {
+            if (r) {
+              message.success("BET SUCCESS");
+              setTimeout(() => {
+                SPORT_BET.clear();
+                RESULT.handleGetResultList();
+                state.loading = false;
+              });
+            }
+            if (e) {
+              state.loading = false;
+            }
+          });
+        } else {
+          message.warning("下注校验未通过, 请稍后再试");
+          state.loading = false;
+          // console.log(CONTRACT.value.football_contract?.methods);
+          // handleBet(params, (h, r, e) => {
+          //   if (r) {
+          //     message.success("下注成功");
+          //   }
+          // });
         }
       });
     };

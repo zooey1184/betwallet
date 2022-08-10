@@ -1,13 +1,36 @@
 <template>
   <div class="wrap primary-bg">
     <div class="win-logo ff" v-if="info.win_amount > 0">WIN</div>
-
-    <div>bet : {{ info.bet_amount }}</div>
+    <div class="bet-item-header flex items-center">
+      <div class="betItemIcon">
+        <div class="animat-circle"></div>
+      </div>
+      <div class="bet-item-title flex items-center">
+        <div class="bet-item-left item" :title="getTeamInfo.home.name">
+          {{ getTeamInfo.home.name }}
+        </div>
+        <span style="margin: 0 2px; line-height: 14px">vs</span>
+        <div class="bet-item-right item" :title="getTeamInfo.away.name">
+          {{ getTeamInfo.away.name }}
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="ff font-size-18">
+        {{ getTeamInfo.win.name }}
+      </div>
+      <div class="flex items-center justify-between">
+        <div>Bet Amount</div>
+        <div class="flex items-center">
+          <img src="../../images/v2/coin-icon-grey.png" alt="" />
+          {{ info.bet_amount }}
+        </div>
+      </div>
+    </div>
     <div class="flex">
       <div>odds : {{ info.odds }}</div>
-      <div class="ml-8">score : {{ info.score }}</div>
     </div>
-    <div>Amount: {{ info.win_amount }}</div>
+    <div v-if="info.win_amount">Amount: {{ info.win_amount }}</div>
 
     <div
       v-if="info.win_amount > 0 && info.is_claimed === '0'"
@@ -20,7 +43,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive } from "vue";
+import { computed, defineComponent, reactive } from "vue";
 import useMethods from "@/sport/hooks/use-claim";
 import usePermission from "@/sport/hooks/use-methods";
 import { message } from "ant-design-vue";
@@ -37,6 +60,19 @@ export default defineComponent({
     const { handleMethods } = useMethods();
 
     const { getPermission, hasPermission } = usePermission();
+
+    const getTeamInfo = computed(() => {
+      const list = props.info?.selections;
+
+      const home = list?.find((item) => item.type === "home") || {};
+      const away = list?.find((item) => item.type === "away") || {};
+      const win = list?.find((item) => item.odds === props.info.odds) || {};
+      return {
+        home,
+        away,
+        win,
+      };
+    });
 
     const handleClaim = async (item) => {
       const _hasPermission = await hasPermission();
@@ -56,6 +92,7 @@ export default defineComponent({
     return {
       state,
       handleClaim,
+      getTeamInfo,
     };
   },
 });
@@ -96,5 +133,68 @@ export default defineComponent({
   &:hover {
     opacity: 0.8;
   }
+}
+
+.animat-circle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 10px;
+  background: rgba(234, 54, 54, 0.329);
+  border: 1px solid #c40404;
+  animation: bonce 2s linear 100ms infinite;
+  bottom: -2px;
+  right: -2px;
+}
+@keyframes bonce {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+.bet-wrap {
+  margin: 4px;
+  background: #1b222c;
+  padding: 8px;
+  border-radius: 8px;
+  color: #6d819c;
+  font-size: 13px;
+}
+.betItemIcon {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  margin-right: 8px;
+  background: #303b47;
+  position: relative;
+}
+.bet-item-title {
+  width: 76%;
+}
+.title {
+  font-size: 14px;
+  margin-top: 4px;
+  color: #fff;
+}
+.desc {
+  font-size: 13px;
+}
+.item {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 14px;
+  width: 60px;
+  font-size: 12px;
+}
+.input-title {
+  color: #16bdf9;
+  font-size: 14px;
+  font-weight: 600;
 }
 </style>

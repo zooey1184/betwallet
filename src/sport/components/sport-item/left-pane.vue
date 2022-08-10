@@ -42,7 +42,7 @@
       +{{ count }}
     </div>
     <RightOutlined
-      class="itemarrow"
+      class="itemarrow active-color"
       @click="handleDetail"
       style="padding-top: 12px"
       v-else

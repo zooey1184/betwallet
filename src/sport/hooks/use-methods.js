@@ -148,7 +148,7 @@ export const useBet = () => {
     .on('receipt', (r) => {
       setTimeout(() => {
         state.loading = false
-        message.success('Successfully linked')
+        // message.success('Successfully linked')
         callback && callback(null, r, null)
       }, 200)
     })

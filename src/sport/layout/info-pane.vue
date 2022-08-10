@@ -95,7 +95,7 @@
               stroke-color="#ff0083"
               trailColor="#3b3b5b"
               :strokeWidth="5"
-              :percent="state.percent"
+              :percent="getWinRate"
               :format="() => ''"
               :width="80"
             ></Progress>
@@ -109,7 +109,7 @@
                 alt=""
               />
               <p class="font-size-12 text-align-center active-color">
-                {{ state.percent }}%
+                {{ getWinRate }}%
               </p>
             </div>
           </div>
@@ -276,6 +276,7 @@ export default defineComponent({
 
     const getTotalBet = computed(() => RESULT?.totalBet?.value || 0);
     const getTotalWin = computed(() => RESULT?.totalWin?.value || 0);
+    const getWinRate = computed(() => RESULT.winRate?.value);
 
     return {
       state,
@@ -286,6 +287,7 @@ export default defineComponent({
       getUsdt,
       getTotalBet,
       getTotalWin,
+      getWinRate,
     };
   },
 });

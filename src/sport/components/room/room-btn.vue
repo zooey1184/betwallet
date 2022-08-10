@@ -5,7 +5,7 @@
 
   <div class="start ml-24" v-if="isLink">
     <div v-if="getCode" class="flex items-center">
-      <Icon>
+      <Icon v-if="isMineRoom">
         <template #component="svgProps">
           <svg
             t="1659105446797"
@@ -25,12 +25,20 @@
           </svg>
         </template>
       </Icon>
-      <span @click="handleCloseCasino">{{ getCode }}</span>
-      <Copy :text="getCode" id="room" />
-      <!-- <span class="mx-8">|</span>
+      <span class="ff" v-else>ROOM: </span>
+      <span @click="handleCloseCasino" class="ff">{{ getCode }}</span>
+      <Copy :text="getCode" id="room" v-if="isMineRoom" />
+      <!-- <span class="color-grey" style="padding: 2px">|</span>
+      <span
+        class="ff cursor-pointer"
+        @click="handleChangeRoom"
+        v-if="!isMineRoom"
+        >SWITCH</span
+      > -->
+      <span class="mx-8">|</span>
       <span class="cursor-pointer" @click="handleSwitch"
         >SWITCH<QuestionCircleOutlined
-      /></span> -->
+      /></span>
     </div>
 
     <div v-else @click="handleInRoom">JOIN ROOM</div>
@@ -135,6 +143,12 @@ export default defineComponent({
       ROOM.handleGetCode();
     };
 
+    const isMineRoom = computed(() => {
+      const roomAddress = ROOM.roomAddress.value;
+      const id = ACCOUNTS.accounts.value[0];
+      return id === roomAddress;
+    });
+
     const handleCloseCasino = () => {
       const roomAddress = ROOM.roomAddress.value;
       const id = ACCOUNTS.accounts.value[0];
@@ -144,6 +158,8 @@ export default defineComponent({
         state.visible = true;
       }
     };
+
+    const handleChangeRoom = () => {};
 
     const testfn = () => {
       state.status = "confirmCreate";
@@ -162,6 +178,7 @@ export default defineComponent({
       handleClose,
       handleNextConfirmCreate,
       handleCloseCasino,
+      isMineRoom,
     };
   },
 });

@@ -5,18 +5,30 @@
     </div>
     <div>
       <div>{{ address }}</div>
-      <div class="progress primary-dark-bg">
-        <div class="active-bg insetP">100/1000</div>
+      <div class="pos-r">
+        <Progress
+          :percent="getWinRate"
+          :strokeWidth="15"
+          strokeColor="#ff0083"
+          trailColor="#3b3b5b"
+          :show-info="false"
+        />
+        <div class="insetP">{{ getTotalWin }}/{{ getTotalBet }}</div>
       </div>
+      <!-- <div class="progress primary-dark-bg">
+        <div class="active-bg insetP">{{ getTotalWin }}/{{ getTotalBet }}</div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, reactive } from "vue";
-
+import { defineComponent, inject, reactive, computed } from "vue";
+import { Progress } from "ant-design-vue";
 export default defineComponent({
-  components: {},
+  components: {
+    Progress,
+  },
   props: {
     address: {
       type: String,
@@ -26,12 +38,20 @@ export default defineComponent({
   emits: ["info"],
   setup(props, { emit }) {
     const state = reactive({});
+    const RESULT = inject("RESULT");
+
+    const getTotalBet = computed(() => RESULT?.totalBet?.value || 0);
+    const getTotalWin = computed(() => RESULT?.totalWin?.value || 0);
+    const getWinRate = computed(() => RESULT.winRate?.value);
 
     const handleShowInfo = () => {
       emit("info");
     };
     return {
       state,
+      getTotalBet,
+      getTotalWin,
+      getWinRate,
       handleShowInfo,
     };
   },
@@ -59,5 +79,8 @@ export default defineComponent({
   line-height: 16px;
   border-radius: 10px;
   padding: 0 4px;
+  font-size: 12px;
+  line-height: 12px;
+  top: 6px;
 }
 </style>
