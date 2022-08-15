@@ -1,6 +1,7 @@
 <template>
   <div class="wrap primary-bg">
-    <div class="win-logo ff" v-if="info.win_amount > 0">WIN</div>
+    <div class="win-logo ff active-color" v-if="info.win_amount > 0">WIN</div>
+    <div class="win-logo ff" v-if="info.win_amount < 0">LOSE</div>
     <div class="bet-item-header flex items-center">
       <div class="betItemIcon">
         <div class="animat-circle"></div>
@@ -66,7 +67,10 @@ export default defineComponent({
 
       const home = list?.find((item) => item.type === "home") || {};
       const away = list?.find((item) => item.type === "away") || {};
-      const win = list?.find((item) => item.odds === props.info.odds) || {};
+      const bet_side = props.info.bet_side;
+      // const side = bet_side === '0' ? 'home' : bet_side === '1' : 'away' : 'draw'
+      const win =
+        bet_side === "0" ? home : bet_side === "1" ? away : { name: "DRAW" };
       return {
         home,
         away,
@@ -107,19 +111,22 @@ export default defineComponent({
   // height: 136px;
 }
 .win-logo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50px;
-  font-size: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgb(197, 39, 150);
-  border: 2px solid #999;
-  transform: rotate(-40deg);
+  // width: 80px;
+  // height: 80px;
+  // border-radius: 50px;
+  // font-size: 30px;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // color: rgb(197, 39, 150);
+  // border: 2px solid #999;
+  // transform: rotate(-40deg);
+  // position: absolute;
+  // right: -10px;
+  // top: -20px;
   position: absolute;
-  right: -10px;
-  top: -20px;
+  right: 10px;
+  right: 8px;
 }
 .itembtn {
   width: 80px;

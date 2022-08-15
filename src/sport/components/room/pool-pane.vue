@@ -7,8 +7,7 @@
       AMOUNT OF THE USDT POOL
     </div>
     <div
-      class="flex justify-center f5 mt-8 font-weight-600 active-color"
-      style="font-size: 48px"
+      class="flex justify-center f5 mt-8 font-weight-600 active-color amount"
     >
       $10000 USDT
     </div>
@@ -48,8 +47,8 @@
           v-for="item in getAllBetList.pending"
         >
           <div class="flex items-center">
-            <div style="width: 30%">USER: 12***</div>
-            <div style="width: 20%" class="text-align-center">07.21</div>
+            <div style="width: 50%">USER: {{ getUser(item) }}</div>
+            <!-- <div style="width: 20%" class="text-align-center">07.21</div> -->
             <!-- <div style="width: 20%" class="text-align-right">5:00AM</div> -->
             <div style="width: 50%" class="text-align-right flex items-center">
               <div class="item">{{ getVsInfo(item).home.name }}</div>
@@ -61,8 +60,20 @@
           </div>
 
           <div class="flex items-center justify-between">
-            <div>EDG 1.07</div>
-            <div>BETTING AMOUNT:{{ item.bet_amount }}USDT</div>
+            <div class="ellipsis-1" style="max-width: 130px">
+              {{ getVsInfo(item).win.name }} {{ item.odds }}
+            </div>
+            <div class="flex items-center">
+              <span class="sm-hide">BETTING AMOUNT:</span>
+              <span class="flex items-center flex-1">
+                <img
+                  class="mx-8"
+                  src="../../images/v2/coin-icon-red.png"
+                  alt=""
+                />
+                {{ item.bet_amount }}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -77,8 +88,8 @@
           v-for="item in getAllBetList.history"
         >
           <div class="flex items-center">
-            <div style="width: 30%">USER: 12***</div>
-            <div style="width: 20%" class="text-align-center">07.21</div>
+            <div style="width: 50%">USER: {{ getUser(item) }}</div>
+            <!-- <div style="width: 20%" class="text-align-center">07.21</div> -->
             <!-- <div style="width: 20%" class="text-align-right">5:00AM</div> -->
             <div style="width: 50%" class="text-align-right flex items-center">
               <div class="item">{{ getVsInfo(item).home.name }}</div>
@@ -90,8 +101,20 @@
           </div>
 
           <div class="flex items-center justify-between">
-            <div>EDG 1.07</div>
-            <div>BETTING AMOUNT:{{ item.bet_amount }}USDT</div>
+            <div class="ellipsis-1" style="max-width: 130px">
+              {{ getVsInfo(item).win.name }} {{ item.odds }}
+            </div>
+            <div class="flex items-center">
+              <span class="sm-hide">BETTING AMOUNT:</span>
+              <span class="flex items-center">
+                <img
+                  class="mx-8"
+                  src="../../images/v2/coin-icon-red.png"
+                  alt=""
+                />
+                {{ item.bet_amount }}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -139,10 +162,22 @@ export default defineComponent({
       const selections = info.selections;
       const home = selections.find((item) => item.type === "home");
       const away = selections.find((item) => item.type === "away");
+      const win =
+        info.bet_side === "0"
+          ? home
+          : info.bet_side === "1"
+          ? away
+          : { name: "DRAW" };
       return {
         home,
         away,
+        win,
       };
+    };
+
+    const getUser = (info) => {
+      const user = info.user;
+      return user?.substr(0, 3) + "**" + user?.substr(-3);
     };
     const handlePick = (e) => {
       state.active = e;
@@ -167,6 +202,7 @@ export default defineComponent({
       handleStopPool,
       getAllBetList,
       getVsInfo,
+      getUser,
     };
   },
 });
@@ -203,9 +239,9 @@ export default defineComponent({
 }
 .color-white3 {
   color: #f9f9f9;
-  &:hover {
-    color: #ffbdbd;
-  }
+  // &:hover {
+  //   color: #ffbdbd;
+  // }
 }
 .item {
   overflow: hidden;
@@ -213,5 +249,17 @@ export default defineComponent({
   text-overflow: ellipsis;
   line-height: 14px;
   width: 80px;
+}
+.amount {
+  font-size: 48px;
+  @media screen and(max-width: 700px) {
+    font-size: 32px;
+  }
+}
+.sm-hide {
+  display: flex;
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 }
 </style>

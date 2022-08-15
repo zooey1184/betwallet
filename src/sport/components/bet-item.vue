@@ -1,5 +1,5 @@
 <template>
-  <div class="bet-wrap">
+  <div class="bet-wrap primary-bg">
     <div class="bet-item-header flex items-center">
       <div class="betItemIcon">
         <div class="animat-circle"></div>
@@ -16,22 +16,14 @@
       />
     </div>
     <div>
-      <div class="title">{{ getTitle }}</div>
-      <div class="desc">{{ getDesc }}</div>
+      <div class="title f5">{{ getTitle }}</div>
+      <div class="desc f1">{{ getDesc }}</div>
     </div>
     <div>
       <bet-input :showInput="showInput" v-model:value="state.value">
         <template #title>
-          <div class="input-title flex items-center">
-            <tag-outlined
-              style="
-                margin-right: 4px;
-                margin-top: 4px;
-                color: #6d819c;
-                font-weight: 400;
-              "
-            />
-            odds:
+          <div class="input-title flex ff items-center">
+            <img src="../images/v2/amout-icon.png" class="mr-8" alt="" />
             {{ info.activeValue }}
           </div>
         </template>
@@ -177,7 +169,7 @@ export default defineComponent({
 }
 .bet-wrap {
   margin: 4px;
-  background: #1b222c;
+  // background: #1b222c;
   padding: 8px;
   border-radius: 8px;
   color: #6d819c;
@@ -195,7 +187,7 @@ export default defineComponent({
   width: 76%;
 }
 .title {
-  font-size: 14px;
+  font-size: 16px;
   margin-top: 4px;
   color: #fff;
 }
@@ -207,12 +199,12 @@ export default defineComponent({
   white-space: nowrap;
   text-overflow: ellipsis;
   line-height: 14px;
-  width: 60px;
+  width: 70px;
   font-size: 12px;
 }
 .input-title {
-  color: #16bdf9;
-  font-size: 14px;
+  color: var(--primary-main);
+  font-size: 16px;
   font-weight: 600;
 }
 </style>

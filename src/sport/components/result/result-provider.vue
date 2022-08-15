@@ -51,13 +51,20 @@ export default defineComponent({
 
     const handleGetAllBetList = () => {
       const roomAddress = ROOM.roomAddress.value;
-      console.log(walletAddress?.value === roomAddress);
       if (walletAddress?.value === roomAddress) {
         getAllBetList({
-          wallet: "0xF873Ad938E8041C9c39f8A8DFd3505528240C302",
+          wallet: roomAddress,
         }).then((res) => {
           state.allBetList = res;
         });
+      } else {
+        // test
+        // getAllBetList({
+        //   wallet: "0xF873Ad938E8041C9c39f8A8DFd3505528240C302",
+        //   // wallet: roomAddress,
+        // }).then((res) => {
+        //   state.allBetList = res;
+        // });
       }
     };
 

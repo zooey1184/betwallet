@@ -170,7 +170,8 @@ export default defineComponent({
         football_contract,
       };
       getBalanceOf(erc_contract, bet_address, "mWei").then((res) => {
-        state.bet = res;
+        // state.bet = res;
+        state.bet = 0;
       });
       getBalanceOf(erc_contract, state.id, "mWei").then((res) => {
         state.usdt = res;

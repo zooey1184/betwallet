@@ -1,20 +1,20 @@
 <template>
   <Spin :spinning="state.loading">
     <div class="flex items-center justify-center">
-      <img src="../../images/v2/room-logo.png" style="width: 200px" alt="" />
+      <img src="../../images/v2/room-logo.png" class="logo" alt="" />
     </div>
     <div
       class="font-size-16 text-align-center mt-24 mb-16 font-weight-600 active-color"
     >
       CASINO INSTRUCTIONS
     </div>
-    <div class="font-size-14 my-8 text-align-center line-height-16 color-black">
+    <div class="font14-12 my-8 text-align-center line-height-16 color-black">
       AFTER CREATE CASINO AND ADD USDT POOL USERS IMMEDIATELY GENERATE THEIR OWN
       “CASINO CODE” AND BECOME BOOKMAKERS, OTHERS CAN ENTER THE CASINO BY
       INPUTTING THE “CASINO CODE”THE USDT POOL CAN BE WITHDRAWN AT ANY TIME IF
       NO BETS ARE IN PROGRESS
     </div>
-    <div class="title text-align-center line-height-16 color-gray">
+    <div class="title font14-12 text-align-center line-height-16 color-gray">
       IF OTHER USERS ARE BETTING IN YOUR CASINO, YOU WILL RECEIVE A MASSIVE BET
       TOKEN REWARD.
     </div>
@@ -213,6 +213,9 @@ export default defineComponent({
   &:hover {
     opacity: 0.8;
   }
+  @media screen and (max-width: 700px) {
+    font-size: 12px;
+  }
 }
 .input-wrap {
   border-radius: 4px;
@@ -237,6 +240,9 @@ export default defineComponent({
   &:hover {
     color: #fff;
   }
+  @media screen and (max-width: 700px) {
+    font-size: 12px;
+  }
 }
 .importBtn {
   color: #fff;
@@ -245,6 +251,18 @@ export default defineComponent({
   cursor: pointer;
   &:hover {
     color: #1890ff;
+  }
+}
+.logo {
+  width: 200px;
+  @media screen and (max-width: 700px) {
+    width: 120px;
+  }
+}
+.font14-12 {
+  font-size: 14px;
+  @media screen and (max-width: 700px) {
+    font-size: 12px;
   }
 }
 </style>

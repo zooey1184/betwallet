@@ -113,7 +113,7 @@ export default defineComponent({
 }
 .mark--full {
   .full;
-  z-index: 99;
+  z-index: 999;
   background: rgba(255, 255, 255, 0.5);
 }
 .noSelect {
@@ -139,7 +139,7 @@ export default defineComponent({
   }
 }
 .alert__content {
-  z-index: 99;
+  z-index: 999;
   .full;
   .content {
     width: 90%;

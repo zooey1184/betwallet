@@ -3,30 +3,8 @@
     <slot name="headerExtra"></slot>
     <Swiper />
 
-    <section class="zyqTD zyqTDall">
-      <!-- <div class="zyqTit flexC fl-bet">
-        <div class="zyqTitH">{{ getScheduleItem?.name || "ALL" }}</div>
-        <div class="zyqTitR flexC">
-          <div class="zyqTitRS flexC">
-            <img src="../images/zyq0425/IconTime01.png" />
-            <p>start time</p>
-          </div>
-          <div class="zyqTitRS flexC">
-            <img src="../images/zyq0425/IconTime02.png" />
-            <p>real time</p>
-          </div>
-          <div class="zyqsearch flexC fl-bet">
-            <a href="javascript:;" class="zyqseaA"></a>
-            <input
-              type="text"
-              placeholder="search for a game, team or event"
-              class="zyqseaI Huans"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="zyqTis">即将开始</div> -->
-      <div class="flex flex-wrap items-center justify-between mb-16">
+    <section>
+      <div class="flex sticky-header bg flex-wrap items-center justify-between">
         <div class="flex items-center mr-24">
           <div
             class="item ff"
@@ -55,16 +33,18 @@
         </div>
         <div class="flex-1 flex justify-end">
           <div class="searchPane">
-            <input placeholder="搜索队伍名称" v-model='state.keyword' class="searchInput primary-bg" />
+            <input
+              placeholder="搜索队伍名称"
+              @change="handleChangeKeyWord"
+              v-model="state.keyword"
+              class="searchInput primary-bg"
+            />
             <search-outlined class="searchIcon" />
           </div>
         </div>
       </div>
       <ul>
-        <sport-item
-          v-for="item in getMatchList[state.active]"
-          :info="item"
-        ></sport-item>
+        <sport-item v-for="item in getSportList" :info="item"></sport-item>
       </ul>
     </section>
   </div>
@@ -109,15 +89,46 @@ export default defineComponent({
         LIVE,
       };
     });
+
+    const getSportList = computed(() => {
+      const list = getMatchList.value[state.active];
+      const keyword = state.keyword;
+      if (keyword) {
+        const reg = new RegExp(keyword, "ig");
+        const _list = list.filter((item) => {
+          return (
+            item.team_away_name.match(reg) || item.team_home_name.match(reg)
+          );
+        });
+        return _list;
+      }
+      return list;
+    });
     const state = reactive({
       sportsList: [],
       active: "ALL",
-      keyword: ''
+      keyword: "",
     });
 
     const handleSetActive = (e) => {
       state.active = e;
+      state.keyword = undefined;
     };
+
+    const debounce = (fn, wait = 300) => {
+      let timer = undefined;
+      return () => {
+        clearTimeout(timer);
+        timer = null;
+        timer = setTimeout(() => {
+          fn();
+        }, wait);
+      };
+    };
+
+    const handleChangeKeyWord = debounce(() => {
+      const key = state.keyword;
+    });
     return {
       state,
       getScheduleItem,
@@ -125,6 +136,7 @@ export default defineComponent({
       getMatchList,
       handleSetActive,
       COMPETITION_ACTIVE,
+      getSportList,
     };
   },
 });
@@ -149,7 +161,7 @@ export default defineComponent({
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: 300px;
+  max-width: 330px;
 }
 .searchInput {
   outline: none;
@@ -168,5 +180,11 @@ export default defineComponent({
   &:hover {
     color: var(--primary-main);
   }
+}
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  padding: 16px 0;
 }
 </style>

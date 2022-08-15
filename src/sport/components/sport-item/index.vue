@@ -57,12 +57,13 @@
       </div>
       <div class="itemarrow" @click="handleGoDetail">
         <template v-if="count">{{ count }}</template>
-        <RightOutlined v-else class="" />
+        <RightOutlined v-else class="active-color" />
       </div>
     </div>
     <div class="m-item">
       <MItem
         v-model:active="state.active"
+        :info="info"
         :leftTitle="HomeTeam"
         :leftValue="getLeftValue"
         :middleValue="getMiddleValue"
@@ -181,8 +182,12 @@ export default defineComponent({
               activeValue: n ? obj?.[n] || undefined : undefined,
               data: props.info,
               oddsId: props.info?.oddsId,
-              homeInfo: props.info?.selections?.find(item => item.type === 'home'),
-              awayInfo: props.info?.selections?.find(item => item.type === 'away'),
+              homeInfo: props.info?.selections?.find(
+                (item) => item.type === "home"
+              ),
+              awayInfo: props.info?.selections?.find(
+                (item) => item.type === "away"
+              ),
             };
           } else {
             map = {
@@ -191,8 +196,12 @@ export default defineComponent({
                 activeValue: n ? obj?.[n] || undefined : undefined,
                 data: props.info,
                 oddsId: props.info?.oddsId,
-                homeInfo: props.info?.selections?.find(item => item.type === 'home'),
-                awayInfo: props.info?.selections?.find(item => item.type === 'away'),
+                homeInfo: props.info?.selections?.find(
+                  (item) => item.type === "home"
+                ),
+                awayInfo: props.info?.selections?.find(
+                  (item) => item.type === "away"
+                ),
               },
             };
           }

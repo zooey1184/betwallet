@@ -11,7 +11,7 @@
         :value="leftValue"
         @click="handlePick('home')"
         class="zyqulNI"
-        :class="{ active: state.active === 'home' }"
+        :class="{ active: getBetActive === 'home' }"
         readonly
       />
     </div>
@@ -32,7 +32,7 @@
         :value="middleValue"
         @click="handlePick('middle')"
         class="zyqulNI"
-        :class="{ active: state.active === 'middle' }"
+        :class="{ active: getBetActive === 'middle' }"
         readonly
       />
     </div>
@@ -49,7 +49,7 @@
         :value="rightValue"
         @click="handlePick('away')"
         class="zyqulNI"
-        :class="{ active: state.active === 'away' }"
+        :class="{ active: getBetActive === 'away' }"
         readonly
       />
     </div>
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, ref, watch } from "vue";
+import { defineComponent, reactive, ref, watch, inject, computed } from "vue";
 
 export default defineComponent({
   components: {},
@@ -80,12 +80,31 @@ export default defineComponent({
     active: {
       type: [String, Number],
     },
+    info: {
+      type: Object,
+    },
+    count: {
+      type: Number,
+    },
   },
   emits: ["change", "update:active"],
   setup(props, { emit }) {
     const state = reactive({
       active: props.active,
     });
+    const SPORT_BET = inject("SPORT_BET");
+    const getBetActive = computed(() => {
+      const id = props.info.oddsId;
+      const map = SPORT_BET.getBetMap.value;
+      const item = map?.[id];
+      if (item && item?.active) {
+        return item.active;
+      }
+      return "";
+    });
+    const HomeTeam = computed(() => props.info.team_home_name);
+    const AwayTeam = computed(() => props.info.team_away_name);
+
     watch(
       () => props.active,
       (n) => {
@@ -113,6 +132,9 @@ export default defineComponent({
     return {
       state,
       handlePick,
+      getBetActive,
+      HomeTeam,
+      AwayTeam,
     };
   },
 });

@@ -1,9 +1,9 @@
 <template>
-  <div class="start ml-24 ff" v-if="!isLink" @click="handleConnect">
+  <div class="start ff" v-if="!isLink" @click="handleConnect">
     START THE GAME
   </div>
 
-  <div class="start ml-24" v-if="isLink">
+  <div class="start" v-if="isLink">
     <div v-if="getCode" class="flex items-center">
       <Icon v-if="isMineRoom">
         <template #component="svgProps">

@@ -157,7 +157,7 @@
       <div>
         <div class="input-wrap flex items-center justify-between">
           <div class="input f4">0 USDT</div>
-          <div class="btn-input ff">CLAIM</div>
+          <div class="btn-input ff" @click="handleGoBet">CLAIM</div>
         </div>
         <div class="ff active-color mt-8">REWARD DETAILS</div>
       </div>
@@ -254,6 +254,7 @@
 import { computed, defineComponent, inject, reactive } from "vue";
 import CopyIcon from "@/sport/components/copy";
 import { Progress } from "ant-design-vue";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   components: {
@@ -265,6 +266,7 @@ export default defineComponent({
     const state = reactive({
       percent: 40,
     });
+    const router = useRouter();
     const ACCOUNTS = inject("ACCOUNTS");
     const RESULT = inject("RESULT");
 
@@ -278,6 +280,12 @@ export default defineComponent({
     const getTotalWin = computed(() => RESULT?.totalWin?.value || 0);
     const getWinRate = computed(() => RESULT.winRate?.value);
 
+    const handleGoBet = () => {
+      router.push({
+        name: "bet",
+      });
+    };
+
     return {
       state,
       accountHide,
@@ -288,6 +296,7 @@ export default defineComponent({
       getTotalBet,
       getTotalWin,
       getWinRate,
+      handleGoBet,
     };
   },
 });

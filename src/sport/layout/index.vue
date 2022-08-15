@@ -18,6 +18,7 @@
         <img
           src="../images/zyq0425/logo.png"
           style="height: 40px; margin-right: 50px"
+          @click="handleGoHome"
         />
         <div class="flex items-center lg-show">
           <div
@@ -44,7 +45,9 @@
           </div>
         </div>
         <!-- <div class="start ml-24">START THE GAME</div> -->
-        <RoomBtn />
+        <div class="sm-hide ml-24">
+          <RoomBtn />
+        </div>
       </div>
       <div class="flex items-center sm-show">
         <div v-if="isLink">
@@ -74,10 +77,60 @@
         :style="{ width: state.collapse ? '60px' : '250px' }"
       >
         <Sider :collapse="state.collapse" :options="slideOptions" />
-        <div class="sider-bottom">
-          <RightOutlined @click="handleToggleCollapse" />
+        <div class="sider-bottom flex items-center justify-around">
+          <img
+            class="i18n-icon"
+            v-if="!state.collapse"
+            src="../images/zyq0425/qi01.png"
+          />
+
+          <a
+            href="javascript:;"
+            v-if="!state.collapse"
+            class="RightFNI RightFNI1"
+          ></a>
+          <a
+            href="javascript:;"
+            v-if="!state.collapse"
+            class="RightFNI RightFNI2"
+          ></a>
+          <a
+            href="javascript:;"
+            v-if="!state.collapse"
+            class="RightFNI RightFNI3"
+          ></a>
+          <a
+            href="javascript:;"
+            v-if="!state.collapse"
+            class="RightFNI RightFNI4"
+          ></a>
+
+          <Popover v-if="state.collapse">
+            <template #content>
+              <a href="javascript:;" class="RightFNI RightFNI1"></a>
+              <a href="javascript:;" class="RightFNI RightFNI2"></a>
+              <a
+                href="https://twitter.com/betweb3"
+                class="RightFNI RightFNI3"
+              ></a>
+              <a href="javascript:;" class="RightFNI RightFNI4"></a>
+            </template>
+            <AppstoreOutlined />
+          </Popover>
+
+          <LeftOutlined
+            :class="{ rotate: state.collapse }"
+            class="trans"
+            @click="handleToggleCollapse"
+          />
         </div>
       </div>
+
+      <div
+        class="mask"
+        @click="state.collapse = true"
+        v-if="!state.collapse"
+      ></div>
 
       <!-- 内容区 -->
       <div class="content flex-1" :class="{ 'bg-blur': !state.collapse }">
@@ -115,12 +168,7 @@
       <transition name="slide-down">
         <div class="slide-mask" v-if="state.visibleNav">
           <div style="height: 120px"></div>
-          <div>电竞</div>
-          <div>足球</div>
-          <div>篮球</div>
-          <div>info</div>
-          <div>set your art</div>
-          <div @click="handleCloseNavMask">close</div>
+          <NavContent @close="handleCloseNavMask" />
         </div>
       </transition>
     </div>
@@ -136,22 +184,31 @@ import {
   CloudUploadOutlined,
   MenuOutlined,
   CloseOutlined,
+  AppstoreOutlined,
+  LeftOutlined,
 } from "@ant-design/icons-vue";
+import { Popover } from "ant-design-vue";
 import Info from "./info-btn.vue";
 import MenuIcon from "./menu-icon.vue";
 import InfoPane from "./info-pane.vue";
+import { useRouter } from "vue-router";
+import NavContent from "./m-nav-content.vue";
 
 export default defineComponent({
   components: {
     Sider,
+    AppstoreOutlined,
     Info,
     RoomBtn,
+    LeftOutlined,
     RightOutlined,
     CloudUploadOutlined,
     MenuOutlined,
     CloseOutlined,
     MenuIcon,
     InfoPane,
+    Popover,
+    NavContent,
   },
   props: {
     slideOptions: {
@@ -159,6 +216,7 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const router = useRouter();
     const state = reactive({
       collapse: true,
       visible: false,
@@ -204,6 +262,11 @@ export default defineComponent({
     const handleCloseNavMask = () => {
       state.visibleNav = false;
     };
+    const handleGoHome = () => {
+      router.push({
+        name: "main",
+      });
+    };
 
     return {
       state,
@@ -215,6 +278,7 @@ export default defineComponent({
       handleCloseNavMask,
       getAccounts,
       isLink,
+      handleGoHome,
     };
   },
 });
@@ -343,7 +407,7 @@ export default defineComponent({
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 9;
+    z-index: 19;
     background: #000001;
   }
   .slide-fade-enter-active {
@@ -389,6 +453,12 @@ export default defineComponent({
   display: none;
   @media screen and (min-width: 700px) {
     display: flex;
+  }
+}
+.sm-hide {
+  display: flex;
+  @media screen and (max-width: 700px) {
+    display: none;
   }
 }
 .mx-lg-show {
@@ -447,5 +517,24 @@ export default defineComponent({
   transition: all 200ms linear;
   overflow: hidden;
   top: 0;
+}
+
+.i18n-icon {
+  height: 20px;
+  border-radius: 4px;
+}
+.trans {
+  transition: all 200ms linear;
+}
+.rotate {
+  transform: rotate(180deg);
+}
+.mask {
+  background: #0000010e;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 3;
 }
 </style>
