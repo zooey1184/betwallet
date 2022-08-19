@@ -3,16 +3,6 @@
     <div class="layout_header primary-bg flex items-center justify-between">
       <div class="flex items-center">
         <div class="mx-lg-show mr-16">
-          <!-- <CloseOutlined
-            v-if="state.visibleNav"
-            class="color-white mr-8 font-size-24"
-            @click="state.visibleNav = false"
-          />
-          <MenuOutlined
-            v-else
-            @click="handleShowNavmask"
-            class="color-white mr-8 font-size-24"
-          /> -->
           <MenuIcon v-model:value="state.visibleNav" />
         </div>
         <img
@@ -56,7 +46,11 @@
             @info="state.infoVisible = !state.infoVisible"
           />
         </div>
-        <div v-else class="items-center sellBtn active-color ml-24">
+        <div
+          v-else
+          class="items-center sellBtn active-color ml-24"
+          @click="handleConnect"
+        >
           <CloudUploadOutlined class="mr-8" />
           Wallet
         </div>
@@ -176,7 +170,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, inject, computed } from "vue";
+import { defineComponent, reactive, inject, computed, watch } from "vue";
 import RoomBtn from "../components/room/room-btn.vue";
 import Sider from "./sider.vue";
 import {
@@ -223,20 +217,10 @@ export default defineComponent({
       visibleNav: false,
       infoVisible: false,
       height: "calc(100vh - 160px)",
-      options: [
-        {
-          label: "dsdsd",
-          value: "dsffdf",
-          count: 11,
-        },
-        {
-          label: "dsdsd",
-          value: "dsffdf",
-          count: 11,
-        },
-      ],
+      options: [],
     });
     const ACCOUNTS = inject("ACCOUNTS");
+
     const getAccounts = computed(() => ACCOUNTS.accountHide.value);
     const isLink = computed(() => {
       return ACCOUNTS.isLink.value;
@@ -244,11 +228,23 @@ export default defineComponent({
     const COMPETITION_NAME = inject("COMPETITION_NAME", {
       value: [],
     });
+
+    const SPORT_BET = inject("SPORT_BET");
+    const getBetMap = computed(() => SPORT_BET.getBetList.value);
+
+    watch(
+      () => getBetMap.value,
+      (n) => {
+        state.infoVisible = false;
+      }
+    );
     const getCompetitionName = computed(() => COMPETITION_NAME.value);
 
     const handleToggleCollapse = () => {
-      console.log("object");
       state.collapse = !state.collapse;
+    };
+    const handleConnect = () => {
+      ACCOUNTS.link();
     };
     const handleShowMask = () => {
       state.visible = true;
@@ -279,6 +275,7 @@ export default defineComponent({
       getAccounts,
       isLink,
       handleGoHome,
+      handleConnect,
     };
   },
 });

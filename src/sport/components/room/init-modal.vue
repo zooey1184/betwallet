@@ -39,7 +39,7 @@
       <input
         class="flex-1 input"
         v-model="state.code"
-        placeholder="请输入房间号(8位数字)"
+        :placeholder="`${TIP.roomNumberPlaceholder}`"
         :maxlength="8"
       />
       <div class="roomConfirm active-bg color-white" @click="handleConfirm">
@@ -62,6 +62,7 @@ import usePermission from "@/sport/components/useHooks/use-permission";
 import { message } from "ant-design-vue";
 import { createTenant, saveTenant } from "@/sport/api/index";
 import { Spin } from "ant-design-vue";
+import { TIP } from "@/sport/constant/tip";
 
 export default defineComponent({
   components: {
@@ -157,7 +158,7 @@ export default defineComponent({
           handleJoinOther(state.code);
         }
       } else {
-        message.warning("房间号格式为8位数字");
+        message.warning(TIP.roomNumberTip);
       }
     };
 
@@ -191,6 +192,7 @@ export default defineComponent({
       handlePick,
       hasPermission,
       handleConfirm,
+      TIP,
     };
   },
 });

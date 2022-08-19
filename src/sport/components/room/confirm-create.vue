@@ -43,6 +43,7 @@ import { QuestionCircleOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 import Circle from "./circle.vue";
 import usePermission from "@/sport/hooks/use-methods";
 import { message, Spin } from "ant-design-vue";
+import { TIP } from "@/sport/constant/tip";
 
 export default defineComponent({
   components: {
@@ -72,28 +73,28 @@ export default defineComponent({
       const MAX = 999999;
       const MIN = 1;
       if (state.amount > MAX) {
-        message.warning(`金额不能超过${MAX}`);
+        message.warning(`${TIP.amountMax}${MAX}`);
         return;
       }
       if (state.amount < MIN) {
-        message.warning(`金额不能小于${MIN}`);
+        message.warning(`${TIP.amountMin}${MIN}`);
         return;
       }
       const _hasPermission = await hasPermission();
       if (_hasPermission) {
         await createPool(state.amount, (h, r, e) => {
           if (r) {
-            message.success("创建成功");
+            message.success(TIP.createSuccess);
             emit("next");
           }
         });
       } else {
         getPermission(async (h, r, e) => {
           if (r) {
-            message.success("授权成功");
+            message.success(TIP.authSuccess);
             await createPool(state.amount, (h, r, e) => {
               if (r) {
-                message.success("创建成功");
+                message.success(TIP.createSuccess);
                 emit("next");
               }
             });
@@ -103,9 +104,8 @@ export default defineComponent({
     };
 
     const handleChangeAmount = () => {
-      console.log(state.amount);
-      if (state.amount?.toString().length > 7) {
-        message.warning("金额不能超过 999999");
+      if (state.amount?.toString().length > 8) {
+        message.warning(`${TIP.amountMax} 99999999`);
         return;
       }
     };

@@ -1,5 +1,6 @@
 import { message } from "ant-design-vue"
 import { computed, inject } from "vue"
+import {TIP} from '@/sport/constant/tip'
 
 const usePermission = () => {
   const ADDRESS = inject('ADDRESS')
@@ -48,13 +49,13 @@ const usePermission = () => {
 
     window.web3.eth.sendTransaction(params)
     .on('transactionHash', (hash) => {
-      message.info('Transaction sent Success, Please wait link')
+      message.info(TIP.sentT)
       if (options?.callback && typeof options.callback === 'function') {
         options.callback(hash)
       }
     })
     .on('receipt', (r) => {
-      message.success('Successfully linked')
+      message.success(TIP.successT)
       if (options?.receipt && typeof options.receipt === 'function') {
         options.receipt(r)
       }
@@ -62,7 +63,7 @@ const usePermission = () => {
     })
     .on('error', (e) => {
       // error && error(null, null, e)
-      message.error('Transaction Error')
+      message.error(TIP.failT)
       if (options?.error && typeof options.error === 'function') {
         options.error(e)
       }

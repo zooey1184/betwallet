@@ -98,11 +98,34 @@ export default defineComponent({
     });
 
     const init = async (cb) => {
+      // var web3Provider;
+      // var web3js;
+      // if (window.ethereum) {
+      //   web3Provider = window.ethereum;
+      //   try {
+      //     // 请求用户授权
+      //     await window.ethereum.enable();
+      //   } catch (error) {
+      //     // 用户不授权时
+      //     console.error("User denied account access");
+      //   }
+      // } else if (window.web3) {
+      //   // 老版 MetaMask Legacy dapp browsers...
+      //   web3Provider = window.web3.currentProvider;
+      // } else {
+      //   web3Provider = new Web3.providers.HttpProvider("http://localhost:8545");
+      // }
+      // web3js = new Web3(web3Provider); //web3js就是你需要的web3实例
+      // web3js.eth.getAccounts(function (error, result) {
+      //   if (!error) console.log(result); //授权成功后result能正常获取到账号了
+      // });
+
       if (typeof web3 !== "undefined") {
         web3 = new Web3(web3.currentProvider);
         const accounts = await ethereum.request({ method: "eth_accounts" });
         setTimeout(() => {
           web3.givenProvider.on("accountsChanged", (accounts) => {
+            console.log(accounts);
             window.location.reload();
           });
           web3.givenProvider.on("chainChanged", (chainId) => {
@@ -114,6 +137,7 @@ export default defineComponent({
         });
         if (accounts?.length) {
           state.accounts = accounts;
+          console.log(accounts);
           state.id = accounts[0];
           const isLINK = window.localStorage.getItem("isLINK");
           // TODO 初始化合约

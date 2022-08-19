@@ -41,6 +41,7 @@ import { CloseCircleOutlined } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
 import InfoBtn from "./info-btn.vue";
 import RoomBtn from "@/sport/components/room/room-btn.vue";
+import { TIP } from "@/sport/constant/tip";
 
 export default defineComponent({
   components: {
@@ -63,7 +64,7 @@ export default defineComponent({
 
     const handleSport = (e) => {
       if (e !== "electronics") {
-        message.info("敬请期待");
+        message.info(TIP.commingSoon);
       }
     };
 

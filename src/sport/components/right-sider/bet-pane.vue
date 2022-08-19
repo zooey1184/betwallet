@@ -77,6 +77,7 @@
       </div>
     </div>
 
+    <!-- COMBO -->
     <div v-if="getBetType === 'combo' && getSportBetList?.length">
       <BetInput v-model:value="state.betComboValue">
         <template #title>
@@ -125,6 +126,7 @@ import Mask from "@/sport/components/mask";
 import Speed from "@/sport/components/bet-modal/speed.vue";
 import BetPane from "@/sport/components/bet-modal/bet.vue";
 import { message } from "ant-design-vue";
+import { TIP } from "@/sport/constant/tip";
 
 export default defineComponent({
   components: {
@@ -147,6 +149,7 @@ export default defineComponent({
     });
     const ACCOUNTS = inject("ACCOUNTS");
     const SPORT_BET = inject("SPORT_BET");
+    const ROOM = inject("ROOM");
 
     const BET = inject("BET");
 
@@ -200,18 +203,26 @@ export default defineComponent({
     });
     const handleBet = () => {
       if (isLink.value) {
-        const params = handleGetBetInfo();
-        SPORT_BET.setState({
-          myBetInfo: params,
-        });
-        if (params?.data?.length && params.stake > 0) {
-          console.log(params);
+        if (getBetType.value !== "combo") {
+          if (ROOM.code.value) {
+            const params = handleGetBetInfo();
+            SPORT_BET.setState({
+              myBetInfo: params,
+            });
+            if (params?.data?.length && params.stake > 0) {
+              console.log(params);
+            } else {
+              message.warning(TIP.betFirst);
+              return;
+            }
+            emit("bet");
+            state.visible = true;
+          } else {
+            message.warning(TIP.joinFirst);
+          }
         } else {
-          message.warning("请先下注");
-          return;
+          message.info("comming soon");
         }
-        emit("bet");
-        state.visible = true;
       } else {
         ACCOUNTS.link();
       }
