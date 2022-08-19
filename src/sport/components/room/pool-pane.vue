@@ -132,6 +132,7 @@ import { QuestionCircleOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 import Circle from "./circle.vue";
 import { message, Spin } from "ant-design-vue";
 import useMethods from "@/sport/hooks/useFootballMethods";
+import {TIP} from '@/sport/constant/tip'
 
 export default defineComponent({
   components: {
@@ -189,7 +190,7 @@ export default defineComponent({
         name: "updateFundPoolStopFlag",
         callback: (h, r, e) => {
           if (r) {
-            message.success("成功停止投注");
+            message.success(TIP.stopBet);
             emit("ok");
           }
         },

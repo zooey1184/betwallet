@@ -5,17 +5,17 @@
   >
     <div class="time">
       <div class="active-color time_title">{{ time.d }}</div>
-      <div class="time-desc">天</div>
+      <div class="time-desc">Day</div>
     </div>
     <div class="spliteCode">:</div>
     <div class="time">
       <div class="active-color time_title">{{ time.h }}</div>
-      <div class="time-desc">小时</div>
+      <div class="time-desc">Hour</div>
     </div>
     <div class="spliteCode">:</div>
     <div class="time">
       <div class="active-color time_title">{{ time.m }}</div>
-      <div class="time-desc">分钟</div>
+      <div class="time-desc">Min</div>
     </div>
   </div>
   <div class="flex justify-center linear-color time_title" v-else>--</div>

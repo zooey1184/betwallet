@@ -1,6 +1,7 @@
 // 智能合约的方法
 import { message } from "ant-design-vue"
 import { computed, inject, reactive } from "vue"
+import {TIP} from '@/sport/constant/tip'
 
 const usePermission = () => {
   const state = reactive({
@@ -42,19 +43,19 @@ const usePermission = () => {
     window.web3.eth.sendTransaction(params)
     .on('transactionHash', (hash) => {
       setTimeout(() => {
-        message.info('Transaction sent Success, Please wait link')
+        message.info(TIP.sentT)
         callback && callback(hash, null, null)
       }, 200)
     })
     .on('receipt', (r) => {
       setTimeout(() => {
         state.createLoading = false
-        message.success('Successfully linked')
+        message.success(TIP.successT)
         callback && callback(null, r, null)
       }, 200)
     })
     .on('error', (e) => {
-      message.error('Transaction Error')
+      message.error(TIP.failT)
       state.createLoading = false
       callback && callback(null, null, e)
     })
@@ -80,7 +81,7 @@ const usePermission = () => {
     window.web3.eth.sendTransaction(params)
     .on('transactionHash', (hash) => {
       setTimeout(() => {
-        message.info('Transaction sent Success, Please wait link')
+        message.info(TIP.sentT)
         callback && callback(hash, null, null)
       }, 200)
     })
@@ -88,12 +89,12 @@ const usePermission = () => {
       
       setTimeout(() => {
         state.permissionLoading = false
-        message.success('Successfully linked')
+        message.success(TIP.successT)
         callback && callback(null, r, null)
       }, 200)
     })
     .on('error', (e) => {
-      message.error('Transaction Error')
+      message.error(TIP.failT)
       state.permissionLoading = false
       callback && callback(null, null, e)
     })
@@ -141,7 +142,7 @@ export const useBet = () => {
     window.web3.eth.sendTransaction(PARAMS)
     .on('transactionHash', (hash) => {
       setTimeout(() => {
-        message.info('Transaction sent Success, Please wait link')
+        message.info(TIP.sentT)
         callback && callback(hash, null, null)
       }, 200)
     })
@@ -153,7 +154,7 @@ export const useBet = () => {
       }, 200)
     })
     .on('error', (e) => {
-      message.error('Transaction Error')
+      message.error(TIP.failT)
       state.loading = false
       console.log(e);
       callback && callback(null, null, e)
@@ -200,19 +201,19 @@ export const stopPool = () => {
     window.web3.eth.sendTransaction(PARAMS)
     .on('transactionHash', (hash) => {
       setTimeout(() => {
-        message.info('Transaction sent Success, Please wait link')
+        message.info(TIP.sentT)
         callback && callback(hash, null, null)
       }, 200)
     })
     .on('receipt', (r) => {
       setTimeout(() => {
         state.loading = false
-        message.success('Successfully linked')
+        message.success(TIP.successT)
         callback && callback(null, r, null)
       }, 200)
     })
     .on('error', (e) => {
-      message.error('Transaction Error')
+      message.error(TIP.failT)
       state.loading = false
       console.log(e);
       callback && callback(null, null, e)

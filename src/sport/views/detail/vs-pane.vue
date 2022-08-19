@@ -1,7 +1,7 @@
 <template>
   <div class="pos-r vs-pane">
     <div class="text-align-center" v-if="showTime">
-      <div class="countdown">开始倒数</div>
+      <div class="countdown">{{ TIP.countDownStart }}</div>
       <div class="flex items-center justify-center" style="margin-bottom: 24px">
         <img src="../../images/zyq0425/IconTime01.png" style="margin: 0 12px" />
         <div class="m-flex">
@@ -95,6 +95,7 @@ import { ref, defineComponent, reactive, onMounted } from "vue";
 import TimePane from "./time-pane.vue";
 import useActive from "@/sport/components/useHooks/use-active";
 import useTime from "./use-time";
+import { TIP } from "@/sport/constant/tip";
 
 export default defineComponent({
   components: {
@@ -159,6 +160,7 @@ export default defineComponent({
       handlePickItem,
       timeState,
       showTime,
+      TIP,
     };
   },
 });

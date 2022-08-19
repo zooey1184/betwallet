@@ -12,7 +12,7 @@
 
     <div class="tab-pane" style="margin-top: 16px">
       <a-tabs>
-        <a-tab-pane key="0" tab="全部">
+        <a-tab-pane key="0" tab="ALL">
           <div v-if="state.list?.length">
             <template v-for="item in state.list" :key="item.id">
               <div class="mb-16">

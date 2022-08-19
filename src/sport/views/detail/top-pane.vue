@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <div class="info active-color">报注信息</div>
+    <div class="info active-color">{{ TIP.betBanner }}</div>
     <div class="active-bg shadow"></div>
   </div>
 </template>
@@ -33,7 +33,7 @@ import { ref, defineComponent, computed } from "vue";
 import { LeftOutlined } from "@ant-design/icons-vue";
 import dayjs from "dayjs";
 import { useRouter } from "vue-router";
-
+import { TIP } from "@/sport/constant/tip";
 export default defineComponent({
   components: {
     LeftOutlined,
@@ -59,6 +59,7 @@ export default defineComponent({
     return {
       getTime,
       handleGoBack,
+      TIP,
       // state, showTime
     };
   },

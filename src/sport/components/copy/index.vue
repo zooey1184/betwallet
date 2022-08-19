@@ -44,7 +44,7 @@ export default defineComponent({
       });
       state.clipboard.on("success", (e) => {
         state.copyStatus = true;
-        message.success("复制成功");
+        message.success("copy success");
         emit("copy");
         setTimeout(() => {
           state.copyStatus = false;

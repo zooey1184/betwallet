@@ -1,5 +1,7 @@
 import { computed, inject, reactive } from "vue"
 import { message } from "ant-design-vue"
+import {TIP} from '@/sport/constant/tip'
+
 const useMethods = () => {
   const CONTRACT = inject('CONTRACT')
   const ADDRESS = inject('ADDRESS')
@@ -33,19 +35,19 @@ const useMethods = () => {
     window.web3.eth.sendTransaction(PARAMS)
     .on('transactionHash', (hash) => {
       setTimeout(() => {
-        showTip && message.info('Transaction sent Success, Please wait link')
+        showTip && message.info(TIP.sentT)
         callback && callback(hash, null, null)
       }, 200)
     })
     .on('receipt', (r) => {
       setTimeout(() => {
         state.loading = false
-        showTip && message.success('Successfully linked')
+        showTip && message.success(TIP.successT)
         callback && callback(null, r, null)
       }, 200)
     })
     .on('error', (e) => {
-      showTip && message.error('Transaction Error')
+      showTip && message.error(TIP.failT)
       state.loading = false
       callback && callback(null, null, e)
     })

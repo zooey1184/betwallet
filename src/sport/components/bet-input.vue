@@ -8,7 +8,7 @@
         class="bet-input"
         type="number"
         ref="inputRef"
-        placeholder="Your bet"
+        placeholder="Your USDT"
         @focus="handleFocus"
         @blur="handleBlur"
         v-model="state.value"
@@ -39,6 +39,7 @@
 <script>
 import { message } from "ant-design-vue";
 import { defineComponent, reactive, ref, watch } from "vue";
+import { TIP } from "@/sport/constant/tip";
 
 export default defineComponent({
   components: {},
@@ -109,7 +110,7 @@ export default defineComponent({
 
     const handleBlur = () => {
       if (parseInt(state.value) < 0) {
-        message.warning("Amount must be greater than 0");
+        message.warning(TIP.greaterThen0);
         state.value = "";
       }
       state.visible = false;
@@ -164,6 +165,7 @@ export default defineComponent({
   text-align: center;
   width: 75px;
   font-weight: 600;
+  min-width: 90px;
   font-size: 14px;
   transition: all 100ms linear;
   &:hover {
