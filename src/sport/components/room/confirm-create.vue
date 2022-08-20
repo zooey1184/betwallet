@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { reactive, defineComponent, computed } from "vue";
+import { reactive, defineComponent, computed, inject } from "vue";
 import { QuestionCircleOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 import Circle from "./circle.vue";
 import usePermission from "@/sport/hooks/use-methods";
@@ -69,17 +69,22 @@ export default defineComponent({
       () => createPoolLoading?.value || authLoading?.value
     );
 
+    const ACCOUNTS = inject("ACCOUNTS");
+    const getUsdt = computed(() => ACCOUNTS.usdt.value);
+
     const handleCreateBetPool = async () => {
-      const MAX = 999999;
+      const MAX = getUsdt.value || 9999999999999999;
       const MIN = 1;
       if (state.amount > MAX) {
-        message.warning(`${TIP.amountMax}${MAX}`);
+        message.warning(`${TIP.amountMax} your usdt amount`);
         return;
       }
       if (state.amount < MIN) {
         message.warning(`${TIP.amountMin}${MIN}`);
         return;
       }
+      console.log(MAX);
+      return;
       const _hasPermission = await hasPermission();
       if (_hasPermission) {
         await createPool(state.amount, (h, r, e) => {
@@ -104,8 +109,9 @@ export default defineComponent({
     };
 
     const handleChangeAmount = () => {
-      if (state.amount?.toString().length > 8) {
-        message.warning(`${TIP.amountMax} 99999999`);
+      const usdt = parseInt(getUsdt.value);
+      if (state.amount < usdt) {
+        message.warning(`Sorry, your usdt is running low`);
         return;
       }
     };

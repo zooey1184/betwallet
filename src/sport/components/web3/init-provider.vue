@@ -33,9 +33,9 @@ export default defineComponent({
       userInfo: undefined,
       address: undefined,
       contract: {},
-      eth: 0,
+      eth: "--",
       bet: 0,
-      usdt: 0,
+      usdt: "--",
     });
     // 点击连接钱包
     const handleConnect = () => {

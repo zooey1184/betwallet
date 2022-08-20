@@ -23,7 +23,12 @@
       <div class="flex items-center justify-between">
         <div>Bet Amount</div>
         <div class="flex items-center">
-          <img src="../../images/v2/coin-icon-grey.png" alt="" />
+          <!-- <img
+            src="../../images/icons/USDT.png"
+            style="width: 12px; margin-right: 4px"
+            alt=""
+          /> -->
+          <UsdtIcon class="active-color mr-8 font-size-18" />
           {{ info.bet_amount }}
         </div>
       </div>
@@ -44,12 +49,16 @@
 </template>
 
 <script>
-import { computed, defineComponent, reactive } from "vue";
+import { computed, defineComponent, inject, reactive } from "vue";
 import useMethods from "@/sport/hooks/use-claim";
 import usePermission from "@/sport/hooks/use-methods";
 import { message } from "ant-design-vue";
+import UsdtIcon from "../usdt-icon.vue";
+
 export default defineComponent({
-  components: {},
+  components: {
+    UsdtIcon,
+  },
   props: {
     info: {
       type: Object,
@@ -61,6 +70,8 @@ export default defineComponent({
     const { handleMethods } = useMethods();
 
     const { getPermission, hasPermission } = usePermission();
+    const methods = inject("methods");
+    const RESULT = inject("RESULT");
 
     const getTeamInfo = computed(() => {
       const list = props.info?.selections;
@@ -86,6 +97,8 @@ export default defineComponent({
         callback: (h, r, e) => {
           if (r) {
             message.success("success");
+            methods.handleGetMatchList();
+            RESULT.handleGetResultList();
           }
           if (e) {
             console.log(e);

@@ -69,20 +69,6 @@ export default defineComponent({
     const getSportItemList = computed(() => state.sportsItemList);
     provide("SPORTS_ITEM_LIST", getSportItemList);
 
-    provide("methods", {
-      handleGetSportItemList: getSportItemListFn,
-      setLoading: (e) => {
-        state.loading = e;
-      },
-      betType: (e) => {
-        if (typeof e === "undefined") {
-          return state.betType;
-        } else {
-          state.betType = e;
-        }
-      },
-    });
-
     // 投注方式
     const getBetType = computed(() => state.betType);
     const getBetInfo = computed(() => ({
@@ -128,12 +114,36 @@ export default defineComponent({
       });
     };
 
+    const handleInLoop = () => {
+      handleGetMatchList();
+      setTimeout(() => {
+        handleInLoop();
+      }, 60 * 1000 * 10); // 10分钟轮询
+    };
+
     const getMatchList = computed(() => state.matchList);
     provide("MATCH_LIST", getMatchList);
 
+    provide("methods", {
+      handleGetSportItemList: getSportItemListFn,
+      setLoading: (e) => {
+        state.loading = e;
+      },
+      betType: (e) => {
+        if (typeof e === "undefined") {
+          return state.betType;
+        } else {
+          state.betType = e;
+        }
+      },
+      // 获取赛事信息
+      handleGetMatchList: handleGetMatchList,
+    });
+
     onMounted(() => {
       getCompetitionName();
-      handleGetMatchList();
+      // handleGetMatchList();
+      handleInLoop();
     });
 
     return {

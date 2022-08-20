@@ -38,7 +38,7 @@
       <div class="flex items-center f5 mt-16 justify-between">
         <div class="flex items-center">
           <img
-            src="../images/icons/USDT.png"
+            src="../images/v2/coin-icon-grey.png"
             class="mr-8"
             style="width: 14px"
             alt=""

@@ -1,39 +1,36 @@
 <template>
   <Spin :spinning="state.loading">
-    <div style="max-height: 74vh" class="overflow-auto">
+    <div style="max-height: 70vh" class="overflow-auto">
       <div
         class="active-color mt-24 f4 font-size-20 font-weight-600 text-align-center"
       >
         PLACE BET
       </div>
-      <div class="text-align-center f3 my-16">BET</div>
+      <!-- <div class="text-align-center f3 my-16">BET</div> -->
       <div
-        class="active-color flex ff items-center justify-center font-weight-600"
-        style="font-size: 48px"
+        class="active-color flex ff items-center justify-center font-weight-600 lg-title"
       >
         <div class="mr-24">${{ getBetInfo.stake }}</div>
         <div class="ml-24">USDT</div>
       </div>
       <div class="active-color mt-8 mb-16" v-for="item in getBetList">
-        <div class="line-height-16">
-          {{ item.homeInfo.handicap ? "Match Handicap" : "Match Winner" }}
-        </div>
         <div
           class="font-size-32 font-weight-600 line-height-32 flex items-center"
         >
           {{ getActiveInfo(item).name }}
           <span class="flex items-center ml-24">
-            <!-- <img
-              style="width: 14px"
-              src="../../images/v2/coin-icon-red.png"
-              alt=""
-            /> -->
             {{ getActiveInfo(item).odds }}
           </span>
         </div>
-        <div class="line-height-16">
-          {{ item.homeInfo.name }} VS {{ item.awayInfo.name }}
+        <div class="flex items-center justify-between">
+          <div class="line-height-16">
+            {{ item.homeInfo.name }} VS {{ item.awayInfo.name }}
+          </div>
+          <div class="line-height-16">
+            {{ item.homeInfo.handicap ? "Match Handicap" : "Match Winner" }}
+          </div>
         </div>
+
         <div
           class="bet-pane primary-bg mt-8"
           v-if="getBetInfo.type !== 'combo'"
@@ -76,7 +73,10 @@
         WIN IS {{ getMinMax.maxValue }}. THE BET WILL AUTOMATICALLY BE CANCELED
         IF SLIPPAGE BEYOND ITS RANGE
       </div>
-      <div class="confirmBtn" @click="handleBetFn">PLACE BET</div>
+      <div class="flex items-center">
+        <div class="mr-8 cancelBtn flex-0" @click="handleBetLast">LAST</div>
+        <div class="confirmBtn flex-1" @click="handleBetFn">PLACE BET</div>
+      </div>
     </div>
   </Spin>
 </template>
@@ -92,7 +92,8 @@ export default defineComponent({
     Spin,
   },
   props: {},
-  setup(props) {
+  emits: ["cancel"],
+  setup(props, { emit }) {
     const state = reactive({
       loading: false,
     });
@@ -102,7 +103,9 @@ export default defineComponent({
 
     const getBetInfo = computed(() => SPORT_BET.getMyBetInfo?.value);
     const getBetConfig = computed(() => SPORT_BET.getBetConfig?.value);
-    const getBetList = computed(() => getBetInfo?.value?.data);
+    const getBetList = computed(() =>
+      getBetInfo?.value?.data?.filter((item) => !!item.betValue)
+    );
     const RESULT = inject("RESULT");
 
     const handleGetParams = () => {
@@ -157,7 +160,7 @@ export default defineComponent({
       // const minV = parseFloat((item.betValue * (min / 100)).toFixed(2));
       // const maxV = parseFloat((item.betValue * (max / 100)).toFixed(2));
       // const offset = parseFloat((item.betValue * t).toFixed(2));
-      const value = activeInfo.odds * item.betValue;
+      const value = parseFloat((activeInfo.odds * item.betValue).toFixed(2));
 
       const offset = parseFloat((value * (t / 100)).toFixed(2));
       return {
@@ -169,6 +172,10 @@ export default defineComponent({
     };
     const { handleBet } = useBet();
 
+    const handleBetLast = () => {
+      emit("cancel");
+    };
+
     const handleBetFn = () => {
       const list = handleGetParams();
       const params = list[0];
@@ -179,6 +186,7 @@ export default defineComponent({
         odds: params.minOdds,
       }).then((res) => {
         if (res) {
+          console.log("bet params: \n", params);
           handleBet(params, (h, r, e) => {
             if (r) {
               message.success("BET SUCCESS");
@@ -195,12 +203,6 @@ export default defineComponent({
         } else {
           message.warning(TIP.preCheck);
           state.loading = false;
-          // console.log(CONTRACT.value.football_contract?.methods);
-          // handleBet(params, (h, r, e) => {
-          //   if (r) {
-          //     message.success("下注成功");
-          //   }
-          // });
         }
       });
     };
@@ -213,6 +215,7 @@ export default defineComponent({
       getActiveInfo,
       getMinMax,
       getSingleWin,
+      handleBetLast,
     };
   },
 });
@@ -223,6 +226,31 @@ export default defineComponent({
   border-radius: 8px;
   padding: 8px 16px;
   color: #fff;
+}
+.lg-title {
+  font-size: 48px;
+  @media screen and (max-width: 600px) {
+    font-size: 28px;
+  }
+}
+.cancelBtn {
+  font-size: 16px;
+  font-weight: 600;
+  min-width: 60px;
+  width: 30%;
+  height: 38px;
+  line-height: 38px;
+  background: #fff;
+  border: 1px solid var(--primary-main);
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 24px;
+  color: var(--primary-main);
+  margin-bottom: 16px;
+  &:active {
+    opacity: 0.8;
+  }
 }
 .confirmBtn {
   font-size: 16px;

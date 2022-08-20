@@ -134,7 +134,7 @@
 
         <div style="height: 60px" class="btm-pane"></div>
       </div>
-      <div class="right-sider pos-r primary-bg flex-0">
+      <div class="right-sider overflow-x-hidden pos-r primary-bg flex-0">
         <slot name="bet"></slot>
         <div
           class="mine-pane primary-bg"
@@ -146,21 +146,48 @@
         </div>
       </div>
 
-      <div class="btm-nav color-black flex items-center justify-around">
-        <div>电竞</div>
-        <div>投注</div>
-        <div>我的</div>
+      <div class="btm-nav color-black ff flex items-center justify-around">
+        <div
+          @click="handleChangeTab('match')"
+          :class="{ 'active-color': !state.betVisible && !state.mineVisible }"
+        >
+          <div class="flex flex-col items-center justify-center">
+            <VsIcon class="font-size-18" /> MATCH
+          </div>
+        </div>
+        <div
+          @click="handleChangeTab('bet')"
+          :class="{ 'active-color': state.betVisible }"
+        >
+          <div class="flex flex-col items-center justify-center">
+            <BetIcon class="font-size-18" /> BET
+          </div>
+        </div>
+        <div
+          @click="handleChangeTab('mine')"
+          :class="{ 'active-color': state.mineVisible }"
+        >
+          <div class="flex flex-col items-center justify-center">
+            <user-outlined class="font-size-18" />
+            MINE
+          </div>
+        </div>
       </div>
 
       <transition name="slide-fade">
-        <div class="slide-mask" v-if="state.visible">
-          <div @click="handleCloseMask">close</div>
+        <div class="tab-mask" v-if="state.betVisible">
+          <BetPane height="calc(100vh - 320px)" />
+        </div>
+      </transition>
+      <transition name="slide-fade">
+        <div class="tab-mask" v-if="state.mineVisible">
+          <InfoPane />
         </div>
       </transition>
 
       <!-- 导航条的内容区域 -->
       <transition name="slide-down">
-        <div class="slide-mask" v-if="state.visibleNav">
+        <div class="tab-mask" v-if="state.visibleNav">
           <div style="height: 120px"></div>
           <NavContent @close="handleCloseNavMask" />
         </div>
@@ -180,6 +207,7 @@ import {
   CloseOutlined,
   AppstoreOutlined,
   LeftOutlined,
+  UserOutlined,
 } from "@ant-design/icons-vue";
 import { Popover } from "ant-design-vue";
 import Info from "./info-btn.vue";
@@ -187,6 +215,9 @@ import MenuIcon from "./menu-icon.vue";
 import InfoPane from "./info-pane.vue";
 import { useRouter } from "vue-router";
 import NavContent from "./m-nav-content.vue";
+import VsIcon from "../components/vs-icon.vue";
+import BetIcon from "../components/bet-icon.vue";
+import BetPane from "../components/right-sider/bet-pane.vue";
 
 export default defineComponent({
   components: {
@@ -203,6 +234,10 @@ export default defineComponent({
     InfoPane,
     Popover,
     NavContent,
+    VsIcon,
+    BetIcon,
+    UserOutlined,
+    BetPane,
   },
   props: {
     slideOptions: {
@@ -218,6 +253,8 @@ export default defineComponent({
       infoVisible: false,
       height: "calc(100vh - 160px)",
       options: [],
+      mineVisible: false,
+      betVisible: false,
     });
     const ACCOUNTS = inject("ACCOUNTS");
 
@@ -249,9 +286,7 @@ export default defineComponent({
     const handleShowMask = () => {
       state.visible = true;
     };
-    const handleCloseMask = () => {
-      state.visible = false;
-    };
+
     const handleShowNavmask = () => {
       state.visibleNav = true;
     };
@@ -264,18 +299,33 @@ export default defineComponent({
       });
     };
 
+    const handleChangeTab = (e) => {
+      if (e === "match") {
+        state.betVisible = false;
+        state.mineVisible = false;
+      }
+      if (e === "bet") {
+        state.mineVisible = false;
+        state.betVisible = !state.betVisible;
+      }
+      if (e === "mine") {
+        state.betVisible = false;
+        state.mineVisible = !state.mineVisible;
+      }
+    };
+
     return {
       state,
       getCompetitionName,
       handleToggleCollapse,
       handleShowMask,
-      handleCloseMask,
       handleShowNavmask,
       handleCloseNavMask,
       getAccounts,
       isLink,
       handleGoHome,
       handleConnect,
+      handleChangeTab,
     };
   },
 });
@@ -388,6 +438,7 @@ export default defineComponent({
     left: 0;
     color: #fff;
     background: #2a333f;
+    z-index: 99;
     @media screen and (min-width: 700px) {
       display: none;
     }
@@ -402,6 +453,15 @@ export default defineComponent({
     position: fixed;
     width: 100%;
     height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 19;
+    background: #000001;
+  }
+  .tab-mask {
+    position: fixed;
+    width: 100%;
+    height: calc(100% - 60px);
     top: 0;
     left: 0;
     z-index: 19;
@@ -432,6 +492,19 @@ export default defineComponent({
   .slide-down-leave-to {
     transform: translateY(-100vh);
     // opacity: 0.6;
+  }
+
+  .fade-enter-active {
+    transition: all 0.2s ease-out;
+  }
+
+  .fade--leave-active {
+    transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
   }
 }
 .lg-show {

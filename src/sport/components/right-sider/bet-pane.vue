@@ -25,7 +25,7 @@
     </div>
 
     <div class="">
-      <div style="height: calc(100vh - 475px); overflow: auto">
+      <div :style="{ height: height, overflow: 'auto' }">
         <div class="" v-if="!getSportBetList?.length">
           <div class="flex flex-col items-center justify-center">
             <img src="../../images/zyq0425/kongL.png" style="width: 120px" />
@@ -66,12 +66,7 @@
           POTENTIAL WIN:
         </div>
         <div class="font-weight-600 active-color flex items-center">
-          <img
-            src="../../images/v2/coin-icon-red.png"
-            style="width: 12px"
-            class="mr-8"
-            alt=""
-          />
+          <UsdtIcon class="active-color mr-8 font-size-18" />
           {{ getWin }}
         </div>
       </div>
@@ -93,12 +88,7 @@
           POTENTIAL WIN:
         </div>
         <div class="font-weight-600 active-color flex items-center">
-          <img
-            src="../../images/v2/coin-icon-red.png"
-            style="width: 12px"
-            class="mr-8"
-            alt=""
-          />
+          <UsdtIcon class="active-color mr-8 font-size-18" />
           {{ getWinCombo }}
         </div>
       </div>
@@ -111,7 +101,7 @@
   <Mask v-model:visible="state.visible">
     <div>
       <Speed v-if="state.step === 'speed'" @ok="state.step = 'bet'" />
-      <BetPane v-if="state.step === 'bet'" />
+      <BetPane v-if="state.step === 'bet'" @cancel="state.step = 'speed'" />
     </div>
   </Mask>
 </template>
@@ -127,6 +117,7 @@ import Speed from "@/sport/components/bet-modal/speed.vue";
 import BetPane from "@/sport/components/bet-modal/bet.vue";
 import { message } from "ant-design-vue";
 import { TIP } from "@/sport/constant/tip";
+import UsdtIcon from "../usdt-icon.vue";
 
 export default defineComponent({
   components: {
@@ -137,8 +128,14 @@ export default defineComponent({
     Mask,
     Speed,
     BetPane,
+    UsdtIcon,
   },
-  props: {},
+  props: {
+    height: {
+      type: String,
+      default: " calc(100vh - 475px)",
+    },
+  },
   emits: ["bet"],
   setup(props, { emit }) {
     const state = reactive({
@@ -202,6 +199,7 @@ export default defineComponent({
       return parseFloat((val * odds).toFixed(2));
     });
     const handleBet = () => {
+      state.step = "speed";
       if (isLink.value) {
         if (getBetType.value !== "combo") {
           if (ROOM.code.value) {

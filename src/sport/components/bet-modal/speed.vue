@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { defineComponent, inject, reactive } from "vue";
+import { defineComponent, inject, reactive, computed, onMounted } from "vue";
 import { QuestionCircleOutlined } from "@ant-design/icons-vue";
 export default defineComponent({
   components: {
@@ -109,6 +109,7 @@ export default defineComponent({
     });
 
     const SPORT_BET = inject("SPORT_BET");
+    const getBetConfig = computed(() => SPORT_BET.getBetConfig?.value);
     const handlePickSpeed = (item) => {
       state.speedValue = item.value;
     };
@@ -130,6 +131,16 @@ export default defineComponent({
       emit("ok");
     };
 
+    onMounted(() => {
+      console.log();
+      if (getBetConfig.value) {
+        const config = getBetConfig.value;
+        state.toleranceValue = config.tolerance;
+        state.timeCutValue = config.timeCut;
+        state.speedValue = config.speed;
+      }
+    });
+
     return {
       state,
       handlePickSpeed,
@@ -147,6 +158,7 @@ export default defineComponent({
   height: 38px;
   line-height: 32px;
   font-weight: 600;
+  cursor: pointer;
   text-align: center;
   color: var(--primary-main);
   border: 2px solid var(--primary-main);
