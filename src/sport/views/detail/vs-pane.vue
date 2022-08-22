@@ -1,7 +1,7 @@
 <template>
   <div class="pos-r vs-pane">
     <div class="text-align-center" v-if="showTime">
-      <div class="countdown">{{ TIP.countDownStart }}</div>
+      <div class="countdown ff">{{ TIP.countDownStart }}</div>
       <div class="flex items-center justify-center" style="margin-bottom: 24px">
         <img src="../../images/zyq0425/IconTime01.png" style="margin: 0 12px" />
         <div class="m-flex">
@@ -13,7 +13,13 @@
     <!-- pc -->
     <div class="flex items-center justify-between pc-pane">
       <div class="left flex items-center justify-between" style="width: 34%">
-        <div class="logo"></div>
+        <div class="logo">
+          <img
+            class="h-90p"
+            src="../../images/icons/detailHome-icon.png"
+            alt=""
+          />
+        </div>
         <div>
           <div class="name" style="text-align: right">{{ homeInfo.name }}</div>
           <div
@@ -44,7 +50,13 @@
             {{ awayInfo.odds }}
           </div>
         </div>
-        <div class="logo"></div>
+        <div class="logo">
+          <img
+            class="h-100p"
+            src="../../images/icons/detailAway-icon.png"
+            alt=""
+          />
+        </div>
       </div>
     </div>
 

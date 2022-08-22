@@ -36,9 +36,10 @@
         >SWITCH</span
       > -->
       <span class="mx-8" v-if="!isMineRoom">|</span>
-      <span class="cursor-pointer" v-if="!isMineRoom" @click="handleSwitch"
-        >SWITCH<QuestionCircleOutlined
-      /></span>
+      <span class="cursor-pointer" v-if="!isMineRoom" @click="handleSwitch">
+        SWITCH
+        <QuestionCircleOutlined style="margin-left: 4px" />
+      </span>
     </div>
 
     <div v-else @click="handleInRoom">JOIN ROOM</div>

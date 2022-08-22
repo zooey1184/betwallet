@@ -3,7 +3,7 @@ export const TIP = {
   search: '搜索',
   commingSoon: '敬请期待',
   betBanner: '报注信息',
-  countDownStart: '开始倒数',
+  countDownStart: 'STARTS IN',
   sentT: '交易发送上链，请等待',
   successT: '上链成功',
   failT: '交易失败',

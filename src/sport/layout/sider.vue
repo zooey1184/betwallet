@@ -6,6 +6,7 @@
       height: 'calc(100vh - 120px)',
       overflowX: 'hidden',
       overflowY: 'auto',
+      zIndex: 10,
     }"
   >
     <div
@@ -28,6 +29,7 @@
 
 <script>
 import { computed, defineComponent, inject, reactive } from "vue";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   components: {},
@@ -40,6 +42,7 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const router = useRouter();
     const state = reactive({
       options: [],
       active: "",
@@ -49,6 +52,7 @@ export default defineComponent({
 
     const handlePick = (e) => {
       state.active = e.value;
+      router.push("/");
       COMPETITION.setState({
         active: e.value,
       });

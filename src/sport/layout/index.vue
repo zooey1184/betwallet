@@ -7,6 +7,7 @@
         </div>
         <img
           src="../images/zyq0425/logo.png"
+          class="cursor-pointer"
           style="height: 40px; margin-right: 50px"
           @click="handleGoHome"
         />
@@ -68,7 +69,7 @@
       <!-- 真实侧边栏 -->
       <div
         class="sider-real primary-bg"
-        :style="{ width: state.collapse ? '60px' : '250px' }"
+        :style="{ width: state.collapse ? '60px' : '250px', zIndex: 10 }"
       >
         <Sider :collapse="state.collapse" :options="slideOptions" />
         <div class="sider-bottom flex items-center justify-around">
@@ -127,14 +128,16 @@
       ></div>
 
       <!-- 内容区 -->
-      <div class="content flex-1" :class="{ 'bg-blur': !state.collapse }">
+      <div class="content flex-1 imgBg" :class="{ 'bg-blur': !state.collapse }">
         <div class="w-100p color-white">
           <slot></slot>
         </div>
 
         <div style="height: 60px" class="btm-pane"></div>
       </div>
-      <div class="right-sider overflow-x-hidden pos-r primary-bg flex-0">
+      <div
+        class="right-sider rightBg overflow-x-hidden pos-r primary-bg flex-0"
+      >
         <slot name="bet"></slot>
         <div
           class="mine-pane primary-bg"
@@ -399,6 +402,9 @@ export default defineComponent({
     padding-bottom: 0;
     transition: all 200ms linear;
     z-index: 5;
+    background-image: url("../images/v2/lbg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 
     @media screen and (max-width: 1200px) {
       display: none;
@@ -606,5 +612,19 @@ export default defineComponent({
   height: 100%;
   top: 0;
   z-index: 3;
+}
+.rightBg {
+  background-image: url("../images/v2/rbg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.imgBg {
+  background: url("../images/imgBg.png");
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
 }
 </style>

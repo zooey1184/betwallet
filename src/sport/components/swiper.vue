@@ -33,8 +33,9 @@ export default defineComponent({
     });
     const getBannerList = () => {
       getBanner().then((res) => {
-        if (res?.data) {
-          state.bannerList = res.data;
+        if (res) {
+          state.bannerList = res;
+
           console.log(state.bannerList);
           nextTick(() => {
             state.swiper = new Swiper(".zyqban", {

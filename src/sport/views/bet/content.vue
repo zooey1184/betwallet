@@ -9,13 +9,7 @@
         >
           Rewards
         </div>
-        <div
-          @click="handlePick('1')"
-          class="item"
-          :class="{ sactive: state.act === '1' }"
-        >
-          Staking
-        </div>
+        <div class="item" :class="{ sactive: state.act === '1' }">Staking</div>
       </div>
     </div>
     <div class="Huans flex fl-bet">
@@ -74,7 +68,7 @@
           </Popover>
         </div> -->
         <div class="input-wrap flex items-center justify-between">
-          <div class="input">0 USDT</div>
+          <div class="input">0 BET</div>
           <div class="btn-input">CLAIM</div>
         </div>
 
@@ -83,7 +77,7 @@
         </div>
         <div class="flex items-center gray-5 justify-between">
           <div>Total Reward:</div>
-          <div class="f5 color-white">USDT 0.0</div>
+          <div class="f5 color-white">BET 0.0</div>
         </div>
       </div>
     </div>

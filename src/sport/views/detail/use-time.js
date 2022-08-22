@@ -20,9 +20,9 @@ const useTime = (time) => {
     const offsetM = D * 24 * 3600 * 1000 + H * 3600 * 1000;
     const m = dayjs(time).diff(dayjs(+new Date() + offsetM), "minute");
     return {
-      d: D,
-      h: H,
-      m: m,
+      d: D?.toString().padStart(2, '0'),
+      h: H?.toString().padStart(2, '0'),
+      m: m?.toString().padStart(2, '0'),
     };
   };
   const loop = () => {

@@ -1,5 +1,5 @@
 <template>
-  <div class="px-24 py-16">
+  <div class="px-24 py-16 imgBg">
     <Content>
       <template #headerExtra>
         <!-- <=1200px 出现 -->
@@ -83,4 +83,5 @@ export default defineComponent({
 .slider-h-wrap {
   width: 100px;
 }
+
 </style>

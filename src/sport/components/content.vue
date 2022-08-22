@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <slot name="headerExtra"></slot>
+  <div class="imgBg">
     <Swiper />
-
+    <slot name="headerExtra"></slot>
     <section>
       <div class="flex sticky-header bg flex-wrap items-center justify-between">
         <div class="flex items-center mr-24">
@@ -187,4 +186,5 @@ export default defineComponent({
   z-index: 9;
   padding: 16px 0;
 }
+
 </style>

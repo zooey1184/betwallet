@@ -156,10 +156,12 @@
       </div>
       <div>
         <div class="input-wrap flex items-center justify-between">
-          <div class="input f4">0 USDT</div>
-          <div class="btn-input ff" @click="handleGoBet">CLAIM</div>
+          <div class="input f4">0 BET</div>
+          <div class="btn-input ff">CLAIM</div>
         </div>
-        <div class="ff active-color mt-8">REWARD DETAILS</div>
+        <div class="ff active-color mt-8 cursor-pointer" @click="handleGoBet">
+          REWARD DETAILS
+        </div>
       </div>
     </div>
 

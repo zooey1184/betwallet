@@ -1,16 +1,16 @@
 <template>
-  <div class="flex items-center">
+  <div class="flex items-center cursor-pointer">
     <div class="around" @click="handleShowInfo">
       <img style="width: 36px" src="../images/v2/coin-icon-gray.png" alt="" />
     </div>
     <div>
       <div>{{ address }}</div>
-      <div class="pos-r">
+      <div class="pos-r" style="width: 120px">
         <Progress
           :percent="getWinRate"
           :strokeWidth="15"
           strokeColor="#ff0083"
-          trailColor="#3b3b5b"
+          trailColor="#0f0723"
           :show-info="false"
         />
         <div class="insetP">{{ getTotalWin }}/{{ getTotalBet }}</div>
