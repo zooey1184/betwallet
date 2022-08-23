@@ -15,7 +15,7 @@
           <div
             class="flex flex-col items-center justify-center header_active_item active-bg"
           >
-            <img src="../images/v2/esport.png" style="height: 40px" alt="" />
+            <img src="../images/v2/esport.png" style="height: 35px" alt="" />
             ELECTRONICS
           </div>
           <div
