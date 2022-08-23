@@ -1,9 +1,9 @@
 <template>
-  <div class="imgBg">
+  <div class="overflow-auto">
     <Swiper />
     <slot name="headerExtra"></slot>
     <section>
-      <div class="flex sticky-header bg flex-wrap items-center justify-between">
+      <div class="flex sticky-header flex-wrap items-center justify-between">
         <div class="flex items-center mr-24">
           <div
             class="item ff"
@@ -33,7 +33,7 @@
         <div class="flex-1 flex justify-end">
           <div class="searchPane">
             <input
-              placeholder="搜索队伍名称"
+              placeholder="Search"
               @change="handleChangeKeyWord"
               v-model="state.keyword"
               class="searchInput primary-bg"
@@ -43,9 +43,19 @@
         </div>
       </div>
       <ul>
-        <sport-item v-for="item in getSportList" :info="item"></sport-item>
+        <div v-if="getCommingList?.length">
+          <div class="ff mb-8">UPCOMING</div>
+          <sport-item v-for="item in getCommingList" :info="item"></sport-item>
+        </div>
+        <div v-if="getLiveList?.length">
+          <div class="ff mb-8">LIVE IN PLAY</div>
+          <sport-item v-for="item in getLiveList" :info="item"></sport-item>
+        </div>
       </ul>
     </section>
+    <div style="height: 20vh"></div>
+    <FooterContent />
+    <div style="height: 5vh"></div>
   </div>
 </template>
 
@@ -54,12 +64,14 @@ import { computed, defineComponent, inject, reactive, ref } from "vue";
 import Swiper from "./swiper.vue";
 import SportItem from "./sport-item/index.vue";
 import { SearchOutlined } from "@ant-design/icons-vue";
+import FooterContent from "./footer-pane/index.vue";
 
 export default defineComponent({
   components: {
     Swiper,
     SportItem,
     SearchOutlined,
+    FooterContent,
   },
   props: {},
   setup(props) {
@@ -103,6 +115,15 @@ export default defineComponent({
       }
       return list;
     });
+
+    const getCommingList = computed(() => {
+      const list = getSportList.value;
+      return list.filter((item) => !item.isLive);
+    });
+    const getLiveList = computed(() => {
+      const list = getSportList.value;
+      return list.filter((item) => !!item.isLive);
+    });
     const state = reactive({
       sportsList: [],
       active: "ALL",
@@ -136,6 +157,8 @@ export default defineComponent({
       handleSetActive,
       COMPETITION_ACTIVE,
       getSportList,
+      getCommingList,
+      getLiveList,
     };
   },
 });
@@ -186,5 +209,4 @@ export default defineComponent({
   z-index: 9;
   padding: 16px 0;
 }
-
 </style>

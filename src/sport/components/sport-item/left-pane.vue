@@ -2,18 +2,34 @@
   <div class="pos-r">
     <div class="default_color leftInfoPane">
       <div class="flex items-center">
-        <div class="scheduleIcon"></div>
-        <div class="scheduleTime">{{ time }}</div>
+        <div class="scheduleIcon">
+          <img
+            src="../../images/icons/matchItem-icon-active.png"
+            style="width: 100%"
+            alt=""
+          />
+        </div>
+        <div class="scheduleTime f1">{{ time }}</div>
       </div>
-      <div v-if="!!live" class="flex items-center">
-        <VideoCameraOutlined class="color-blue mr-8 font-size-22" />
-        LIVE
+      <div class="flex items-center">
+        <div class="f1">B01 Valhalla Cup</div>
+        <div v-if="!!live" class="flex items-center">
+          <VideoCameraOutlined class="active-color mr-8 font-size-22" />
+          LIVE
+        </div>
       </div>
     </div>
 
-    <div class="default_color leftInfoPane2">
+    <div class="default_color leftInfoPane2 items-center">
       <div class="flex items-center">
-        <!-- <div class="scheduleIcon"></div> -->
+        <div class="flex">
+          <img
+            src="../../images/icons/matchItem-icon-active.png"
+            style="height: 18px"
+            alt=""
+          />
+          <div class="f1 ml-8 font-size-12">B01 Valhalla Cup</div>
+        </div>
         <div v-if="!!live" class="flex items-center">
           <VideoCameraOutlined class="color-blue mr-8 font-size-22" />
           LIVE
@@ -25,7 +41,13 @@
 
     <div class="default_color leftInfoPane3">
       <div class="flex items-center">
-        <div class="scheduleIcon"></div>
+        <div class="scheduleIcon">
+          <img
+            src="../../images/icons/matchItem-icon-active.png"
+            style="width: 100%"
+            alt=""
+          />
+        </div>
         <div class="scheduleTime">
           <div v-if="!!live" class="flex items-center">
             <VideoCameraOutlined class="color-blue mr-8 font-size-22" />
@@ -114,16 +136,16 @@ export default defineComponent({
   height: 24px;
   border-radius: 4px;
   margin-right: 8px;
-  background: rgba(108, 130, 157, 0.4);
+  // background: rgba(108, 130, 157, 0.4);
 }
 .scheduleTime {
-  font-size: 12px;
+  font-size: 18px;
 }
 .scheduleTime2 {
   position: absolute;
   width: 98%;
   text-align: center;
-  top: 0;
+  top: 2px;
   font-size: 12px;
 }
 .itemarrow {
@@ -132,7 +154,7 @@ export default defineComponent({
   font-size: 18px;
   font-weight: 600;
   height: 34px;
-  top: -12px;
+  top: -10px;
   padding: 6px 12px 8px 8px;
   // top: 50%;
   // transform: translateY(-50%);

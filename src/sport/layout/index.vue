@@ -11,28 +11,30 @@
           style="height: 40px; margin-right: 50px"
           @click="handleGoHome"
         />
-        <div class="flex items-center lg-show">
+        <div class="flex lg-show" style="height: 80px">
           <div
-            class="flex flex-col items-center justify-center header_active_item active-bg"
+            class="flex flex-col items-center cursor-pointer justify-center header_active_item active-bg ff"
           >
-            <img src="../images/v2/esport.png" style="height: 35px" alt="" />
-            ELECTRONICS
+            <img src="../images/v2/esport.png" style="height: 30px" alt="" />
+            <div style="margin-top: 4px">ELECTRONICS</div>
           </div>
           <div
-            class="flex flex-col items-center justify-center header_active_item"
+            class="flex flex-col cursor-pointer items-center justify-center header_active_item"
+            @click="handleMessage"
           >
             <img
               src="../images/v2/basketball.png"
-              style="height: 40px"
+              style="height: 30px"
               alt=""
             />
-            <p class="font-weight-400 text-color">Basketball</p>
+            <p class="text-color f1" style="margin-top: 4px">Basketball</p>
           </div>
           <div
-            class="flex flex-col items-center justify-center header_active_item"
+            class="flex flex-col items-center cursor-pointer justify-center header_active_item"
+            @click="handleMessage"
           >
-            <img src="../images/v2/football.png" style="height: 40px" alt="" />
-            <p class="font-weight-400 text-color">Football</p>
+            <img src="../images/v2/football.png" style="height: 30px" alt="" />
+            <p class="text-color f1" style="margin-top: 4px">Football</p>
           </div>
         </div>
         <!-- <div class="start ml-24">START THE GAME</div> -->
@@ -140,7 +142,7 @@
       >
         <slot name="bet"></slot>
         <div
-          class="mine-pane primary-bg"
+          class="mine-pane primary-bg rightBg"
           :style="{ right: !state.infoVisible ? '-100%' : 0 }"
         >
           <div class="mine-pane">
@@ -212,7 +214,7 @@ import {
   LeftOutlined,
   UserOutlined,
 } from "@ant-design/icons-vue";
-import { Popover } from "ant-design-vue";
+import { Popover, message } from "ant-design-vue";
 import Info from "./info-btn.vue";
 import MenuIcon from "./menu-icon.vue";
 import InfoPane from "./info-pane.vue";
@@ -317,6 +319,10 @@ export default defineComponent({
       }
     };
 
+    const handleMessage = () => {
+      message.info("Coming Soon");
+    };
+
     return {
       state,
       getCompetitionName,
@@ -329,6 +335,7 @@ export default defineComponent({
       handleGoHome,
       handleConnect,
       handleChangeTab,
+      handleMessage,
     };
   },
 });
@@ -550,6 +557,7 @@ export default defineComponent({
   border-bottom-right-radius: 15px;
   font-weight: 600;
   margin: 0 8px;
+  height: 70px;
 }
 .start {
   padding: 4px 12px;
@@ -619,12 +627,12 @@ export default defineComponent({
   background-size: cover;
 }
 .imgBg {
-  background: url("../images/imgBg.png");
+  // background: url("../images/imgBg.png");
+  background-image: url("https://s1.ax1x.com/2022/08/23/vc0pkD.png");
   position: absolute;
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  z-index: -1;
 }
 </style>

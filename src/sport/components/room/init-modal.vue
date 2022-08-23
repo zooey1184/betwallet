@@ -1,27 +1,28 @@
 <template>
-  <Spin :spinning="state.loading">
-    <div class="flex items-center justify-center">
-      <img src="../../images/v2/room-logo.png" class="logo" alt="" />
+  <div>
+    <div v-if="state.active === 'create'">
+      <div class="flex items-center justify-center">
+        <img src="../../images/room/init.png" class="logo" alt="" />
+      </div>
+      <div
+        class="font-size-20 text-align-center mt-24 mb-16 font-weight-600 active-color"
+      >
+        CASINO INSTRUCTIONS
+      </div>
+      <InitDesc />
     </div>
-    <div
-      class="font-size-16 text-align-center mt-24 mb-16 font-weight-600 active-color"
-    >
-      CASINO INSTRUCTIONS
-    </div>
-    <div class="font14-12 my-8 text-align-center line-height-16 color-black">
-      AFTER CREATE CASINO AND ADD USDT POOL USERS IMMEDIATELY GENERATE THEIR OWN
-      “CASINO CODE” AND BECOME BOOKMAKERS, OTHERS CAN ENTER THE CASINO BY
-      INPUTTING THE “CASINO CODE”THE USDT POOL CAN BE WITHDRAWN AT ANY TIME IF
-      NO BETS ARE IN PROGRESS
-    </div>
-    <div class="title font14-12 text-align-center line-height-16 color-gray">
-      IF OTHER USERS ARE BETTING IN YOUR CASINO, YOU WILL RECEIVE A MASSIVE BET
-      TOKEN REWARD.
+
+    <div v-else>
+      <div class="roomTitle f4">SWITCHING ROOMS</div>
+      <div class="mt-8 mb-16 flex justify-center">
+        <img src="../../images/room/gate.png" class="gatelogo" alt="" />
+      </div>
+      <InitDesc />
     </div>
 
     <div class="flex items-center justify-between my-24">
       <div
-        class="roombtn active-border"
+        class="roombtn active-border-2 f4 font-size-18"
         v-for="item in state.btns"
         @click="handlePick(item)"
         :class="{
@@ -35,18 +36,26 @@
       </div>
     </div>
 
-    <div class="input-wrap active-border flex items-center">
+    <div class="input-wrap active-border-2 flex items-center">
       <input
         class="flex-1 input"
         v-model="state.code"
         :placeholder="`${TIP.roomNumberPlaceholder}`"
         :maxlength="8"
       />
-      <div class="roomConfirm active-bg color-white" @click="handleConfirm">
-        CONFIRM
-      </div>
+      <Button
+        type="primary"
+        :loading="state.loading"
+        class="roomConfirm active-bg color-white"
+        style="background: #ff0083"
+        @click="handleConfirm"
+      >
+        <span class="cursor-pointer">{{
+          state.active === "create" ? "CONFIRM" : "SWITCH"
+        }}</span>
+      </Button>
     </div>
-  </Spin>
+  </div>
 </template>
 
 <script>
@@ -61,12 +70,15 @@ import {
 import usePermission from "@/sport/components/useHooks/use-permission";
 import { message } from "ant-design-vue";
 import { createTenant, saveTenant } from "@/sport/api/index";
-import { Spin } from "ant-design-vue";
+import { Spin, Button } from "ant-design-vue";
 import { TIP } from "@/sport/constant/tip";
+import InitDesc from "./init-desc.vue";
 
 export default defineComponent({
   components: {
     Spin,
+    Button,
+    InitDesc,
   },
   props: {
     type: {
@@ -206,7 +218,7 @@ export default defineComponent({
 .roombtn {
   height: 42px;
   border-radius: 10px;
-  line-height: 42px;
+  line-height: 40px;
   text-align: center;
   width: 45%;
   font-size: 14px;
@@ -220,7 +232,7 @@ export default defineComponent({
   }
 }
 .input-wrap {
-  border-radius: 4px;
+  border-radius: 8px;
   overflow: hidden;
 }
 .input {
@@ -232,15 +244,19 @@ export default defineComponent({
   font-size: 18px;
 }
 .roomConfirm {
-  padding: 0 24px;
+  padding: 0 8px;
   height: 42px;
   text-align: center;
   line-height: 42px;
   font-size: 18px;
+  border-radius: 4px;
   transition: all 300ms linear;
-  cursor: pointer;
+  cursor: pointer !important;
+  border: none;
+  background: #ff0083 !important;
   &:hover {
     color: #fff;
+    background: #ff0083 !important;
   }
   @media screen and (max-width: 700px) {
     font-size: 12px;
@@ -257,6 +273,17 @@ export default defineComponent({
 }
 .logo {
   width: 200px;
+  margin-top: 40px;
+  @media screen and (max-width: 1560px) {
+    margin-top: 10px;
+  }
+  @media screen and (max-width: 700px) {
+    width: 120px;
+  }
+}
+
+.gatelogo {
+  width: 200px;
   @media screen and (max-width: 700px) {
     width: 120px;
   }
@@ -266,5 +293,14 @@ export default defineComponent({
   @media screen and (max-width: 700px) {
     font-size: 12px;
   }
+}
+.roomTitle {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 56px;
+  @media screen and (max-width: 1560px) {
+    margin-top: 26px;
+  }
+  color: var(--primary-main);
 }
 </style>

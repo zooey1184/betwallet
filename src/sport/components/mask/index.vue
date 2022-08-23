@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <Teleport to="body">
     <Transition name="fade">
       <div
         class="mark--full"
@@ -10,14 +10,16 @@
     <Transition name="slide-fade">
       <div class="alert__content" v-if="state.visible">
         <div class="content" @click.stop>
-          <slot></slot>
+          <div class="container">
+            <slot></slot>
+          </div>
           <div class="close-icon" @click="handleClose">
             <close-circle-outlined style="font-size: 24px" />
           </div>
         </div>
       </div>
     </Transition>
-  </div>
+  </Teleport>
 </template>
 
 <script>
@@ -143,17 +145,25 @@ export default defineComponent({
   .full;
   .content {
     width: 90%;
-    max-width: 450px;
+    max-width: 480px;
     display: block;
     margin: 0 auto;
     background: #fff;
     position: relative;
-    border-radius: 12px;
+    border-radius: 18px;
     top: 45%;
     transform: translateY(-50%);
     padding: 16px 24px;
     min-height: 100px;
     color: #333;
+  }
+  .container {
+    height: 80vh;
+    max-height: 580px;
+    @media screen and (max-height: 600px) {
+      height: 75vh;
+    }
+    overflow: auto;
   }
 }
 .close-icon {

@@ -11,11 +11,17 @@
     <div class="flex items-center pc-item">
       <!-- left -->
       <div class="left flex items-center justify-end">
-        <div class="leftTitle">
+        <div class="leftTitle ff">
           {{ HomeTeam }}
         </div>
         <div class="flex items-center leftIcon">
-          <div class="icon"></div>
+          <div class="icon">
+            <img
+              src="../../images/icons/sportItem-home-icon.png"
+              style="height: 100%"
+              alt=""
+            />
+          </div>
           <input
             type="text"
             :value="getLeftValue"
@@ -49,9 +55,15 @@
             :class="{ active: getBetActive === 'away' }"
             readonly
           />
-          <div class="icon"></div>
+          <div class="icon">
+            <img
+              src="../../images/icons/sportItem-away-icon.png"
+              style="height: 100%"
+              alt=""
+            />
+          </div>
         </div>
-        <div class="rightTitle">
+        <div class="rightTitle ff">
           {{ AwayTeam }}
         </div>
       </div>
@@ -264,10 +276,10 @@ export default defineComponent({
   text-align: center;
 }
 .icon {
-  width: 32px;
+  // width: 32px;
   height: 32px;
   border-radius: 4px;
-  background-color: rgba(108, 130, 157, 0.4);
+  // background-color: rgba(108, 130, 157, 0.4);
   border: 1px solid transparent;
   margin: 0 8px;
 }
@@ -282,7 +294,8 @@ export default defineComponent({
   }
 }
 .leftTitle {
-  color: #becde3;
+  color: #fff;
+  font-size: 18px;
 }
 .rightIcon {
   @media screen and (max-width: 800px) {
@@ -292,7 +305,8 @@ export default defineComponent({
   }
 }
 .rightTitle {
-  color: #becde3;
+  color: #fff;
+  font-size: 18px;
 }
 .pc-item {
   @media screen and (max-width: 800px) {
