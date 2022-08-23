@@ -3,7 +3,7 @@
     <Swiper />
     <slot name="headerExtra"></slot>
     <section>
-      <div class="flex sticky-header bg flex-wrap items-center justify-between">
+      <div class="flex sticky-header flex-wrap items-center justify-between">
         <div class="flex items-center mr-24">
           <div
             class="item ff"
@@ -33,7 +33,7 @@
         <div class="flex-1 flex justify-end">
           <div class="searchPane">
             <input
-              placeholder="搜索队伍名称"
+              placeholder="Search"
               @change="handleChangeKeyWord"
               v-model="state.keyword"
               class="searchInput primary-bg"
@@ -46,6 +46,8 @@
         <sport-item v-for="item in getSportList" :info="item"></sport-item>
       </ul>
     </section>
+
+    <FooterContent />
   </div>
 </template>
 
@@ -54,12 +56,14 @@ import { computed, defineComponent, inject, reactive, ref } from "vue";
 import Swiper from "./swiper.vue";
 import SportItem from "./sport-item/index.vue";
 import { SearchOutlined } from "@ant-design/icons-vue";
+import FooterContent from './footer-pane/index.vue'
 
 export default defineComponent({
   components: {
     Swiper,
     SportItem,
     SearchOutlined,
+    FooterContent
   },
   props: {},
   setup(props) {
