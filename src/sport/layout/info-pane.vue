@@ -1,168 +1,183 @@
 <template>
   <div class="h-100p overflow-auto">
-    <div class="info-title active-bg mt-24 flex ff items-center">
-      {{ accountHide }}
-      <CopyIcon :text="getWalletAddress" />
-    </div>
-    <div class="m-8 p-8 primary-dark-bg rounded-4">
-      <div class="pos-r">
-        <div
-          class="logoBg pos-a top-40"
-          style="width: 200px; height: 230px; left: -8px"
-        ></div>
+    <div>
+      <div class="info-title active-bg mt-24 flex ff items-center">
+        {{ accountHide }}
+        <CopyIcon :text="getWalletAddress" />
       </div>
-      <div class="flex items-center f5 justify-between">
-        <div class="flex items-center">
-          <img
-            src="../images/icons/eth.png"
-            class="mr-8"
-            style="width: 14px"
-            alt=""
-          />
-          ETH
+      <div
+        class="m-8 p-8 primary-dark-bg rounded-4"
+        style="padding-bottom: 16px"
+      >
+        <div class="pos-r">
+          <div
+            class="logoBg pos-a top-40"
+            style="width: 200px; height: 230px; left: -8px"
+          ></div>
         </div>
-        <div class="active-color">{{ getEth }}</div>
-      </div>
-      <div class="flex items-center f5 mt-16 justify-between">
-        <div class="flex items-center">
-          <img
-            src="../images/icons/USDT.png"
-            class="mr-8"
-            style="width: 14px"
-            alt=""
-          />
-          USDT
-        </div>
-        <div class="active-color">{{ getUsdt }}</div>
-      </div>
-      <div class="flex items-center f5 mt-16 justify-between">
-        <div class="flex items-center">
-          <img
-            src="../images/v2/coin-icon-grey.png"
-            class="mr-8"
-            style="width: 14px"
-            alt=""
-          />
-          BET
-        </div>
-        <div class="active-color">{{ getBet }}</div>
-      </div>
-      <div style="height: 30px"></div>
-      <div class="pos-r" style="height: 55px">
-        <div
-          class="info-title active-bg ff flex items-center pos-a"
-          style="left: -16px"
-        >
-          DASHBOARD
-          <img
-            style="width: 16px"
-            class="ml-8"
-            src="../images/icons/dashboard.png"
-            alt=""
-          />
-        </div>
-      </div>
-
-      <div class="flex justify-between">
-        <div class="info-itempane primary-bg">
-          <div class="circle-wrap" style="margin: 0 auto">
+        <div class="flex items-center f5 justify-between">
+          <div class="flex items-center">
             <img
-              src="../images/v2/coin-icon-gray.png"
-              style="width: 70px"
+              src="../images/icons/eth.png"
+              class="mr-8"
+              style="width: 14px"
               alt=""
             />
+            ETH
           </div>
-          <div class="flex items-center mt-8">
+          <div class="active-color">{{ getEth }}</div>
+        </div>
+        <div class="flex items-center f5 mt-16 justify-between">
+          <div class="flex items-center">
             <img
-              src="../images/icons/doc.png"
-              style="width: 12px; margin-right: 4px"
+              src="../images/icons/USDT.png"
+              class="mr-8"
+              style="width: 14px"
               alt=""
             />
-            <div>{{ accountHide }}</div>
+            USDT
           </div>
-          <div class="flex items-center mt-8">
+          <div class="active-color">{{ getUsdt }}</div>
+        </div>
+        <div class="flex items-center f5 mt-16 justify-between">
+          <div class="flex items-center">
             <img
-              src="../images/icons/share.png"
-              style="width: 12px; margin-right: 4px"
+              src="../images/v2/coin-icon-grey.png"
+              class="mr-8"
+              style="width: 14px"
+              alt=""
+            />
+            BET
+          </div>
+          <div class="active-color">{{ getBet }}</div>
+        </div>
+        <div style="height: 30px"></div>
+        <div class="pos-r" style="height: 55px">
+          <div
+            class="info-title active-bg ff flex items-center pos-a"
+            style="left: -16px"
+          >
+            DASHBOARD
+            <img
+              style="width: 16px"
+              class="ml-8"
+              src="../images/icons/dashboard.png"
               alt=""
             />
           </div>
         </div>
-        <div class="info-itempane flex-0 primary-bg">
-          <div class="pos-r flex justify-center">
-            <Progress
-              type="circle"
-              stroke-color="#ff0083"
-              trailColor="#3b3b5b"
-              :strokeWidth="5"
-              :percent="getWinRate"
-              :format="() => ''"
-              :width="80"
-            ></Progress>
-            <div
-              class="pos-a"
-              style="top: 54%; left: 50%; transform: translate(-50%, -50%)"
-            >
+        <div class="flex justify-between">
+          <div class="info-itempane primary-bg">
+            <div class="circle-wrap" style="margin: 0 auto">
               <img
-                style="width: 36px"
-                src="../images/icons/logo-red.png"
+                src="../images/v2/coin-icon-gray.png"
+                style="width: 70px"
                 alt=""
               />
-              <p class="font-size-12 text-align-center active-color">
-                {{ getWinRate }}%
-              </p>
+            </div>
+            <div class="flex items-center mt-8">
+              <img
+                src="../images/icons/doc.png"
+                style="width: 12px; margin-right: 4px"
+                alt=""
+              />
+              <div>{{ accountHide }}</div>
+            </div>
+            <div class="flex items-center mt-8">
+              <img
+                src="../images/icons/share.png"
+                style="width: 12px; margin-right: 4px"
+                alt=""
+              />
             </div>
           </div>
-          <div class="flex items-center mt-8">
+          <div class="info-itempane flex-0 primary-bg">
+            <div class="pos-r flex justify-center">
+              <Progress
+                type="circle"
+                stroke-color="#ff0083"
+                trailColor="#3b3b5b"
+                :strokeWidth="5"
+                :percent="getWinRate"
+                :format="() => ''"
+                :width="80"
+              ></Progress>
+              <div
+                class="pos-a"
+                style="top: 54%; left: 50%; transform: translate(-50%, -50%)"
+              >
+                <img
+                  style="width: 36px"
+                  src="../images/icons/logo-red.png"
+                  alt=""
+                />
+                <p class="font-size-12 text-align-center active-color">
+                  {{ getWinRate }}%
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center mt-8">
+              <img
+                src="../images/icons/movie.png"
+                style="width: 12px; margin-right: 4px"
+                alt=""
+              />
+              <div class="flex justify-between flex-wrap flex-1">
+                Total bet
+                <span class="active-color">{{ getTotalBet }}</span>
+              </div>
+            </div>
+            <div class="flex items-center mt-8">
+              <img
+                src="../images/icons/win.png"
+                style="width: 12px; margin-right: 4px"
+                alt=""
+              />
+              <div class="flex justify-between flex-wrap flex-1">
+                Bets won
+                <span class="active-color">{{ getTotalWin }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="height: 30px"></div>
+        <div style="height: 55px" class="pos-r">
+          <div
+            class="info-title active-bg ff flex items-center pos-a"
+            style="left: -16px"
+          >
+            BET REWARDS
             <img
-              src="../images/icons/movie.png"
-              style="width: 12px; margin-right: 4px"
+              style="width: 13px; padding-bottom: 4px"
+              class="ml-8"
+              src="../images/icons/reward.png"
               alt=""
             />
-            <div class="flex justify-between flex-wrap flex-1">
-              Total bet
-              <span class="active-color">{{ getTotalBet }}</span>
-            </div>
           </div>
-          <div class="flex items-center mt-8">
-            <img
-              src="../images/icons/win.png"
-              style="width: 12px; margin-right: 4px"
-              alt=""
-            />
-            <div class="flex justify-between flex-wrap flex-1">
-              Bets won
-              <span class="active-color">{{ getTotalWin }}</span>
-            </div>
+        </div>
+        <div>
+          <div class="input-wrap flex items-center justify-between">
+            <div class="input f4">0 BET</div>
+            <div class="btn-input ff">CLAIM</div>
+          </div>
+          <div class="ff active-color mt-8 cursor-pointer" @click="handleGoBet">
+            REWARD DETAILS
           </div>
         </div>
       </div>
-
-      <div style="height: 30px"></div>
-
-      <div style="height: 55px" class="pos-r">
-        <div
-          class="info-title active-bg ff flex items-center pos-a"
-          style="left: -16px"
-        >
-          BET REWARDS
-          <img
-            style="width: 13px; padding-bottom: 4px"
-            class="ml-8"
-            src="../images/icons/reward.png"
-            alt=""
-          />
-        </div>
-      </div>
-      <div>
-        <div class="input-wrap flex items-center justify-between">
-          <div class="input f4">0 BET</div>
-          <div class="btn-input ff">CLAIM</div>
-        </div>
-        <div class="ff active-color mt-8 cursor-pointer" @click="handleGoBet">
-          REWARD DETAILS
-        </div>
-      </div>
+    </div>
+    <div
+      class="info-btn m-8 flex-1 sticky bottom-0 flex items-center justify-center"
+      @click="handleClose"
+      style="margin-top: 24px"
+    >
+      <img
+        src="../images/icons/exit.png"
+        style="height: 12px"
+        class="mr-8"
+        alt=""
+      />
+      HIDE
     </div>
 
     <!-- <div class="info-title active-bg ff flex items-center" style="left: 0">
@@ -264,7 +279,8 @@ export default defineComponent({
     Progress,
   },
   props: {},
-  setup(props) {
+  emits: ["close"],
+  setup(props, { emit }) {
     const state = reactive({
       percent: 40,
     });
@@ -288,6 +304,10 @@ export default defineComponent({
       });
     };
 
+    const handleClose = () => {
+      emit("close");
+    };
+
     return {
       state,
       accountHide,
@@ -299,6 +319,7 @@ export default defineComponent({
       getTotalWin,
       getWinRate,
       handleGoBet,
+      handleClose,
     };
   },
 });
@@ -354,5 +375,21 @@ export default defineComponent({
   background-size: cover;
   opacity: 0.15;
   z-index: 0;
+}
+.info-btn {
+  height: 38px;
+  text-align: center;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  line-height: 38px;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    // background: var(--primary-main);
+    color: var(--primary-main);
+    // color: #fff;
+  }
 }
 </style>

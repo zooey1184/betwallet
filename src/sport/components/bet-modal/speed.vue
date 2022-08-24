@@ -1,14 +1,12 @@
 <template>
-  <div>
-    <div
-      class="active-color mt-24 font-size-20 font-weight-600 text-align-center"
-    >
+  <div class="wrap">
+    <div class="active-color mt50 title ff text-align-center">
       DEFAULT TRANSACTION SPEED
       <QuestionCircleOutlined class="color-purple" />
     </div>
-    <div class="flex items-center justify-between mt-8">
+    <div class="flex items-center justify-between mt-8 flex-w">
       <div
-        class="item"
+        class="item f5"
         :class="{ 'item-active': state.speedValue === item.value }"
         v-for="item in state.speed"
         @click="handlePickSpeed(item)"
@@ -17,17 +15,25 @@
       </div>
     </div>
 
-    <div
-      class="active-color font-size-20 font-weight-600 text-align-center mt-24"
-    >
+    <div class="active-color title ff text-align-center mt-24">
       SWAPS & LIQUIDITY
       <QuestionCircleOutlined class="color-purple" />
     </div>
     <div class="text-align-center">SLIPPAGE TOLERANCE</div>
-    <div class="flex items-center justify-between mt-8">
+    <!-- 自定义 -->
+    <div class="mt-16">
+      <ModalInput
+        v-model:value="state.toleranceValue"
+        :maxlength="2"
+        placeholder="SELECT INPUT"
+      />
+    </div>
+    <div class="flex items-center justify-between mt-16">
       <div
-        class="item"
-        :class="{ 'item-active': state.toleranceValue === item.value }"
+        class="item f5"
+        :class="{
+          'item-active': state.toleranceValue?.toString() === item.value,
+        }"
         v-for="item in state.tolerance"
         @click="handlePickTolerance(item)"
       >
@@ -35,15 +41,13 @@
       </div>
     </div>
 
-    <div
-      class="active-color font-size-20 font-weight-600 text-align-center mt-24"
-    >
+    <div class="active-color ff title text-align-center mt-24">
       TX DEADLINE (MINS)
       <QuestionCircleOutlined class="color-purple" />
     </div>
     <div class="flex items-center justify-between mt-8">
       <div
-        class="item"
+        class="item f5"
         :class="{ 'item-active': state.timeCutValue === item.value }"
         v-for="item in state.timeCut"
         @click="handlePickTimecut(item)"
@@ -57,11 +61,21 @@
 </template>
 
 <script>
-import { defineComponent, inject, reactive, computed, onMounted } from "vue";
+import {
+  defineComponent,
+  inject,
+  reactive,
+  computed,
+  onMounted,
+  watch,
+} from "vue";
 import { QuestionCircleOutlined } from "@ant-design/icons-vue";
+import ModalInput from "../modal-input.vue";
+
 export default defineComponent({
   components: {
     QuestionCircleOutlined,
+    ModalInput,
   },
   props: {},
   emits: ["ok"],
@@ -99,17 +113,33 @@ export default defineComponent({
         },
       ],
       toleranceValue: "5",
+      toleranceCustom: "",
       timeCut: [
         {
           label: "20",
           value: "20",
         },
       ],
-      timeCutValue: "20",
+      timeCutValue: "",
     });
 
     const SPORT_BET = inject("SPORT_BET");
     const getBetConfig = computed(() => SPORT_BET.getBetConfig?.value);
+
+    // watch(
+    //   () => state.toleranceValue,
+    //   (n) => {
+    //     if (n) {
+    //       state.toleranceCustom = undefined;
+    //     }
+    //   }
+    // );
+    // watch(
+    //   () => state.toleranceCustom,
+    //   (n) => {
+    //     state.toleranceValue = undefined;
+    //   }
+    // );
     const handlePickSpeed = (item) => {
       state.speedValue = item.value;
     };
@@ -123,7 +153,7 @@ export default defineComponent({
     const handleConfirm = () => {
       SPORT_BET.setState({
         betConfig: {
-          tolerance: state.toleranceValue,
+          tolerance: state.toleranceValue || 0,
           speed: state.speedValue,
           timeCut: state.timeCutValue,
         },
@@ -132,7 +162,6 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      console.log();
       if (getBetConfig.value) {
         const config = getBetConfig.value;
         state.toleranceValue = config.tolerance;
@@ -153,16 +182,34 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
+.wrap {
+  padding: 0 24px;
+}
+.mt50 {
+  margin-top: 50px;
+  @media screen and (max-width: 600px) {
+    margin-top: 24px;
+  }
+}
+.title {
+  font-size: 22px;
+  @media screen and (max-width: 600px) {
+    font-size: 15px;
+  }
+}
 .item {
   width: 120px;
   height: 38px;
   line-height: 32px;
-  font-weight: 600;
   cursor: pointer;
   text-align: center;
   color: var(--primary-main);
   border: 2px solid var(--primary-main);
   border-radius: 8px;
+  font-size: 14px;
+  @media screen and (max-width: 600px) {
+    font-size: 12px;
+  }
 }
 .item-active {
   background: var(--primary-main);
@@ -177,10 +224,15 @@ export default defineComponent({
   border-radius: 8px;
   text-align: center;
   cursor: pointer;
-  margin-top: 24px;
+  margin-top: 50px;
   color: #fff;
+
   &:active {
     opacity: 0.8;
+  }
+
+  @media screen and (max-width: 600px) {
+    margin-top: 24px;
   }
 }
 </style>

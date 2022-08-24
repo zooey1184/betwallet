@@ -1,13 +1,15 @@
 <template>
   <Web3Provider>
     <InitProvider>
-      <RoomProvider>
-        <SportProvider>
-          <ResultProvider>
-            <Page />
-          </ResultProvider>
-        </SportProvider>
-      </RoomProvider>
+      <PoolProvider>
+        <RoomProvider>
+          <SportProvider>
+            <ResultProvider>
+              <Page />
+            </ResultProvider>
+          </SportProvider>
+        </RoomProvider>
+      </PoolProvider>
     </InitProvider>
   </Web3Provider>
 </template>
@@ -21,6 +23,7 @@ import SportProvider from "./components/sport-bet-provider.vue";
 import RoomProvider from "./components/room/init-provider.vue";
 import Test from "@/sport/components/test.vue";
 import ResultProvider from "@/sport/components/result/result-provider.vue";
+import PoolProvider from "@/sport/components/web3/pool-provider.vue";
 
 export default defineComponent({
   components: {
@@ -31,6 +34,7 @@ export default defineComponent({
     RoomProvider,
     Test,
     ResultProvider,
+    PoolProvider,
   },
 });
 </script>

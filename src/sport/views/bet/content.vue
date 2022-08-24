@@ -14,7 +14,7 @@
     </div>
     <div class="Huans flex fl-bet">
       <div class="InddanN wow slideInUp" data-wow-duration="1s">
-        <div class="desc">Total amount of your BET</div>
+        <div class="desc">your bets amount</div>
         <div class="InddanB flexE">
           <div class="InddanZ ff flex items-end insetTitle active-color">
             <span>70</span>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="InddanN wow slideInUp" data-wow-duration="1.4s">
-        <div class="desc">Total amount of your pool has been BET</div>
+        <div class="desc">bets in your pool</div>
         <div class="InddanB flexE">
           <div class="InddanZ ff flex items-end insetTitle active-color">
             <span>70</span>
@@ -34,13 +34,13 @@
         </div>
       </div>
       <div class="InddanN wow slideInUp" data-wow-duration="1.8s">
-        <div class="desc">Remaining BET</div>
+        <div class="desc">BET remain this round</div>
         <div class="InddanB flexE">
           <div class="InddanZ ff flex items-end insetTitle active-color">
             <span>70</span>
             <div style="line-height: 1.5">832</div>
           </div>
-          <div class="InddanD f1">usdt</div>
+          <div class="InddanD f1">BET</div>
         </div>
       </div>
     </div>
@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import { reactive, defineComponent } from "vue";
+import { reactive, defineComponent, inject, computed } from "vue";
 import { QuestionCircleOutlined } from "@ant-design/icons-vue";
 import { Popover } from "ant-design-vue";
 
@@ -98,6 +98,11 @@ export default defineComponent({
     const state = reactive({
       act: "0",
     });
+    const RESULT = inject("RESULT");
+    const POOLS = inject("POOLS");
+
+    const getTotalBet = computed(() => RESULT?.totalBet?.value || 0);
+
     const handlePick = (act) => {
       state.act = act;
     };

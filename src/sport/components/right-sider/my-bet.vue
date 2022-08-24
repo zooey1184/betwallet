@@ -19,17 +19,14 @@
 
     <div class="">
       <div style="height: calc(100vh - 270px); overflow: auto">
-        <div class="" v-if="!getResultList?.length">
-          <div class="flex flex-col items-center justify-center">
-            <img
-              src="../../images/zyq0425/kongL.png"
-              style="width: 120px; margin-top: 100px"
-            />
+        <div v-if="!getResultList?.length" class="h-100p">
+          <div class="flex flex-col items-center justify-center h-100p">
+            <img src="../../images/zyq0425/kongL.png" style="width: 120px" />
             <p class="mt-24 gray">Your betting list is empty</p>
           </div>
         </div>
-        <div v-else>
-          <div v-if="state.active === 'history'">
+        <div v-else class="h-100p">
+          <div v-if="state.active === 'history'" class="h-100p">
             <template v-if="getHistoryList?.length">
               <div
                 v-for="(item, index) in getHistoryList"
@@ -39,11 +36,11 @@
                 <ResultItem :info="item" />
               </div>
             </template>
-            <div class="flex flex-col items-center justify-center" v-else>
-              <img
-                src="../../images/zyq0425/kongL.png"
-                style="width: 120px; margin-top: 100px"
-              />
+            <div
+              class="flex flex-col items-center justify-center h-100p"
+              v-else
+            >
+              <img src="../../images/zyq0425/kongL.png" style="width: 120px" />
               <p class="mt-24 gray">Your betting list is empty</p>
             </div>
           </div>

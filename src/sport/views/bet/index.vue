@@ -1,5 +1,5 @@
 <template>
-  <div class="imgBg"></div>
+  <!-- <div class="imgBg"></div> -->
   <div class="py-16 px-24">
     <HeaderPane />
     <Content />

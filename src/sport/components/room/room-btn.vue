@@ -5,38 +5,39 @@
 
   <div class="start" v-if="isLink">
     <div v-if="getCode" class="flex items-center">
-      <Icon v-if="isMineRoom">
-        <template #component="svgProps">
-          <svg
-            t="1659105446797"
-            class="icon"
-            viewBox="0 0 1024 1024"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            p-id="16832"
-            width="128"
-            height="128"
-            v-bind="svgProps"
-          >
-            <path
-              d="M448 456V96q0-12.992 9.504-22.496T480 64h192q14.016 0 23.008 8.992T704 96t-8.992 23.008T672 128h-160v128h160q14.016 0 23.008 8.992T704 288t-8.992 23.008T672 320h-160v128q104 2.016 175.008 69.504t80 170.496q4 104-58.496 179.488T544 957.984q-104 11.008-183.008-46.496T260 752q-16.992-102.016 35.488-184.992T448 456zM512 896q82.016-2.016 136-56T704 704q-2.016-82.016-56-136T512 512q-82.016 2.016-136 56T320 704q2.016 82.016 56 136T512 896z"
-              p-id="16833"
-            ></path>
-          </svg>
-        </template>
-      </Icon>
-      <span class="ff" v-else>ROOM: </span>
-      <span @click="handleCloseCasino" class="ff">{{ getCode }}</span>
-      <Copy :text="getCode" id="room" v-if="isMineRoom" />
-      <!-- <span class="color-grey" style="padding: 2px">|</span>
+      <div class="flex items-center item-pane">
+        <Icon v-if="isMineRoom">
+          <template #component="svgProps">
+            <svg
+              t="1659105446797"
+              class="icon"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="16832"
+              width="128"
+              height="128"
+              v-bind="svgProps"
+            >
+              <path
+                d="M448 456V96q0-12.992 9.504-22.496T480 64h192q14.016 0 23.008 8.992T704 96t-8.992 23.008T672 128h-160v128h160q14.016 0 23.008 8.992T704 288t-8.992 23.008T672 320h-160v128q104 2.016 175.008 69.504t80 170.496q4 104-58.496 179.488T544 957.984q-104 11.008-183.008-46.496T260 752q-16.992-102.016 35.488-184.992T448 456zM512 896q82.016-2.016 136-56T704 704q-2.016-82.016-56-136T512 512q-82.016 2.016-136 56T320 704q2.016 82.016 56 136T512 896z"
+                p-id="16833"
+              ></path>
+            </svg>
+          </template>
+        </Icon>
+        <span class="ff" v-else>ROOM: </span>
+        <span @click="handleCloseCasino" class="ff">{{ getCode }}</span>
+        <Copy :text="getCode" id="room" v-if="isMineRoom" />
+      </div>
+      <span v-if="!isMineRoom">|</span>
+
+      <!-- switch -->
       <span
-        class="ff cursor-pointer"
-        @click="handleChangeRoom"
+        class="item-pane cursor-pointer"
         v-if="!isMineRoom"
-        >SWITCH</span
-      > -->
-      <span class="mx-8" v-if="!isMineRoom">|</span>
-      <span class="cursor-pointer" v-if="!isMineRoom" @click="handleSwitch">
+        @click="handleSwitch"
+      >
         SWITCH
         <QuestionCircleOutlined style="margin-left: 4px" />
       </span>
@@ -187,7 +188,7 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .start {
-  padding: 4px 12px;
+  // padding: 4px 12px;
   border-radius: 12px;
   font-weight: 600;
   box-shadow: 0 0 10px #ff0083;
@@ -196,10 +197,12 @@ export default defineComponent({
   border: 1px solid;
   color: #fff;
   animation: shane 2000ms linear infinite;
-  &:hover {
-    cursor: pointer;
-    background: #ff0083 !important;
-  }
+  cursor: pointer;
+  overflow: hidden;
+  // &:hover {
+  //   cursor: pointer;
+  //   background: #ff0083 !important;
+  // }
 }
 @keyframes shane {
   0% {
@@ -210,6 +213,13 @@ export default defineComponent({
   }
   100% {
     background-color: #ff00843d;
+  }
+}
+
+.item-pane {
+  padding: 4px 8px;
+  &:hover {
+    background: #ff0083 !important;
   }
 }
 </style>

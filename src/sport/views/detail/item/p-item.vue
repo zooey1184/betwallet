@@ -5,7 +5,7 @@
         <div class="logo">
           <img
             src="../../../images/icons/sportItem-home-icon.png"
-            style="height: 100%"
+            style="width: 100%"
             alt=""
           />
         </div>
@@ -54,7 +54,7 @@
         <div class="logo">
           <img
             src="../../../images/icons/sportItem-away-icon.png"
-            style="height: 100%"
+            style="width: 100%"
             alt=""
           />
         </div>
@@ -132,9 +132,11 @@ export default defineComponent({
   color: #fff;
 }
 .logo {
-  // width: 36px;
+  width: 36px;
   height: 36px;
   margin: 0 12px;
+  display: flex;
+  align-items: center;
   // background: #333;
 }
 .insideItem {

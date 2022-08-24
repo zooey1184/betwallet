@@ -25,12 +25,20 @@
     </div>
 
     <div class="">
-      <div :style="{ height: height, overflow: 'auto' }">
-        <div class="" v-if="!getSportBetList?.length">
-          <div class="flex flex-col items-center justify-center">
-            <img src="../../images/zyq0425/kongL.png" style="width: 120px" />
-            <p>Your betting unit is empty</p>
-            <a href="javascript:;">Click on odds to add selection</a>
+      <div :style="{ height: getHeight, overflow: 'auto' }">
+        <div v-if="!getSportBetList?.length" class="h-100p">
+          <div class="flex flex-col items-center justify-center h-100p">
+            <div class="text-align-center mb-48">
+              <div class="flex justify-center">
+                <img
+                  src="../../images/zyq0425/kongL.png"
+                  style="width: 120px"
+                  class="mb-16"
+                />
+              </div>
+              <p>Your betting unit is empty</p>
+              <a href="javascript:;">Click on odds to add selection</a>
+            </div>
           </div>
         </div>
         <div v-else>
@@ -171,6 +179,12 @@ export default defineComponent({
       return s;
     });
 
+    const getHeight = computed(() => {
+      return getSportBetList.value?.length
+        ? "calc(100vh - 475px)"
+        : "calc(100vh - 375px)";
+    });
+
     const getWin = computed(() => {
       const list = getSportBetList.value;
       let s = 0;
@@ -265,6 +279,7 @@ export default defineComponent({
       handleDeleteItem,
       getOdds,
       getWinCombo,
+      getHeight,
     };
   },
 });
@@ -303,7 +318,7 @@ export default defineComponent({
   font-weight: 600;
   color: #333;
   line-height: 38px;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   &:hover {
     // background: var(--primary-main);

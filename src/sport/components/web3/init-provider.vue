@@ -125,7 +125,6 @@ export default defineComponent({
         const accounts = await ethereum.request({ method: "eth_accounts" });
         setTimeout(() => {
           web3.givenProvider.on("accountsChanged", (accounts) => {
-            console.log(accounts);
             window.location.reload();
           });
           web3.givenProvider.on("chainChanged", (chainId) => {
@@ -137,7 +136,6 @@ export default defineComponent({
         });
         if (accounts?.length) {
           state.accounts = accounts;
-          console.log(accounts);
           state.id = accounts[0];
           const isLINK = window.localStorage.getItem("isLINK");
           // TODO 初始化合约

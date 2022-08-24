@@ -15,10 +15,10 @@
           {{ HomeTeam }}
         </div>
         <div class="flex items-center leftIcon">
-          <div class="icon">
+          <div class="icon flex items-center">
             <img
               src="../../images/icons/sportItem-home-icon.png"
-              style="height: 100%"
+              style="width: 100%"
               alt=""
             />
           </div>
@@ -55,10 +55,10 @@
             :class="{ active: getBetActive === 'away' }"
             readonly
           />
-          <div class="icon">
+          <div class="icon flex items-center">
             <img
               src="../../images/icons/sportItem-away-icon.png"
-              style="height: 100%"
+              style="width: 100%"
               alt=""
             />
           </div>
@@ -276,7 +276,7 @@ export default defineComponent({
   text-align: center;
 }
 .icon {
-  // width: 32px;
+  width: 32px;
   height: 32px;
   border-radius: 4px;
   // background-color: rgba(108, 130, 157, 0.4);

@@ -87,6 +87,17 @@ req: http://47.242.226.50:7020/v2/query/competitionName
   req: http://47.242.226.50:7020/v2/query/myBetList?wallet=0xF873Ad938E8041C9c39f8A8DFd3505528240C302
 ```
 
+## 查询池子的所有下单列表
+```js
+  method: GET
+  url: /v2/query/allBetList
+  params: 
+    wallet: 钱包地址        // 这个要传创建者的钱包地址
+  res: 
+    // bet_side: 0:主队胜 1:客队胜 2:平
+  req: http://47.242.226.50:7020/v2/query/myBetList?wallet=0xF873Ad938E8041C9c39f8A8DFd3505528240C302
+```
+
 ## 下单-预校验，是否允许本次下单
 ```js
   method: POST
@@ -95,9 +106,23 @@ req: http://47.242.226.50:7020/v2/query/competitionName
     tenant：租户id，即：邀请码
     amount：下单金额
     odds：赔率
-    marketId：比赛
-    odddId： 盘口id
   req: http://47.242.226.50:7020/v2/bet/order/preCheck
+```
+
+## 下单-预校验，是否允许本次下单
+```js
+  method: POST
+  url: /v2/bet/order/preCheckMulti
+  params: 
+    tenant：租户id，即：邀请码
+    orderInfos: [{
+      amount：下单金额
+      odds：赔率
+      bet_side: 下注方向 0:主队胜 1:客队胜 2:平
+      market_id：盘口
+    }]
+   
+  req: http://47.242.226.50:7020/v2/bet/order/preCheckMulti
 ```
 
 ## 取合约配置信息
@@ -107,19 +132,24 @@ req: http://47.242.226.50:7020/v2/query/competitionName
   req: http://47.242.226.50:7020/v1/contract/getConfig
 ```
 
-## 取质押信息
-```js
-  method: GET
-  url: /v1/contract/getBonusInfo
-  req: http://47.242.226.50:7020/v1/contract/getBonusInfo
-```
-
 ## 取banner信息
 ```js
   method: GET
   url: /v1/system/getBannerList
   req: http://47.242.226.50:7020/v1/system/getBannerList
 ```
+
+## 查询下注总额
+```js
+  method: GET
+  url: /v2/query/totalBet
+  params: 
+    wallet: 钱包地址      
+  res: 
+    // {"success":true,"data":12564}
+  req: http://47.242.226.50:7020/v2/query/totalBet?wallet=0xF873Ad938E8041C9c39f8A8DFd3505528240C302
+```
+
 ## ######################## 
 ## 以下为合约调用
 ## ######################## 
@@ -161,6 +191,20 @@ req: http://47.242.226.50:7020/v2/query/competitionName
   params:
   uint256 marketId     盘口id
   uint256 betId        本次投注链上id(服务端获取)
+```
+
+## 用户提取奖励 (bet代币)
+```contract
+  method: claimRewards
+  params:
+  无
+```
+
+## 获取奖池总额
+```contract
+  method: pools
+  params: 
+  address betPool    奖池地址
 ```
 
 ```js

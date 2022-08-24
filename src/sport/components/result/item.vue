@@ -1,49 +1,73 @@
 <template>
-  <div class="wrap primary-bg">
-    <div class="win-logo ff active-color" v-if="info.win_amount > 0">WIN</div>
-    <div class="win-logo ff" v-if="info.win_amount < 0">LOSE</div>
-    <div class="bet-item-header flex items-center">
-      <div class="betItemIcon">
-        <div class="animat-circle"></div>
-      </div>
-      <div class="bet-item-title flex items-center">
-        <div class="bet-item-left item" :title="getTeamInfo.home.name">
-          {{ getTeamInfo.home.name }}
-        </div>
-        <span style="margin: 0 2px; line-height: 14px">vs</span>
-        <div class="bet-item-right item" :title="getTeamInfo.away.name">
-          {{ getTeamInfo.away.name }}
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="ff font-size-18">
-        {{ getTeamInfo.win.name }}
-      </div>
-      <div class="flex items-center justify-between">
-        <div>Bet Amount</div>
-        <div class="flex items-center">
-          <!-- <img
-            src="../../images/icons/USDT.png"
-            style="width: 12px; margin-right: 4px"
+  <div class="wrap primary-bg pos-r">
+    <img
+      src="../../images/icons/betItem-bg.png"
+      style="width: 100%; position: absolute; z-index: 0; left: -15%; top: 45px"
+      alt=""
+    />
+    <div style="z-index: 1" class="pos-r">
+      <div class="win-logo ff active-color" v-if="info.win_amount > 0">WIN</div>
+      <div class="lose-title ff" v-if="info.win_amount < 0">LOSE</div>
+      <div class="bet-item-header flex items-center">
+        <div class="betItemIcon">
+          <img
+            src="../../images/icons/matchItem-icon-active.png"
+            style="width: 24px"
             alt=""
-          /> -->
-          <UsdtIcon class="active-color mr-8 font-size-18" />
+          />
+          <!-- <div class="animat-circle"></div> -->
+        </div>
+        <div class="betTitle gray-9">
+          <div class="line-height-12">2022-08-25 17:52</div>
+          <div class="line-height-12" style="margin-top: 2px">
+            Total revenue
+          </div>
+        </div>
+      </div>
+      <div class="mt-8">
+        <div class="ff font-size-18">
+          {{ getTeamInfo.win.name }}
+        </div>
+        <div class="bet-item-title flex items-center">
+          <div class="bet-item-left item" :title="getTeamInfo.home.name">
+            {{ getTeamInfo.home.name }}
+          </div>
+          <span style="margin: 0 2px; line-height: 14px">vs</span>
+          <div class="bet-item-right item" :title="getTeamInfo.away.name">
+            {{ getTeamInfo.away.name }}
+          </div>
+        </div>
+        <!-- <div class="flex items-center justify-between">
+          <div>Bet Amount</div>
+          <div class="flex items-center">
+            <UsdtIcon class="active-color mr-8 font-size-18" />
+            {{ info.bet_amount }}
+          </div>
+        </div> -->
+      </div>
+      <div class="flex items-center mt-8">
+        <img src="../../images/v2/amout-icon.png" class="mr-8" alt="" />
+        <span class="active-color font-size-18 ff">{{ info.odds }}</span>
+      </div>
+
+      <div class="rightPane">
+        <div>Bet Amount</div>
+        <div>
+          <UsdtIcon />
           {{ info.bet_amount }}
         </div>
+        <div>Return</div>
+        <div v-if="info.win_amount">Amount: {{ info.win_amount }}</div>
+        <div v-else><UsdtIcon />{{ info.win_amount }}</div>
       </div>
-    </div>
-    <div class="flex">
-      <div>odds : {{ info.odds }}</div>
-    </div>
-    <div v-if="info.win_amount">Amount: {{ info.win_amount }}</div>
-
-    <div
-      v-if="info.win_amount > 0 && info.is_claimed === '0'"
-      class="itembtn pos-r active-bg mt-8"
-      @click="handleClaim(info)"
-    >
-      CLAIM
+      <!-- <div v-if="info.win_amount">Amount: {{ info.win_amount }}</div> -->
+      <div
+        v-if="info.win_amount > 0 && info.is_claimed === '0'"
+        class="itembtn pos-r active-bg mt-8"
+        @click="handleClaim(info)"
+      >
+        CLAIM
+      </div>
     </div>
   </div>
 </template>
@@ -124,22 +148,26 @@ export default defineComponent({
   // height: 136px;
 }
 .win-logo {
-  // width: 80px;
-  // height: 80px;
-  // border-radius: 50px;
-  // font-size: 30px;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // color: rgb(197, 39, 150);
-  // border: 2px solid #999;
-  // transform: rotate(-40deg);
-  // position: absolute;
-  // right: -10px;
-  // top: -20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(197, 39, 150);
+  transform: rotate(-25deg);
   position: absolute;
   right: 10px;
+  top: -34px;
+  // position: absolute;
+  // right: 10px;
+  // right: 8px;
+}
+.lose-title {
+  position: absolute;
   right: 8px;
+  font-size: 20px;
 }
 .itembtn {
   width: 80px;
@@ -190,8 +218,11 @@ export default defineComponent({
   height: 22px;
   border-radius: 4px;
   margin-right: 8px;
-  background: #303b47;
+  // background: #303b47;
   position: relative;
+}
+.betTitle {
+  font-size: 12px;
 }
 .bet-item-title {
   width: 76%;
@@ -216,5 +247,11 @@ export default defineComponent({
   color: #16bdf9;
   font-size: 14px;
   font-weight: 600;
+}
+.rightPane {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  text-align: right;
 }
 </style>

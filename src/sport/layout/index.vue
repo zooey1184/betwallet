@@ -146,7 +146,7 @@
           :style="{ right: !state.infoVisible ? '-100%' : 0 }"
         >
           <div class="mine-pane">
-            <InfoPane />
+            <InfoPane @close="state.infoVisible = false" />
           </div>
         </div>
       </div>
@@ -591,7 +591,7 @@ export default defineComponent({
 .sellBtn {
   padding: 4px 12px;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 .mine-pane {
   position: absolute;

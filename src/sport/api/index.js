@@ -70,3 +70,8 @@ export const getBetList = async(data) => {
 export const getAllBetList = async(data) => {
   return await http.get(`${HOST}/v2/query/allBetList`, {data})
 }
+
+// 下注总额
+export const getTotalBet = async(data) => {
+  return await http.get(`${HOST}/v2/query/totalBet`, {data})
+}
