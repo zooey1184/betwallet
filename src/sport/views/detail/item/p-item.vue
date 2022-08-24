@@ -1,15 +1,21 @@
 <template>
-  <div class="itemWrap">
+  <div class="itemWrap primary-bg">
     <div class="flex items-center">
       <div class="flex-1 sideItem flex items-center justify-between">
-        <div class="logo"></div>
+        <div class="logo">
+          <img
+            src="../../../images/icons/sportItem-home-icon.png"
+            style="height: 100%"
+            alt=""
+          />
+        </div>
         <div class="flex-1">
           <div class="flex items-center justify-between flex-1 insideItem">
-            <div class="name betNum ellipsis_2">
+            <div class="name betNum ff ellipsis_2">
               {{ homeInfo.name }}
             </div>
             <div class="flex items-center">
-              <div class="gray betNum">{{ homeInfo.handicap }}</div>
+              <div class="color-white ff betNum">{{ homeInfo.handicap }}</div>
               <input
                 type="text"
                 :class="{ active: getBetActive === 'home' }"
@@ -40,12 +46,18 @@
                 class="zyqulNI"
                 readonly
               />
-              <div class="gray betNum">{{ awayInfo.handicap }}</div>
+              <div class="color-white ff betNum">{{ awayInfo.handicap }}</div>
             </div>
-            <div class="name betNum ellipsis_2">{{ awayInfo.name }}</div>
+            <div class="name betNum ellipsis_2 ff">{{ awayInfo.name }}</div>
           </div>
         </div>
-        <div class="logo"></div>
+        <div class="logo">
+          <img
+            src="../../../images/icons/sportItem-away-icon.png"
+            style="height: 100%"
+            alt=""
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -100,7 +112,7 @@ export default defineComponent({
 .itemWrap {
   color: #fff;
   padding: 12px 0;
-  background-color: #16162f;
+  // background-color: #16162f;
   border: 2px solid #16162f;
   border-radius: 8px;
   box-shadow: 12px 12px 10px 2px rgb(0 0 0 / 30%);
@@ -116,14 +128,14 @@ export default defineComponent({
 }
 .betNum {
   margin: 0 12px;
-  font-size: 15px;
-  color: #6c829d;
+  font-size: 16px;
+  color: #fff;
 }
 .logo {
-  width: 36px;
+  // width: 36px;
   height: 36px;
   margin: 0 12px;
-  background: #333;
+  // background: #333;
 }
 .insideItem {
   margin: 4px 0;

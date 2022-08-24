@@ -2,8 +2,16 @@
   <div class="pos-r vs-pane">
     <div class="text-align-center" v-if="showTime">
       <div class="countdown ff">{{ TIP.countDownStart }}</div>
+      <div class="flex items-center justify-center">
+        <img
+          style="width: 18px"
+          class="m-8"
+          src="../../images/icons/clock-icon.png"
+          alt=""
+        />
+      </div>
       <div class="flex items-center justify-center" style="margin-bottom: 24px">
-        <img src="../../images/zyq0425/IconTime01.png" style="margin: 0 12px" />
+        <!-- <img src="../../images/zyq0425/IconTime01.png" style="margin: 0 12px" /> -->
         <div class="m-flex">
           <TimePane :time="timeState" v-if="time" />
         </div>
@@ -15,7 +23,7 @@
       <div class="left flex items-center justify-between" style="width: 34%">
         <div class="logo">
           <img
-            class="h-90p"
+            class="h-100p"
             src="../../images/icons/detailHome-icon.png"
             alt=""
           />
@@ -64,7 +72,13 @@
     <div class="m-pane">
       <div class="left" style="width: 34%">
         <div class="flex justify-end">
-          <div class="logo"></div>
+          <div class="logo">
+            <img
+              class="h-100p"
+              src="../../images/icons/detailHome-icon.png"
+              alt=""
+            />
+          </div>
         </div>
         <div>
           <div class="flex justify-end">
@@ -86,7 +100,13 @@
 
       <div class="middle flex-0">vs</div>
       <div class="right" style="width: 34%">
-        <div class="logo"></div>
+        <div class="logo">
+          <img
+            class="h-100p"
+            src="../../images/icons/detailAway-icon.png"
+            alt=""
+          />
+        </div>
         <div>
           <div class="name">{{ awayInfo.name }}</div>
           <div
@@ -190,7 +210,7 @@ export default defineComponent({
   height: 10vw;
   max-width: 160px;
   max-height: 160px;
-  background: #0a0a1d;
+  // background: #0a0a1d;
   @media (max-width: 960px) {
     width: 80px;
     height: 80px;
@@ -224,7 +244,6 @@ export default defineComponent({
   font-size: 18px;
   font-weight: 600;
   margin-top: 16px;
-  margin-bottom: 8px;
 }
 .bet-pane {
   width: 82px;

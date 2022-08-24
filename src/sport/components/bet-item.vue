@@ -1,33 +1,43 @@
 <template>
-  <div class="bet-wrap primary-bg">
-    <div class="bet-item-header flex items-center">
-      <div class="betItemIcon">
-        <div class="animat-circle"></div>
-      </div>
-      <div class="bet-item-title flex items-center">
-        <div class="bet-item-left item" :title="HomeTeam">{{ HomeTeam }}</div>
-        <span style="margin: 0 2px; line-height: 14px">vs</span>
-        <div class="bet-item-right item" :title="AwayTeam">{{ AwayTeam }}</div>
-      </div>
-      <close-square-outlined
-        style="font-size: 18px"
-        @click="handleDelete"
-        class="hover_active"
-      />
-    </div>
-    <div>
-      <div class="title f5">{{ getTitle }}</div>
-      <div class="desc f1">{{ getDesc }}</div>
-    </div>
-    <div>
-      <bet-input :showInput="showInput" v-model:value="state.value">
-        <template #title>
-          <div class="input-title flex ff items-center">
-            <img src="../images/v2/amout-icon.png" class="mr-8" alt="" />
-            {{ info.activeValue }}
+  <div class="bet-wrap primary-bg overflow-hidden">
+    <img
+      src="../images/icons/betItem-bg.png"
+      style="width: 100%; position: absolute; z-index: 0; left: -15%; top: 45px"
+      alt=""
+    />
+    <div style="z-index: 1; position: relative">
+      <div class="bet-item-header flex items-center">
+        <div class="betItemIcon">
+          <img src="../images/icons/matchItem-icon-active.png" alt="" />
+          <div class="animat-circle"></div>
+        </div>
+        <div class="bet-item-title flex items-center">
+          <div class="bet-item-left item" :title="HomeTeam">{{ HomeTeam }}</div>
+          <span style="margin: 0 2px; line-height: 14px">vs</span>
+          <div class="bet-item-right item" :title="AwayTeam">
+            {{ AwayTeam }}
           </div>
-        </template>
-      </bet-input>
+        </div>
+        <close-square-outlined
+          style="font-size: 18px"
+          @click="handleDelete"
+          class="hover_active"
+        />
+      </div>
+      <div>
+        <div class="title f5">{{ getTitle }}</div>
+        <div class="desc f1">{{ getDesc }}</div>
+      </div>
+      <div>
+        <bet-input :showInput="showInput" v-model:value="state.value">
+          <template #title>
+            <div class="input-title flex ff items-center">
+              <img src="../images/v2/amout-icon.png" class="mr-8" alt="" />
+              {{ info.activeValue }}
+            </div>
+          </template>
+        </bet-input>
+      </div>
     </div>
   </div>
 </template>
@@ -174,13 +184,15 @@ export default defineComponent({
   border-radius: 8px;
   color: #6d819c;
   font-size: 13px;
+  position: relative;
+  overflow: hidden;
 }
 .betItemIcon {
   width: 22px;
   height: 22px;
   border-radius: 4px;
   margin-right: 8px;
-  background: #303b47;
+  // background: #303b47;
   position: relative;
 }
 .bet-item-title {

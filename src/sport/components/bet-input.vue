@@ -3,7 +3,8 @@
     <div>
       <slot name="title"></slot>
     </div>
-    <div v-if="showInput">
+    <div v-if="showInput" class="flex items-center">
+      <UsdtIcon style="color: #10932f; font-size: 18px" class="mr-8" />
       <input
         class="bet-input"
         type="number"
@@ -40,9 +41,12 @@
 import { message } from "ant-design-vue";
 import { defineComponent, reactive, ref, watch } from "vue";
 import { TIP } from "@/sport/constant/tip";
+import UsdtIcon from "./usdt-icon.vue";
 
 export default defineComponent({
-  components: {},
+  components: {
+    UsdtIcon,
+  },
   props: {
     value: {
       type: [String, Number],

@@ -1,24 +1,27 @@
 <template>
   <div
-    class="flex justify-center"
+    class="flex justify-between"
     v-if="time.d >= 0 && time.h >= 0 && time.m >= 0"
   >
     <div class="time">
       <div class="time_title ff">{{ time.d }}</div>
-      <div class="time-desc">Days</div>
+      <div class="time-desc f1">Days</div>
     </div>
     <div class="spliteCode">:</div>
     <div class="time">
       <div class="time_title ff">{{ time.h }}</div>
-      <div class="time-desc">Hours</div>
+      <div class="time-desc f1">Hours</div>
     </div>
     <div class="spliteCode">:</div>
     <div class="time">
       <div class="time_title ff">{{ time.m }}</div>
-      <div class="time-desc">Minutes</div>
+      <div class="time-desc f1">Minutes</div>
     </div>
   </div>
   <div class="flex justify-center linear-color time_title" v-else>--</div>
+  <div>
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -65,8 +68,8 @@ export default defineComponent({
   font-weight: 400;
 }
 .spliteCode {
-  font-size: 32px;
-  line-height: 32px;
+  font-size: 48px;
+  line-height: 40px;
   color: #fff;
   margin: 0 12px;
   @media (max-width: 1440px) {

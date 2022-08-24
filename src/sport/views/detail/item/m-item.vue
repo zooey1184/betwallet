@@ -1,25 +1,37 @@
 <template>
-  <div class="itemWrap">
+  <div class="itemWrap primary-bg">
     <div class="title">{{ name }}</div>
 
     <div class="flex items-center justify-between">
       <div class="flex items-center sideItem">
-        <div class="logo" style="margin-right: 6px"></div>
+        <div class="logo" style="margin-right: 6px">
+          <img
+            src="../../../images/icons/sportItem-home-icon.png"
+            style="height: 100%"
+            alt=""
+          />
+        </div>
         <div class="flex justify-end flex-1" style="width: calc(50% - 55px)">
-          <div class="betNum ellipsis_2">{{ homeInfo.name }}</div>
+          <div class="betNum ff ellipsis_2">{{ homeInfo.name }}</div>
         </div>
       </div>
       <div class="flex items-center sideItem">
         <div class="flex flex-1" style="width: calc(50% - 55px)">
-          <div class="betNum">{{ awayInfo.name }}</div>
+          <div class="betNum ff">{{ awayInfo.name }}</div>
         </div>
-        <div class="logo" style="margin-left: 6px"></div>
+        <div class="logo" style="margin-left: 6px">
+          <img
+            src="../../../images/icons/sportItem-away-icon.png"
+            style="height: 100%"
+            alt=""
+          />
+        </div>
       </div>
     </div>
 
     <div class="flex items-center justify-between" style="margin-top: 8px">
       <div class="flex items-center sideItem justify-end">
-        <div class="betNum" style="margin-right: 8px">
+        <div class="betNum ff" style="margin-right: 8px">
           {{ homeInfo.handicap }}
         </div>
         <input
@@ -41,7 +53,7 @@
           @click="handlePickItem('away')"
           readonly
         />
-        <div class="betNum" style="margin-left: 8px">
+        <div class="betNum ff" style="margin-left: 8px">
           {{ awayInfo.handicap }}
         </div>
       </div>
@@ -101,7 +113,7 @@ export default defineComponent({
 .itemWrap {
   color: #fff;
   padding: 12px;
-  background-color: #16162f;
+  // background-color: #16162f;
   border: 2px solid #16162f;
   border-radius: 8px;
   box-shadow: 12px 12px 10px 2px rgb(0 0 0 / 30%);
@@ -115,7 +127,8 @@ export default defineComponent({
 }
 .betNum {
   font-size: 15px;
-  color: #6c829d;
+  // color: #6c829d;
+  color: #fff;
   line-height: 24px;
 }
 .pane1 {
@@ -128,8 +141,8 @@ export default defineComponent({
   width: calc(50% - 20px);
 }
 .logo {
-  width: 24px;
+  // width: 24px;
   height: 24px;
-  background: #fff;
+  // background: #fff;
 }
 </style>

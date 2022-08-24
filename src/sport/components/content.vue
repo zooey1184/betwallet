@@ -54,7 +54,9 @@
       </ul>
     </section>
     <div style="height: 20vh"></div>
-    <FooterContent />
+    <div class="shadow">
+      <FooterContent />
+    </div>
     <div style="height: 5vh"></div>
   </div>
 </template>
@@ -208,5 +210,14 @@ export default defineComponent({
   top: 0;
   z-index: 9;
   padding: 16px 0;
+}
+.shadow {
+  box-shadow: 0 -10px 20px #0000005f;
+  // background: rgba(0, 0, 0, 0.24);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.8)
+  );
 }
 </style>

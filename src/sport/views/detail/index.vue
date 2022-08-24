@@ -1,5 +1,5 @@
 <template>
-  <div class="imgBg"></div>
+  <!-- <div class="imgBg"></div> -->
   <div class="wrapPane">
     <TopPane :address="state.detail.address" :time="state.detail.startTime" />
     <VsPane
@@ -48,8 +48,8 @@ import {
   reactive,
   computed,
 } from "vue";
-import TopPane from "./top-pane.vue";
-import VsPane from "./vs-pane.vue";
+import TopPane from "./topNav.vue";
+import VsPane from "./vsPane.vue";
 import { Tabs } from "ant-design-vue";
 import Item from "./item";
 import { getMatchOdds } from "@/sport/api/index";
