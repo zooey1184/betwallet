@@ -1,5 +1,10 @@
 <template>
-  <div class="start ff" v-if="!isLink" @click="handleConnect">
+  <div
+    class="start ff"
+    style="padding: 4px 8px"
+    v-if="!isLink"
+    @click="handleConnect"
+  >
     START THE GAME
   </div>
 
