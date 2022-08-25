@@ -36,13 +36,9 @@
           />
         </div>
         <div class="flex items-center justify-between mt-8">
-          <div>
-            <div class="name ff">{{ homeInfo.name }}</div>
-          </div>
-
-          <div>
-            <div class="name ff">{{ awayInfo.name }}</div>
-          </div>
+          <div class="name ff">{{ homeInfo.name }}</div>
+          <div></div>
+          <div class="name ff">{{ awayInfo.name }}</div>
         </div>
         <div class="flex items-center justify-between mt-8">
           <div>
@@ -188,5 +184,9 @@ export default defineComponent({
   @media screen and (min-width: 960px) {
     display: none;
   }
+}
+.name {
+  text-align: center;
+  min-width: 64px;
 }
 </style>

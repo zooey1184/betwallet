@@ -27,22 +27,26 @@ export default defineComponent({
 
     const ACCOUNTS = inject("ACCOUNTS");
     const CONTRACT = inject("CONTRACT");
-    const ROOM = inject('ROOM')
+    const ROOM = inject("ROOM");
 
     const handleGetReward = async (n) => {
-      const res = await CONTRACT.value.football_contract?.methods['rewards'](n).call()
+      const res = await CONTRACT.value.football_contract?.methods["rewards"](
+        n
+      ).call();
 
-      state.rewards = res
-      return res
+      state.rewards = res;
+      return res;
     };
 
     const getWalletAddress = computed(() => ACCOUNTS?.accounts?.value?.[0]);
-    const getRoomAddress = computed(() => ROOM.roomAddress.value)
+    const getRoomAddress = computed(() => ROOM.roomAddress.value);
 
     // ## 获取奖池总额
     const handleGetPools = async (n) => {
+      console.log(n);
+      const r = n?.toLocaleLowerCase();
       const res = await CONTRACT.value.football_contract.methods
-        .pools('0xF873Ad938E8041C9c39f8A8DFd3505528240C302')
+        .pools(r)
         .call();
       state.pools = res;
       state.betTotalAmount = res.betTotalAmount;
@@ -71,11 +75,11 @@ export default defineComponent({
 
     const getPools = computed(() => state.pools);
     const get_totalBet = computed(() => state.totalBet);
-    const getReward = computed(() => state.rewards)
+    const getReward = computed(() => state.rewards);
     provide("POOLS", {
       pools: getPools,
       totalBet: get_totalBet,
-      rewards: getReward
+      rewards: getReward,
     });
 
     return {

@@ -24,59 +24,76 @@
         {{ item.count }}
       </div>
     </div> -->
-    <div class="t">
-      <SideItem v-for="(item, index) in getRaceList">
+    <div
+      class="t cursor-pointer"
+      v-for="(item, index) in getRaceList"
+      :style="{ width: collapse ? '40px' : '230px' }"
+    >
+      <SideItem :visible="item.id === state.active" :collapseable="!collapse">
         <template #title>
           <div
-            class="leftItem flex items-center justify-between"
-            :style="{ width: collapse ? '40px' : '230px' }"
+            class="leftItem flex ff items-center justify-between"
+            :class="{ 'active-bg': state.active === item.id }"
             @click="handlePickRace(item)"
           >
             <div class="flex items-center flex-1" style="max-width: 200px">
-              <i class="leftIcon flex-0 LeftI2"></i>
-              <p>{{ item.label }}</p>
+              <img
+                src="../images/icons/matchItem-icon-active.png"
+                style="padding: 9px"
+                v-if="item.id === state.active"
+                alt=""
+              />
+              <img
+                src="../images/icons/matchItem-icon.png"
+                style="padding: 9px; width: 40px"
+                v-else
+                alt=""
+              />
+              <p
+                class="ml-8"
+                :class="{ 'font-weight-600': item.id === state.active }"
+              >
+                {{ item.label }}
+              </p>
             </div>
-            <div class="count active-bg flex-0 flex items-center justify-center">
+            <div
+              class="count active-bg flex-0 flex items-center justify-center"
+            >
               {{ item.count }}
             </div>
           </div>
         </template>
         <div class="overflow-y-auto">
-          <div v-for='item in 50'>{{item}}</div>
+          <div
+            v-for="item in getCompetitionMap[item.id]"
+            @click="handlePick(item)"
+            :class="{ activeItem: COMPETITION_ACTIVE === item.value }"
+            class="competitionItem ff flex items-center justify-between"
+          >
+            <div
+              class="flex items-center flex-1 ellipsis-1"
+              style="max-width: 200px"
+            >
+              {{ item.label }}
+            </div>
+            <div class="flex-0 flex items-center justify-center">
+              {{ item.count }}
+            </div>
+          </div>
         </div>
       </SideItem>
     </div>
-    <SideItem v-for="(item, index) in getRaceList">
-      <template #title>
-        <div
-          class="leftItem flex items-center justify-between"
-          :style="{ width: collapse ? '40px' : '230px' }"
-          @click="handlePickRace(item)"
-        >
-          <div class="flex items-center flex-1" style="max-width: 200px">
-            <i class="leftIcon flex-0 LeftI2"></i>
-            <p>{{ item.label }}</p>
-          </div>
-          <div class="count active-bg flex-0 flex items-center justify-center">
-            {{ item.count }}
-          </div>
-        </div>
-      </template>
-      <div>
-        <div v-for='item in 10'>{{item}}</div>
-      </div>
-    </SideItem>
   </div>
 </template>
 
 <script>
 import { computed, defineComponent, inject, reactive } from "vue";
 import { useRouter } from "vue-router";
-import SideItem from './siderItem.vue'
+import SideItem from "./siderItem.vue";
 
 export default defineComponent({
   components: {
-    SideItem
+    SideItem,
   },
   props: {
     collapse: {
@@ -93,12 +110,12 @@ export default defineComponent({
       active: "",
     });
     const COMPETITION = inject("COMPETITION");
-    const SPORT_RACE = inject('SPORT_RACE')
-    const getRaceList = computed(() => SPORT_RACE.races?.value || [])
+    const SPORT_RACE = inject("SPORT_RACE");
+    const getRaceList = computed(() => SPORT_RACE.races?.value || []);
     const COMPETITION_ACTIVE = computed(() => COMPETITION.active.value);
+    const getCompetitionMap = computed(() => SPORT_RACE.competitionMap.value);
 
     const handlePick = (e) => {
-      state.active = e.value;
       router.push("/");
       COMPETITION.setState({
         active: e.value,
@@ -106,10 +123,15 @@ export default defineComponent({
     };
 
     const handlePickRace = (item) => {
-      SPORT_RACE.handleGetCompetitionName(item.id).then(res => {
-        console.log(res)
-      })
-    }
+      if (state.active === item.id) {
+        state.active = "";
+      } else {
+        state.active = item.id;
+        SPORT_RACE.handleGetCompetitionName(item.id).then((res) => {
+          console.log(res);
+        });
+      }
+    };
 
     return {
       state,
@@ -117,6 +139,7 @@ export default defineComponent({
       getRaceList,
       handlePickRace,
       COMPETITION_ACTIVE,
+      getCompetitionMap,
     };
   },
 });
@@ -139,6 +162,9 @@ export default defineComponent({
 }
 .t {
   transition: all 200ms linear;
+  position: relative;
+  border-radius: 8px;
+  // overflow: hidden;
   &:hover {
     background: #ff0083;
     width: 230px !important;
@@ -182,5 +208,17 @@ export default defineComponent({
   background: #ff0083;
   color: #fff;
   top: 0;
+}
+.competitionItem {
+  height: 38px;
+  line-height: 38px;
+  padding: 0 16px;
+  &:hover {
+    background: #ff00844a;
+  }
+}
+.activeItem {
+  border-left: 4px solid var(--primary-main);
+  color: #ff0083;
 }
 </style>

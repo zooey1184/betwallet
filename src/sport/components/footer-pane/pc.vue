@@ -8,7 +8,7 @@
       <div class="flex items-center">
         <a href="javascript:;" class="RightFNI RightFNI1"></a>
         <a href="javascript:;" class="RightFNI RightFNI2"></a>
-        <a href="javascript:;" class="RightFNI RightFNI3"></a>
+        <a href="https://twitter.com/BetWeb3" class="RightFNI RightFNI3"></a>
         <a href="javascript:;" class="RightFNI RightFNI4"></a>
         <!-- <a href='https://twitter.com/betweb3' target='_blank'>
           <img class="icon cursor-pointer" src='../../assets/icon-t.png' alt="">
@@ -26,65 +26,67 @@
     </div>
   </div>
   <div style="margin-top: 26px" class="text-align-center gray-9 font-size-12">
-    indicative of future performance. Any investment in blockchain assets involves the risk of losing part or all of
-    your investment. The value of your exchange’s blockchain assets is affected by market and other investment risks
+    indicative of future performance. Any investment in blockchain assets
+    involves the risk of losing part or all of your investment. The value of
+    your exchange’s blockchain assets is affected by market and other investment
+    risks
   </div>
 </template>
 
 <script>
-  import { defineComponent, ref } from 'vue'
-  // import logo from '../../images/footer-logo.png'
-  // import Icon_t from '../../assets/icon-t.png'
-  // import Icon_m from '../../assets/icon-m.png'
-  // import Icon_d from '../../assets/icon-discord.png'
-  // import Icon_g from '../../assets/icon-g.png'
-  export default defineComponent({
-    components: {},
-    props: {},
-    setup(props) {
-      return {
-        // logo,
-        // Icon_t,
-        // Icon_m,
-        // Icon_d,
-        // Icon_g
-      }
-    }
-  })
+import { defineComponent, ref } from "vue";
+// import logo from '../../images/footer-logo.png'
+// import Icon_t from '../../assets/icon-t.png'
+// import Icon_m from '../../assets/icon-m.png'
+// import Icon_d from '../../assets/icon-discord.png'
+// import Icon_g from '../../assets/icon-g.png'
+export default defineComponent({
+  components: {},
+  props: {},
+  setup(props) {
+    return {
+      // logo,
+      // Icon_t,
+      // Icon_m,
+      // Icon_d,
+      // Icon_g
+    };
+  },
+});
 </script>
 
 <style lang="less" scoped>
-  .right {
-    margin-left: 30px;
-    @media (min-width: 900px) and (max-width: 1440px) {
-      margin-left: 44px;
-    }
-    @media (min-width: 1441px) and (max-width: 1919px) {
-      margin-left: 66px;
-    }
-    @media (min-width: 1920px) {
-      margin-left: 99px;
-    }
+.right {
+  margin-left: 30px;
+  @media (min-width: 900px) and (max-width: 1440px) {
+    margin-left: 44px;
   }
-  .text {
-    margin-left: 30px;
-    @media (min-width: 900px) and (max-width: 1440px) {
-      margin-left: 50px;
-    }
-    @media (min-width: 1441px) and (max-width: 1919px) {
-      margin-left: 99px;
-    }
-    @media (min-width: 1920px) {
-      margin-left: 121px;
-    }
+  @media (min-width: 1441px) and (max-width: 1919px) {
+    margin-left: 66px;
   }
-  .icon {
-    width: 30px;
-    height: 30px;
-    margin-left: 16px;
-    transition: all 150ms linear;
-    &:hover {
-      transform: scale(1.2);
-    }
+  @media (min-width: 1920px) {
+    margin-left: 99px;
   }
+}
+.text {
+  margin-left: 30px;
+  @media (min-width: 900px) and (max-width: 1440px) {
+    margin-left: 50px;
+  }
+  @media (min-width: 1441px) and (max-width: 1919px) {
+    margin-left: 99px;
+  }
+  @media (min-width: 1920px) {
+    margin-left: 121px;
+  }
+}
+.icon {
+  width: 30px;
+  height: 30px;
+  margin-left: 16px;
+  transition: all 150ms linear;
+  &:hover {
+    transform: scale(1.2);
+  }
+}
 </style>

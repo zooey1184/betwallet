@@ -43,8 +43,8 @@
       </span>
     </div>
 
-    <div v-else @click="handleInRoom">JOIN ROOM</div>
-    <div @click='testfn'>test</div>
+    <div v-else @click="handleInRoom" style="padding: 4px 8px">JOIN ROOM</div>
+    <!-- <div @click='testfn'>test</div> -->
   </div>
 
   <Mask v-model:visible="state.visible">
@@ -63,7 +63,12 @@
         v-if="state.status === 'confirmCreate'"
         @next="handleNextConfirmIng"
       />
-      <RoomConfirmId v-if='state.status === "loading"' @pre="state.status='confirmCreate'" :amount="state.amount" @next='handleNextConfirmCreate' />
+      <RoomConfirmId
+        v-if="state.status === 'loading'"
+        @pre="state.status = 'confirmCreate'"
+        :amount="state.amount"
+        @next="handleNextConfirmCreate"
+      />
       <RoomSubmitIng v-if="state.status === 'submit'" @close="handleClose" />
       <PoolPane v-if="state.status === 'close'" @ok="handleClose" />
       <!-- <UnableSwitch /> -->
@@ -109,7 +114,7 @@ export default defineComponent({
       visible: false,
       status: "init",
       type: "create",
-      amount: ''
+      amount: "",
     });
     const ACCOUNTS = inject("ACCOUNTS");
     const ROOM = inject("ROOM");
@@ -143,9 +148,9 @@ export default defineComponent({
     };
 
     const handleNextConfirmIng = (e) => {
-      state.status = 'loading'
-      state.amount = e
-    }
+      state.status = "loading";
+      state.amount = e;
+    };
 
     const handleNextConfirmCreate = () => {
       state.status = "submit";
@@ -191,7 +196,7 @@ export default defineComponent({
       handleNextConfirmCreate,
       handleCloseCasino,
       isMineRoom,
-      handleNextConfirmIng
+      handleNextConfirmIng,
     };
   },
 });
@@ -200,7 +205,7 @@ export default defineComponent({
 <style lang="less" scoped>
 .start {
   // padding: 4px 12px;
-  border-radius: 12px;
+  border-radius: 10px;
   font-weight: 600;
   box-shadow: 0 0 10px #ff0083;
   background-color: #ff008479;

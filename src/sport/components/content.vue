@@ -1,7 +1,9 @@
 <template>
   <div class="overflow-auto">
-    <Swiper />
-    <slot name="headerExtra"></slot>
+    <div class="p-16">
+      <Swiper />
+      <slot name="headerExtra"></slot>
+    </div>
     <section>
       <div class="flex sticky-header flex-wrap items-center justify-between">
         <div class="flex items-center mr-24">
@@ -42,7 +44,7 @@
           </div>
         </div>
       </div>
-      <ul>
+      <ul class="p-16 shadow">
         <div v-if="getCommingList?.length">
           <div class="ff mb-8">UPCOMING</div>
           <sport-item v-for="item in getCommingList" :info="item"></sport-item>
@@ -51,13 +53,13 @@
           <div class="ff mb-8">LIVE IN PLAY</div>
           <sport-item v-for="item in getLiveList" :info="item"></sport-item>
         </div>
+        <div style="height: 10vh"></div>
       </ul>
     </section>
-    <div style="height: 20vh"></div>
-    <div class="shadow">
+
+    <div style="background: #000" class="p-16">
       <FooterContent />
     </div>
-    <div style="height: 5vh"></div>
   </div>
 </template>
 
@@ -207,17 +209,17 @@ export default defineComponent({
 }
 .sticky-header {
   position: sticky;
-  top: 0;
+  top: 60px;
   z-index: 9;
-  padding: 16px 0;
+  padding: 16px;
 }
 .shadow {
   box-shadow: 0 -10px 20px #0000005f;
   // background: rgba(0, 0, 0, 0.24);
   background-image: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.3),
-    rgba(0, 0, 0, 0.8)
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 1)
   );
 }
 </style>

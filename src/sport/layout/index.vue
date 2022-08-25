@@ -92,7 +92,7 @@
             class="RightFNI RightFNI2"
           ></a>
           <a
-            href="javascript:;"
+            href="https://twitter.com/BetWeb3"
             v-if="!state.collapse"
             class="RightFNI RightFNI3"
           ></a>
@@ -107,7 +107,7 @@
               <a href="javascript:;" class="RightFNI RightFNI1"></a>
               <a href="javascript:;" class="RightFNI RightFNI2"></a>
               <a
-                href="https://twitter.com/betweb3"
+                href="https://twitter.com/BetWeb3"
                 class="RightFNI RightFNI3"
               ></a>
               <a href="javascript:;" class="RightFNI RightFNI4"></a>
@@ -124,7 +124,7 @@
       </div>
 
       <div
-        class="mask"
+        class="mask sider-real-sm"
         @click="state.collapse = true"
         v-if="!state.collapse"
       ></div>
@@ -370,6 +370,7 @@ export default defineComponent({
   }
   .sider-real-sm {
     display: none;
+    // todo 1200 1560
     @media (min-width: 1200px) and (max-width: 1560px) {
       display: block;
     }

@@ -6,9 +6,11 @@
         @click="$router.back()"
       />
       <div class="flex items-center gray">
-        <div v-for="(item, index) in state.list">
-          {{ item }}
-          <span v-if="index < state.list.length" style="padding: 0 2px">/</span>
+        <div v-for="(item, index) in getRoutes">
+          <span>{{ item }}</span>
+          <span v-if="index < getRoutes.length - 1" style="padding: 0 2px"
+            >/</span
+          >
         </div>
       </div>
     </div>
@@ -36,7 +38,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, computed } from "vue";
+import { defineComponent, reactive, computed, inject } from "vue";
 import dayjs from "dayjs";
 import { ArrowLeftOutlined } from "@ant-design/icons-vue";
 
@@ -51,8 +53,19 @@ export default defineComponent({
   },
   setup(props) {
     const state = reactive({
-      list: ["电竞", "yingxiongliangmeng", "LCP", "vspane"],
+      list: ["ELECTRONICS", "yingxiongliangmeng", "LCP", "vspane"],
     });
+    const SPORT_RACE = inject("SPORT_RACE");
+    const detail = window.sessionStorage.getItem("sportDetail");
+    const getRoutes = computed(() => {
+      if (detail?.length) {
+        const t = JSON.parse(detail);
+        return ["ELECTRONICS", t.competition_name, t.name];
+      } else {
+        return [];
+      }
+    });
+
     const getTime = computed(() => {
       return props.time ? dayjs(props.time).format("MM-DD HH:mm") : undefined;
     });
@@ -60,6 +73,7 @@ export default defineComponent({
     return {
       state,
       getTime,
+      getRoutes,
     };
   },
 });

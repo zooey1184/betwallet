@@ -1,16 +1,23 @@
 <template>
-  <section
-    class="zyqbanner"
-    style="max-height: 300px; overflow: hidden; border-radius: 8px"
-  >
+  <section class="zyqbanner" style="overflow: hidden; border-radius: 8px">
     <div class="swiper-container zyqban" v-if="state.bannerList?.length">
-      <div class="swiper-wrapper">
+      <div class="swiper-wrapper pos-r">
         <div
-          class="swiper-slide fl-cen flexC"
+          class="swiper-slide pos-r fl-cen flexC"
           v-for="item in state.bannerList"
           :key="item.order_id"
         >
           <img :src="item.uri" />
+          <div
+            class="startbtn active-bg cursor-pointer ff flex items-center justify-center"
+          >
+            <img
+              src="../images/icons/email.png"
+              style="width: 16px; margin-right: 4px"
+              alt=""
+            />
+            GET START
+          </div>
         </div>
       </div>
     </div>
@@ -64,3 +71,20 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="less" scoped>
+.startbtn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  line-height: 32px;
+  z-index: 99;
+  color: #fff;
+  width: 120px;
+  height: 32px;
+  border-radius: 10px;
+  &:active {
+    opacity: 0.8;
+  }
+}
+</style>

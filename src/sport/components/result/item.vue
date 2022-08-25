@@ -12,19 +12,19 @@
         <div class="betItemIcon">
           <img
             src="../../images/icons/matchItem-icon-active.png"
-            style="width: 24px"
+            style="width: 20px"
             alt=""
           />
           <!-- <div class="animat-circle"></div> -->
         </div>
         <div class="betTitle gray-9">
-          <div class="line-height-12">2022-08-25 17:52</div>
+          <div class="line-height-12">{{ info.bet_time }}</div>
           <div class="line-height-12" style="margin-top: 2px">
             Total revenue
           </div>
         </div>
       </div>
-      <div class="mt-8">
+      <div>
         <div class="ff font-size-18">
           {{ getTeamInfo.win.name }}
         </div>
@@ -45,28 +45,30 @@
           </div>
         </div> -->
       </div>
-      <div class="flex items-center mt-8">
+      <div class="flex items-center">
         <img src="../../images/v2/amout-icon.png" class="mr-8" alt="" />
         <span class="active-color font-size-18 ff">{{ info.odds }}</span>
       </div>
 
       <div class="rightPane">
-        <div>Bet Amount</div>
-        <div>
+        <div class="f1 font-size-12 line-height-12 gray">Bet Amount</div>
+        <div class="font-size-18 ff gray-9">
           <UsdtIcon />
           {{ info.bet_amount }}
         </div>
-        <div>Return</div>
-        <div v-if="info.win_amount">Amount: {{ info.win_amount }}</div>
-        <div v-else><UsdtIcon />{{ info.win_amount }}</div>
-      </div>
-      <!-- <div v-if="info.win_amount">Amount: {{ info.win_amount }}</div> -->
-      <div
-        v-if="info.win_amount > 0 && info.is_claimed === '0'"
-        class="itembtn pos-r active-bg mt-8"
-        @click="handleClaim(info)"
-      >
-        CLAIM
+        <div class="f1 font-size-12 grey line-height-14">Return</div>
+        <div class="flex items-center font-size-18 ff">
+          <UsdtIcon />
+          <div v-if="info.isSettled">{{ info.win_amount }}</div>
+          <div v-else>{{ info.bet_amount * info.odds }}</div>
+        </div>
+        <div
+          v-if="info.win_amount > 0 && info.is_claimed === '0'"
+          class="itembtn ff pos-r active-bg mt-8"
+          @click="handleClaim(info)"
+        >
+          CLAIM
+        </div>
       </div>
     </div>
   </div>
@@ -170,12 +172,11 @@ export default defineComponent({
   font-size: 20px;
 }
 .itembtn {
-  width: 80px;
-  height: 32px;
-  line-height: 32px;
+  padding: 2px 8px;
   text-align: center;
   outline: none;
   color: #fff;
+  font-size: 13px;
   border-radius: 8px;
   cursor: pointer;
   &:hover {
@@ -218,6 +219,7 @@ export default defineComponent({
   height: 22px;
   border-radius: 4px;
   margin-right: 8px;
+  font-size: 12px;
   // background: #303b47;
   position: relative;
 }
@@ -251,7 +253,7 @@ export default defineComponent({
 .rightPane {
   position: absolute;
   right: 0;
-  top: 20px;
+  top: 15px;
   text-align: right;
 }
 </style>
