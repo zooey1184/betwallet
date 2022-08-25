@@ -8,8 +8,8 @@ export const getSportList = async(id) => {
 }
 
 // ## 查看赛事举办方的列表，如LCS/PSC等
-export const queryCompetitionName = async() => {
-  return await http.get(`${HOST}/v2/query/competitionName`)
+export const queryCompetitionName = async(data) => {
+  return await http.get(`${HOST}/v2/query/competitionName`, {data})
 }
 
 // ## 查看所有比赛
@@ -74,4 +74,17 @@ export const getAllBetList = async(data) => {
 // 下注总额
 export const getTotalBet = async(data) => {
   return await http.get(`${HOST}/v2/query/totalBet`, {data})
+}
+
+/**
+ * 
+  method: GET
+  url: /v2/query/races
+  params: ''
+  req: http://47.242.226.50:7020/v2/query/races
+  res: {"success":true,"data":[{"id":1,"type":1,"name":"英雄联盟"}]}
+  type 1:电竞 2:足球 3:篮球
+ */
+export const getRace = async(data) => {
+  return await http.get(`${HOST}/v2/query/races`, {data})
 }

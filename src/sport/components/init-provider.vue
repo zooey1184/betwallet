@@ -17,7 +17,7 @@ import {
 // import { getSports, getSportList } from "../apis";
 import { getSportList } from "@/sport/api";
 import { Spin } from "ant-design-vue";
-import { queryCompetitionName, queryMatches } from "@/sport/api/index.js";
+import { queryCompetitionName, queryMatches, getRace } from "@/sport/api/index.js";
 
 export default defineComponent({
   components: {
@@ -31,6 +31,8 @@ export default defineComponent({
       betType: "single",
       competitionList: [], // 举办方信息
       matchList: [], // 所有比赛
+      raceList: [],
+      raceActive: ''
     });
 
     const competition = reactive({
@@ -80,16 +82,16 @@ export default defineComponent({
     provide("BET", getBetInfo);
 
     // 获取举办方信息
-    const getCompetitionName = () => {
-      queryCompetitionName().then((res) => {
-        state.competitionList = res.map((item, index) => {
-          item.label = item.competition_name;
-          item.value = item.competition_name;
-          item.icon = `LeftI${index + 1}`;
-          return item;
-        });
-        competition.list = state.competitionList;
+    const getCompetitionName = async(id) => {
+      const res = await queryCompetitionName({id})
+      state.competitionList = res.map((item, index) => {
+        item.label = item.competition_name;
+        item.value = item.competition_name;
+        item.icon = `LeftI${index + 1}`;
+        return item;
       });
+      competition.list = state.competitionList;
+      return state.competitionList
     };
 
     const getCompetitionNameComputed = computed(() => {
@@ -114,15 +116,37 @@ export default defineComponent({
       });
     };
 
+    
+
+    const getMatchList = computed(() => state.matchList);
+    provide("MATCH_LIST", getMatchList);
+
+    const handleGetRaceList = () => {
+      getRace().then(res => {
+        state.raceList = res
+      })
+    }
+
+    const getRaceList = computed(() => {
+      const list = []
+      state.raceList?.forEach(item => {
+        list.push({
+          ...item,
+          label: item.name,
+          value: item.id,
+          icon: "LeftI1",
+          count: item.count || 0
+        })
+      });
+      return list
+    })
+
     const handleInLoop = () => {
       handleGetMatchList();
       setTimeout(() => {
         handleInLoop();
       }, 60 * 1000 * 10); // 10分钟轮询
     };
-
-    const getMatchList = computed(() => state.matchList);
-    provide("MATCH_LIST", getMatchList);
 
     provide("methods", {
       handleGetSportItemList: getSportItemListFn,
@@ -140,8 +164,16 @@ export default defineComponent({
       handleGetMatchList: handleGetMatchList,
     });
 
+    provide('SPORT_RACE', {
+      races: getRaceList,
+      matches: getMatchList,
+      handleGetMatchList,
+      handleGetCompetitionName: getCompetitionName,
+    })
+
     onMounted(() => {
-      getCompetitionName();
+      handleGetRaceList()
+      // getCompetitionName();
       // handleGetMatchList();
       handleInLoop();
     });

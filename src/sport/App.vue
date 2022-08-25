@@ -1,15 +1,15 @@
 <template>
   <Web3Provider>
     <InitProvider>
-      <PoolProvider>
-        <RoomProvider>
+      <RoomProvider>
+        <PoolProvider>
           <SportProvider>
             <ResultProvider>
               <Page />
             </ResultProvider>
           </SportProvider>
-        </RoomProvider>
-      </PoolProvider>
+        </PoolProvider>
+      </RoomProvider>
     </InitProvider>
   </Web3Provider>
 </template>

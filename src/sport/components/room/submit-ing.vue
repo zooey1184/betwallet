@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="active-color font-size-18 font-weight-600 text-align-center">
+    <div class="active-color ff title mt50 text-align-center">
       SUBMITTING
     </div>
     <div class="mt-48 mb-32 flex justify-center">
@@ -52,6 +52,18 @@ export default defineComponent({
     transform: rotate(360deg);
   }
 }
+.title {
+  font-size: 22px;
+  @media screen and (max-width: 600px) {
+    font-size: 15px;
+  }
+}
+.mt50 {
+  margin-top: 50px;
+  @media screen and (max-width: 600px) {
+    margin-top: 24px;
+  }
+}
 .confirmBtn {
   height: 42px;
   width: 100%;
@@ -59,6 +71,7 @@ export default defineComponent({
   line-height: 42px;
   border-radius: 8px;
   font-size: 18px;
+  color: #fff;
   font-weight: 500;
 }
 .gray-link {

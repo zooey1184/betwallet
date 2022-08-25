@@ -71,7 +71,7 @@
       <!-- 真实侧边栏 -->
       <div
         class="sider-real primary-bg"
-        :style="{ width: state.collapse ? '60px' : '250px', zIndex: 10 }"
+        :style="{ width: state.collapse ? '60px' : '250px', zIndex: 12 }"
       >
         <Sider :collapse="state.collapse" :options="slideOptions" />
         <div class="sider-bottom flex items-center justify-around">

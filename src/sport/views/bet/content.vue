@@ -17,8 +17,8 @@
         <div class="desc">your bets amount</div>
         <div class="InddanB flexE">
           <div class="InddanZ ff flex items-end insetTitle active-color">
-            <span>70</span>
-            <div style="line-height: 1.5">832</div>
+            <span>{{getTotalBetC[0]}}</span>
+            <div style="line-height: 1.5">{{getTotalBetC[1]}}</div>
           </div>
           <div class="InddanD f1">usdt</div>
         </div>
@@ -27,8 +27,8 @@
         <div class="desc">bets in your pool</div>
         <div class="InddanB flexE">
           <div class="InddanZ ff flex items-end insetTitle active-color">
-            <span>70</span>
-            <div style="line-height: 1.5">832</div>
+            <span>{{getPoolsCalc[0]}}</span>
+            <div style="line-height: 1.5">{{getPoolsCalc[1]}}</div>
           </div>
           <div class="InddanD f1">usdt</div>
         </div>
@@ -37,8 +37,8 @@
         <div class="desc">BET remain this round</div>
         <div class="InddanB flexE">
           <div class="InddanZ ff flex items-end insetTitle active-color">
-            <span>70</span>
-            <div style="line-height: 1.5">832</div>
+            <span>{{getRewardCalc[0]}}</span>
+            <div style="line-height: 1.5">{{getRewardCalc[1]}}</div>
           </div>
           <div class="InddanD f1">BET</div>
         </div>
@@ -68,7 +68,7 @@
           </Popover>
         </div> -->
         <div class="input-wrap flex items-center justify-between">
-          <div class="input">0 BET</div>
+          <div class="input">{{getRemindBet.left}} BET</div>
           <div class="btn-input">CLAIM</div>
         </div>
 
@@ -77,7 +77,7 @@
         </div>
         <div class="flex items-center gray-5 justify-between">
           <div>Total Reward:</div>
-          <div class="f5 color-white">BET 0.0</div>
+          <div class="f5 color-white">BET {{getRemindBet.all}}</div>
         </div>
       </div>
     </div>
@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import { reactive, defineComponent, inject, computed } from "vue";
+import { reactive, defineComponent, inject, computed, watch } from "vue";
 import { QuestionCircleOutlined } from "@ant-design/icons-vue";
 import { Popover } from "ant-design-vue";
 
@@ -102,6 +102,84 @@ export default defineComponent({
     const POOLS = inject("POOLS");
 
     const getTotalBet = computed(() => RESULT?.totalBet?.value || 0);
+    const getPools = computed(() => POOLS.pools?.value)
+    const getRewards = computed(() => POOLS.rewards?.value)
+
+    const handleChangeUnit = (amount, t, unit) => {
+      const a = parseFloat((parseFloat(amount) / parseInt(t)).toFixed(2))?.toString()
+      return [a.substr(0, 2), `${a.substr(2)}(${unit})`]
+    }
+
+    
+    const handleDealNum = (amount) => {
+      const str = amount?.toString()
+      if (str.length > 9) {
+        return handleChangeUnit(str, 1e9, 'b')
+      }
+      if (str.length > 6) {
+        return handleChangeUnit(str, 1e6, 'm')
+      }
+      if (str?.length > 3) {
+        if (str.length > 5) {
+          return handleChangeUnit(str, 1000, 'k')
+        } else {
+          return [str.substr(0, 2), str.substr(2)]
+        }
+      } else {
+        return [str, '']
+      }
+    }
+
+    const getTotalBetC = computed(() => {
+      if (getTotalBet.value) {
+        return handleDealNum(getTotalBet.value)
+      }
+      return ['0', '']
+    })
+
+    const getPoolsCalc = computed(() => {
+      if (getPools?.value?.initAmount) {
+        const val = getPools.value
+        const init = web3.utils.fromWei(`${val.initAmount}`, "mwei") || 0;
+        const bet = web3.utils.fromWei(`${val.betTotalAmount}`, "mwei") || 0;
+        const pay = web3.utils.fromWei(`${val.payForTotalAmount}`, "mwei") || 0;
+
+        const t = parseInt(init) + parseInt(bet) - parseInt(pay)
+        return handleDealNum(t)
+      }
+      return ['0', '']
+    })
+
+    const getRewardCalc = computed(() => {
+      const val = getRewards.value
+      if (val && val?.totalRewards) {
+        const claim = web3.utils.fromWei(`${val.totalClaimed}`, "ether") || 0;
+        const Reward = web3.utils.fromWei(`${val.totalRewards}`, "ether") || 0;
+        const t = parseFloat(Reward) - parseFloat(claim)
+        return handleDealNum(t)
+      } else {
+        return ['0', '']
+      }
+    })
+
+    const getRemindBet = computed(() => {
+      const val = getRewards?.value
+      if (val && val?.totalRewards) {
+        const claim = web3.utils.fromWei(`${val.totalClaimed}`, "ether") || 0;
+        const Reward = web3.utils.fromWei(`${val.totalRewards}`, "ether") || 0;
+        const left = parseFloat(Reward) - parseFloat(claim)
+        return {
+          total: parseFloat(Reward),
+          left: left
+        }
+      } else {
+        return {
+          total: 0,
+          left: 0
+        }
+      }
+    })
+
 
     const handlePick = (act) => {
       state.act = act;
@@ -110,6 +188,13 @@ export default defineComponent({
     return {
       state,
       handlePick,
+      getTotalBet,
+      getPools,
+      getRewards,
+      getTotalBetC,
+      getPoolsCalc,
+      getRewardCalc,
+      getRemindBet
     };
   },
 });

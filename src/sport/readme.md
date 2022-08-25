@@ -9,14 +9,23 @@ $ npm i
 $ npm run dev
 $ open http://localhost:7020/
 ```
-
+## 查看所有赛事 英雄联盟等
+```js
+method: GET
+url: /v2/query/races
+params: ''
+req: http://47.242.226.50:7020/v2/query/races
+res: {"success":true,"data":[{"id":1,"type":1,"name":"英雄联盟"}]}
+      type 1:电竞 2:足球 3:篮球
+```
 
 ## 查看赛事举办方的列表，如LCS/PSC等
 ```js
 method: GET
 url: /v2/query/competitionName
-params: ''
-req: http://47.242.226.50:7020/v2/query/competitionName
+params: 
+id: 赛事id v2/query/races 中返回
+req: http://47.242.226.50:7020/v2/query/competitionName?id=1
 ```
 
 ## 查看所有比赛
@@ -205,6 +214,13 @@ req: http://47.242.226.50:7020/v2/query/competitionName
   method: pools
   params: 
   address betPool    奖池地址
+```
+
+## 获取可提奖励(bet代币)
+```contract
+  method: rewards
+  params: 
+  address betPool    用户地址
 ```
 
 ```js

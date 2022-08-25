@@ -1,7 +1,7 @@
 <template>
   <Spin :spinning="getLoading">
     <div>
-      <div class="active-color font-size-18 font-weight-600 text-align-center">
+      <div class="active-color mt50 title ff text-align-center">
         CONFIRM CREATION
       </div>
       <div class="mt-16 mb-16 flex justify-center">
@@ -28,7 +28,7 @@
         YOU CAN'T INCREASE OR DECREASE A BET HALFWAY THROUGH
       </div>
       <div
-        class="confirmBtn active-bg color-white mt-16 mb-16"
+        class="confirmBtn active-bg color-white mt-32 mb-16"
         @click="handleCreateBetPool"
       >
         CONFIRM CREATION
@@ -52,7 +52,7 @@ export default defineComponent({
     Circle,
     Spin,
   },
-  emits: ["next"],
+  emits: ["next", 'over'],
   setup(props, { emit }) {
     const state = reactive({
       amount: "",
@@ -66,7 +66,8 @@ export default defineComponent({
     } = usePermission();
 
     const getLoading = computed(
-      () => createPoolLoading?.value || authLoading?.value
+      // () => createPoolLoading?.value || authLoading?.value
+      () => false
     );
 
     const ACCOUNTS = inject("ACCOUNTS");
@@ -83,38 +84,38 @@ export default defineComponent({
         message.warning(`${TIP.amountMin}${MIN}`);
         return;
       }
-      console.log(MAX);
-      return;
-      const _hasPermission = await hasPermission();
-      if (_hasPermission) {
-        await createPool(state.amount, (h, r, e) => {
-          if (r) {
-            message.success(TIP.createSuccess);
-            emit("next");
-          }
-        });
-      } else {
-        getPermission(async (h, r, e) => {
-          if (r) {
-            message.success(TIP.authSuccess);
-            await createPool(state.amount, (h, r, e) => {
-              if (r) {
-                message.success(TIP.createSuccess);
-                emit("next");
-              }
-            });
-          }
-        });
-      }
+
+      emit('next', state.amount)
+      // const _hasPermission = await hasPermission();
+      // if (_hasPermission) {
+      //   await createPool(state.amount, (h, r, e) => {
+      //     if (r) {
+      //       message.success(TIP.createSuccess);
+      //       emit("next");
+      //     }
+      //   });
+      // } else {
+      //   getPermission(async (h, r, e) => {
+      //     if (r) {
+      //       message.success(TIP.authSuccess);
+      //       await createPool(state.amount, (h, r, e) => {
+      //         if (r) {
+      //           message.success(TIP.createSuccess);
+      //           emit("next");
+      //         }
+      //       });
+      //     }
+      //   });
+      // }
     };
 
-    const handleChangeAmount = () => {
-      const usdt = parseInt(getUsdt.value);
-      if (state.amount < usdt) {
-        message.warning(`Sorry, your usdt is running low`);
-        return;
-      }
-    };
+    // const handleChangeAmount = () => {
+    //   const usdt = parseInt(getUsdt.value);
+    //   if (state.amount < usdt) {
+    //     message.warning(`Sorry, your usdt is running low`);
+    //     return;
+    //   }
+    // };
 
     return {
       state,
@@ -155,7 +156,18 @@ export default defineComponent({
     opacity: 0.8;
   }
 }
-
+.title {
+  font-size: 22px;
+  @media screen and (max-width: 600px) {
+    font-size: 15px;
+  }
+}
+.mt50 {
+  margin-top: 50px;
+  @media screen and (max-width: 600px) {
+    margin-top: 24px;
+  }
+}
 .confirmBtn {
   height: 42px;
   width: 100%;

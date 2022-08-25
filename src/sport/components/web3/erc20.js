@@ -685,6 +685,25 @@ const abi = {
 					"type": "uint256"
 				}
 			],
+			"name": "ClaimRewards",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "address",
+					"name": "user",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "amount",
+					"type": "uint256"
+				}
+			],
 			"name": "CreateFundPool",
 			"type": "event"
 		},
@@ -837,6 +856,46 @@ const abi = {
 		{
 			"inputs": [
 				{
+					"components": [
+						{
+							"internalType": "uint256",
+							"name": "marketId",
+							"type": "uint256"
+						},
+						{
+							"internalType": "address",
+							"name": "betPool",
+							"type": "address"
+						},
+						{
+							"internalType": "uint256",
+							"name": "amount",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint8",
+							"name": "betSide",
+							"type": "uint8"
+						},
+						{
+							"internalType": "uint256",
+							"name": "minOdds",
+							"type": "uint256"
+						}
+					],
+					"internalType": "struct IBetCore.UserBet[]",
+					"name": "userBets",
+					"type": "tuple[]"
+				}
+			],
+			"name": "batchBet",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
 					"internalType": "uint256",
 					"name": "marketId",
 					"type": "uint256"
@@ -973,6 +1032,13 @@ const abi = {
 			"type": "function"
 		},
 		{
+			"inputs": [],
+			"name": "claimRewards",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
 			"inputs": [
 				{
 					"internalType": "uint256",
@@ -1104,6 +1170,11 @@ const abi = {
 				},
 				{
 					"internalType": "address",
+					"name": "_rewardToken",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
 					"name": "_dao",
 					"type": "address"
 				},
@@ -1111,11 +1182,35 @@ const abi = {
 					"internalType": "uint256",
 					"name": "_betToDaoRate",
 					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_rewardsPerUsdt",
+					"type": "uint256"
 				}
 			],
 			"name": "initialize",
 			"outputs": [],
 			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "addr",
+					"type": "address"
+				}
+			],
+			"name": "isContract",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
 			"type": "function"
 		},
 		{
@@ -1275,6 +1370,69 @@ const abi = {
 			"type": "function"
 		},
 		{
+			"inputs": [],
+			"name": "rewardClaimFlag",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "rewardToken",
+			"outputs": [
+				{
+					"internalType": "contract IERC20Upgradeable",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"name": "rewards",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "totalRewards",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "totalClaimed",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "rewardsPerUsdt",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
 			"inputs": [
 				{
 					"internalType": "address",
@@ -1288,8 +1446,27 @@ const abi = {
 			"type": "function"
 		},
 		{
-			"inputs": [],
-			"name": "test",
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_rate",
+					"type": "uint256"
+				}
+			],
+			"name": "updateBetToDaoRate",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_token",
+					"type": "address"
+				}
+			],
+			"name": "updateBetToken",
 			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
@@ -1298,11 +1475,11 @@ const abi = {
 			"inputs": [
 				{
 					"internalType": "uint256",
-					"name": "rate",
+					"name": "_betId",
 					"type": "uint256"
 				}
 			],
-			"name": "updateBetToDaoRate",
+			"name": "updateCurrentBetId",
 			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
@@ -1323,6 +1500,39 @@ const abi = {
 		{
 			"inputs": [],
 			"name": "updateFundPoolStopFlag",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "updateRewardClaimFlag",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_token",
+					"type": "address"
+				}
+			],
+			"name": "updateRewardToken",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_reward",
+					"type": "uint256"
+				}
+			],
+			"name": "updateRewardsPerUsdt",
 			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"

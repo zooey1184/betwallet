@@ -21,6 +21,7 @@ export default defineComponent({
       code: undefined,
       otherCode: undefined,
       roomAddress: undefined,
+      status: 'init'
     });
     const ACCOUNTS = inject("ACCOUNTS");
 
@@ -30,7 +31,6 @@ export default defineComponent({
       getRoomAddress({
         tenant: tenant,
       }).then((res) => {
-        console.log(res);
         state.roomAddress = res;
       });
     };
@@ -71,12 +71,14 @@ export default defineComponent({
     const getCode = computed(() => state.code);
     const getOtherCode = computed(() => state.otherCode);
     const getRoomAddressC = computed(() => state.roomAddress);
+    const getRoomStatus = computed(() => state.status)
 
     provide("ROOM", {
       code: getCode,
       otherCode: getOtherCode,
       roomAddress: getRoomAddressC,
       handleGetCode,
+      status: getRoomStatus,
       setState: (data) => {
         for (let i in data) {
           state[i] = data[i];
