@@ -1,5 +1,8 @@
 <template>
-  <section class="zyqbanner" style="overflow: hidden; border-radius: 8px">
+  <section
+    class="zyqbanner swiper"
+    style="overflow: hidden; border-radius: 8px"
+  >
     <div class="swiper-container zyqban" v-if="state.bannerList?.length">
       <div class="swiper-wrapper pos-r">
         <div
@@ -13,14 +16,16 @@
           >
             <img
               src="../images/icons/email.png"
-              style="width: 16px; margin-right: 4px"
+              style="width: 16px; height: auto; margin-right: 4px"
               alt=""
             />
             GET START
           </div>
         </div>
       </div>
+      <div class="swiper-pagination"></div>
     </div>
+
     <div class="swiper-button-next zyqnext"></div>
     <div class="swiper-button-prev zyqprev"></div>
   </section>
@@ -52,6 +57,10 @@ export default defineComponent({
                 disableOnInteraction: false,
                 delay: 4000,
               },
+              pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+              },
               navigation: {
                 nextEl: ".zyqnext",
                 prevEl: ".zyqprev",
@@ -73,6 +82,15 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
+.swiper {
+  --swiper-pagination-color: var(--primary-main); /* 两种都可以 */
+}
+.swiper-pagination {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  width: 100px !important;
+}
 .startbtn {
   position: absolute;
   bottom: 12px;

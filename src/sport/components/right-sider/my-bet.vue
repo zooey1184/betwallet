@@ -5,23 +5,33 @@
         href="javascript:;"
         @click="handleChangeBetType('history')"
         class="tabItem ff"
-        :class="{ 'active-bg': state.active === 'history' }"
+        :class="{ activeItem: state.active === 'history' }"
         >HISTORY</span
       >
       <span
         href="javascript:;"
         @click="handleChangeBetType('pending')"
         class="tabItem ff"
-        :class="{ 'active-bg': state.active === 'pending' }"
+        :class="{ activeItem: state.active === 'pending' }"
         >PENDING</span
       >
     </div>
 
     <div class="">
-      <div style="height: calc(100vh - 270px); overflow: auto">
+      <div class="betContent">
         <div v-if="!getResultList?.length" class="h-100p">
           <div class="flex flex-col items-center justify-center h-100p">
-            <img src="../../images/zyq0425/kongL.png" style="width: 120px" />
+            <!-- <img src="../../images/zyq0425/kongL.png" style="width: 120px" /> -->
+            <div
+              class="logoBg pos-a"
+              style="
+                width: 200px;
+                height: 230px;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+              "
+            ></div>
             <p class="mt-24 gray">Your betting list is empty</p>
           </div>
         </div>
@@ -40,7 +50,17 @@
               class="flex flex-col items-center justify-center h-100p"
               v-else
             >
-              <img src="../../images/zyq0425/kongL.png" style="width: 120px" />
+              <div
+                class="logoBg pos-a"
+                style="
+                  width: 200px;
+                  height: 230px;
+                  left: 0;
+                  top: 50%;
+                  transform: translateY(-50%);
+                "
+              ></div>
+              <!-- <img src="../../images/zyq0425/kongL.png" style="width: 120px" /> -->
               <p class="mt-24 gray">Your betting list is empty</p>
             </div>
           </div>
@@ -160,6 +180,27 @@ export default defineComponent({
   border-radius: 12px;
   padding: 4px;
   cursor: pointer;
+  font-family: var(--f1);
+  transition: all 100ms linear;
+  &:hover {
+    font-family: var(--ff);
+    background: var(--primary-main-hover);
+  }
+}
+.activeItem {
+  font-family: var(--ff);
+  background: var(--primary-main);
+  &:hover {
+    background: var(--primary-main);
+  }
+}
+.betContent {
+  // style="height: calc(100vh - 270px); overflow: auto"
+  height: calc(100vh - 270px);
+  overflow: hidden;
+  @media screen and (max-width: 1440px) {
+    height: calc(100vh - 250px);
+  }
 }
 .bet-btn {
   height: 38px;
@@ -176,5 +217,12 @@ export default defineComponent({
     color: var(--primary-main);
     // color: #fff;
   }
+}
+.logoBg {
+  background-image: url("../../images/logobg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.15;
+  z-index: 0;
 }
 </style>

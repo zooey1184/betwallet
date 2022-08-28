@@ -4,7 +4,7 @@
       <slot name="title"></slot>
     </div>
     <div v-if="showInput" class="flex items-center">
-      <UsdtIcon style="color: #10932f; font-size: 18px" class="mr-8" />
+      <UsdtIcon :style="{ color: state.color }" class="mr-8 font-size-18" />
       <input
         class="bet-input"
         type="number"
@@ -80,6 +80,7 @@ export default defineComponent({
       value: props.value,
       visible: false,
       isPickItem: false,
+      color: "#666",
     });
 
     watch(
@@ -101,6 +102,7 @@ export default defineComponent({
 
     const handleFocus = () => {
       state.isPickItem = true;
+      state.color = "#ff0083";
       if (props.options?.length) {
         state.visible = true;
       }
@@ -113,6 +115,7 @@ export default defineComponent({
     };
 
     const handleBlur = () => {
+      state.color = "#666";
       if (parseInt(state.value) < 0) {
         message.warning(TIP.greaterThen0);
         state.value = "";

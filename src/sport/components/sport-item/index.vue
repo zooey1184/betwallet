@@ -296,6 +296,7 @@ export default defineComponent({
 .leftTitle {
   color: #fff;
   font-size: 18px;
+  max-width: 50%;
 }
 .rightIcon {
   @media screen and (max-width: 800px) {

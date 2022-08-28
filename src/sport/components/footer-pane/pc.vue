@@ -6,10 +6,11 @@
     </div>
     <div class="flex items-center">
       <div class="flex items-center">
-        <a href="javascript:;" class="RightFNI RightFNI1"></a>
+        <!-- <a href="javascript:;" class="RightFNI RightFNI1"></a>
         <a href="javascript:;" class="RightFNI RightFNI2"></a>
         <a href="https://twitter.com/BetWeb3" class="RightFNI RightFNI3"></a>
-        <a href="javascript:;" class="RightFNI RightFNI4"></a>
+        <a href="javascript:;" class="RightFNI RightFNI4"></a> -->
+        <Icons />
         <!-- <a href='https://twitter.com/betweb3' target='_blank'>
           <img class="icon cursor-pointer" src='../../assets/icon-t.png' alt="">
         </a>
@@ -35,13 +36,12 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-// import logo from '../../images/footer-logo.png'
-// import Icon_t from '../../assets/icon-t.png'
-// import Icon_m from '../../assets/icon-m.png'
-// import Icon_d from '../../assets/icon-discord.png'
-// import Icon_g from '../../assets/icon-g.png'
+import Icons from "./icons.vue";
+
 export default defineComponent({
-  components: {},
+  components: {
+    Icons,
+  },
   props: {},
   setup(props) {
     return {

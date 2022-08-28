@@ -1,32 +1,38 @@
 <template>
   <div class="overflow-auto">
-    <div class="p-16">
+    <div class="px-16">
       <Swiper />
       <slot name="headerExtra"></slot>
     </div>
+
     <section>
       <div class="flex sticky-header flex-wrap items-center justify-between">
         <div class="flex items-center mr-24">
           <div
-            class="item ff"
+            class="item flex items-center"
             @click="handleSetActive('ALL')"
-            :class="{ 'active-bg': state.active === 'ALL' }"
+            :class="{ itemActive: state.active === 'ALL' }"
           >
+            <img
+              src="../images/icons/clock-icon.png"
+              style="width: 16px; margin-right: 4px"
+              alt=""
+            />
             {{ COMPETITION_ACTIVE || "ALL" }}
             <span class="ml-8">{{ getMatchList.ALL?.length || "" }}</span>
           </div>
           <div
-            class="item ff"
+            class="item"
             @click="handleSetActive('UPCOMING')"
-            :class="{ 'active-bg': state.active === 'UPCOMING' }"
+            :class="{ itemActive: state.active === 'UPCOMING' }"
           >
             UPCOMING
             <span class="ml-8">{{ getMatchList.UPCOMING?.length || "" }}</span>
           </div>
           <div
-            class="item ff"
+            class="item"
             @click="handleSetActive('LIVE')"
-            :class="{ 'active-bg': state.active === 'LIVE' }"
+            :class="{ itemActive: state.active === 'LIVE' }"
           >
             LIVE
             <span class="ml-8">{{ getMatchList.LIVE?.length || "" }}</span>
@@ -69,6 +75,7 @@ import Swiper from "./swiper.vue";
 import SportItem from "./sport-item/index.vue";
 import { SearchOutlined } from "@ant-design/icons-vue";
 import FooterContent from "./footer-pane/index.vue";
+import Shark from "./sharkPane";
 
 export default defineComponent({
   components: {
@@ -76,6 +83,7 @@ export default defineComponent({
     SportItem,
     SearchOutlined,
     FooterContent,
+    Shark,
   },
   props: {},
   setup(props) {
@@ -176,18 +184,27 @@ export default defineComponent({
   user-select: none;
   min-width: 80px;
   text-align: center;
+  font-family: var(--ff);
   &:hover {
     opacity: 0.8;
+    background: var(--primary-main-hover);
   }
   &:active {
     opacity: 0.7;
+  }
+}
+.itemActive {
+  background: var(--primary-main);
+  // font-family: var(--ff);
+  &:hover {
+    background: var(--primary-main);
   }
 }
 .searchPane {
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: 330px;
+  max-width: 400px;
 }
 .searchInput {
   outline: none;

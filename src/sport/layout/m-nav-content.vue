@@ -16,7 +16,7 @@
       <p class="font-weight-400 text-color">Football</p>
     </div>
 
-    <div class="mt-24">
+    <div class="mt-24 text-align-center">
       <RoomBtn />
     </div>
 

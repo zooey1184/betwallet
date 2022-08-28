@@ -10,21 +10,11 @@
     </div>
     <div class="flex items-center">
       <div class="flex items-center">
-        <!-- <a href='https://twitter.com/betweb3' target='_blank'>
-          <img class="icon cursor-pointer" src='../../assets/icon-t.png' alt="">
-        </a>
-        <a href='https://medium.com/@betweb3official' target='_blank'>
-          <img class="icon" src='../../assets/icon-m.png' alt="">
-        </a>
-        
-        <img class="icon" src="../../assets/icon-discord.png" alt="">
-        <a href="https://curry-steven.gitbook.io/untitled/" target="_blank">
-          <img class="icon" src="../../assets/icon-g.png" alt="">
-        </a> -->
-        <a href="javascript:;" class="RightFNI RightFNI1"></a>
-        <a href="javascript:;" class="RightFNI RightFNI2"></a>
+        <Icons />
+        <!-- <a href="javascript:;" class="RightFNI RightFNI1"></a> -->
+        <!-- <a href="javascript:;" class="RightFNI RightFNI2"></a>
         <a href="https://twitter.com/BetWeb3" class="RightFNI RightFNI3"></a>
-        <a href="javascript:;" class="RightFNI RightFNI4"></a>
+        <a href="javascript:;" class="RightFNI RightFNI4"></a> -->
       </div>
       <div class="text cursor-pointer link">Disclaimers</div>
     </div>
@@ -36,6 +26,27 @@
     risks
   </div>
 </template>
+
+<script>
+import { defineComponent, reactive } from "vue";
+import DiscordIcon from "../icons/discord.vue";
+import Icons from "./icons.vue";
+
+export default defineComponent({
+  components: {
+    DiscordIcon,
+    Icons,
+  },
+  props: {},
+  setup(props) {
+    const state = reactive({});
+
+    return {
+      state,
+    };
+  },
+});
+</script>
 
 <style lang="less" scoped>
 .right {

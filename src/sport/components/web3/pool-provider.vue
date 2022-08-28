@@ -76,8 +76,22 @@ export default defineComponent({
     const getPools = computed(() => state.pools);
     const get_totalBet = computed(() => state.totalBet);
     const getReward = computed(() => state.rewards);
+    // const getPools = computed(() => POOLS.pools?.value)
+    const getPoolsLeft = computed(() => {
+      const val = getPools.value;
+      if (val) {
+        const init = web3.utils.fromWei(`${val.initAmount}`, "mwei") || 0;
+        const bet = web3.utils.fromWei(`${val.betTotalAmount}`, "mwei") || 0;
+        const pay = web3.utils.fromWei(`${val.payForTotalAmount}`, "mwei") || 0;
+
+        const t = parseInt(init) + parseInt(bet) - parseInt(pay);
+        return t;
+      }
+      return 0;
+    });
     provide("POOLS", {
       pools: getPools,
+      poolsLeft: getPoolsLeft,
       totalBet: get_totalBet,
       rewards: getReward,
     });

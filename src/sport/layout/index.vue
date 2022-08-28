@@ -11,34 +11,9 @@
           style="height: 40px; margin-right: 50px"
           @click="handleGoHome"
         />
-        <div class="flex lg-show" style="height: 80px">
-          <div
-            class="flex flex-col items-center cursor-pointer justify-center header_active_item active-bg ff"
-          >
-            <img src="../images/v2/esport.png" style="height: 30px" alt="" />
-            <div style="margin-top: 4px">ELECTRONICS</div>
-          </div>
-          <div
-            class="flex flex-col cursor-pointer items-center justify-center header_active_item"
-            @click="handleMessage"
-          >
-            <img
-              src="../images/v2/basketball.png"
-              style="height: 30px"
-              alt=""
-            />
-            <p class="text-color f1" style="margin-top: 4px">Basketball</p>
-          </div>
-          <div
-            class="flex flex-col items-center cursor-pointer justify-center header_active_item"
-            @click="handleMessage"
-          >
-            <img src="../images/v2/football.png" style="height: 30px" alt="" />
-            <p class="text-color f1" style="margin-top: 4px">Football</p>
-          </div>
-        </div>
+        <HeaderSportItem />
         <!-- <div class="start ml-24">START THE GAME</div> -->
-        <div class="sm-hide ml-24">
+        <div class="sm-hide ml-24 roomBtn">
           <RoomBtn />
         </div>
       </div>
@@ -81,36 +56,13 @@
             src="../images/zyq0425/qi01.png"
           />
 
-          <a
-            href="javascript:;"
-            v-if="!state.collapse"
-            class="RightFNI RightFNI1"
-          ></a>
-          <a
-            href="javascript:;"
-            v-if="!state.collapse"
-            class="RightFNI RightFNI2"
-          ></a>
-          <a
-            href="https://twitter.com/BetWeb3"
-            v-if="!state.collapse"
-            class="RightFNI RightFNI3"
-          ></a>
-          <a
-            href="javascript:;"
-            v-if="!state.collapse"
-            class="RightFNI RightFNI4"
-          ></a>
+          <Icons v-if="!state.collapse" />
 
           <Popover v-if="state.collapse">
             <template #content>
-              <a href="javascript:;" class="RightFNI RightFNI1"></a>
-              <a href="javascript:;" class="RightFNI RightFNI2"></a>
-              <a
-                href="https://twitter.com/BetWeb3"
-                class="RightFNI RightFNI3"
-              ></a>
-              <a href="javascript:;" class="RightFNI RightFNI4"></a>
+              <div class="flex flex-col">
+                <Icons />
+              </div>
             </template>
             <AppstoreOutlined />
           </Popover>
@@ -123,11 +75,11 @@
         </div>
       </div>
 
-      <div
+      <!-- <div
         class="mask sider-real-sm"
         @click="state.collapse = true"
         v-if="!state.collapse"
-      ></div>
+      ></div> -->
 
       <!-- 内容区 -->
       <div class="content flex-1 imgBg" :class="{ 'bg-blur': !state.collapse }">
@@ -186,7 +138,7 @@
       </transition>
       <transition name="slide-fade">
         <div class="tab-mask" v-if="state.mineVisible">
-          <InfoPane />
+          <InfoPane @routerBet="state.mineVisible = false" />
         </div>
       </transition>
 
@@ -205,6 +157,7 @@
 import { defineComponent, reactive, inject, computed, watch } from "vue";
 import RoomBtn from "../components/room/room-btn.vue";
 import Sider from "./sider.vue";
+import HeaderSportItem from "./headerSportItem.vue";
 import {
   RightOutlined,
   CloudUploadOutlined,
@@ -223,10 +176,12 @@ import NavContent from "./m-nav-content.vue";
 import VsIcon from "../components/vs-icon.vue";
 import BetIcon from "../components/bet-icon.vue";
 import BetPane from "../components/right-sider/bet-pane.vue";
+import Icons from "../components/footer-pane/icons.vue";
 
 export default defineComponent({
   components: {
     Sider,
+    HeaderSportItem,
     AppstoreOutlined,
     Info,
     RoomBtn,
@@ -243,6 +198,7 @@ export default defineComponent({
     BetIcon,
     UserOutlined,
     BetPane,
+    Icons,
   },
   props: {
     slideOptions: {
@@ -252,7 +208,7 @@ export default defineComponent({
   setup(props) {
     const router = useRouter();
     const state = reactive({
-      collapse: true,
+      collapse: false,
       visible: false,
       visibleNav: false,
       infoVisible: false,
@@ -305,6 +261,7 @@ export default defineComponent({
     };
 
     const handleChangeTab = (e) => {
+      state.mineVisible = false;
       if (e === "match") {
         state.betVisible = false;
         state.mineVisible = false;
@@ -343,6 +300,7 @@ export default defineComponent({
 
 <style lang="less" scoped>
 @h: 80px;
+@hmd: 60px;
 @sider: 260px;
 .layout_header {
   height: @h;
@@ -351,6 +309,9 @@ export default defineComponent({
   padding: 0 24px;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.3);
   z-index: 19;
+  @media screen and (max-width: 1440px) {
+    height: @hmd;
+  }
 }
 .body {
   height: calc(100vh - @h);
@@ -359,19 +320,23 @@ export default defineComponent({
   top: @h;
   left: 0;
   overflow: hidden;
+  @media screen and (max-width: 1440px) {
+    height: calc(100vh - @hmd);
+    top: @hmd;
+  }
   .sider {
     width: @sider;
     height: 100%;
     transition: all 250ms linear;
     position: relative;
-    @media screen and (max-width: 1560px) {
+    @media screen and (max-width: 1200px) {
       display: none;
     }
   }
   .sider-real-sm {
     display: none;
     // todo 1200 1560
-    @media (min-width: 1200px) and (max-width: 1560px) {
+    @media (min-width: 600px) and (max-width: 1200px) {
       display: block;
     }
   }
@@ -392,12 +357,12 @@ export default defineComponent({
     position: absolute;
     z-index: 9;
     width: 90%;
-    height: 40px;
-    border-radius: 8px;
+    height: 38px;
+    border-radius: 10px;
     padding: 8px;
     background: #fff;
     color: #333;
-    bottom: 10px;
+    bottom: 16px;
     left: 5%;
   }
   .sider-real {
@@ -413,7 +378,6 @@ export default defineComponent({
     background-image: url("../images/v2/lbg.png");
     background-repeat: no-repeat;
     background-size: cover;
-
     @media screen and (max-width: 1200px) {
       display: none;
     }
@@ -422,8 +386,8 @@ export default defineComponent({
     }
   }
   .bg-blur {
-    @media (min-width: 1200px) and (max-width: 1560px) {
-      filter: blur(10px);
+    @media (min-width: 600px) and (max-width: 1200px) {
+      // filter: blur(10px);
     }
   }
   .logo {
@@ -552,14 +516,6 @@ export default defineComponent({
   }
 }
 
-.header_active_item {
-  padding: 10px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  font-weight: 600;
-  margin: 0 8px;
-  height: 70px;
-}
 .start {
   padding: 4px 12px;
   border-radius: 12px;
@@ -635,5 +591,10 @@ export default defineComponent({
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.roomBtn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <Spin :spinning="getLoading">
-    <div class="active-color f4 font-size-18 font-weight-600 text-align-center">
+    <div class="active-color ff title mt50 text-align-center">
       CASINO INFORMATION
     </div>
     <div class="color-black f3 text-align-center mt-16">
@@ -9,7 +9,7 @@
     <div
       class="flex justify-center f5 mt-8 font-weight-600 active-color amount"
     >
-      $10000 USDT
+      ${{ poolsLeft }} USDT
     </div>
 
     <div class="flex items-center justify-between my-24">
@@ -132,7 +132,7 @@ import { QuestionCircleOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 import Circle from "./circle.vue";
 import { message, Spin } from "ant-design-vue";
 import useMethods from "@/sport/hooks/useFootballMethods";
-import {TIP} from '@/sport/constant/tip'
+import { TIP } from "@/sport/constant/tip";
 
 export default defineComponent({
   components: {
@@ -148,6 +148,8 @@ export default defineComponent({
     });
 
     const RESULT = inject("RESULT");
+    const POOLS = inject("POOLS");
+    const poolsLeft = computed(() => POOLS.poolsLeft.value);
     const getAllBetList = computed(() => {
       const pending = RESULT.allBetList.value?.filter(
         (item) => !item.isSettled
@@ -204,6 +206,7 @@ export default defineComponent({
       getAllBetList,
       getVsInfo,
       getUser,
+      poolsLeft,
     };
   },
 });
@@ -261,6 +264,18 @@ export default defineComponent({
   display: flex;
   @media screen and (max-width: 600px) {
     display: none;
+  }
+}
+.title {
+  font-size: 22px;
+  @media screen and (max-width: 600px) {
+    font-size: 18px;
+  }
+}
+.mt50 {
+  margin-top: 50px;
+  @media screen and (max-width: 600px) {
+    margin-top: 24px;
   }
 }
 </style>

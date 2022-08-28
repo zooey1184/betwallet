@@ -5,14 +5,14 @@
         <div class="scheduleIcon">
           <img
             src="../../images/icons/matchItem-icon-active.png"
-            style="width: 100%"
+            style="width: 20px"
             alt=""
           />
         </div>
-        <div class="scheduleTime f1">{{ time }}</div>
+        <div class="scheduleTime gray-5 f3">{{ handleGetTime(time) }}</div>
       </div>
       <div class="flex items-center">
-        <div class="f1">B01 Valhalla Cup</div>
+        <div class="f3 gray-9" style="margin-top: 2px">B01 Valhalla Cup</div>
         <div v-if="!!live" class="flex items-center">
           <VideoCameraOutlined class="active-color mr-8 font-size-22" />
           LIVE
@@ -75,6 +75,8 @@
 <script>
 import { defineComponent, ref } from "vue";
 import { RightOutlined, VideoCameraOutlined } from "@ant-design/icons-vue";
+import dayjs from "dayjs";
+
 export default defineComponent({
   components: {
     RightOutlined,
@@ -97,8 +99,15 @@ export default defineComponent({
     const handleDetail = () => {
       emit("detail");
     };
+
+    const handleGetTime = (e) => {
+      const [d, t] = e.split(" ");
+      const today = dayjs().format("MM-DD");
+      return today === d ? t : d;
+    };
     return {
       handleDetail,
+      handleGetTime,
     };
   },
 });
@@ -108,6 +117,7 @@ export default defineComponent({
 .leftInfoPane {
   position: absolute;
   display: block;
+  top: -6px;
   @media screen and (max-width: 1400px) {
     display: none;
     overflow: hidden;

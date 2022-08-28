@@ -7,7 +7,7 @@
       </div>
       <div
         class="m-8 p-8 primary-dark-bg rounded-4"
-        style="padding-bottom: 16px"
+        style="padding-bottom: 16px; min-height: calc(100vh - 220px)"
       >
         <div class="pos-r">
           <div
@@ -167,9 +167,9 @@
       </div>
     </div>
     <div
-      class="info-btn m-8 flex-1 sticky bottom-0 flex items-center justify-center"
+      class="info-btn m-8 flex-1 sticky flex items-center justify-center"
       @click="handleClose"
-      style="margin-top: 24px"
+      style="margin-top: 24px; bottom: 8px"
     >
       <img
         src="../images/icons/exit.png"
@@ -279,7 +279,7 @@ export default defineComponent({
     Progress,
   },
   props: {},
-  emits: ["close"],
+  emits: ["close", "routerBet"],
   setup(props, { emit }) {
     const state = reactive({
       percent: 40,
@@ -299,6 +299,7 @@ export default defineComponent({
     const getWinRate = computed(() => RESULT.winRate?.value);
 
     const handleGoBet = () => {
+      emit("routerBet");
       router.push({
         name: "bet",
       });
@@ -390,6 +391,9 @@ export default defineComponent({
     // background: var(--primary-main);
     color: var(--primary-main);
     // color: #fff;
+  }
+  @media screen and (max-width: 600px) {
+    display: none;
   }
 }
 </style>

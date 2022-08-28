@@ -4,15 +4,15 @@
       <span
         href="javascript:;"
         @click="handleChangeBetType('single')"
-        class="tabItem ff"
-        :class="{ 'active-bg': getBetType === 'single' }"
+        class="tabItem"
+        :class="{ activeItem: getBetType === 'single' }"
         >SINGLE</span
       >
       <span
         href="javascript:;"
         @click="handleChangeBetType('combo')"
-        class="tabItem ff"
-        :class="{ 'active-bg': getBetType === 'combo' }"
+        class="tabItem"
+        :class="{ activeItem: getBetType === 'combo' }"
         >COMBO</span
       >
       <div>
@@ -25,17 +25,39 @@
     </div>
 
     <div class="">
-      <div :style="{ height: getHeight, overflow: 'auto' }">
+      <div
+        :class="{
+          betContent2: !getSportBetList?.length,
+          betContent: !!getSportBetList?.length,
+        }"
+      >
         <div v-if="!getSportBetList?.length" class="h-100p">
           <div class="flex flex-col items-center justify-center h-100p">
             <div class="text-align-center mb-48">
-              <div class="flex justify-center">
+              <div
+                class="logoBg pos-a"
+                style="
+                  width: 200px;
+                  height: 230px;
+                  left: 0;
+                  top: 50%;
+                  transform: translateY(-50%);
+                "
+              ></div>
+              <!-- <div class="flex justify-center">
                 <img
                   src="../../images/zyq0425/kongL.png"
                   style="width: 120px"
                   class="mb-16"
                 />
-              </div>
+              </div> -->
+              <!-- <div class="circle-wrap" style="margin: 0 auto">
+                <img
+                  src="../../images/v2/coin-icon-gray.png"
+                  style="width: 70px"
+                  alt=""
+                />
+              </div> -->
               <p>Your betting unit is empty</p>
               <a href="javascript:;">Click on odds to add selection</a>
             </div>
@@ -55,7 +77,7 @@
     </div>
   </div>
 
-  <div class="pos-r mt-8 py-16 px-8 primary-dark-bg m-8">
+  <div class="pos-r mt-8 py-16 px-8 primary-dark-bg mx-8">
     <div class="active-color text-align-center font-size-12 mb-8">
       NOT ENOUGH BALANCE TO PLACE A BET.
     </div>
@@ -286,6 +308,20 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
+.betContent {
+  height: calc(100vh - 420px);
+  overflow: hidden;
+  @media screen and (max-width: 1440px) {
+    height: calc(100vh - 443px);
+  }
+}
+.betContent2 {
+  height: calc(100vh - 375px);
+  overflow: hidden;
+  @media screen and (max-width: 1440px) {
+    height: calc(100vh - 343px);
+  }
+}
 .betItem {
   position: relative;
   font-size: 16px;
@@ -309,6 +345,26 @@ export default defineComponent({
   border-radius: 12px;
   padding: 4px;
   cursor: pointer;
+  font-family: var(--f1);
+  transition: all 100ms linear;
+  &:hover {
+    font-family: var(--ff);
+    background: var(--primary-main-hover);
+  }
+}
+.activeItem {
+  font-family: var(--ff);
+  background: var(--primary-main);
+  &:hover {
+    background: var(--primary-main);
+  }
+}
+.logoBg {
+  background-image: url("../../images/logobg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.15;
+  z-index: 0;
 }
 .bet-btn {
   height: 38px;

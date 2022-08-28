@@ -18,7 +18,7 @@
       <div class="time-desc f1">Minutes</div>
     </div>
   </div>
-  <div class="flex justify-center linear-color time_title" v-else>--</div>
+  <div class="flex justify-center linear-color time_title" v-else></div>
   <div>
     <slot></slot>
   </div>

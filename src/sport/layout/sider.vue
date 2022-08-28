@@ -3,11 +3,11 @@
     :style="{
       overflow: 'auto',
       position: collapse ? 'absolute' : 'relative',
-      height: 'calc(100vh - 120px)',
       overflowX: 'hidden',
       overflowY: 'auto',
       zIndex: 9,
     }"
+    class="siderPane"
   >
     <!-- <div
       class="leftItem flex items-center justify-between"
@@ -32,7 +32,7 @@
       <SideItem :visible="item.id === state.active" :collapseable="!collapse">
         <template #title>
           <div
-            class="leftItem flex ff items-center justify-between"
+            class="leftItem flex ff items-center justify-between slideItemTitle"
             :class="{ 'active-bg': state.active === item.id }"
             @click="handlePickRace(item)"
           >
@@ -68,7 +68,7 @@
             v-for="item in getCompetitionMap[item.id]"
             @click="handlePick(item)"
             :class="{ activeItem: COMPETITION_ACTIVE === item.value }"
-            class="competitionItem ff flex items-center justify-between"
+            class="competitionItem flex items-center justify-between f1"
           >
             <div
               class="flex items-center flex-1 ellipsis-1"
@@ -76,7 +76,9 @@
             >
               {{ item.label }}
             </div>
-            <div class="flex-0 flex items-center justify-center">
+            <div
+              class="flex-0 flex items-center count active-bg color-white justify-center"
+            >
               {{ item.count }}
             </div>
           </div>
@@ -213,12 +215,30 @@ export default defineComponent({
   height: 38px;
   line-height: 38px;
   padding: 0 16px;
+  color: #e9e9e9;
+  transition: all 100ms linear;
   &:hover {
     background: #ff00844a;
+    font-family: var(--f5);
+    // font-weight: 600;
+    color: #fff;
   }
 }
 .activeItem {
   border-left: 4px solid var(--primary-main);
-  color: #ff0083;
+  color: #ff0083 !important;
+  font-family: var(--ff);
+}
+.slideItemTitle {
+  font-weight: 400;
+  &:hover {
+    font-weight: 600;
+  }
+}
+.siderPane {
+  height: calc(100vh - 120px);
+  @media screen and (max-width: 1440px) {
+    height: calc(100vh - 130px);
+  }
 }
 </style>

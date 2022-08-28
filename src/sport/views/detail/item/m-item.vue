@@ -1,18 +1,20 @@
 <template>
   <div class="itemWrap primary-bg">
-    <div class="title">{{ name }}</div>
+    <div class="title gray">{{ name }}</div>
 
     <div class="flex items-center justify-between">
       <div class="flex items-center sideItem">
         <div class="logo" style="margin-right: 6px">
           <img
             src="../../../images/icons/sportItem-home-icon.png"
-            style="height: 100%"
+            style="width: 100%"
             alt=""
           />
         </div>
         <div class="flex justify-end flex-1" style="width: calc(50% - 55px)">
-          <div class="betNum ff ellipsis_2">{{ homeInfo.name }}</div>
+          <div class="betNum ff ellipsis_2 text-align-right">
+            {{ homeInfo.name }}
+          </div>
         </div>
       </div>
       <div class="flex items-center sideItem">
@@ -22,7 +24,7 @@
         <div class="logo" style="margin-left: 6px">
           <img
             src="../../../images/icons/sportItem-away-icon.png"
-            style="height: 100%"
+            style="width: 100%"
             alt=""
           />
         </div>
@@ -39,7 +41,7 @@
           :value="homeInfo.odds"
           :class="{ active: getBetActive === 'home' }"
           @click="handlePickItem('home')"
-          class="zyqulNI"
+          class="zyqulNI betInputItem"
           readonly
         />
       </div>
@@ -48,7 +50,7 @@
         <input
           type="text"
           :value="awayInfo.odds"
-          class="zyqulNI"
+          class="zyqulNI betInputItem"
           :class="{ active: getBetActive === 'away' }"
           @click="handlePickItem('away')"
           readonly
@@ -141,8 +143,12 @@ export default defineComponent({
   width: calc(50% - 20px);
 }
 .logo {
-  // width: 24px;
+  width: 24px;
   height: 24px;
   // background: #fff;
+}
+.betInputItem {
+  width: 50px;
+  height: 24px;
 }
 </style>

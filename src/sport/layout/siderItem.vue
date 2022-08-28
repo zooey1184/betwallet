@@ -143,6 +143,10 @@ export default defineComponent({
 }
 .collapse-body {
   overflow: auto;
+
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   .trans;
 }
 .collapse-pane {
@@ -158,6 +162,7 @@ export default defineComponent({
 }
 
 .wrap {
+  border-radius: 8px;
   &:hover {
     .abs_body {
       max-height: 200px;

@@ -1,8 +1,8 @@
 <template>
   <div class="flex items-center mt-24">
     <div
-      class="w-50p flex flex-col p-8 items-center justify-center left-tab"
-      :class="{ 'active-bg': state.active === 'bet' }"
+      class="w-50p flex flex-col p-8 items-center justify-center tabPane left-tab"
+      :class="{ activeTab: state.active === 'bet' }"
       @click="state.active = 'bet'"
     >
       <img
@@ -17,16 +17,11 @@
         v-if="state.active === 'bet'"
         alt=""
       />
-      <div
-        class="font-weight-600 mt-8 text-color"
-        :class="{ 'color-white': state.active === 'bet' }"
-      >
-        BET SLIP
-      </div>
+      <div class="mt-8">BET SLIP</div>
     </div>
     <div
-      class="w-50p flex flex-col p-8 items-center justify-center right-tab"
-      :class="{ 'active-bg': state.active === 'mybet' }"
+      class="w-50p flex flex-col p-8 items-center tabPane justify-center right-tab"
+      :class="{ activeTab: state.active === 'mybet' }"
       @click="state.active = 'mybet'"
     >
       <img
@@ -41,12 +36,7 @@
         style="height: 45px"
         alt=""
       />
-      <div
-        class="font-weight-600 mt-8 text-color pr-8"
-        :class="{ 'color-white': state.active === 'mybet' }"
-      >
-        MY BET
-      </div>
+      <div class="mt-8 pr-8">MY BET</div>
     </div>
   </div>
 </template>
@@ -97,5 +87,24 @@ export default defineComponent({
 .right-tab {
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
+}
+.tabPane {
+  color: #413b5b;
+  font-family: var(--f1);
+  transition: all 100ms linear;
+  cursor: pointer;
+  &:hover {
+    font-family: var(--ff);
+    color: #fff;
+    background: #ff008466;
+  }
+}
+.activeTab {
+  color: #fff;
+  font-family: var(--ff);
+  background: var(--primary-main);
+  &:hover {
+    background: var(--primary-main);
+  }
 }
 </style>

@@ -21,7 +21,7 @@ export default defineComponent({
       code: undefined,
       otherCode: undefined,
       roomAddress: undefined,
-      status: 'init'
+      status: "init",
     });
     const ACCOUNTS = inject("ACCOUNTS");
 
@@ -31,7 +31,7 @@ export default defineComponent({
       getRoomAddress({
         tenant: tenant,
       }).then((res) => {
-        state.roomAddress = res;
+        state.roomAddress = res?.toLocaleLowerCase();
       });
     };
 
@@ -71,7 +71,7 @@ export default defineComponent({
     const getCode = computed(() => state.code);
     const getOtherCode = computed(() => state.otherCode);
     const getRoomAddressC = computed(() => state.roomAddress);
-    const getRoomStatus = computed(() => state.status)
+    const getRoomStatus = computed(() => state.status);
 
     provide("ROOM", {
       code: getCode,
