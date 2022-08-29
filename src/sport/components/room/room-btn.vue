@@ -253,7 +253,7 @@ export default defineComponent({
   background-color: #ff0081;
   /* background-color: transparent; */
   color: #fff;
-  border-radius: 4px;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
   position: relative;
