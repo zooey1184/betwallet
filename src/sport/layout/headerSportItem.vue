@@ -8,16 +8,17 @@
     </div>
     <div
       class="flex flex-col cursor-pointer items-center justify-center header_item"
-      @click="handleSoon"
     >
-      <Basketball class="font-size-20" />
+      <Basketball class="font-size-22" />
+      <div class="activeTip">COMMING SOON</div>
       <p style="margin-top: 4px">Basketball</p>
     </div>
     <div
       class="flex flex-col items-center cursor-pointer justify-center header_item"
-      @click="handleSoon"
+      
     >
-      <Football class="font-size-20" />
+      <Football class="font-size-22" />
+      <div class="activeTip">COMMING SOON</div>
       <p style="margin-top: 4px">Football</p>
     </div>
   </div>
@@ -75,10 +76,31 @@ export default defineComponent({
   color: #7c8ba3;
   transition: all 100ms linear;
   font-family: var(--f1);
+  position: relative;
+  .activeTip {
+    opacity: 0;
+    position: absolute;
+    padding: 2px 4px;
+    transform: scale(0.6);
+    white-space: nowrap;
+    color: var(--primary-main);
+    top: 0;
+    right: -30px;
+    font-size: 12px;
+    font-family: var(--f1);
+    // background: var(--primary-main-hover);
+    border: 1px solid var(--primary-main);
+    border-radius: 20px;
+    transition: all 100ms linear;
+  }
   &:hover {
-    background: #ff00846e;
+    // background: #ff00846e;
+    font-weight: 600;
     color: #fff;
     font-family: var(--ff);
+    .activeTip {
+      opacity: 1;
+    }
   }
   .icon {
     height: 20px;
