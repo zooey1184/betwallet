@@ -154,7 +154,14 @@
 </template>
 
 <script>
-import { defineComponent, reactive, inject, computed, watch } from "vue";
+import {
+  defineComponent,
+  reactive,
+  inject,
+  computed,
+  watch,
+  provide,
+} from "vue";
 import RoomBtn from "../components/room/room-btn.vue";
 import Sider from "./sider.vue";
 import HeaderSportItem from "./headerSportItem.vue";
@@ -216,6 +223,7 @@ export default defineComponent({
       options: [],
       mineVisible: false,
       betVisible: false,
+      methodsMap: {},
     });
     const ACCOUNTS = inject("ACCOUNTS");
 
@@ -241,6 +249,14 @@ export default defineComponent({
     const handleToggleCollapse = () => {
       state.collapse = !state.collapse;
     };
+
+    watch(
+      () => state.collapse,
+      (n) => {
+        console.log("===", state.methodsMap);
+        state.methodsMap?.swiperUpdateSize();
+      }
+    );
     const handleConnect = () => {
       ACCOUNTS.link();
     };
@@ -279,6 +295,15 @@ export default defineComponent({
     const handleMessage = () => {
       message.info("Coming Soon");
     };
+    provide("LAYOUT", {
+      setMethods: (data) => {
+        const d = state.methodsMap;
+        for (let i in data) {
+          d[i] = data[i];
+        }
+        state.methodsMap = d;
+      },
+    });
 
     return {
       state,

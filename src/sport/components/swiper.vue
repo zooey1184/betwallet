@@ -1,16 +1,16 @@
 <template>
-  <section
-    class="zyqbanner swiper"
-    style="overflow: hidden; border-radius: 8px"
-  >
-    <div class="swiper-container zyqban" v-if="state.bannerList?.length">
+  <section class="swiper mt-16" style="overflow: hidden; border-radius: 8px">
+    <div
+      class="swiper-container pos-r scontainer"
+      v-if="state.bannerList?.length"
+    >
       <div class="swiper-wrapper pos-r">
         <div
-          class="swiper-slide pos-r fl-cen flexC"
+          class="swiper-slide pos-r"
           v-for="item in state.bannerList"
           :key="item.order_id"
         >
-          <img :src="item.uri" />
+          <img :src="item.uri" class="w-100p" />
           <div
             class="startbtn active-bg cursor-pointer ff flex items-center justify-center"
           >
@@ -24,35 +24,41 @@
         </div>
       </div>
       <div class="swiper-pagination"></div>
+      <div class="swiper-button-next next"></div>
+      <div class="swiper-button-prev pre"></div>
     </div>
-
-    <div class="swiper-button-next zyqnext"></div>
-    <div class="swiper-button-prev zyqprev"></div>
   </section>
 </template>
 
 <script>
-import { defineComponent, onMounted, reactive, ref, nextTick } from "vue";
+import {
+  defineComponent,
+  onMounted,
+  reactive,
+  ref,
+  nextTick,
+  inject,
+} from "vue";
 import { getBanner } from "@/sport/api/index.js";
 
 export default defineComponent({
   components: {},
   props: {},
-  setup(props) {
+  setup(props, { expose }) {
     const state = reactive({
       bannerList: [],
       swiper: undefined,
     });
+    const LAYOUT = inject("LAYOUT");
     const getBannerList = () => {
       getBanner().then((res) => {
         if (res) {
           state.bannerList = res;
-
-          console.log(state.bannerList);
           nextTick(() => {
-            state.swiper = new Swiper(".zyqban", {
+            state.swiper = new Swiper(".scontainer", {
               speed: 300,
               loop: true,
+              autoWidth: true,
               autoplay: {
                 disableOnInteraction: false,
                 delay: 4000,
@@ -62,8 +68,20 @@ export default defineComponent({
                 clickable: true,
               },
               navigation: {
-                nextEl: ".zyqnext",
-                prevEl: ".zyqprev",
+                nextEl: ".next",
+                prevEl: ".pre",
+              },
+              on: {
+                resize: function () {
+                  this.update(); //窗口变化时，更新Swiper的一些属性，如宽高等
+                },
+              },
+            });
+
+            LAYOUT.setMethods({
+              swiperUpdateSize: () => {
+                console.log("object");
+                state.swiper.update();
               },
             });
           });
@@ -72,6 +90,13 @@ export default defineComponent({
     };
     onMounted(() => {
       getBannerList();
+    });
+
+    expose({
+      updateSize: () => {
+        console.log("object");
+        state.swiper.slideNext();
+      },
     });
 
     return {
