@@ -43,12 +43,12 @@ export default defineComponent({
 
     // ## 获取奖池总额
     const handleGetPools = async (n) => {
-      console.log(n);
       const r = n?.toLocaleLowerCase();
       const res = await CONTRACT.value.football_contract.methods
         .pools(r)
         .call();
       state.pools = res;
+      console.log('getPools:', res)
       state.betTotalAmount = res.betTotalAmount;
     };
 
@@ -89,8 +89,23 @@ export default defineComponent({
       }
       return 0;
     });
+
+    // 用于校验是否实际创建了房间
+    const getPoolsTotal = computed(() => {
+      const val = getPools.value;
+      if (val) {
+        const init = web3.utils.fromWei(`${val.initAmount}`, "mwei") || 0;
+        // const bet = web3.utils.fromWei(`${val.betTotalAmount}`, "mwei") || 0;
+        // const pay = web3.utils.fromWei(`${val.payForTotalAmount}`, "mwei") || 0;
+
+        const t = parseInt(init)
+        return t;
+      }
+      return 0;
+    })
     provide("POOLS", {
       pools: getPools,
+      poolsTotal: getPoolsTotal,
       poolsLeft: getPoolsLeft,
       totalBet: get_totalBet,
       rewards: getReward,

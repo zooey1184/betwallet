@@ -68,8 +68,9 @@ export default defineComponent({
       } else {
         getPermission(async (h, r, e) => {
           if (r) {
+            console.log('room-create permission:', '授权成功', props.amount)
             message.success(TIP.authSuccess);
-            await createPool(state.amount, (h, r, e) => {
+            await createPool(props.amount, (h, r, e) => {
               if (r) {
                 message.success(TIP.createSuccess);
                 emit("next");

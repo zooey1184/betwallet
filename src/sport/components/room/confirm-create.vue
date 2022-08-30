@@ -20,7 +20,7 @@
           class="flex-1 input"
           v-model="state.amount"
           type="number"
-          placeholder="请输入金额"
+          placeholder="Please enter the amount"
         />
         <div class="roomConfirm active-bg color-white">USDT</div>
       </div>

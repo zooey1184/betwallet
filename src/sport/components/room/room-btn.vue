@@ -125,6 +125,7 @@ export default defineComponent({
     });
     const ACCOUNTS = inject("ACCOUNTS");
     const ROOM = inject("ROOM");
+    const POOLS = inject('POOLS')
     const getCode = computed(() => ROOM.code.value);
     const isLink = computed(() => {
       return ACCOUNTS.isLink.value;
@@ -132,6 +133,10 @@ export default defineComponent({
     const handleConnect = () => {
       ACCOUNTS.link();
     };
+
+    const poolsTotal = computed(() => {
+      return POOLS.poolsTotal.value
+    })
 
     const getStatus = computed(() => {
       if (getCode.value) {
@@ -180,8 +185,13 @@ export default defineComponent({
       const id = ACCOUNTS.accounts.value[0];
 
       if (id === roomAddress) {
-        state.status = "close";
-        state.visible = true;
+        if (parseInt(poolsTotal.value) === 0) {
+          state.status = "confirmCreate";
+          state.visible = true;
+        } else {
+          state.status = "close";
+          state.visible = true;
+        }
       }
     };
 

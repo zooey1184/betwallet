@@ -68,7 +68,7 @@
             v-for="item in getCompetitionMap[item.id]"
             @click="handlePick(item)"
             :class="{ activeItem: COMPETITION_ACTIVE === item.value }"
-            class="competitionItem flex items-center justify-between f1"
+            class="competitionItem flex items-center justify-between f4"
           >
             <div
               class="flex items-center flex-1 ellipsis-1"
@@ -77,7 +77,7 @@
               {{ item.label }}
             </div>
             <div
-              class="flex-0 flex items-center count active-bg color-white justify-center"
+              class="flex-0 flex items-center count justify-center"
             >
               {{ item.count }}
             </div>
@@ -215,12 +215,13 @@ export default defineComponent({
   height: 38px;
   line-height: 38px;
   padding: 0 16px;
-  color: #e9e9e9;
+  padding-right: 8px;
+  color: #a3a3a3;
   transition: all 100ms linear;
   &:hover {
     background: #ff00844a;
-    font-family: var(--f5);
-    // font-weight: 600;
+    // font-family: var(--f5);
+    font-weight: 600;
     color: #fff;
   }
 }
