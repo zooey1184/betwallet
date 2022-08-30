@@ -169,7 +169,7 @@
     <div
       class="info-btn m-8 flex-1 sticky flex items-center justify-center"
       @click="handleClose"
-      style="margin-top: 24px; bottom: 8px"
+      style="margin-top: 24px; bottom: 16px"
     >
       <img
         src="../images/icons/exit.png"

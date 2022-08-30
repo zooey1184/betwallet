@@ -1,16 +1,24 @@
 <template>
   <div>
     <div class="layout_header primary-bg flex items-center justify-between">
-      <div class="flex items-center">
+      <div class="flex items-center h-100p">
         <div class="mx-lg-show mr-16">
           <MenuIcon v-model:value="state.visibleNav" />
         </div>
-        <img
+        <!-- <img
           src="../images/zyq0425/logo.png"
           class="cursor-pointer"
           style="height: 40px; margin-right: 50px"
           @click="handleGoHome"
-        />
+        /> -->
+        <div
+          class="h-70p mr-16 cursor-pointer overflow-hidden pos-r"
+          @click="handleGoHome"
+        >
+          <div class="flash-bg"></div>
+          <div class="flash"></div>
+          <img style="height: 100%" src="../images/icons/logo.png" />
+        </div>
         <HeaderSportItem />
         <!-- <div class="start ml-24">START THE GAME</div> -->
         <div class="sm-hide ml-24 roomBtn">
@@ -29,7 +37,7 @@
           class="items-center sellBtn active-color ml-24"
           @click="handleConnect"
         >
-          <CloudUploadOutlined class="mr-8" />
+          <CloudUploadOutlined class="mr-8 cursor-pointer" />
           Wallet
         </div>
       </div>
@@ -574,6 +582,7 @@ export default defineComponent({
   padding: 4px 12px;
   background: #fff;
   border-radius: 10px;
+  cursor: pointer;
 }
 .mine-pane {
   position: absolute;
@@ -621,5 +630,40 @@ export default defineComponent({
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+@keyframes changeImg {
+  from {
+    left: -100%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+.flash-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: #fff;
+  z-index: -1;
+}
+.flash {
+  position: absolute;
+  cursor: pointer;
+  animation: changeImg 3s ease 0s;
+  top: 0;
+  width: 30%;
+  height: 100%;
+  content: "";
+  z-index: -1;
+  background: linear-gradient(
+    to right,
+    #ff00841b 0,
+    #ff0084c6 50%,
+    #ff00841a 0
+  );
+  transform: skewX(-45deg);
+  animation-iteration-count: infinite;
 }
 </style>
