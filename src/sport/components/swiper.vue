@@ -1,10 +1,11 @@
 <template>
-  <section class="swiper mt-16" style="overflow: hidden; border-radius: 8px">
+  <section class="swiper mt-16" ref='swiperRef' style="overflow: hidden; border-radius: 8px">
     <div
-      class="swiper-container pos-r scontainer"
+      class="swiper-container pos-r scontainer w-100p"
+       
       v-if="state.bannerList?.length"
     >
-      <div class="swiper-wrapper pos-r">
+      <div class="swiper-wrapper pos-r w-100p">
         <div
           class="swiper-slide pos-r"
           v-for="item in state.bannerList"
@@ -49,6 +50,7 @@ export default defineComponent({
       bannerList: [],
       swiper: undefined,
     });
+    const swiperRef = ref()
     const LAYOUT = inject("LAYOUT");
     const getBannerList = () => {
       getBanner().then((res) => {
@@ -71,17 +73,21 @@ export default defineComponent({
                 nextEl: ".next",
                 prevEl: ".pre",
               },
+              resizeObserver: true,
               on: {
                 resize: function () {
-                  this.update(); //窗口变化时，更新Swiper的一些属性，如宽高等
+                  // this.update(); //窗口变化时，更新Swiper的一些属性，如宽高等
                 },
               },
             });
 
             LAYOUT.setMethods({
               swiperUpdateSize: () => {
-                console.log("object");
-                state.swiper.update();
+                setTimeout(() => {
+                  const _swiperRect = swiperRef.value.getBoundingClientRect()
+                  console.log(_swiperRect.width)
+                  // state.swiper.el.style.width = `${_swiperRect.width}px`
+                }, 550)
               },
             });
           });
@@ -100,6 +106,7 @@ export default defineComponent({
     });
 
     return {
+      swiperRef,
       state,
     };
   },
@@ -115,6 +122,13 @@ export default defineComponent({
   left: 12px;
   bottom: 12px;
   width: 100px !important;
+}
+.swiper-container {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.swiper-wrapper {
+  border-radius: 8px;
 }
 .startbtn {
   position: absolute;
