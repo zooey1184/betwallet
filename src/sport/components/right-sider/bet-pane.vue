@@ -310,14 +310,14 @@ export default defineComponent({
 <style lang="less" scoped>
 .betContent {
   height: calc(100vh - 462px);
-  overflow: hidden;
+  overflow: auto;
   @media screen and (max-width: 1440px) {
     height: calc(100vh - 442px);
   }
 }
 .betContent2 {
   height: calc(100vh - 362px);
-  overflow: hidden;
+  overflow: auto;
   @media screen and (max-width: 1440px) {
     height: calc(100vh - 342px);
   }

@@ -42,6 +42,11 @@ export const preCheck = async(data) => {
   return await http.post(`${HOST}/v2/bet/order/preCheck`, {data})
 }
 
+// 
+export const preCheckMulti = async(data) => {
+  return await http.post(`${HOST}/v2/bet/order/preCheckMulti`, {data})
+}
+
 // ## 取合约配置信息
 export const getConfig = async() => {
   return await http.get(`${HOST}/v1/contract/getConfig`)

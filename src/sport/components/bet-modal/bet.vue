@@ -1,5 +1,5 @@
 <template>
-  <Spin :spinning="state.loading">
+  <div>
     <div style="max-height: 70vh" class="overflow-auto">
       <div
         class="active-color mt-24 f4 font-size-20 font-weight-600 text-align-center"
@@ -75,21 +75,28 @@
       </div>
       <div class="flex items-center">
         <div class="mr-8 cancelBtn flex-0" @click="handleBetLast">LAST</div>
-        <div class="confirmBtn flex-1" @click="handleBetFn">PLACE BET</div>
+        <Button
+          :loading="state.loading"
+          type="primary"
+          class="confirmBtn flex-1"
+          @click="handleBetFn"
+          >PLACE BET</Button
+        >
       </div>
     </div>
-  </Spin>
+  </div>
 </template>
 
 <script>
 import { computed, defineComponent, inject, reactive } from "vue";
-import { preCheck } from "@/sport/api/index";
+import { preCheck, preCheckMulti } from "@/sport/api/index";
 import { useBet } from "@/sport/hooks/use-methods";
-import { message, Spin } from "ant-design-vue";
+import { message, Spin, Button } from "ant-design-vue";
 import { TIP } from "@/sport/constant/tip";
 export default defineComponent({
   components: {
     Spin,
+    Button,
   },
   props: {},
   emits: ["cancel"],
@@ -207,6 +214,37 @@ export default defineComponent({
       });
     };
 
+    const handleGetBetInfo = () => {
+      const getMyBetInfo = getBetInfo.value;
+      const list = getMyBetInfo.data?.filter(
+        (item) => item.active && item.betValue
+      );
+      const _list = [];
+      list.forEach((item) => {
+        const AMOUNT = web3.utils.toWei(`${item.betValue}`, "mwei");
+
+        const tolerance = getBetConfig?.value?.tolerance || 0;
+        const minOdds = parseInt(item.activeValue * (100 - tolerance));
+        _list.push({
+          amount: AMOUNT,
+          odds: minOdds, // (当前赔率*(100-滑点))
+          bet_side: item.active === "home" ? 0 : item.active === "away" ? 1 : 2,
+          market_id: item.oddsId,
+        });
+      });
+      return _list;
+    };
+    const handleBetMulti = () => {
+      const list = handleGetBetInfo();
+      const obj = {
+        tenant: ROOM?.code?.value,
+        orderInfos: list,
+      };
+      preCheckMulti(obj).then((res) => {
+        console.log(res);
+      });
+    };
+
     return {
       state,
       handleBetFn,
@@ -216,6 +254,7 @@ export default defineComponent({
       getMinMax,
       getSingleWin,
       handleBetLast,
+      handleBetMulti,
     };
   },
 });
@@ -256,16 +295,22 @@ export default defineComponent({
   font-size: 16px;
   font-weight: 600;
   height: 38px;
-  line-height: 38px;
-  background: var(--primary-main);
+  line-height: 32px !important;
+  background: var(--primary-main) !important;
   border-radius: 8px;
   text-align: center;
   cursor: pointer;
   margin-top: 24px;
   color: #fff;
   margin-bottom: 16px;
+  border: 1px solid var(--primary-main) !important;
   &:active {
     opacity: 0.8;
+  }
+  &:hover {
+    color: #fff;
+    border: 1px solid var(--primary-main);
+    background: #ff0083 !important;
   }
 }
 </style>

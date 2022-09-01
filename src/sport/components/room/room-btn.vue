@@ -125,7 +125,7 @@ export default defineComponent({
     });
     const ACCOUNTS = inject("ACCOUNTS");
     const ROOM = inject("ROOM");
-    const POOLS = inject('POOLS')
+    const POOLS = inject("POOLS");
     const getCode = computed(() => ROOM.code.value);
     const isLink = computed(() => {
       return ACCOUNTS.isLink.value;
@@ -135,8 +135,8 @@ export default defineComponent({
     };
 
     const poolsTotal = computed(() => {
-      return POOLS.poolsTotal.value
-    })
+      return POOLS.poolsTotal.value;
+    });
 
     const getStatus = computed(() => {
       if (getCode.value) {
@@ -170,7 +170,9 @@ export default defineComponent({
     };
 
     const handleClose = () => {
-      state.visible = false;
+      // state.visible = false;
+      state.status = "submit";
+      POOLS.handleGetPools();
       ROOM.handleGetCode();
     };
 

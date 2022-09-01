@@ -1,129 +1,146 @@
 <template>
-  <Spin :spinning="getLoading">
-    <div class="active-color ff title mt50 text-align-center">
-      CASINO INFORMATION
-    </div>
-    <div class="color-black f3 text-align-center mt-16">
-      AMOUNT OF THE USDT POOL
-    </div>
-    <div
-      class="flex justify-center f5 mt-8 font-weight-600 active-color amount"
-    >
-      ${{ poolsLeft }} USDT
-    </div>
-
-    <div class="flex items-center justify-between my-24">
-      <div
-        class="roombtn f4"
-        :class="{
-          'active-bg': state.active === '0',
-          'active-color': state.active !== '0',
-          'color-white': state.active === '0',
-        }"
-        @click="handlePick('0')"
-      >
-        ONGOING
+  <div>
+    <div v-if="!state.loading">
+      <div class="active-color ff title mt50 text-align-center">
+        CASINO INFORMATION
+      </div>
+      <div class="color-black f3 text-align-center mt-16">
+        AMOUNT OF THE USDT POOL
       </div>
       <div
-        class="roombtn f4"
-        :class="{
-          ' active-bg': state.active === '1',
-          'active-color': state.active !== '1',
-          'color-white': state.active === '1',
-        }"
-        @click="handlePick('1')"
+        class="flex justify-center f5 mt-8 font-weight-600 active-color amount"
       >
-        HISTORY
+        ${{ poolsLeft }} USDT
       </div>
-    </div>
-    <div class="overflow-hidden" style="border-radius: 8px">
-      <div
-        class="content scrollbar overflow-auto bg"
-        style="padding: 16px 24px"
-        v-if="state.active === '0'"
-      >
+      <div class="flex items-center justify-between my-24">
         <div
-          class="color-white3 f5 font-size-14 mb-24"
-          v-for="item in getAllBetList.pending"
+          class="roombtn f4"
+          :class="{
+            'active-bg': state.active === '0',
+            'active-color': state.active !== '0',
+            'color-white': state.active === '0',
+          }"
+          @click="handlePick('0')"
         >
-          <div class="flex items-center">
-            <div style="width: 50%">USER: {{ getUser(item) }}</div>
-            <!-- <div style="width: 20%" class="text-align-center">07.21</div> -->
-            <!-- <div style="width: 20%" class="text-align-right">5:00AM</div> -->
-            <div style="width: 50%" class="text-align-right flex items-center">
-              <div class="item">{{ getVsInfo(item).home.name }}</div>
-              <div style="margin: 0 4px" class="gray-9">vs</div>
-              <div class="item text-align-right">
-                {{ getVsInfo(item).away.name }}
+          ONGOING
+        </div>
+        <div
+          class="roombtn f4"
+          :class="{
+            ' active-bg': state.active === '1',
+            'active-color': state.active !== '1',
+            'color-white': state.active === '1',
+          }"
+          @click="handlePick('1')"
+        >
+          HISTORY
+        </div>
+      </div>
+      <div class="overflow-hidden" style="border-radius: 8px">
+        <div
+          class="content scrollbar overflow-auto bg"
+          style="padding: 16px 24px"
+          v-if="state.active === '0'"
+        >
+          <div
+            class="color-white3 f5 font-size-14 mb-24"
+            v-for="item in getAllBetList.pending"
+          >
+            <div class="flex items-center">
+              <div style="width: 50%">USER: {{ getUser(item) }}</div>
+              <!-- <div style="width: 20%" class="text-align-center">07.21</div> -->
+              <!-- <div style="width: 20%" class="text-align-right">5:00AM</div> -->
+              <div
+                style="width: 50%"
+                class="text-align-right flex items-center"
+              >
+                <div class="item">{{ getVsInfo(item).home.name }}</div>
+                <div style="margin: 0 4px" class="gray-9">vs</div>
+                <div class="item text-align-right">
+                  {{ getVsInfo(item).away.name }}
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="ellipsis-1" style="max-width: 130px">
+                {{ getVsInfo(item).win.name }} {{ item.odds }}
+              </div>
+              <div class="flex items-center">
+                <span class="sm-hide">BETTING AMOUNT:</span>
+                <span class="flex items-center flex-1">
+                  <img
+                    class="mx-8"
+                    src="../../images/v2/coin-icon-red.png"
+                    alt=""
+                  />
+                  {{ item.bet_amount }}
+                </span>
               </div>
             </div>
           </div>
-
-          <div class="flex items-center justify-between">
-            <div class="ellipsis-1" style="max-width: 130px">
-              {{ getVsInfo(item).win.name }} {{ item.odds }}
-            </div>
+        </div>
+        <div
+          class="content scrollbar overflow-auto bg"
+          style="padding: 16px 24px"
+          v-if="state.active === '1'"
+        >
+          <div
+            class="color-white3 f5 font-size-14 mb-24"
+            v-for="item in getAllBetList.history"
+          >
             <div class="flex items-center">
-              <span class="sm-hide">BETTING AMOUNT:</span>
-              <span class="flex items-center flex-1">
-                <img
-                  class="mx-8"
-                  src="../../images/v2/coin-icon-red.png"
-                  alt=""
-                />
-                {{ item.bet_amount }}
-              </span>
+              <div style="width: 50%">USER: {{ getUser(item) }}</div>
+              <!-- <div style="width: 20%" class="text-align-center">07.21</div> -->
+              <!-- <div style="width: 20%" class="text-align-right">5:00AM</div> -->
+              <div
+                style="width: 50%"
+                class="text-align-right flex items-center"
+              >
+                <div class="item">{{ getVsInfo(item).home.name }}</div>
+                <div style="margin: 0 2px" class="gray-9">vs</div>
+                <div class="item text-align-right">
+                  {{ getVsInfo(item).away.name }}
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="ellipsis-1" style="max-width: 130px">
+                {{ getVsInfo(item).win.name }} {{ item.odds }}
+              </div>
+              <div class="flex items-center">
+                <span class="sm-hide">BETTING AMOUNT:</span>
+                <span class="flex items-center">
+                  <img
+                    class="mx-8"
+                    src="../../images/v2/coin-icon-red.png"
+                    alt=""
+                  />
+                  {{ item.bet_amount }}
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
       <div
-        class="content scrollbar overflow-auto bg"
-        style="padding: 16px 24px"
-        v-if="state.active === '1'"
+        class="confirmBtn active-bg mt-16 mb-8 f4"
+        v-if="!getIsStopBet"
+        @click="handleStopPool"
       >
-        <div
-          class="color-white3 f5 font-size-14 mb-24"
-          v-for="item in getAllBetList.history"
-        >
-          <div class="flex items-center">
-            <div style="width: 50%">USER: {{ getUser(item) }}</div>
-            <!-- <div style="width: 20%" class="text-align-center">07.21</div> -->
-            <!-- <div style="width: 20%" class="text-align-right">5:00AM</div> -->
-            <div style="width: 50%" class="text-align-right flex items-center">
-              <div class="item">{{ getVsInfo(item).home.name }}</div>
-              <div style="margin: 0 2px" class="gray-9">vs</div>
-              <div class="item text-align-right">
-                {{ getVsInfo(item).away.name }}
-              </div>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between">
-            <div class="ellipsis-1" style="max-width: 130px">
-              {{ getVsInfo(item).win.name }} {{ item.odds }}
-            </div>
-            <div class="flex items-center">
-              <span class="sm-hide">BETTING AMOUNT:</span>
-              <span class="flex items-center">
-                <img
-                  class="mx-8"
-                  src="../../images/v2/coin-icon-red.png"
-                  alt=""
-                />
-                {{ item.bet_amount }}
-              </span>
-            </div>
-          </div>
-        </div>
+        CLOSE THE CASINO
+      </div>
+      <div
+        class="confirmBtn active-bg mt-16 mb-8 f4"
+        v-else
+        @click="handleClaimFundPool"
+      >
+        Claim Pool Amount
       </div>
     </div>
-
-    <div class="confirmBtn active-bg mt-16 mb-8 f4" @click="handleStopPool">
-      CLOSE THE CASINO
+    <div v-else>
+      <PoolPaneLoading />
     </div>
-  </Spin>
+  </div>
 </template>
 
 <script>
@@ -132,13 +149,16 @@ import { QuestionCircleOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 import Circle from "./circle.vue";
 import { message, Spin } from "ant-design-vue";
 import useMethods from "@/sport/hooks/useFootballMethods";
+import useClaimMethods from "@/sport/hooks/use-claim";
 import { TIP } from "@/sport/constant/tip";
+import PoolPaneLoading from "./pool-pane-loading.vue";
 
 export default defineComponent({
   components: {
     QuestionCircleOutlined,
     LoadingOutlined,
     Circle,
+    PoolPaneLoading,
     Spin,
   },
   emits: ["ok"],
@@ -149,6 +169,7 @@ export default defineComponent({
 
     const RESULT = inject("RESULT");
     const POOLS = inject("POOLS");
+    const getIsStopBet = computed(() => POOLS?.isStopBet.value);
     const poolsLeft = computed(() => POOLS.poolsLeft.value);
     const getAllBetList = computed(() => {
       const pending = RESULT.allBetList.value?.filter(
@@ -186,14 +207,37 @@ export default defineComponent({
       state.active = e;
     };
     const { handleMethods, getLoading } = useMethods();
+    const claimMethods = useClaimMethods();
+
+    const handleClaimFundPool = () => {
+      state.loading = true;
+      claimMethods.handleMethods({
+        name: "claimFundPool",
+        callback: (h, r, e) => {
+          if (r) {
+            state.loading = false;
+            message.success("Claim Success");
+            emit("ok");
+          }
+          if (e) {
+            state.loading = false;
+          }
+        },
+      });
+    };
 
     const handleStopPool = () => {
+      state.loading = true;
       handleMethods({
         name: "updateFundPoolStopFlag",
         callback: (h, r, e) => {
           if (r) {
+            state.loading = false;
             message.success(TIP.stopBet);
             emit("ok");
+          }
+          if (e) {
+            state.loading = false;
           }
         },
       });
@@ -207,6 +251,8 @@ export default defineComponent({
       getVsInfo,
       getUser,
       poolsLeft,
+      handleClaimFundPool,
+      getIsStopBet,
     };
   },
 });
