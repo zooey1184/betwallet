@@ -4,7 +4,7 @@
       <div class="mb-48 pos-r">
         <img v-lazy="BgImg1" class="abs-bg1" alt="" />
         <div class="abs-bg2">
-          <MouseTrack><img v-lazy="BgImg2" class="w-100p" alt="" /></MouseTrack>
+          <!-- <MouseTrack><img v-lazy="BgImg2" class="w-100p" alt="" /></MouseTrack> -->
         </div>
 
         <div
@@ -18,7 +18,7 @@
         </div>
         <div class="flex items-center justify-around">
           <div
-            class="slideout-left"
+            class="slideout-left flex-0"
             style="width: 55%"
             :class="{ 'slidein-right': data.show[0] }"
           >

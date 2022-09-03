@@ -15,8 +15,8 @@
             :class="{ 'fade-right': data.show[0] }"
           >
             <div class="title-md">
-              Decentralized
-              <span class="title-md linear-color">Sports Betting Protocol</span>
+              The decentralized
+              <span class="title-md linear-color">sports betting protocol</span>
             </div>
           </div>
 

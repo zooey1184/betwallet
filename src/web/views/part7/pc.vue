@@ -39,9 +39,9 @@
             <div :class="{ fadein: data.show[5] }" class="w-50p flex fadeout">
               <img class="icon_w" src="../../assets/part7-1.png" alt="" />
               <div class="ml-50tv">
-                <div class="desc_title">protocol voting rights</div>
+                <div class="desc_title">Protocol Voting rights</div>
                 <div class="desc">
-                  Hold BET tokens to gain voting rights on the protocol
+                  Hold BET tokens to gain Voting rights on the protocol
                 </div>
               </div>
             </div>
@@ -51,7 +51,7 @@
               <div class="ml-50tv">
                 <div class="desc_title">Staking rewards</div>
                 <div class="desc">
-                  Stake BET tokens to get 50% of the protocol profits
+                  Stake BET tokens to gain protocol voting rights
                 </div>
               </div>
             </div>

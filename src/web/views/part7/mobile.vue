@@ -48,7 +48,7 @@
               <div class="w-50p">
                 <div class="flex items-center">
                   <img class="icon_w" src="../../assets/part7-1.png" alt="" />
-                  <div class="desc_title ml-8">protocol voting rights</div>
+                  <div class="desc_title ml-8">protocol Voting rights</div>
                 </div>
                 <div class="ml-50tv grey">
                   <div class="desc">
@@ -65,7 +65,7 @@
                 </div>
                 <div class="ml-50tv grey">
                   <div class="desc">
-                    Stake BET tokens to get 50% of the protocol profits
+                    Stake BET tokens to gain protocol voting rights
                   </div>
                 </div>
               </div>

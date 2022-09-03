@@ -13,9 +13,9 @@
           <transition name="fade">
             <div class="title-md text-align-center">
               <div class="title-md">
-                Decentralized
+                The decentralized
                 <span class="title-md linear-color"
-                  >Sports Betting Protocol</span
+                  >sports betting protocol</span
                 >
               </div>
             </div>

@@ -13,7 +13,7 @@
 
         <div class="fadeout" :class="{ fadein: data.show[2] }">
           <p class="text-align-center mt-24 desc line-height-24">
-            The Global Sports Betting Market Worth more than $250 billion, We're
+            The global sports betting market worth more than $250 billion, We're
             trying to build up a decentralized sports betting platform on web
             3.0.
           </p>

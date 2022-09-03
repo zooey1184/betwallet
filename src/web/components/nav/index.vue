@@ -94,7 +94,7 @@ export default defineComponent({
       type: Array,
       default: () => [
         {
-          label: "rewards",
+          label: "Rewards",
           value: "pledge",
         },
         {

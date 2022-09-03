@@ -18,8 +18,8 @@
         >
           <div class="linear-color title-lg inline-block">Easy to use</div>
           <div class="mt-24 desc">
-            While utilizing blockchain technology, BetWeb3 optimizes the
-            interactive experience of traditional sports betting platforms.
+            BetWeb3 optimizes the interactive experience of traditional sports
+            betting platforms.
           </div>
           <div class="flex justify-end" style="margin-top: 10vh">
             <img

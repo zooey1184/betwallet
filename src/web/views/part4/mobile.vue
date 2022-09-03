@@ -16,9 +16,9 @@
             <div class="grey mb-24">
               <div>
                 Decentralization is achieved from user betting, user
-                compensation and other steps. The data is delivered through
-                Chainlink, and we are in-depth cooperation with Sportradar Group
-                AG (NASDAQ: SRAD) on the results of event data.
+                compensation and other steps. We are in-depth cooperation with
+                Sportradar Group AG (NASDAQ: SRAD) on the results of events
+                data.
               </div>
             </div>
           </transition>

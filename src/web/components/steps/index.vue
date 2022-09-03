@@ -216,6 +216,7 @@ export default defineComponent({
 }
 .item {
   margin-bottom: 20px;
+  cursor: pointer;
   &:last-child {
     margin-bottom: 0;
   }

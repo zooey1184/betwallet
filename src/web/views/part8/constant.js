@@ -1,6 +1,6 @@
 export const options = [
   {
-    label: 'Q3 2022',
+    label: 'Alpha Beta Gamma Delta',
     value: 'q302',
     desc: [
       // 'Complete the token Public Sale',
@@ -9,9 +9,9 @@ export const options = [
       // 'Token pledge officially launched',
       // 'Released on Binance Smart Chain, Polygon, Avalanche, Arwave, Solana'
       'The Decentralized Sports Betting Protocol (V1) release',
-      'Football, basketball and e-sports covered.',
+      'Football, basketball and eSports covered.',
       'The sports betting platform testnet launch.',
-      'Contract audit completed.'
+      'Contract audit complete.'
     ]
   },
   {
@@ -19,7 +19,8 @@ export const options = [
     value: 'q402',
     desc: [
       'World Cup publicity plan launch',
-      'AI bot developed in partnership with top sports betting data company release Token stake open on Binance Smart Chain, Polygon, Avalanche, Solana'
+      'AI bot developed in partnership with top sports betting data company release',
+      'Token staking open on Binance Smart Chain, Polygon, Avalanche, Solana'
     ]
   },
   {

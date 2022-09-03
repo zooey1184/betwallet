@@ -12,7 +12,7 @@
       <div
         v-for="(item, index) in options"
         @click="state.active = index"
-        class="item text-align-right"
+        class="item text-align-right cursor-pointer"
       >
         <Pane
           :visible="state.active === index"
@@ -52,7 +52,7 @@
           <div
             class="bar"
             style="height: 30px"
-            :style="{ top: 48 * state.active + 18 + 'px' }"
+            :style="{ top: 46 * state.active + 16 + 'px' }"
           ></div>
           <div
             v-for="(item, index) in options"
@@ -267,8 +267,8 @@ export default defineComponent({
 .content-pane {
   color: #333;
   min-height: 15vh;
-  padding: 24px;
-  border-radius: 34px;
+  padding: 14px;
+  border-radius: 20px;
   background: linear-gradient(145deg, #d9d8dc, #ffffff);
 }
 </style>

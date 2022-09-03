@@ -23,7 +23,7 @@
               :class="{ fadein: data.show[0] }"
               style="margin-bottom: 4px"
             >
-              Everyone could be a banker !
+              Everyone could be a bookmaker !
             </div>
             <!-- <div :class="{fadein: data.show[1]}" class="fadeout subTitle font-weight-600 mt-48 mb-32">USDT decentralized capital pool</div> -->
 
@@ -35,10 +35,10 @@
               <div>
                 Everyone can build their own USDT pool freely, you will get a
                 unique casino code and become a banker after building. Players
-                must type the code to find the corresponding USDT pool before
+                must enter the code to find the corresponding USDT pool before
                 betting. You don't need to do anything else after building.
               </div>
-              <div class="mt-8">Invite your friends to participate in.</div>
+              <!-- <div class="mt-8">Invite your friends to participate in.</div> -->
             </div>
 
             <!-- <div class="item fadeout" :class="{ fadein: data.show[3] }">
@@ -77,7 +77,7 @@
                 :class="{ fadein: data.show[0] }"
                 style="margin-bottom: 4px"
               >
-                Token Rewards everywhere !
+                Token rewards everywhere !
               </div>
               <div
                 :class="{ fadein: data.show[2] }"
@@ -92,10 +92,10 @@
                 <div class="mt-8">
                   Detailed information will be launched soon.
                 </div>
-                <div class="mt-8">
+                <!-- <div class="mt-8">
                   Build a USDT pool and invite friends to place bet or just find
                   a pool to bet.
-                </div>
+                </div> -->
               </div>
             </div>
           </div>

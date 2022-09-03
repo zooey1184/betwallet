@@ -10,7 +10,7 @@
                 class="linear-color title-lg text-align-center"
                 style="margin-bottom: 4px"
               >
-                Everyone could be a banker !
+                Everyone could be a bookmaker !
               </div>
             </transition>
             <!-- <transition name="slideBottom">
@@ -34,10 +34,10 @@
                 <div>
                   Everyone can build their own USDT pool freely, you will get a
                   unique casino code and become a banker after building. Players
-                  must type the code to find the corresponding USDT pool before
+                  must enter the code to find the corresponding USDT pool before
                   betting. You don't need to do anything else after building.
                 </div>
-                <div class="mt-16">Invite your friends to participate in.</div>
+                <!-- <div class="mt-16">Invite your friends to participate in.</div> -->
               </div>
             </transition>
 
@@ -78,7 +78,7 @@
                   class="linear-color title-lg text-align-center"
                   style="margin-bottom: 4px"
                 >
-                  Token Rewards everywhere !
+                  Token rewards everywhere !
                 </div>
                 <div class="grey mt-8" style="margin-bottom: 55px">
                   <div class="cc">
@@ -89,10 +89,10 @@
                   <div class="mt-16 cc">
                     Detailed information will be launched soon.
                   </div>
-                  <div class="mt-16 cc">
+                  <!-- <div class="mt-16 cc">
                     Build a USDT pool and invite friends to place bet or just
                     find a pool to bet.
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </transition>
