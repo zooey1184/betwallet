@@ -5,7 +5,7 @@
     v-if="!isLink"
     @click="handleConnect"
   >
-    START THE GAME
+    {{ getStartBtnText }}
   </div>
 
   <div class="start" v-if="isLink">
@@ -126,6 +126,11 @@ export default defineComponent({
     const ACCOUNTS = inject("ACCOUNTS");
     const ROOM = inject("ROOM");
     const POOLS = inject("POOLS");
+
+    const getStartBtnText = computed(() => {
+      const isNew = ACCOUNTS.isNew.value;
+      return isNew ? "START" : "ENTER";
+    });
     const getCode = computed(() => ROOM.code.value);
     const isLink = computed(() => {
       return ACCOUNTS.isLink.value;
@@ -204,6 +209,7 @@ export default defineComponent({
 
     return {
       state,
+      getStartBtnText,
       isLink,
       handleConnect,
       handleInRoom,

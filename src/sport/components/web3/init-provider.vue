@@ -36,6 +36,7 @@ export default defineComponent({
       eth: "--",
       bet: 0,
       usdt: "--",
+      isNew: true,
     });
     // 点击连接钱包
     const handleConnect = () => {
@@ -80,8 +81,10 @@ export default defineComponent({
     const getBet = computed(() => state.bet);
     const getUsdt = computed(() => state.usdt);
     const getEth = computed(() => state.eth);
+    const getIsNew = computed(() => state.isNew);
     provide("ACCOUNTS", {
       accounts: getAccounts,
+      isNew: getIsNew,
       id: getAccounts.value?.[0],
       accountHide: addressHide,
       isLink,
@@ -123,6 +126,21 @@ export default defineComponent({
       if (typeof web3 !== "undefined") {
         web3 = new Web3(web3.currentProvider);
         const accounts = await ethereum.request({ method: "eth_accounts" });
+        console.log(accounts);
+        const ACCOUNTS = window.localStorage.getItem("ACCOUNTS");
+        if (ACCOUNTS?.length) {
+          try {
+            const _ACCOUNTS = JSON.parse(ACCOUNTS) || [];
+            const item = accounts[0];
+            if (!_ACCOUNTS.includes(item)) {
+              state.isNew = true;
+              _ACCOUNTS.push(item);
+            } else {
+              state.isNew = false;
+            }
+            window.localStorage.setItem("ACCOUNTS", JSON.stringify(_ACCOUNTS));
+          } catch (error) {}
+        }
         setTimeout(() => {
           web3.givenProvider.on("accountsChanged", (accounts) => {
             window.location.reload();

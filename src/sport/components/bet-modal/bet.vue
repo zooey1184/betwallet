@@ -74,7 +74,7 @@
         IF SLIPPAGE BEYOND ITS RANGE
       </div>
       <div class="flex items-center">
-        <div class="mr-8 cancelBtn flex-0" @click="handleBetLast">LAST</div>
+        <div class="mr-8 cancelBtn flex-0" @click="handleBetLast">BACK</div>
         <Button
           :loading="state.loading"
           type="primary"

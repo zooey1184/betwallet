@@ -20,10 +20,9 @@
     </div>
   </div>
   <div style="margin-top: 26px" class="text-align-center gray-9 font-size-12">
-    indicative of future performance. Any investment in blockchain assets
-    involves the risk of losing part or all of your investment. The value of
-    your exchange’s blockchain assets is affected by market and other investment
-    risks
+    Any investment in blockchain assets involves the risk of losing part or all
+    of your investment. The value of your exchange’s blockchain assets is
+    affected by market and other investment risks
   </div>
 </template>
 
