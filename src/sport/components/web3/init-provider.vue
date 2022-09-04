@@ -209,6 +209,7 @@ export default defineComponent({
         bonus_contract,
         football_contract,
       };
+      console.log(football_contract);
       getBalanceOf(erc_contract, bet_address, "mWei").then((res) => {
         // state.bet = res;
         state.bet = 0;

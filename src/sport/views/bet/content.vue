@@ -14,27 +14,27 @@
     </div>
     <div class="Huans betPageNumItem flex fl-bet">
       <div class="InddanN wow slideInUp" data-wow-duration="1s">
-        <div class="desc">your bets amount</div>
+        <div class="desc">Your Bets Total</div>
         <div class="InddanB flexE">
           <div class="InddanZ ff flex items-end insetTitle active-color">
             <span>{{ getTotalBetC[0] }}</span>
             <div style="line-height: 1.9">{{ getTotalBetC[1] }}</div>
           </div>
-          <div class="InddanD f1">usdt</div>
+          <div class="InddanD f1">USDT</div>
         </div>
       </div>
       <div class="InddanN wow slideInUp" data-wow-duration="1.4s">
-        <div class="desc">bets in your pool</div>
+        <div class="desc">Total Bets in Your Pool</div>
         <div class="InddanB flexE">
           <div class="InddanZ ff flex items-end insetTitle active-color">
             <span>{{ getPoolsCalc[0] }}</span>
             <div style="line-height: 1.9">{{ getPoolsCalc[1] }}</div>
           </div>
-          <div class="InddanD f1">usdt</div>
+          <div class="InddanD f1">USDT</div>
         </div>
       </div>
       <div class="InddanN wow slideInUp" data-wow-duration="1.8s">
-        <div class="desc">BET remain this round</div>
+        <div class="desc">BETs Remaining This Round</div>
         <div class="InddanB flexE">
           <div class="InddanZ ff flex items-end insetTitle active-color">
             <span>{{ getRewardCalc[0] }}</span>
@@ -53,7 +53,7 @@
     </div>
 
     <div style="margin-top: 50px">
-      <div style="margin-bottom: 8px">BET Rewards</div>
+      <div style="margin-bottom: 8px">BET REWARDS</div>
 
       <div class="wrap">
         <!-- <div class="flex items-center justify-end">
@@ -69,14 +69,14 @@
         </div> -->
         <div class="input-wrap flex items-center justify-between">
           <div class="input">{{ getRemindBet.left }} BET</div>
-          <div class="btn-input">CLAIM</div>
+          <div class="btn-input">Claim</div>
         </div>
 
         <div class="mb-16 mt-8 font-size-12">
           Unified claim will be opened soon
         </div>
         <div class="flex items-center gray-5 justify-between">
-          <div>Total Reward:</div>
+          <div>Total Rewards:</div>
           <div class="f5 color-white">BET {{ getRemindBet.all }}</div>
         </div>
       </div>

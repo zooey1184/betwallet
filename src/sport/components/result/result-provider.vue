@@ -50,7 +50,12 @@ export default defineComponent({
     };
 
     const handleGetAllBetList = () => {
-      const roomAddress = ROOM.roomAddress.value;
+      const roomAddress = ROOM.roomAddress.value?.toLocaleLowerCase();
+      console.log(
+        walletAddress.value,
+        roomAddress,
+        walletAddress.value === roomAddress
+      );
       if (walletAddress?.value === roomAddress) {
         getAllBetList({
           wallet: roomAddress,
@@ -76,9 +81,9 @@ export default defineComponent({
     };
 
     watch(
-      () => walletAddress.value,
+      () => [walletAddress.value, ROOM.roomAddress.value],
       (n) => {
-        if (n) {
+        if ((n[0], n[1])) {
           handleInLoop();
         }
       },

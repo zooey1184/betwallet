@@ -104,6 +104,15 @@ export default defineComponent({
       return 0;
     });
     const getIsStopBet = computed(() => getPools.value?.stopBet);
+
+    const handleGetPoolsInfo = () => {
+      if (getWalletAddress.value) {
+        handleGetReward(getWalletAddress.value);
+      }
+      if (getRoomAddress.value) {
+        handleGetPools(getRoomAddress.value);
+      }
+    };
     provide("POOLS", {
       pools: getPools,
       isStopBet: getIsStopBet,
@@ -112,6 +121,7 @@ export default defineComponent({
       poolsLeft: getPoolsLeft,
       totalBet: get_totalBet,
       rewards: getReward,
+      handleGetPoolsInfo: handleGetPoolsInfo,
     });
 
     return {

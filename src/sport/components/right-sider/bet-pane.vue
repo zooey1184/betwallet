@@ -131,7 +131,11 @@
   <Mask v-model:visible="state.visible">
     <div>
       <Speed v-if="state.step === 'speed'" @ok="state.step = 'bet'" />
-      <BetPane v-if="state.step === 'bet'" @cancel="state.step = 'speed'" />
+      <BetPane
+        v-if="state.step === 'bet'"
+        @cancel="state.step = 'speed'"
+        @close="state.visible = false"
+      />
     </div>
   </Mask>
 </template>

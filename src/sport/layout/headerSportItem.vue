@@ -4,7 +4,7 @@
       class="flex flex-col items-center cursor-pointer justify-center header_item active-bg ff header_active_item"
     >
       <img src="../images/v2/esport.png" class="icon" alt="" />
-      <div style="margin-top: 4px">ELECTRONICS</div>
+      <div style="margin-top: 4px">Esports</div>
     </div>
     <div
       class="flex flex-col cursor-pointer items-center justify-center header_item"
@@ -15,7 +15,6 @@
     </div>
     <div
       class="flex flex-col items-center cursor-pointer justify-center header_item"
-      
     >
       <Football class="font-size-22" />
       <div class="activeTip">COMMING SOON</div>
@@ -87,7 +86,7 @@ export default defineComponent({
     top: 0;
     right: -30px;
     font-size: 12px;
-    font-family: var(--f1);
+    font-family: var(--f2);
     // background: var(--primary-main-hover);
     border: 1px solid var(--primary-main);
     border-radius: 20px;

@@ -148,7 +148,7 @@ export default defineComponent({
 
     const getScheduleTime = computed(() => {
       const time = props.info.startTime;
-      const d = time ? dayjs(time).format("MM-DD hh:mm") : "--";
+      const d = time ? dayjs(time).format("MM-DD HH:mm") : "--";
       return d;
     });
     // const getCompetitors = useCompetitors(props.info);

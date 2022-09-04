@@ -76,7 +76,10 @@
         :amount="state.amount"
         @next="handleNextConfirmCreate"
       />
-      <RoomSubmitIng v-if="state.status === 'submit'" @close="handleClose" />
+      <RoomSubmitIng
+        v-if="state.status === 'submit'"
+        @close="handleCloseFinally"
+      />
       <PoolPane v-if="state.status === 'close'" @ok="handleClose" />
       <!-- <UnableSwitch /> -->
     </div>
@@ -177,7 +180,13 @@ export default defineComponent({
     const handleClose = () => {
       // state.visible = false;
       state.status = "submit";
-      POOLS.handleGetPools();
+      POOLS.handleGetPoolsInfo();
+      ROOM.handleGetCode();
+    };
+
+    const handleCloseFinally = () => {
+      state.visible = false;
+      POOLS.handleGetPoolsInfo();
       ROOM.handleGetCode();
     };
 
@@ -221,6 +230,7 @@ export default defineComponent({
       handleNextConfirmCreate,
       handleCloseCasino,
       isMineRoom,
+      handleCloseFinally,
       handleNextConfirmIng,
     };
   },
