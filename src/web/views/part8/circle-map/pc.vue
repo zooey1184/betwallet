@@ -4,7 +4,7 @@
       <Circle
         rotate="40"
         size="8.54vw"
-        desc="2022Q2"
+        desc="Alpha"
         @click="state.active = 0"
         :solid="state.active === 0"
       >
@@ -18,7 +18,7 @@
       <Circle
         rotate="315"
         size="8.17vw"
-        desc="2022Q3"
+        desc="Beta"
         @click="state.active = 1"
         :solid="state.active === 1"
       >
@@ -45,7 +45,7 @@
       <Circle
         :showLine="false"
         size="7.8vw"
-        desc="2022Q4"
+        desc="Gamma"
         @click="state.active = 2"
         :solid="state.active === 2"
       >
@@ -72,7 +72,7 @@
       <Circle
         rotate="225"
         size="10.67vw"
-        desc="2023Q1"
+        desc="Delta"
         @click="state.active = 3"
         :solid="state.active === 3"
       >

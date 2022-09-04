@@ -1,6 +1,6 @@
 export const options = [
   {
-    label: 'Alpha Beta Gamma Delta',
+    label: 'Alpha',
     value: 'q302',
     desc: [
       // 'Complete the token Public Sale',
@@ -15,7 +15,7 @@ export const options = [
     ]
   },
   {
-    label: 'Q4 2022',
+    label: 'Beta',
     value: 'q402',
     desc: [
       'World Cup publicity plan launch',
@@ -24,7 +24,7 @@ export const options = [
     ]
   },
   {
-    label: 'Q1 2023',
+    label: 'Gamma',
     value: 'q103',
     desc: [
       'Golf, tennis, darts, baseball, snooker, badminton, etc. covered.',
@@ -33,7 +33,7 @@ export const options = [
     ]
   },
   {
-    label: 'Q2 2023',
+    label: 'Delta',
     value: 'q203',
     desc: [
       'Sports betting method upgrade.',

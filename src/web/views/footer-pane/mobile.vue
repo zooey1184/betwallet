@@ -8,7 +8,7 @@
         ©2021 - Nesting - All Rights Reserved
       </div>
     </div>
-    <div class="flex items-center">
+    <div class="flex items-center justify-center">
       <div class="flex items-center">
         <a href="https://twitter.com/betweb3" target="_blank">
           <img
@@ -29,11 +29,17 @@
       <div class="text cursor-pointer link">Disclaimers</div>
     </div>
   </div>
-  <div style="margin-top: 26px" class="text-align-center gray-9 font-size-12">
+  <div
+    style="margin-top: 26px; padding: 4px"
+    class="text-align-center gray-9 font-size-12"
+  >
     Any investment in blockchain assets involves the risk of losing part or all
     of your investment.
   </div>
-  <div style="margin-top: 4px" class="text-align-center gray-9 font-size-12">
+  <div
+    style="margin-top: 4px; padding: 4px"
+    class="text-align-center gray-9 font-size-12"
+  >
     The value of your exchange’s blockchain assets is affected by market and
     other investment risks.
   </div>

@@ -5,9 +5,9 @@
         class="bar"
         :style="{ left: state.left + 'px', width: state.width + 'px' }"
       ></div>
-      <div class="flex items-center">
+      <div class="flex items-center justify-around">
         <div
-          class="item"
+          class="item cursor-pointer"
           :ref="refMap[item.value]"
           :class="{ 'color-gold': state.active === index }"
           @click="handlePickItem(item, index)"
@@ -17,11 +17,16 @@
         </div>
       </div>
       <div class="mt-16">
-        <template v-if='options[state.active].desc'>
-          <div v-if='typeof options[state.active].desc ==="string"'>{{options[state.active].desc}}</div>
-          <template v-if='typeof options[state.active].desc ==="object"'>
-            <div class="desc grey mt-8 desc_item" v-for='item in options[state.active].desc'>
-              {{item}}
+        <template v-if="options[state.active].desc">
+          <div v-if="typeof options[state.active].desc === 'string'">
+            {{ options[state.active].desc }}
+          </div>
+          <template v-if="typeof options[state.active].desc === 'object'">
+            <div
+              class="desc grey mt-8 desc_item"
+              v-for="item in options[state.active].desc"
+            >
+              {{ item }}
             </div>
           </template>
         </template>
@@ -139,6 +144,7 @@ export default defineComponent({
 .item {
   margin-right: 20px;
   text-align: center;
+  // width: 25%;
   &:last-child {
     margin-right: 0;
   }
