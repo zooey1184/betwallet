@@ -91,6 +91,7 @@
 import { computed, defineComponent, inject, reactive } from "vue";
 import { preCheck, preCheckMulti } from "@/sport/api/index";
 import { useBet } from "@/sport/hooks/use-methods";
+import usePermission from "@/sport/hooks/use-methods";
 import { message, Spin, Button } from "ant-design-vue";
 import { TIP } from "@/sport/constant/tip";
 export default defineComponent({
@@ -182,6 +183,9 @@ export default defineComponent({
     const handleBetLast = () => {
       emit("cancel");
     };
+    const {
+      handlePermission
+    } = usePermission();
 
     const handleBetFn = () => {
       const list = handleGetParams();
@@ -194,19 +198,23 @@ export default defineComponent({
       }).then((res) => {
         if (res) {
           console.log("bet params: \n", params);
-          handleBet(params, (h, r, e) => {
-            if (r) {
-              message.success("BET SUCCESS");
-              setTimeout(() => {
-                SPORT_BET.clear();
-                RESULT.handleGetResultList();
+          handlePermission(() => {
+            handleBet(params, (h, r, e) => {
+              if (r) {
+                message.success("BET SUCCESS");
+                setTimeout(() => {
+                  SPORT_BET.clear();
+                  RESULT.handleGetResultList();
+                  state.loading = false;
+                });
+              }
+              if (e) {
                 state.loading = false;
-              });
-            }
-            if (e) {
-              state.loading = false;
-            }
-          });
+              }
+            });
+          })
+          
+          
         } else {
           message.warning(TIP.preCheck);
           state.loading = false;

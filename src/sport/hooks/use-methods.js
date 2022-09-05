@@ -101,10 +101,29 @@ const usePermission = () => {
   }
   const createPoolLoading = computed(() => state.createLoading)
   const authLoading = computed(() => state.permissionLoading)
+
+  const handlePermission = async(cb, err) => {
+    const _hasPermission = await hasPermission();
+    if (_hasPermission) {
+      cb && cb()
+    } else {
+      getPermission(async (h, r, e) => {
+        if (r) {
+          console.log('room-create permission:', '授权成功', props.amount)
+          message.success(TIP.authSuccess);
+          cb && cb()
+        }
+        if (e) {
+          err && err()
+        }
+      });
+    }
+  }
   
   return {
     getPermission,
     hasPermission,
+    handlePermission,
     createPool,
     createPoolLoading,
     authLoading
