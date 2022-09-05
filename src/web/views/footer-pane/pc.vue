@@ -35,33 +35,38 @@
   </div> -->
 
   <div>
-    <div class="flex justify-between" style="padding: 2vw 6vw">
-      <div class="w-30p flex-0"></div>
-      <div class="w-40p flex justify-center flex-0">
-        <img :src="logo" alt="" />
+    <div class="flex justify-between " style="padding: 2vw 4vw; padding-top: 4vw">
+      <div class="w-30p flex-0">
+        <div class="font-size-16 font-weight-600">GET ON THE LIST</div>
+        <div class="flex">
+          <div class="flex items-center inputWrap">
+          <input class="emailInp" placeholder="Email Address" v-model='state.email' />
+          <div class="linear-bg flex items-center justify-center footerbtn" @click='handleEmailSubmit'>
+            <img src="../../assets/footerArrow.png" style="height: 18px" alt="" />
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="w-30p flex justify-center flex-0">
+        <img :src="logo" style="width: 100%; height: auto; object-fit: contain;" class="flex-0" alt="" />
       </div>
       <div class="text-align-right w-30p flex-0">
         <div class="flex items-center justify-end">
           <div class="flex items-center">
-            <!-- <a href="https://twitter.com/betweb3" target="_blank">
-              <img
-                class="icon cursor-pointer"
-                src="../../assets/icon-t.png"
-                alt=""
-              />
-            </a> -->
+            
+            <!-- <MediumOutlined
+              class="iconFont"
+              @click="handleLink('https://medium.com/@betweb3official')"
+            /> -->
+            <YoutubeFilled  class="iconFont" />
+            <DiscordOutlined class="iconFont" style="font-size: 28px" />
+            <!-- <GithubOutlined
+              class="iconFont"
+              @click="handleLink('https://curry-steven.gitbook.io/untitled')"
+            /> -->
             <TwitterOutlined
               class="iconFont"
               @click="handleLink('https://twitter.com/betweb3')"
-            />
-            <MediumOutlined
-              class="iconFont"
-              @click="handleLink('https://medium.com/@betweb3official')"
-            />
-            <DiscordOutlined class="iconFont" style="font-size: 26px" />
-            <GithubOutlined
-              class="iconFont"
-              @click="handleLink('https://curry-steven.gitbook.io/untitled')"
             />
             <!-- <a href="https://medium.com/@betweb3official" target="_blank">
               <img class="icon" src="../../assets/icon-m.png" alt="" />
@@ -72,8 +77,8 @@
             </a> -->
           </div>
         </div>
-        <div class="right mt-16">©2021 - Nesting - All Rights Reserved</div>
-        <div class="text cursor-pointer link">Disclaimers</div>
+        <div class="right mt-16  line-height-14">©2021 - Nesting - ALL RIGHTS RESERVED</div>
+        <div class="text cursor-pointer mt-8 hover-color-blue line-height-14">BETWEB3 TERMS&CONDITIONS</div>
       </div>
     </div>
 
@@ -91,8 +96,8 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
-import logo from "../../assets/part6.png";
+import { defineComponent, reactive, ref } from "vue";
+import logo from "../../assets/footerLogo.png";
 import Icon_t from "../../assets/icon-t.png";
 import Icon_m from "../../assets/icon-m.png";
 import Icon_d from "../../assets/icon-discord.png";
@@ -101,6 +106,7 @@ import {
   TwitterOutlined,
   MediumOutlined,
   GithubOutlined,
+  YoutubeFilled,
 } from "@ant-design/icons-vue";
 import DiscordOutlined from "./icons/discord.vue";
 
@@ -110,19 +116,29 @@ export default defineComponent({
     MediumOutlined,
     GithubOutlined,
     DiscordOutlined,
+    YoutubeFilled,
   },
   props: {},
   setup(props) {
+    const state = reactive({
+      email: undefined
+    })
     const handleLink = (url) => {
       window.open(url);
     };
+
+    const handleEmailSubmit = () => {
+      state.email = undefined
+    }
     return {
       logo,
+      state,
       handleLink,
       Icon_t,
       Icon_m,
       Icon_d,
       Icon_g,
+      handleEmailSubmit,
     };
   },
 });
@@ -163,11 +179,48 @@ export default defineComponent({
   }
 }
 .iconFont {
-  font-size: 24px;
+  font-size: 26px;
   margin-left: 18px;
-  color: #999;
+  color: #fff;
   &:hover {
-    color: #fff;
+    color: #c17bfd;
   }
+}
+.inputWrap {
+  height: 38px;
+  border: 2px solid #b179fb60;
+  border-radius: 2px;
+  position: relative;
+  box-sizing: border-box;
+  width: 80%;
+  margin-top: 22px;
+}
+.footerbtn {
+  height: 37px;
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  border: none;
+  border-radius: 2px;
+  width: 80px;
+  transition: all 100ms linear;
+  &:hover {
+    opacity: 0.9;
+  }
+  &:active {
+    opacity: 0.8;
+  }
+}
+.emailInp {
+  height: 38px;
+  background: transparent;
+  border: none;
+  font-style: italic;
+  font-size: 16px;
+  color: #999;
+  outline: none;
+  padding-left: 8px;
+  border-radius: 2px;
+  border-right: none;
 }
 </style>
