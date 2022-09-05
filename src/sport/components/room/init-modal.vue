@@ -7,17 +7,17 @@
       <div
         class="font-size-20 text-align-center mt-24 mb-16 font-weight-600 active-color"
       >
-        CASINO INSTRUCTIONS
+        CREAT CASINO
       </div>
       <InitDesc />
     </div>
 
     <div v-else>
-      <div class="roomTitle f4">SWITCHING ROOMS</div>
+      <div class="roomTitle f4">FIND CASINO</div>
       <div class="mt-8 mb-16 flex justify-center">
         <img src="../../images/room/gate.png" class="gatelogo" alt="" />
       </div>
-      <InitDesc />
+      <FindDesc />
     </div>
 
     <div class="flex items-center justify-between my-24">
@@ -40,7 +40,11 @@
       <input
         class="flex-1 input"
         v-model="state.code"
-        :placeholder="`${TIP.roomNumberPlaceholder}`"
+        :placeholder="
+          state.active === 'create'
+            ? 'Set the 8-digit casino number'
+            : 'Please enter the 8-digit casino number'
+        "
         :maxlength="8"
       />
       <Button
@@ -51,7 +55,7 @@
         @click="handleConfirm"
       >
         <span class="cursor-pointer">{{
-          state.active === "create" ? "CONFIRM" : "SWITCH"
+          state.active === "create" ? "CREATE" : "FIND"
         }}</span>
       </Button>
     </div>
@@ -73,12 +77,14 @@ import { createTenant, saveTenant } from "@/sport/api/index";
 import { Spin, Button } from "ant-design-vue";
 import { TIP } from "@/sport/constant/tip";
 import InitDesc from "./init-desc.vue";
+import FindDesc from "./find-desc.vue";
 
 export default defineComponent({
   components: {
     Spin,
     Button,
     InitDesc,
+    FindDesc,
   },
   props: {
     type: {
@@ -246,6 +252,7 @@ export default defineComponent({
 .roomConfirm {
   padding: 0 8px;
   height: 42px;
+  min-width: 100px;
   text-align: center;
   line-height: 42px;
   font-size: 18px;

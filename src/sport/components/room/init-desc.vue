@@ -1,32 +1,32 @@
 <template>
   <div class="pc">
     <div class="font-size-12 my-8 text-align-center line-height-16 color-black">
-      <div>AFTER CREATE CASINO AND ADD USDT POOL</div>
-      <div>USERS IMMEDIATELY GENERATE THEIR OWN</div>
-      <div>“CASINO CODE” AND BECOME BOOKMAKERS,</div>
-      <div>OTHERS CAN ENTER THE CASINO BY INPUTTING THE</div>
-      <div>“CASINO CODE”THE USDT POOL CAN BE WITHDRAWN AT</div>
-      <div>ANY TIME IF NO BETS ARE IN PROGRESS</div>
+      <div>AFTER SET THE CASINO NUMBER AND ADD USDT POOL,</div>
+      <div>USERS IMMEDIATELY BECOME BOOKMAKERS,</div>
+      <div>OTHERS CAN ENTER THE CASINO BY ENTERING</div>
+      <div>THE“CASINO NUMBER” THE USDT POOL CAN BE WITHDRAWN</div>
+      <div>AT ANY TIME IF NO BETS ARE IN PROGRESS</div>
     </div>
     <div class="title font-size-12 text-align-center line-height-16 color-gray">
-      <div>IF OTHER USERS ARE BETTING IN YOUR CASINO,</div>
+      <div>IF OTHERS ARE BETTING IN YOUR CASINO,</div>
       <div>YOU WILL RECEIVE A MASSIVE BET TOKEN REWARD.</div>
     </div>
+    <div style="height: 16px"></div>
   </div>
 
   <div class="mobile">
     <div class="font-size-12 my-8 text-align-center line-height-16 color-black">
       <div>
-        AFTER CREATE CASINO AND ADD USDT POOL USERS IMMEDIATELY GENERATE THEIR
-        OWN “CASINO CODE” AND BECOME BOOKMAKERS, OTHERS CAN ENTER THE CASINO BY
-        INPUTTING THE “CASINO CODE”THE USDT POOL CAN BE WITHDRAWN AT ANY TIME IF
-        NO BETS ARE IN PROGRESS
+        AFTER SET THE CASINO NUMBER AND ADD USDT POOL, USERS IMMEDIATELY BECOME
+        BOOKMAKERS, OTHERS CAN ENTER THE CASINO BY ENTERING THE“CASINO
+        NUMBER”THE USDT POOL CAN BE WITHDRAWN AT ANY TIME IF NO BETS ARE IN
+        PROGRESS
       </div>
     </div>
     <div class="title font-size-12 text-align-center line-height-16 color-gray">
       <div>
-        IF OTHER USERS ARE BETTING IN YOUR CASINO, YOU WILL RECEIVE A MASSIVE
-        BET TOKEN REWARD.
+        IF OTHERS ARE BETTING IN YOUR CASINO,YOU WILL RECEIVE A MASSIVE BET
+        TOKEN REWARD.
       </div>
       <div></div>
     </div>

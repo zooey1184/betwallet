@@ -22,9 +22,12 @@
 
 <script>
 import { defineComponent, reactive, watch } from "vue";
+import { Button } from "ant-design-vue";
 
 export default defineComponent({
-  components: {},
+  components: {
+    Button,
+  },
   props: {
     confirm: {
       type: String,

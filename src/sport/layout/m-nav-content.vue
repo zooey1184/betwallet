@@ -5,7 +5,7 @@
       @click="handleSport('electronics')"
     >
       <img src="../images/v2/esport.png" style="height: 40px" alt="" />
-      ELECTRONICS
+      Esports
     </div>
     <div class="n-item header_active_item" @click="handleSport('basketball')">
       <img src="../images/v2/basketball.png" style="height: 40px" alt="" />

@@ -5,7 +5,7 @@
     v-if="!isLink"
     @click="handleConnect"
   >
-    START THE GAME
+    {{ getStartBtnText }}
   </div>
 
   <div class="start" v-if="isLink">
@@ -76,7 +76,10 @@
         :amount="state.amount"
         @next="handleNextConfirmCreate"
       />
-      <RoomSubmitIng v-if="state.status === 'submit'" @close="handleClose" />
+      <RoomSubmitIng
+        v-if="state.status === 'submit'"
+        @close="handleCloseFinally"
+      />
       <PoolPane v-if="state.status === 'close'" @ok="handleClose" />
       <!-- <UnableSwitch /> -->
     </div>
@@ -126,6 +129,11 @@ export default defineComponent({
     const ACCOUNTS = inject("ACCOUNTS");
     const ROOM = inject("ROOM");
     const POOLS = inject("POOLS");
+
+    const getStartBtnText = computed(() => {
+      const isNew = ACCOUNTS.isNew.value;
+      return isNew ? "START" : "ENTER";
+    });
     const getCode = computed(() => ROOM.code.value);
     const isLink = computed(() => {
       return ACCOUNTS.isLink.value;
@@ -172,7 +180,13 @@ export default defineComponent({
     const handleClose = () => {
       // state.visible = false;
       state.status = "submit";
-      POOLS.handleGetPools();
+      POOLS.handleGetPoolsInfo();
+      ROOM.handleGetCode();
+    };
+
+    const handleCloseFinally = () => {
+      state.visible = false;
+      POOLS.handleGetPoolsInfo();
       ROOM.handleGetCode();
     };
 
@@ -204,6 +218,7 @@ export default defineComponent({
 
     return {
       state,
+      getStartBtnText,
       isLink,
       handleConnect,
       handleInRoom,
@@ -215,6 +230,7 @@ export default defineComponent({
       handleNextConfirmCreate,
       handleCloseCasino,
       isMineRoom,
+      handleCloseFinally,
       handleNextConfirmIng,
     };
   },

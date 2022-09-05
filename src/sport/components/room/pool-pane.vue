@@ -46,35 +46,42 @@
             class="color-white3 f5 font-size-14 mb-24"
             v-for="item in getAllBetList.pending"
           >
-            <div class="flex items-center">
-              <div style="width: 50%">USER: {{ getUser(item) }}</div>
-              <!-- <div style="width: 20%" class="text-align-center">07.21</div> -->
-              <!-- <div style="width: 20%" class="text-align-right">5:00AM</div> -->
-              <div
-                style="width: 50%"
-                class="text-align-right flex items-center"
-              >
-                <div class="item">{{ getVsInfo(item).home.name }}</div>
-                <div style="margin: 0 4px" class="gray-9">vs</div>
-                <div class="item text-align-right">
-                  {{ getVsInfo(item).away.name }}
+            <div>
+              <div class="gray f1 font-size-12">{{ item.bet_time }}</div>
+              <div class="flex items-center">
+                <div style="width: 50%">USER: {{ getUser(item) }}</div>
+                <!-- <div style="width: 20%" class="text-align-center">07.21</div> -->
+                <!-- <div style="width: 20%" class="text-align-right">5:00AM</div> -->
+                <div
+                  style="width: 50%"
+                  class="text-align-right flex items-center"
+                >
+                  <div class="item">{{ getVsInfo(item).home.name }}</div>
+                  <div style="margin: 0 4px" class="gray-9">vs</div>
+                  <div class="item text-align-right">
+                    {{ getVsInfo(item).away.name }}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="flex items-center justify-between">
-              <div class="ellipsis-1" style="max-width: 130px">
-                {{ getVsInfo(item).win.name }} {{ item.odds }}
-              </div>
-              <div class="flex items-center">
-                <span class="sm-hide">BETTING AMOUNT:</span>
-                <span class="flex items-center flex-1">
-                  <img
-                    class="mx-8"
-                    src="../../images/v2/coin-icon-red.png"
-                    alt=""
-                  />
-                  {{ item.bet_amount }}
-                </span>
+              <div class="flex items-center justify-between">
+                <div class="ellipsis-1" style="max-width: 130px">
+                  {{ getVsInfo(item).win.name }} {{ item.odds }}
+                </div>
+                <div class="flex items-center">
+                  <span class="sm-hide">BETTING AMOUNT:</span>
+                  <span class="flex items-center flex-1">
+                    <!-- <img
+                      class="mx-8"
+                      src="../../images/v2/coin-icon-red.png"
+                      alt=""
+                    /> -->
+                    <UsdtIcon
+                      class="active-color font-size-16"
+                      style="margin: 0 3px"
+                    />
+                    {{ item.bet_amount }}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -88,35 +95,42 @@
             class="color-white3 f5 font-size-14 mb-24"
             v-for="item in getAllBetList.history"
           >
-            <div class="flex items-center">
-              <div style="width: 50%">USER: {{ getUser(item) }}</div>
-              <!-- <div style="width: 20%" class="text-align-center">07.21</div> -->
-              <!-- <div style="width: 20%" class="text-align-right">5:00AM</div> -->
-              <div
-                style="width: 50%"
-                class="text-align-right flex items-center"
-              >
-                <div class="item">{{ getVsInfo(item).home.name }}</div>
-                <div style="margin: 0 2px" class="gray-9">vs</div>
-                <div class="item text-align-right">
-                  {{ getVsInfo(item).away.name }}
+            <div>
+              <div class="gray f1 font-size-12">{{ item.bet_time }}</div>
+              <div class="flex items-center">
+                <div style="width: 50%">USER: {{ getUser(item) }}</div>
+                <!-- <div style="width: 20%" class="text-align-center">07.21</div> -->
+                <!-- <div style="width: 20%" class="text-align-right">5:00AM</div> -->
+                <div
+                  style="width: 50%"
+                  class="text-align-right flex items-center"
+                >
+                  <div class="item">{{ getVsInfo(item).home.name }}</div>
+                  <div style="margin: 0 2px" class="gray-9">vs</div>
+                  <div class="item text-align-right">
+                    {{ getVsInfo(item).away.name }}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="flex items-center justify-between">
-              <div class="ellipsis-1" style="max-width: 130px">
-                {{ getVsInfo(item).win.name }} {{ item.odds }}
-              </div>
-              <div class="flex items-center">
-                <span class="sm-hide">BETTING AMOUNT:</span>
-                <span class="flex items-center">
-                  <img
-                    class="mx-8"
-                    src="../../images/v2/coin-icon-red.png"
-                    alt=""
-                  />
-                  {{ item.bet_amount }}
-                </span>
+              <div class="flex items-center justify-between">
+                <div class="ellipsis-1" style="max-width: 130px">
+                  {{ getVsInfo(item).win.name }} {{ item.odds }}
+                </div>
+                <div class="flex items-center">
+                  <span class="sm-hide">BETTING AMOUNT:</span>
+                  <span class="flex items-center">
+                    <!-- <img
+                      class="mx-8"
+                      src="../../images/v2/coin-icon-red.png"
+                      alt=""
+                    /> -->
+                    <UsdtIcon
+                      class="active-color font-size-16"
+                      style="margin: 0 3px"
+                    />
+                    {{ item.bet_amount }}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -124,14 +138,21 @@
       </div>
       <div
         class="confirmBtn active-bg mt-16 mb-8 f4"
-        v-if="!getIsStopBet"
+        v-if="!getIsStopBet && getAllBetList.pending?.length"
         @click="handleStopPool"
       >
         CLOSE THE CASINO
       </div>
       <div
         class="confirmBtn active-bg mt-16 mb-8 f4"
-        v-else
+        v-if="getIsStopBet && getAllBetList.pending?.length"
+        @click="handleStopPool"
+      >
+        RESTART THE CASINO
+      </div>
+      <div
+        class="confirmBtn active-bg mt-16 mb-8 f4"
+        v-if="!!getIsStopBet && !getAllBetList.pending?.length"
         @click="handleClaimFundPool"
       >
         Claim Pool Amount
@@ -152,6 +173,7 @@ import useMethods from "@/sport/hooks/useFootballMethods";
 import useClaimMethods from "@/sport/hooks/use-claim";
 import { TIP } from "@/sport/constant/tip";
 import PoolPaneLoading from "./pool-pane-loading.vue";
+import UsdtIcon from "../usdt-icon.vue";
 
 export default defineComponent({
   components: {
@@ -160,6 +182,7 @@ export default defineComponent({
     Circle,
     PoolPaneLoading,
     Spin,
+    UsdtIcon,
   },
   emits: ["ok"],
   setup(props, { emit }) {
@@ -217,6 +240,8 @@ export default defineComponent({
           if (r) {
             state.loading = false;
             message.success("Claim Success");
+            RESULT.handleGetResultList();
+            POOLS.handleGetPoolsInfo();
             emit("ok");
           }
           if (e) {
@@ -234,6 +259,8 @@ export default defineComponent({
           if (r) {
             state.loading = false;
             message.success(TIP.stopBet);
+            RESULT.handleGetResultList();
+            POOLS.handleGetPoolsInfo();
             emit("ok");
           }
           if (e) {

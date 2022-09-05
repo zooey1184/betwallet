@@ -10,12 +10,12 @@
 
     <div class="flex items-center mt-16">
       <div class="active-border betBtn">
-        BUY BET
+        Buy BET
         <img class="ml-8" src="../../images/icons/share.png" alt="" />
       </div>
 
       <div class="ml-24">
-        Add To Wallet
+        Add to wallet
         <PlusCircleOutlined />
       </div>
     </div>

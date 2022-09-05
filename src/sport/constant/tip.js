@@ -24,7 +24,7 @@ export const TIP = {
   commingSoon: 'Coming Soon',
   betBanner: 'Bet Info',
   countDownStart: 'STARTS IN',
-  sentT: 'The transaction is sent to the blockchain, please wait',
+  sentT: 'Your transaction is being confirmed, please wait',
   successT: 'Storing (data) on blockchain successfully',
   failT: 'Transaction failed',
   preCheck: 'Bet pre-check failed. Please try again later',

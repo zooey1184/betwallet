@@ -9,7 +9,7 @@
         class="bet-input"
         type="number"
         ref="inputRef"
-        placeholder="Your USDT"
+        placeholder="Your bet"
         @focus="handleFocus"
         @blur="handleBlur"
         v-model="state.value"

@@ -2,7 +2,7 @@
   <Spin :spinning="getLoading">
     <div>
       <div class="active-color mt50 title ff text-align-center">
-        CONFIRM CREATION
+        BUILD THE POOL
       </div>
       <div class="mt-16 mb-16 flex justify-center">
         <img style="width: 150px" src="../../images/v2/room-rect.png" />
@@ -10,17 +10,17 @@
       <div class="mt-24 mb-16 font-size-12 line-height-18 text-align-center">
         <div>AFTER THE CASINO IS CREATED,</div>
         THE CASINO WILL AUTOMATICALLY OPEN TO ACCEPT ALL BETS, PLAYERS ENTER THE
-        CASINO BY “CASINO CODE”. CLICK "CLOSE DOWN” TO CLOSE THE CASINO, THE
+        CASINO BY “CASINO CODE”. CLICK "CLOSE CASINO TO CLOSE THE CASINO, THE
         CASINO WILL NO LONGER ACCEPT BETS. AND THE USDT POOL CAN BE WITHDRAWN
         AFTER ALL THE GAMES BETTED IN THE POOL ARE OVER
       </div>
-      <div class="font-size-14 mt-24">ENTER THE AMOUNT</div>
+      <div class="font-size-14 mt-24">SET THE POOL SIZE</div>
       <div class="input-wrap flex items-center">
         <input
           class="flex-1 input"
           v-model="state.amount"
           type="number"
-          placeholder="Please enter the amount"
+          placeholder="Please enter the USDT amount"
         />
         <div class="roomConfirm active-bg color-white">USDT</div>
       </div>
@@ -31,7 +31,7 @@
         class="confirmBtn active-bg color-white mt-32 mb-16"
         @click="handleCreateBetPool"
       >
-        CONFIRM CREATION
+        CONFIRM
       </div>
     </div>
   </Spin>
@@ -52,7 +52,7 @@ export default defineComponent({
     Circle,
     Spin,
   },
-  emits: ["next", 'over'],
+  emits: ["next", "over"],
   setup(props, { emit }) {
     const state = reactive({
       amount: "",
@@ -85,7 +85,7 @@ export default defineComponent({
         return;
       }
 
-      emit('next', state.amount)
+      emit("next", state.amount);
       // const _hasPermission = await hasPermission();
       // if (_hasPermission) {
       //   await createPool(state.amount, (h, r, e) => {

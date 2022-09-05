@@ -16,13 +16,11 @@
 <script>
 import { reactive, defineComponent } from "vue";
 import { QuestionCircleOutlined, LoadingOutlined } from "@ant-design/icons-vue";
-import Circle from "./circle.vue";
 
 export default defineComponent({
   components: {
     QuestionCircleOutlined,
     LoadingOutlined,
-    Circle,
   },
   emits: ["close"],
   setup(props, { emit }) {
@@ -65,7 +63,6 @@ export default defineComponent({
 .confirmBtn {
   height: 42px;
   width: 100%;
-  cursor: pointer;
   text-align: center;
   line-height: 42px;
   border-radius: 8px;

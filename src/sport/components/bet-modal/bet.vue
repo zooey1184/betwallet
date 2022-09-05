@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div style="max-height: 70vh" class="overflow-auto">
+    <div
+      v-if="!state.loading && !state.isOver"
+      style="max-height: 70vh"
+      class="overflow-auto"
+    >
       <div
         class="active-color mt-24 f4 font-size-20 font-weight-600 text-align-center"
       >
@@ -74,7 +78,7 @@
         IF SLIPPAGE BEYOND ITS RANGE
       </div>
       <div class="flex items-center">
-        <div class="mr-8 cancelBtn flex-0" @click="handleBetLast">LAST</div>
+        <div class="mr-8 cancelBtn flex-0" @click="handleBetLast">BACK</div>
         <Button
           :loading="state.loading"
           type="primary"
@@ -84,6 +88,9 @@
         >
       </div>
     </div>
+
+    <Loading v-if="state.loading && !state.isOver" />
+    <Over v-if="state.isOver" @click='handleClose' />
   </div>
 </template>
 
@@ -94,20 +101,27 @@ import { useBet } from "@/sport/hooks/use-methods";
 import usePermission from "@/sport/hooks/use-methods";
 import { message, Spin, Button } from "ant-design-vue";
 import { TIP } from "@/sport/constant/tip";
+import Loading from "./loading.vue";
+import Over from "./over.vue";
+
 export default defineComponent({
   components: {
     Spin,
     Button,
+    Loading,
+    Over,
   },
   props: {},
-  emits: ["cancel"],
+  emits: ["cancel", 'close'],
   setup(props, { emit }) {
     const state = reactive({
       loading: false,
+      isOver: false,
     });
     const CONTRACT = inject("CONTRACT");
     const SPORT_BET = inject("SPORT_BET");
     const ROOM = inject("ROOM");
+    const { handleAuth } = usePermission();
 
     const getBetInfo = computed(() => SPORT_BET.getMyBetInfo?.value);
     const getBetConfig = computed(() => SPORT_BET.getBetConfig?.value);
@@ -198,7 +212,7 @@ export default defineComponent({
       }).then((res) => {
         if (res) {
           console.log("bet params: \n", params);
-          handlePermission(() => {
+          handleAuth(() => {
             handleBet(params, (h, r, e) => {
               if (r) {
                 message.success("BET SUCCESS");
@@ -206,18 +220,19 @@ export default defineComponent({
                   SPORT_BET.clear();
                   RESULT.handleGetResultList();
                   state.loading = false;
+                  state.isOver = true;
                 });
               }
               if (e) {
                 state.loading = false;
+                state.isOver = false;
               }
             });
-          })
-          
-          
+          });
         } else {
           message.warning(TIP.preCheck);
           state.loading = false;
+          state.isOver = false;
         }
       });
     };
@@ -253,6 +268,12 @@ export default defineComponent({
       });
     };
 
+    const handleClose = () => {
+      emit('close')
+      state.loading = false
+      state.isOver = false
+    }
+
     return {
       state,
       handleBetFn,
@@ -263,6 +284,7 @@ export default defineComponent({
       getSingleWin,
       handleBetLast,
       handleBetMulti,
+      handleClose,
     };
   },
 });
