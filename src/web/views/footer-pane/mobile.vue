@@ -2,13 +2,16 @@
   <div class="">
     <div class="">
       <div class="flex justify-center mb-16">
-        <img style="height: 24px" src="../../assets/footer-logo.png" alt="" />
+        <img style="height: 24px" src="../../assets/footerLogo.png" alt="" />
       </div>
       <div class="text-align-center mb-16">
         ©2021 - Nesting - All Rights Reserved
       </div>
+      <div class="text-align-center cursor-pointer link">
+        BETWEB3 TERMS&CONDITIONS
+      </div>
     </div>
-    <div class="flex items-center justify-center">
+    <div class="flex mt-8 items-center justify-center">
       <div class="flex items-center">
         <a href="https://twitter.com/betweb3" target="_blank">
           <img
@@ -26,7 +29,6 @@
           <img class="icon" src="../../assets/icon-g.png" alt="" />
         </a>
       </div>
-      <div class="text cursor-pointer link">Disclaimers</div>
     </div>
   </div>
   <div
@@ -34,15 +36,13 @@
     class="text-align-center gray-9 font-size-12"
   >
     Any investment in blockchain assets involves the risk of losing part or all
-    of your investment.
+    of your investment. The value of your exchange’s blockchain assets is
+    affected by market and other investment risks.
   </div>
   <div
     style="margin-top: 4px; padding: 4px"
     class="text-align-center gray-9 font-size-12"
-  >
-    The value of your exchange’s blockchain assets is affected by market and
-    other investment risks.
-  </div>
+  ></div>
 </template>
 
 <style lang="less" scoped>
