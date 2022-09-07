@@ -23,13 +23,13 @@
             </div>
           </div>
 
-          <div
+          <!-- <div
             :class="{ fadein: data.show[2] }"
             class="my-16 color-blue fadeout"
             style="margin-bottom: 53px"
           >
             Decentralization is our premise
-          </div>
+          </div> -->
 
           <div class="item fadeout" :class="{ fadein: data.show[3] }">
             <div><img src="../../assets/part4-1.png" alt="" /></div>

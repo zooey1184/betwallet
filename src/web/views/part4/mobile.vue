@@ -22,11 +22,11 @@
               </div>
             </div>
           </transition>
-          <transition name="slideBottom">
+          <!-- <transition name="slideBottom">
             <div class="my-16 color-blue mb-24">
               Decentralization is our premise
             </div>
-          </transition>
+          </transition> -->
 
           <div class="flex items-center justify-between">
             <transition name="slideBottom">

@@ -19,7 +19,7 @@
           </p>
           <p class="text-align-center desc line-height-24"></p>
           <p class="text-align-center desc line-height-24">
-            Everyone could be a banker through the new protocol. And all you
+            Everyone could be a bookmaker through the new protocol. And all you
             need is to connect your wallet to bet with USDT if you are a player.
           </p>
         </div>
