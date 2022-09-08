@@ -197,21 +197,24 @@ export default defineComponent({
     const handleBetLast = () => {
       emit("cancel");
     };
-    const {
-      handlePermission
-    } = usePermission();
+    // const {
+    //   handlePermission
+    // } = usePermission();
 
     const handleBetFn = () => {
       const list = handleGetParams();
       const params = list[0];
       state.loading = true;
-      preCheck({
+      const query = {
         tenant: params.tenant,
         amount: params.amount,
         odds: params.minOdds,
-      }).then((res) => {
+        bet_side: params.betSide,
+        market_id: params.marketId,
+      }
+      console.log(params)
+      preCheck(query).then((res) => {
         if (res) {
-          console.log("bet params: \n", params);
           handleAuth(() => {
             handleBet(params, (h, r, e) => {
               if (r) {
