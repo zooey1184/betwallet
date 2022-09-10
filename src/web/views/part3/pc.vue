@@ -34,8 +34,8 @@
             >
               <div>
                 Everyone can build their own USDT pool freely, you will get a
-                unique casino code and become a bookmaker after building. Players
-                must enter the code to find the corresponding USDT pool before
+                unique casino number and become a bookmaker after building. Players
+                must enter the number to find the corresponding USDT pool before
                 betting. You don't need to do anything else after building.
               </div>
               <!-- <div class="mt-8">Invite your friends to participate in.</div> -->

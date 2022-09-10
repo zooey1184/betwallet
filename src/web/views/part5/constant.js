@@ -8,8 +8,8 @@ export const options = [
     desc: 'Enter the casino number'
   },
   {
-    label: 'Choose game',
-    desc: 'Choose football, basketball, eSports game'
+    label: 'Choose events',
+    desc: 'Choose football, basketball, esports events'
   },
   {
     label: 'Place bet',

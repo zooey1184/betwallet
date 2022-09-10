@@ -9,7 +9,7 @@ export const options = [
       // 'Token pledge officially launched',
       // 'Released on Binance Smart Chain, Polygon, Avalanche, Arwave, Solana'
       'The Decentralized Sports Betting Protocol (V1) release',
-      'Football, basketball and eSports covered.',
+      'Football, basketball and esports covered.',
       'The sports betting platform testnet launch.',
       'Contract audit complete.'
     ]
