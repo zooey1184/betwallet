@@ -1,22 +1,18 @@
 <template>
   <div class="">
     <div class="">
-      <div class="flex justify-center mb-16">
-        <img style="height: 24px" src="../../images/footer-logo.png" alt="" />
+      <div class="flex items-center justify-center">
+        <img src="../../images/footer-logo.png" alt="" />
       </div>
-      <div class="text-align-center mb-16">
-        ©2021 - Nesting - All Rights Reserved
+      <div class="text-align-center my-16">
+        ©2021 - Nesting - ALL RIGHTS RESERVED
       </div>
     </div>
-    <div class="flex items-center">
-      <div class="flex items-center">
-        <Icons />
-        <!-- <a href="javascript:;" class="RightFNI RightFNI1"></a> -->
-        <!-- <a href="javascript:;" class="RightFNI RightFNI2"></a>
-        <a href="https://twitter.com/BetWeb3" class="RightFNI RightFNI3"></a>
-        <a href="javascript:;" class="RightFNI RightFNI4"></a> -->
-      </div>
-      <div class="text cursor-pointer link">Disclaimers</div>
+    <div class="flex items-center justify-center">
+      <Icons />
+    </div>
+    <div class="text-align-center cursor-pointer link mt-8">
+      BETWEB3 TERMS&CONDITIONS
     </div>
   </div>
   <div style="margin-top: 26px" class="text-align-center gray-9 font-size-12">
