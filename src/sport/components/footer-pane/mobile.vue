@@ -2,7 +2,7 @@
   <div class="">
     <div class="">
       <div class="flex items-center justify-center">
-        <img src="../../images/footer-logo.png" alt="" />
+        <img style="height: 32px" src="../../images/footerLogo.png" alt="" />
       </div>
       <div class="text-align-center my-16">
         ©2021 - Nesting - ALL RIGHTS RESERVED

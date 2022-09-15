@@ -2,9 +2,9 @@
   <div>
     <div
       class="flex justify-between"
-      style="padding: 2vw 4vw; padding-top: 4vw"
+      style="padding: 2vw 1vw; padding-top: 4vw"
     >
-      <div class="w-30p flex-0">
+      <div class="w-40p flex-0">
         <div class="font-size-16 font-weight-600">GET ON THE LIST</div>
         <div class="flex">
           <div class="flex items-center inputWrap">
@@ -17,18 +17,18 @@
               class="linear-bg flex items-center justify-center footerbtn"
               @click="handleEmailSubmit"
             >
-              <!-- <img
-                src="../../assets/footerArrow.png"
+              <img
+                src="../../image/footerArrow.png"
                 style="height: 18px"
                 alt=""
-              /> -->
+              />
             </div>
           </div>
         </div>
       </div>
-      <div class="flex justify-center flex-0" style="width: 33%">
+      <div class="flex justify-center flex-0" style="width: 20%">
         <img
-          src="../../"
+          src="../../images/footerLogo.png"
           style="
             width: 100%;
             height: auto;
@@ -39,16 +39,18 @@
           alt=""
         />
       </div>
-      <div class="text-align-right w-30p flex-0">
+      <div class="text-align-right w-40p flex-0">
         <div class="flex items-center justify-end">
           <div class="flex items-center">
             <Icons />
           </div>
         </div>
-        <div class="right line-height-12">
+        <div class="right line-height-12 font-size-12">
           ©2021 - Nesting - ALL RIGHTS RESERVED
         </div>
-        <div class="text cursor-pointer mt-8 hover-color-blue line-height-12">
+        <div
+          class="text cursor-pointer font-size-12 mt-8 hover-color-blue line-height-12"
+        >
           BETWEB3 TERMS&CONDITIONS
         </div>
       </div>
