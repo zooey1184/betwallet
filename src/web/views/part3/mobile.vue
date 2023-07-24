@@ -32,47 +32,13 @@
             <transition name="slideBottom">
               <div class="grey" style="margin-top: 6px; margin-bottom: 55px">
                 <div>
-                  Everyone can build their own USDT pool freely, you will get a
-                  unique casino number and become a bookmaker after building. Players
-                  must enter the number to find the corresponding USDT pool before
-                  betting. You don't need to do anything else after building.
+                  Everyone can build their own $PePe pool freely, you will get a unique casino number and become a bookmaker after building. Players must enter the number to find the corresponding $PePe pool before betting. You don't need to do anything else after building.
                 </div>
-                <!-- <div class="mt-16">Invite your friends to participate in.</div> -->
               </div>
             </transition>
 
-            <!-- <transition name="slideBottom">
-              <div class="item">
-                <div>
-                  <img src="../../assets/part3-1.png" alt="" />
-                </div>
-                <p style="margin-left: 13px">
-                  Destruction of the ownership of the capital pool
-                </p>
-              </div>
-            </transition> -->
-            <!-- <transition name="slideBottom">
-              <div class="item">
-                <div>
-                  <img src="../../assets/part3-2.png" alt="" />
-                </div>
-                <p style="margin-left: 13px">
-                  60% of each profit is distributed to token holders, 10% is
-                  automatically repurchased destroyed token, and 30% remains in
-                  the capital pool
-                </p>
-              </div>
-            </transition> -->
-            <!-- <transition name="slideBottom">
-              <div class="flex">
-                <div><img src="../../assets/part3-3.png" alt="" /></div>
-                <p style="margin-left: 13px">
-                  Amount and profit are completely transparent
-                </p>
-              </div>
-            </transition> -->
 
-            <transition name="slideBottom">
+            <!-- <transition name="slideBottom">
               <div>
                 <div
                   class="linear-color title-lg text-align-center"
@@ -89,13 +55,9 @@
                   <div class="mt-16 cc">
                     Detailed information will be launched soon.
                   </div>
-                  <!-- <div class="mt-16 cc">
-                    Build a USDT pool and invite friends to place bet or just
-                    find a pool to bet.
-                  </div> -->
                 </div>
               </div>
-            </transition>
+            </transition> -->
           </div>
         </div>
       </div>

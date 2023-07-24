@@ -13,15 +13,13 @@
 
         <div class="fadeout" :class="{ fadein: data.show[2] }">
           <p class="text-align-center mt-24 desc line-height-24">
-            The global sports betting market worth more than $250 billion, We're
-            trying to build up a decentralized sports betting platform on web
-            3.0.
+            The global sports betting market worth more than $250 billion, We're trying to build up a
           </p>
-          <p class="text-align-center desc line-height-24"></p>
+          <p class="text-align-center desc line-height-24">decentralized sports betting platform on web 3.0.</p>
           <p class="text-align-center desc line-height-24">
-            Everyone could be a bookmaker through the new protocol. And all you
-            need is to connect your wallet to bet with USDT if you are a player.
+            Everyone could be a bookmaker through the new protocol. And all you need is to connect your
           </p>
+          <p class="text-align-center desc line-height-24">wallet to bet with $PePe if you are a player.</p>
         </div>
 
         <div class="mt-24 flex items-center justify-center">

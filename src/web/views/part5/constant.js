@@ -21,6 +21,6 @@ export const options = [
   },
   {
     label: 'Bets settlement',
-    desc: 'The pool will automatically transfer USDT to the winning wallet through smart contract.'
+    desc: 'The pool will automatically transfer $PePe to the winning wallet through smart contract.'
   },
 ]

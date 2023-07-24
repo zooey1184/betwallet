@@ -8,7 +8,7 @@
             style="margin-bottom: 36px"
             class="fadeout linear-color title-lg"
           >
-            Smart contract execution process
+            Contract execution process
           </div>
 
           <div

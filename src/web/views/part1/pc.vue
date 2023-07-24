@@ -44,7 +44,7 @@
             <div class="mx-16">
               <img :src="Logo" class="logo" alt="" />
             </div>
-            <div class="desc">and more</div>
+            <!-- <div class="desc">and more</div> -->
           </div>
         </div>
         <div

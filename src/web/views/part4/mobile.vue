@@ -5,7 +5,7 @@
         <div class="color-white">
           <transition name="slideBottom">
             <div class="linear-color mb-24 text-align-center title-lg">
-              Smart contract execution process
+              Contract execution process
             </div>
           </transition>
 

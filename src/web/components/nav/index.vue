@@ -93,10 +93,10 @@ export default defineComponent({
     btnList: {
       type: Array,
       default: () => [
-        {
-          label: "Rewards",
-          value: "pledge",
-        },
+        // {
+        //   label: "Rewards",
+        //   value: "pledge",
+        // },
         {
           label: "Docs",
           value: "doc",

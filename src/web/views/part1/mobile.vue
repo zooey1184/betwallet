@@ -37,7 +37,7 @@
               <div class="mx-16">
                 <img src="../../assets/logo.png" class="logo" alt="" />
               </div>
-              <div class="desc">and more</div>
+              <!-- <div class="desc">and more</div> -->
             </div>
           </transition>
         </div>

@@ -27,7 +27,7 @@
             <transition name="slideBottom">
               <div class="w-50p mb-16">
                 <div class="gray-9d desc desc_mb-24">Currency Symbol</div>
-                <div class="desc">BET</div>
+                <div class="desc">PBET</div>
               </div>
             </transition>
             <transition name="slideBottom">
@@ -39,7 +39,7 @@
             <transition name="slideBottom">
               <div class="w-50p mb-16">
                 <div class="gray-9d desc desc_mb-24">Total supply</div>
-                <div class="desc">1,000,000,000</div>
+                <div class="desc">1,000,000,000,000</div>
               </div>
             </transition>
           </div>

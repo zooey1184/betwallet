@@ -22,7 +22,7 @@
 
             <div :class="{ fadein: data.show[2] }" class="w-25p fadeout">
               <div class="gray-9d desc desc_mb-24">Currency Symbol</div>
-              <div class="desc">BET</div>
+              <div class="desc">PBET</div>
             </div>
 
             <div :class="{ fadein: data.show[3] }" class="w-25p fadeout">
@@ -32,7 +32,7 @@
 
             <div :class="{ fadein: data.show[4] }" class="w-25p fadeout">
               <div class="gray-9d desc desc_mb-24">Total supply</div>
-              <div class="desc">1,000,000,000</div>
+              <div class="desc">1,000,000,000,000</div>
             </div>
           </div>
           <div class="flex mt-60tv">

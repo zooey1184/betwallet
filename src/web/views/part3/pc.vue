@@ -36,7 +36,7 @@
                 Everyone can build their own USDT pool freely, you will get a
                 unique casino number and become a bookmaker after building. Players
                 must enter the number to find the corresponding USDT pool before
-                betting. You don't need to do anything else after building.
+                betting. You don't need to do anything else after building.Everyone can build their own $PePe pool freely, you will get a unique casino number and become a bookmaker after building. Players must enter the number to find the corresponding $PePe pool before betting. You don't need to do anything else after building.
               </div>
               <!-- <div class="mt-8">Invite your friends to participate in.</div> -->
             </div>
@@ -71,7 +71,7 @@
               </p>
             </div> -->
 
-            <div class="color-white fle-1">
+            <!-- <div class="color-white fle-1">
               <div
                 class="linear-color title-lg fadeout"
                 :class="{ fadein: data.show[0] }"
@@ -92,12 +92,8 @@
                 <div class="mt-8">
                   Detailed information will be launched soon.
                 </div>
-                <!-- <div class="mt-8">
-                  Build a USDT pool and invite friends to place bet or just find
-                  a pool to bet.
-                </div> -->
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
