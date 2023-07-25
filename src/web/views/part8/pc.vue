@@ -14,7 +14,7 @@
           Roadmap
         </div>
         <div class="subTitle" style="margin-bottom: 12vh">
-          We are working on expanding the BetWeb3 ecosystem. Stay tuned.
+          We are working on expanding the PEPE X BET ecosystem. Stay tuned.
         </div>
         <div class="flex items-center justify-around">
           <div

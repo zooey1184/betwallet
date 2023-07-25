@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="subTitle mb-24">
-          We are working on expanding the BetWeb3 ecosystem. Stay tuned.
+          We are working on expanding the PEPE X BET ecosystem. Stay tuned.
         </div>
         <div class="">
           <transition name="slideRight">

@@ -8,7 +8,7 @@
         ©2021 - Nesting - All Rights Reserved
       </div>
       <div class="text-align-center cursor-pointer link">
-        BETWEB3 TERMS&CONDITIONS
+        PEPE X BET TERMS&CONDITIONS
       </div>
     </div>
     <div class="flex mt-8 items-center justify-center">

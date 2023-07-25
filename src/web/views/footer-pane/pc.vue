@@ -100,7 +100,7 @@
           ©2021 - Nesting - ALL RIGHTS RESERVED
         </div>
         <div class="text cursor-pointer mt-8 hover-color-blue line-height-12">
-          BETWEB3 TERMS&CONDITIONS
+          PEPE X BET TERMS&CONDITIONS
         </div>
       </div>
     </div>
