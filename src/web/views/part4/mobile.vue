@@ -5,12 +5,12 @@
         <div class="color-white">
           <transition name="slideBottom">
             <div class="linear-color mb-24 text-align-center title-lg">
-              Smart contract execution process
+              Contract execution process
             </div>
           </transition>
 
           <!-- <div style="height: 16.5vh;" class="bg-gray-30 mb-24"></div> -->
-          <img src="../../assets/part4_gif.gif" class="w-100p" alt="" />
+          <img src="../../assets/part4.png" class="w-100p" alt="" />
 
           <transition name="slideBottom">
             <div class="grey mb-24">

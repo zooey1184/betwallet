@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-align-center">
-      Betweb3 is compatible with a range of disparate blockchains
+      PEPE X BET is compatible with a range of disparate blockchains
     </div>
     <div class="flex justify-center">
       <div class="title-lg linear-color">

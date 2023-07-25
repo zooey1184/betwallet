@@ -2,32 +2,35 @@
   <div class="">
     <div class="">
       <div class="flex justify-center mb-16">
-        <img style="height: 24px" src="../../assets/footerLogo.png" alt="" />
+        <img style="height: 24px" src="../../assets/h-logo.png" alt="" />
       </div>
       <div class="text-align-center mb-16">
         ©2021 - Nesting - All Rights Reserved
       </div>
       <div class="text-align-center cursor-pointer link">
-        BETWEB3 TERMS&CONDITIONS
+        PEPE X BET TERMS&CONDITIONS
       </div>
     </div>
     <div class="flex mt-8 items-center justify-center">
       <div class="flex items-center">
-        <a href="https://twitter.com/betweb3" target="_blank">
+        <a href="https://twitter.com/PEPE_X_BET" target="_blank">
           <img
             class="icon cursor-pointer"
             src="../../assets/icon-t.png"
             alt=""
           />
         </a>
-        <a href="https://medium.com/@betweb3official" target="_blank">
+        <!-- <a href="https://medium.com/@betweb3official" target="_blank">
           <img class="icon" src="../../assets/icon-m.png" alt="" />
+        </a> -->
+        <a href="https://t.me/PEPE_X_BET " target="_blank">
+          <img src="../../assets/tg.png" class="icon" alt="">
         </a>
 
-        <img class="icon" src="../../assets/icon-discord.png" alt="" />
+        <!-- <img class="icon" src="../../assets/icon-discord.png" alt="" />
         <a href="https://curry-steven.gitbook.io/untitled/" target="_blank">
           <img class="icon" src="../../assets/icon-g.png" alt="" />
-        </a>
+        </a> -->
       </div>
     </div>
   </div>

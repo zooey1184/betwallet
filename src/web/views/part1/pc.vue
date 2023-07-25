@@ -44,7 +44,7 @@
             <div class="mx-16">
               <img :src="Logo" class="logo" alt="" />
             </div>
-            <div class="desc">and more</div>
+            <!-- <div class="desc">and more</div> -->
           </div>
         </div>
         <div
@@ -64,7 +64,7 @@ import FadeLogo from "@/web/components/fade-logo";
 import Wrap from "@/web/components/wrap";
 import MouseTrack from "@/web/components/mouse-track";
 import BgImg from "../../assets/part1-bg.png";
-import Logo from "../../assets/logo.png";
+import Logo from "../../assets/h-logo.png";
 
 export default defineComponent({
   components: {

@@ -10,7 +10,7 @@
               Easy to use
             </div>
             <div class="mt-24 desc mb-24">
-              BetWeb3 optimizes the interactive experience of traditional sports
+              PEPE X BET optimizes the interactive experience of traditional sports
               betting platforms.
             </div>
             <!-- <div style="height: 16.5vh" class="bg-gray-30"></div> -->

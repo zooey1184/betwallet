@@ -18,7 +18,7 @@ export const options = [
     label: 'Beta',
     value: 'q402',
     desc: [
-      'World Cup publicity plan launch',
+      // 'World Cup publicity plan launch',
       'AI bot developed in partnership with top sports betting data company release',
       'Token staking open on Binance Smart Chain, Polygon, Avalanche, Solana'
     ]

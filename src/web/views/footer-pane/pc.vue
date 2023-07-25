@@ -81,15 +81,18 @@
               class="iconFont"
               @click="handleLink('https://medium.com/@betweb3official')"
             /> -->
-            <YoutubeFilled class="iconFont" />
-            <DiscordOutlined class="iconFont" style="font-size: 28px" />
+            <!-- <YoutubeFilled class="iconFont" /> -->
+            <!-- <DiscordOutlined class="iconFont" style="font-size: 28px" /> -->
             <!-- <GithubOutlined
               class="iconFont"
               @click="handleLink('https://curry-steven.gitbook.io/untitled')"
             /> -->
+            <a href="https://t.me/PEPE_X_BET " target="_blank">
+          <img src="../../assets/tg.png" class="icon" alt="">
+        </a>
             <TwitterOutlined
               class="iconFont"
-              @click="handleLink('https://twitter.com/betweb3')"
+              @click="handleLink('https://twitter.com/PEPE_X_BET')"
             />
           </div>
         </div>
@@ -97,7 +100,7 @@
           ©2021 - Nesting - ALL RIGHTS RESERVED
         </div>
         <div class="text cursor-pointer mt-8 hover-color-blue line-height-12">
-          BETWEB3 TERMS&CONDITIONS
+          PEPE X BET TERMS&CONDITIONS
         </div>
       </div>
     </div>
@@ -115,7 +118,7 @@
 
 <script>
 import { defineComponent, reactive, ref } from "vue";
-import logo from "../../assets/footerLogo.png";
+import logo from "../../assets/h-logo.png";
 import Icon_t from "../../assets/icon-t.png";
 import Icon_m from "../../assets/icon-m.png";
 import Icon_d from "../../assets/icon-discord.png";

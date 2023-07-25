@@ -17,12 +17,12 @@
           <div class="flex mt-24">
             <div class="w-25p fadeout" :class="{ fadein: data.show[1] }">
               <div class="gray-9d desc desc_mb-24">Token Name</div>
-              <div class="desc">BetWeb3 Token</div>
+              <div class="desc">PEPE X BET Token</div>
             </div>
 
             <div :class="{ fadein: data.show[2] }" class="w-25p fadeout">
               <div class="gray-9d desc desc_mb-24">Currency Symbol</div>
-              <div class="desc">BET</div>
+              <div class="desc">PBET</div>
             </div>
 
             <div :class="{ fadein: data.show[3] }" class="w-25p fadeout">
@@ -32,21 +32,21 @@
 
             <div :class="{ fadein: data.show[4] }" class="w-25p fadeout">
               <div class="gray-9d desc desc_mb-24">Total supply</div>
-              <div class="desc">1,000,000,000</div>
+              <div class="desc">1,000,000,000,000</div>
             </div>
           </div>
           <div class="flex mt-60tv">
-            <div :class="{ fadein: data.show[5] }" class="w-50p flex fadeout">
+            <div :class="{ fadein: data.show[5] }" class="w-100p flex fadeout">
               <img class="icon_w" src="../../assets/part7-1.png" alt="" />
               <div class="ml-50tv">
                 <div class="desc_title">Protocol Voting rights</div>
                 <div class="desc">
-                  Hold BET tokens to gain Voting rights on the protocol
+                  Hold PBET tokens to gain Voting rights on the protocol
                 </div>
               </div>
             </div>
 
-            <div :class="{ fadein: data.show[6] }" class="w-50p flex fadeout">
+            <!-- <div :class="{ fadein: data.show[6] }" class="w-50p flex fadeout">
               <img class="icon_w" src="../../assets/part7-2.png" alt="" />
               <div class="ml-50tv">
                 <div class="desc_title">Staking rewards</div>
@@ -54,9 +54,9 @@
                   Stake BET tokens to gain protocol voting rights
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
-          <div class="flex mt-48">
+          <!-- <div class="flex mt-48">
             <LinearBox :class="{ fadein: data.show[7] }" class="fadeout">
               <div class="primary font-size-14 info_btn px-48 py-8">
                 More information
@@ -67,7 +67,7 @@
                 />
               </div>
             </LinearBox>
-          </div>
+          </div> -->
         </div>
       </div>
     </template>

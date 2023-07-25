@@ -8,7 +8,7 @@
             style="margin-bottom: 36px"
             class="fadeout linear-color title-lg"
           >
-            Smart contract execution process
+            Contract execution process
           </div>
 
           <div
@@ -54,7 +54,8 @@
           :class="{ fadein: data.show[0] }"
           class="fadeout pos-r flex-0"
         >
-          <LazyImg :src="Gif" :cover="Part4Cover" class="gif-pane" alt="" />
+          <img src="../../assets/part4.png"  class="w-100p gif-pane" alt="" srcset="">
+          <!-- <LazyImg :src="Gif" :cover="Part4Cover" class="gif-pane" alt="" /> -->
         </div>
       </div>
     </template>

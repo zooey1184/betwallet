@@ -13,8 +13,8 @@
             style="height: 18vw; width: 24vw"
             class="pos-r flex-0 mr-24 mt-16"
           >
-            <!-- <img class="w-100p gif-pane" :src='Gif' alt=""> -->
-            <LazyImg :src="Gif" :cover="CoverImg" class="gif-pane" />
+            <img class="w-100p gif-pane" src='../../assets/part3.png' alt="">
+            <!-- <LazyImg :src="Gif" :cover="CoverImg" class="gif-pane" /> -->
           </div>
 
           <div class="color-white fle-1">
@@ -33,10 +33,7 @@
               style="margin-top: 6px; margin-bottom: 55px"
             >
               <div>
-                Everyone can build their own USDT pool freely, you will get a
-                unique casino number and become a bookmaker after building. Players
-                must enter the number to find the corresponding USDT pool before
-                betting. You don't need to do anything else after building.
+                Everyone can build their own $PePe pool freely, you will get a unique casino number and become a bookmaker after building. Players must enter the number to find the corresponding $PePe pool before betting. You don't need to do anything else after building.
               </div>
               <!-- <div class="mt-8">Invite your friends to participate in.</div> -->
             </div>
@@ -71,7 +68,7 @@
               </p>
             </div> -->
 
-            <div class="color-white fle-1">
+            <!-- <div class="color-white fle-1">
               <div
                 class="linear-color title-lg fadeout"
                 :class="{ fadein: data.show[0] }"
@@ -92,12 +89,8 @@
                 <div class="mt-8">
                   Detailed information will be launched soon.
                 </div>
-                <!-- <div class="mt-8">
-                  Build a USDT pool and invite friends to place bet or just find
-                  a pool to bet.
-                </div> -->
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

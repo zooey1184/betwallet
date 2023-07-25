@@ -3,7 +3,7 @@
     <div class="m_nav bg pos-f flex items-center justify-between">
       <More v-model:value="state.visible" />
       <div class="color-white">
-        <img style="height: 30px" src="../../assets/logo.png" />
+        <img style="height: 30px" src="../../assets/h-logo.png" />
       </div>
       <div></div>
     </div>
@@ -20,7 +20,7 @@
         </div>
 
         <div class="mt-40">
-          <LinearBox v-for="item in btnList" class="mb-32">
+          <LinearBox v-for="item in btnList" @click='handleGoDoc' class="mb-32">
             <div class="primary m_btn_px">{{ item.label }}</div>
           </LinearBox>
           <div class="linear-bg m_btn_px" style="border-radius: 2px">
@@ -34,7 +34,7 @@
   <div v-else class="pc_nav bg">
     <div class="flex items-center">
       <div>
-        <img style="height: 43px" src="../../assets/logo.png" />
+        <img style="height: 43px" src="../../assets/h-logo.png" />
       </div>
       <div class="flex items-ceneter justify-between ml-40">
         <div
@@ -93,10 +93,10 @@ export default defineComponent({
     btnList: {
       type: Array,
       default: () => [
-        {
-          label: "Rewards",
-          value: "pledge",
-        },
+        // {
+        //   label: "Rewards",
+        //   value: "pledge",
+        // },
         {
           label: "Docs",
           value: "doc",
@@ -139,8 +139,13 @@ export default defineComponent({
       }
     };
 
+    const handleGoDoc = () => {
+      window.open('https://docs.pepexbet.com/', '_blank')
+    }
+
     return {
       state,
+      handleGoDoc,
       handleClickMenuItem,
     };
   },
