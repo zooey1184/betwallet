@@ -81,12 +81,15 @@
               class="iconFont"
               @click="handleLink('https://medium.com/@betweb3official')"
             /> -->
-            <YoutubeFilled class="iconFont" />
-            <DiscordOutlined class="iconFont" style="font-size: 28px" />
+            <!-- <YoutubeFilled class="iconFont" /> -->
+            <!-- <DiscordOutlined class="iconFont" style="font-size: 28px" /> -->
             <!-- <GithubOutlined
               class="iconFont"
               @click="handleLink('https://curry-steven.gitbook.io/untitled')"
             /> -->
+            <a href="https://t.me/PEPE_X_BET " target="_blank">
+          <img src="../../assets/tg.png" class="icon" alt="">
+        </a>
             <TwitterOutlined
               class="iconFont"
               @click="handleLink('https://twitter.com/betweb3')"

@@ -52,7 +52,7 @@
                 </div>
                 <div class="ml-50tv grey">
                   <div class="desc">
-                    Hold BET tokens to gain voting rights on the protocol
+                    Hold PBET tokens to gain Voting rights on the protocol
                   </div>
                 </div>
               </div>

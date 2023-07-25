@@ -41,7 +41,7 @@
               <div class="ml-50tv">
                 <div class="desc_title">Protocol Voting rights</div>
                 <div class="desc">
-                  Hold BET tokens to gain Voting rights on the protocol
+                  Hold PBET tokens to gain Voting rights on the protocol
                 </div>
               </div>
             </div>

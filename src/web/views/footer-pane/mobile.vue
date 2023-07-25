@@ -13,7 +13,7 @@
     </div>
     <div class="flex mt-8 items-center justify-center">
       <div class="flex items-center">
-        <a href="https://twitter.com/betweb3" target="_blank">
+        <!-- <a href="https://twitter.com/betweb3" target="_blank">
           <img
             class="icon cursor-pointer"
             src="../../assets/icon-t.png"
@@ -22,6 +22,9 @@
         </a>
         <a href="https://medium.com/@betweb3official" target="_blank">
           <img class="icon" src="../../assets/icon-m.png" alt="" />
+        </a> -->
+        <a href="https://t.me/PEPE_X_BET " target="_blank">
+          <img src="../../assets/tg.png" class="icon" alt="">
         </a>
 
         <img class="icon" src="../../assets/icon-discord.png" alt="" />
