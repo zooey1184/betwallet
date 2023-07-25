@@ -140,7 +140,8 @@ export default defineComponent({
         const AMOUNT = web3.utils.toWei(`${item.betValue}`, "mwei");
 
         const tolerance = getBetConfig?.value?.tolerance || 0;
-        const minOdds = parseInt(item.activeValue * (100 - tolerance));
+        // const minOdds = parseInt(item.activeValue * (100 - tolerance));
+        const minOdds = parseInt(item.activeValue * 100);
         _list.push({
           marketId: item.oddsId,
           tenant: ROOM?.code?.value,
@@ -197,18 +198,24 @@ export default defineComponent({
     const handleBetLast = () => {
       emit("cancel");
     };
+    // const {
+    //   handlePermission
+    // } = usePermission();
 
     const handleBetFn = () => {
       const list = handleGetParams();
       const params = list[0];
       state.loading = true;
-      preCheck({
+      const query = {
         tenant: params.tenant,
         amount: params.amount,
         odds: params.minOdds,
-      }).then((res) => {
+        bet_side: params.betSide,
+        market_id: params.marketId,
+      }
+      console.log(params)
+      preCheck(query).then((res) => {
         if (res) {
-          console.log("bet params: \n", params);
           handleAuth(() => {
             handleBet(params, (h, r, e) => {
               if (r) {
