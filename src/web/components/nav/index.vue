@@ -20,7 +20,7 @@
         </div>
 
         <div class="mt-40">
-          <LinearBox v-for="item in btnList" class="mb-32">
+          <LinearBox v-for="item in btnList" @click='handleGoDoc' class="mb-32">
             <div class="primary m_btn_px">{{ item.label }}</div>
           </LinearBox>
           <div class="linear-bg m_btn_px" style="border-radius: 2px">
@@ -139,8 +139,13 @@ export default defineComponent({
       }
     };
 
+    const handleGoDoc = () => {
+      window.open('https://docs.pepexbet.com/', '_blank')
+    }
+
     return {
       state,
+      handleGoDoc,
       handleClickMenuItem,
     };
   },
