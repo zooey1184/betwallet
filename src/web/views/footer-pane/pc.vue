@@ -92,7 +92,7 @@
         </a>
             <TwitterOutlined
               class="iconFont"
-              @click="handleLink('https://twitter.com/betweb3')"
+              @click="handleLink('https://twitter.com/PEPE_X_BET')"
             />
           </div>
         </div>
