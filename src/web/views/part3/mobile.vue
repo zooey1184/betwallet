@@ -25,7 +25,7 @@
             </div> -->
             <img
               style="height: 30vh; z-index: 2"
-              src="../../assets/part3-gif.gif"
+              src="../../assets/part3.png"
               alt=""
             />
 

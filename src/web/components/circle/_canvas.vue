@@ -1,7 +1,8 @@
 <template>
   <div class="pos-r">
     <div class="pos-a main-logo">
-      <img class="w-100p" :src='Logo' />
+      <img src="../../assets/v-logo.png" class="w-80p ml-16" style="margin-top: -8px" alt="" srcset="">
+      <!-- <img class="w-100p" :src='Logo' /> -->
     </div>
     <canvas :width="canvasRadius" :height="canvasRadius" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" ref="canvas"></canvas>
   </div>

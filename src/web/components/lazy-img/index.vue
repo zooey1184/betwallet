@@ -3,14 +3,14 @@
     <transition name="fade">
       <img v-if="state.visible" class="w-100p" :src="src" alt="" />
     </transition>
-    <transition name="fade flex items-center">
+    <!-- <transition name="fade flex items-center">
       <img
         v-if="state.coverVisible && cover"
         class="w-100p"
         :src="cover"
         alt=""
       />
-    </transition>
+    </transition> -->
   </div>
 </template>
 
@@ -42,15 +42,16 @@ export default defineComponent({
     onMounted(() => {
       if (props.cover) {
         loadImg(props.cover).then(() => {
-          state.coverVisible = true;
-          loadImg(props.src).then(() => {
-            setTimeout(() => {
-              state.coverVisible = false;
-            }, 300);
-            setTimeout(() => {
-              state.visible = true;
-            }, 1500);
-          });
+          // state.coverVisible = true;
+          // loadImg(props.src).then(() => {
+          //   setTimeout(() => {
+          //     state.coverVisible = false;
+          //   }, 300);
+          //   setTimeout(() => {
+          //     state.visible = true;
+          //   }, 1500);
+          // });
+          state.visible = true
         });
       }
     });

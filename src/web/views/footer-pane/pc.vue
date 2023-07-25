@@ -115,7 +115,7 @@
 
 <script>
 import { defineComponent, reactive, ref } from "vue";
-import logo from "../../assets/footerLogo.png";
+import logo from "../../assets/h-logo.png";
 import Icon_t from "../../assets/icon-t.png";
 import Icon_m from "../../assets/icon-m.png";
 import Icon_d from "../../assets/icon-discord.png";

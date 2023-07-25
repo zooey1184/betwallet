@@ -20,7 +20,7 @@
             <transition name="slideBottom">
               <div class="w-50p mb-16">
                 <div class="gray-9d desc desc_mb-24">Token Name</div>
-                <div class="desc">BetWeb3 Token</div>
+                <div class="desc">PEPE X BET Token</div>
               </div>
             </transition>
 
@@ -45,7 +45,7 @@
           </div>
           <div class="flex mt-60tv">
             <transition name="slideBottom">
-              <div class="w-50p">
+              <div class="w-100p">
                 <div class="flex items-center">
                   <img class="icon_w" src="../../assets/part7-1.png" alt="" />
                   <div class="desc_title ml-8">protocol Voting rights</div>
@@ -57,7 +57,7 @@
                 </div>
               </div>
             </transition>
-            <transition name="slideBottom">
+            <!-- <transition name="slideBottom">
               <div class="w-50p">
                 <div class="flex items-center">
                   <img class="icon_w" src="../../assets/part7-2.png" alt="" />
@@ -69,9 +69,9 @@
                   </div>
                 </div>
               </div>
-            </transition>
+            </transition> -->
           </div>
-          <div class="mt-48">
+          <!-- <div class="mt-48">
             <transition name="slideBottom">
               <LinearBox>
                 <div class="primary font-size-14 info_btn px-48 py-8">
@@ -84,7 +84,7 @@
                 </div>
               </LinearBox>
             </transition>
-          </div>
+          </div> -->
         </div>
       </div>
     </template>

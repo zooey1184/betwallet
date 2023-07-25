@@ -8,13 +8,14 @@
     </transition>
   </div> -->
   <div v-if='disabled'>
-    <LazyImg class='pos-r' :src='Logo' :cover='Part1Cover' />
+    <LazyImg class='pos-r' :src='Logo' :cover='Logo' />
   </div>
 </template>
 
 <script>
 import { defineComponent, onMounted, reactive, ref, nextTick, watch } from 'vue'
-import Logo from '../../assets/part1_gif.gif'
+// import Logo from '../../assets/part1_gif.gif'
+import Logo from '../../assets/v-logo.png'
 import LazyImg from '@/web/components/lazy-img'
 import Part1Cover from '../../assets/part1_cover.jpg'
 

@@ -35,7 +35,7 @@
             <div class="flex mt-24 justify-center items-center">
               <div class="gray desc">Audited by</div>
               <div class="mx-16">
-                <img src="../../assets/logo.png" class="logo" alt="" />
+                <img src="../../assets/h-logo.png" class="logo" alt="" />
               </div>
               <!-- <div class="desc">and more</div> -->
             </div>
