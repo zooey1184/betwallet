@@ -20,8 +20,8 @@
         </div>
 
         <div class="mt-40">
-          <LinearBox v-for="item in btnList" @click='handleGoDoc' class="mb-32">
-            <div class="primary m_btn_px">{{ item.label }}</div>
+          <LinearBox v-for="item in btnList" class="mb-32">
+            <div @click='handleGoDoc' class="primary m_btn_px">{{ item.label }}</div>
           </LinearBox>
           <div class="linear-bg m_btn_px" style="border-radius: 2px">
             {{ launch }}
@@ -49,7 +49,7 @@
     </div>
     <div class="flex items-center">
       <LinearBox v-for="item in btnList" class="ml-24">
-        <div class="primary pc_btn_px">{{ item.label }}</div>
+        <div @click='handleGoDoc' class="primary pc_btn_px">{{ item.label }}</div>
       </LinearBox>
       <div class="linear-bg ml-24 pc_btn_px" style="border-radius: 2px">
         {{ launch }}
