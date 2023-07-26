@@ -9,7 +9,7 @@
           <FadeLogo />
         </div>
         <div style="z-index: 9">
-          <img src="../../assets/part1-bg.png" class="bg_img" alt="" />
+          <!-- <img src="../../assets/part1-bg.png" class="bg_img" alt="" /> -->
           <transition name="fade">
             <div class="title-md text-align-center">
               <div class="title-md">
@@ -23,7 +23,12 @@
 
           <div style="margin-top: 4vw; z-index: 9">
             <transition name="slideLeft">
-              <div class="linear-bg launch_btn launch_btn_act">Launch APP</div>
+              <div
+                class="linear-bg launch_btn launch_btn_act"
+                @click="handleGoLaunch"
+              >
+                Launch APP
+              </div>
             </transition>
           </div>
           <div style="margin-top: 0.5vw; z-index: 9">
@@ -34,6 +39,7 @@
           <transition name="slideLeft">
             <div class="flex mt-24 justify-center items-center">
               <div class="gray desc">Audited by</div>
+
               <div class="mx-16">
                 <img src="../../assets/h-logo.png" class="logo" alt="" />
               </div>
@@ -59,7 +65,15 @@ export default defineComponent({
     MouseTrack,
   },
   props: {},
-  setup(props) {},
+  setup(props) {
+    const handleGoLaunch = () => {
+      console.log("object");
+      window.open("https://app.pepexbet.com/#/", "_blank");
+    };
+    return {
+      handleGoLaunch,
+    };
+  },
 });
 </script>
 

@@ -22,6 +22,7 @@
 
           <div style="margin-top: 4vw">
             <div
+              @click="handleGoLaunch"
               :class="{ 'fade-right': data.show[1] }"
               class="fade-left linear-bg inline-block launch_btn launch_btn_act"
             >
@@ -74,9 +75,13 @@ export default defineComponent({
   },
   props: {},
   setup(props) {
+    const handleGoLaunch = () => {
+      window.open("https://app.pepexbet.com/#/", "_blank");
+    };
     return {
       BgImg,
       Logo,
+      handleGoLaunch,
     };
   },
 });

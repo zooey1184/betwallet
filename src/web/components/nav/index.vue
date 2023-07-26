@@ -55,7 +55,11 @@
           {{ item.label }}
         </div>
       </LinearBox>
-      <div class="linear-bg ml-24 pc_btn_px" style="border-radius: 2px">
+      <div
+        class="linear-bg ml-24 pc_btn_px"
+        @click="handleGoLaunch"
+        style="border-radius: 2px"
+      >
         {{ launch }}
       </div>
     </div>
@@ -148,10 +152,15 @@ export default defineComponent({
       window.open("https://docs.pepexbet.com/", "_blank");
     };
 
+    const handleGoLaunch = () => {
+      window.open("https://app.pepexbet.com/#/", "_blank");
+    };
+
     return {
       state,
       handleGoDoc,
       handleClickMenuItem,
+      handleGoLaunch,
     };
   },
 });
