@@ -10,7 +10,7 @@
       CASINO WILL NO LONGER ACCEPT BETS
     </div>
     <div class="text-align-center line-height-18 color-black">
-      THE USDT POOL CAN BE WITHDRAWN AT THE
+      THE $PEPE POOL CAN BE WITHDRAWN AT THE
     </div>
     <div class="text-align-center line-height-18 color-black">
       END OF ALL TOURNAMENTS

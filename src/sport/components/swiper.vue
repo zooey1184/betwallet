@@ -13,9 +13,8 @@
           class="swiper-slide pos-r"
           v-for="item in state.bannerList"
           :key="item.order_id"
-          :style="{ backgroundImage: `url(${item.uri})` }"
         >
-          <!-- <img :src="item.uri" class="w-100p" /> -->
+          <img :src="item.uri" class="w-100p" />
           <div
             class="startbtn active-bg cursor-pointer ff flex items-center justify-center"
           >
@@ -45,62 +44,72 @@ import {
   inject,
 } from "vue";
 import { getBanner } from "@/sport/api/index.js";
+import banner from "@/sport/images/banner.png";
 
 export default defineComponent({
   components: {},
   props: {},
   setup(props, { expose }) {
     const state = reactive({
-      bannerList: [],
+      bannerList: [
+        {
+          uri: banner,
+          order_id: "1",
+        },
+      ],
       swiper: undefined,
     });
     const swiperRef = ref();
     const LAYOUT = inject("LAYOUT");
+    const handleSetConfig = () => {
+      nextTick(() => {
+        state.swiper = new Swiper(".scontainer", {
+          speed: 300,
+          loop: true,
+          // height: 300, //你的slide高度
+          autoWidth: true,
+          autoplay: {
+            disableOnInteraction: false,
+            delay: 4000,
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".next",
+            prevEl: ".pre",
+          },
+          // resizeObserver: true,
+          // on: {
+          //   resize: function () {
+          //     // this.update(); //窗口变化时，更新Swiper的一些属性，如宽高等
+          //   },
+          // },
+        });
+
+        LAYOUT.setMethods({
+          swiperUpdateSize: () => {
+            setTimeout(() => {
+              const _swiperRect = swiperRef.value.getBoundingClientRect();
+              console.log(_swiperRect.width);
+              state.swiper.el.style.width = `${_swiperRect.width}px`;
+            }, 550);
+          },
+        });
+      });
+    };
     const getBannerList = () => {
       getBanner().then((res) => {
         if (res) {
-          state.bannerList = res;
-          nextTick(() => {
-            state.swiper = new Swiper(".scontainer", {
-              speed: 300,
-              loop: true,
-              height: 300, //你的slide高度
-              autoWidth: true,
-              autoplay: {
-                disableOnInteraction: false,
-                delay: 4000,
-              },
-              pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-              },
-              navigation: {
-                nextEl: ".next",
-                prevEl: ".pre",
-              },
-              // resizeObserver: true,
-              // on: {
-              //   resize: function () {
-              //     // this.update(); //窗口变化时，更新Swiper的一些属性，如宽高等
-              //   },
-              // },
-            });
-
-            LAYOUT.setMethods({
-              swiperUpdateSize: () => {
-                setTimeout(() => {
-                  const _swiperRect = swiperRef.value.getBoundingClientRect();
-                  console.log(_swiperRect.width);
-                  // state.swiper.el.style.width = `${_swiperRect.width}px`
-                }, 550);
-              },
-            });
-          });
+          // state.bannerList = res;
         }
       });
     };
     onMounted(() => {
-      getBannerList();
+      // getBannerList();
+      console.log(state.bannerList, "=======");
+      handleSetConfig();
     });
 
     expose({
@@ -134,23 +143,6 @@ export default defineComponent({
 }
 .swiper-wrapper {
   border-radius: 8px;
-  height: 420px;
-  @media (min-width: 1560px) and (max-width: 1919px) {
-    height: 380px;
-  }
-  @media (min-width: 1240px) and (max-width: 1559px) {
-    height: 320px;
-  }
-  @media (min-width: 960px) and (max-width: 1239px) {
-    height: 280px;
-  }
-  @media (min-width: 560px) and (max-width: 960px) {
-    height: 200px;
-  }
-  @media screen and (max-width: 560px) {
-    height: 140px;
-  }
-  // overflow: hidden;
 }
 .swiper-slide {
   background-size: auto 110%;

@@ -1,6 +1,7 @@
 import http from '@/sport/js/http'
 
-const HOST = window.location.host.match(/localhost/g) ? '' : 'http://47.242.226.50:7011'
+const HOST = window.location.host.match(/localhost/g) ? '' : 'https://api.pepexbet.com/api'
+// const HOST = ''
 
 /* ## 查看支持的运动类型列表
 * js

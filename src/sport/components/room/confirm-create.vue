@@ -11,7 +11,7 @@
         <div>AFTER THE CASINO IS CREATED,</div>
         THE CASINO WILL AUTOMATICALLY OPEN TO ACCEPT ALL BETS, PLAYERS ENTER THE
         CASINO BY “CASINO CODE”. CLICK "CLOSE CASINO TO CLOSE THE CASINO, THE
-        CASINO WILL NO LONGER ACCEPT BETS. AND THE USDT POOL CAN BE WITHDRAWN
+        CASINO WILL NO LONGER ACCEPT BETS. AND THE $PEPE POOL CAN BE WITHDRAWN
         AFTER ALL THE GAMES BETTED IN THE POOL ARE OVER
       </div>
       <div class="font-size-14 mt-24">SET THE POOL SIZE</div>
@@ -20,9 +20,9 @@
           class="flex-1 input"
           v-model="state.amount"
           type="number"
-          placeholder="Please enter the USDT amount"
+          placeholder="Please enter the $PEPE amount"
         />
-        <div class="roomConfirm active-bg color-white">USDT</div>
+        <div class="roomConfirm active-bg color-white">$PEPE</div>
       </div>
       <div class="color-gray mt-8 font-size-12">
         YOU CAN'T INCREASE OR DECREASE A BET HALFWAY THROUGH
@@ -77,7 +77,7 @@ export default defineComponent({
       const MAX = getUsdt.value || 9999999999999999;
       const MIN = 1;
       if (state.amount > MAX) {
-        message.warning(`${TIP.amountMax} your usdt amount`);
+        message.warning(`${TIP.amountMax} your $PEPE amount`);
         return;
       }
       if (state.amount < MIN) {

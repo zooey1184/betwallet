@@ -15,7 +15,7 @@
         class="active-color flex ff items-center justify-center font-weight-600 lg-title"
       >
         <div class="mr-24">${{ getBetInfo.stake }}</div>
-        <div class="ml-24">USDT</div>
+        <div class="ml-24">$PEPE</div>
       </div>
       <div class="active-color mt-8 mb-16" v-for="item in getBetList">
         <div

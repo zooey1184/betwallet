@@ -28,7 +28,7 @@
       </div>
       <div class="flex justify-center flex-0" style="width: 20%">
         <img
-          src="../../images/footerLogo.png"
+          src="../../images/logo.png"
           style="
             width: 100%;
             height: auto;

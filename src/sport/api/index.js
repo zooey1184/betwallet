@@ -1,7 +1,8 @@
 import http from '@/sport/js/http'
 
 // const HOST = window.location.host.match(/(localhost|39.107.224.254)/g) ? '' : 'http://47.242.226.50:7020'
-const HOST = ''
+const HOST = 'https://app.pepexbet.com/api'
+// const HOST = ''
 
 export const getSportList = async(id) => {
   return await http.get(`${HOST}/v1/tournaments/${id}`)

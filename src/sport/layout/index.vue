@@ -15,9 +15,9 @@
           class="h-70p mr-16 cursor-pointer overflow-hidden pos-r"
           @click="handleGoHome"
         >
-          <div class="flash-bg"></div>
-          <div class="flash"></div>
-          <img style="height: 100%" src="../images/icons/logo.png" />
+          <!-- <div class="flash-bg"></div> -->
+          <!-- <div class="flash"></div> -->
+          <img style="height: 100%" src="../images/logo.png" />
         </div>
         <HeaderSportItem />
         <!-- <div class="start ml-24">START THE GAME</div> -->

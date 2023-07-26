@@ -4,13 +4,13 @@
       CASINO INFORMATION
     </div>
     <div class="color-black text-align-center mt-16">
-      AMOUNT OF THE USDT POOL
+      AMOUNT OF THE $PEPE POOL
     </div>
     <div
       class="flex justify-center mt-8 font-weight-600 active-color"
       style="font-size: 48px"
     >
-      $10000 USDT
+      $10000 $PEPE
     </div>
 
     <div class="mt-16">

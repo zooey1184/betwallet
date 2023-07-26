@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-between px-24">
     <div class="flex items-center">
-      <img src="../../images/footerLogo.png" style="height: 32px" alt="" />
+      <img src="../../images/logo.png" style="height: 32px" alt="" />
       <!-- <img href="../../images/footer-logo.png" alt="" /> -->
       <div class="right">©2021 - Nesting - All Rights Reserved</div>
     </div>

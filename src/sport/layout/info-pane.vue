@@ -23,7 +23,7 @@
               style="width: 14px"
               alt=""
             />
-            ETH
+            <span style="margin-left: 4px">ETH</span>
           </div>
           <div class="active-color">{{ getEth }}</div>
         </div>
@@ -32,10 +32,10 @@
             <img
               src="../images/icons/USDT.png"
               class="mr-8"
-              style="width: 14px"
+              style="width: 18px"
               alt=""
             />
-            USDT
+            $PEPE
           </div>
           <div class="active-color">{{ getUsdt }}</div>
         </div>
@@ -47,7 +47,7 @@
               style="width: 14px"
               alt=""
             />
-            BET
+            <span style="margin-left: 4px">BET</span>
           </div>
           <div class="active-color">{{ getBet }}</div>
         </div>

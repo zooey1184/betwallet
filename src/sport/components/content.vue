@@ -50,7 +50,7 @@
           </div>
         </div>
       </div>
-      <ul class="p-16 shadow">
+      <ul class="p-16 shadow" style="margin-top: 24px">
         <div v-if="getCommingList?.length">
           <div class="ff mb-8">UPCOMING</div>
           <sport-item v-for="item in getCommingList" :info="item"></sport-item>
