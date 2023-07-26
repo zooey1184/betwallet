@@ -21,7 +21,7 @@
 
         <div class="mt-40">
           <LinearBox v-for="item in btnList" class="mb-32">
-            <div class="primary m_btn_px" @click="handleGoDoc">
+            <div @click="handleGoDoc" class="primary m_btn_px">
               {{ item.label }}
             </div>
           </LinearBox>
@@ -51,7 +51,7 @@
     </div>
     <div class="flex items-center">
       <LinearBox v-for="item in btnList" class="ml-24">
-        <div class="primary pc_btn_px" @click="handleGoDoc">
+        <div @click="handleGoDoc" class="primary pc_btn_px">
           {{ item.label }}
         </div>
       </LinearBox>
