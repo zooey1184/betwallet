@@ -4,7 +4,7 @@
 		<div class="zyqTcNT flexC"><p>Confirm bet</p></div>
 		<div class="QDTZT">
 			<div class="QDTZT-H">投注金额</div>
-			<div class="QDTZT-p flexC">$10000<span>（USDT）</span></div>
+			<div class="QDTZT-p flexC">$10000<span>（$PEPE）</span></div>
 		</div>
 		<div class="QDTZ-N Huans">
 			<div class="QDTZ-NT flexC"><img src="../../images/zyq0425/zyqTcN05.png"><p>2022-03-27  15:00</p></div>

@@ -5,12 +5,12 @@
         CASINO INFORMATION
       </div>
       <div class="color-black f3 text-align-center mt-16">
-        AMOUNT OF THE USDT POOL
+        AMOUNT OF THE $PEPE POOL
       </div>
       <div
         class="flex justify-center f5 mt-8 font-weight-600 active-color amount"
       >
-        ${{ poolsLeft }} USDT
+        ${{ poolsLeft }} $PEPE
       </div>
       <div class="flex items-center justify-between my-24">
         <div

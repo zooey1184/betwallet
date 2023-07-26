@@ -1,5 +1,5 @@
 <template>
-  <Icon>
+  <!-- <Icon>
     <template #component="svgProps">
       <svg
         t="1660992068358"
@@ -20,7 +20,9 @@
         ></path>
       </svg>
     </template>
-  </Icon>
+  </Icon> -->
+  <img style="width: 20px" src="../images/icons/USDT.png" alt="">
+  
 </template>
 
 <script>

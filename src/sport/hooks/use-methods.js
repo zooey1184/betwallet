@@ -18,11 +18,11 @@ const usePermission = () => {
   // 是否授权
   const hasPermission = async() => {
     const obj = await CONTRACT.value.erc_contract?.methods?.allowance(wallet_addr.value, ADDRESS.value.bet_address).call()
-    console.log(obj < 1e+23 ? '未授权' : '已授权')
-    if (obj < 1e+23) {
-      return false
-    } else {
+    console.log(wallet_addr.value, ADDRESS.value.bet_address, '\n', obj, obj < 1e+23 ? '未授权' : '已授权')
+    if (obj > 0) {
       return true
+    } else {
+      return false
     }
   }
 

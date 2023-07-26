@@ -1,11 +1,11 @@
 <template>
-  <DiscordIcon class="iconFont" />
-  <VkIcon class="iconFont" />
+  <!-- <DiscordIcon class="iconFont" /> -->
+  <!-- <VkIcon class="iconFont" /> -->
   <TwitterIcon
     class="iconFont"
-    @click="handleGo('https://twitter.com/BetWeb3')"
+    @click="handleGo('https://twitter.com/PEPE_X_BET')"
   />
-  <YoutubeIcon class="iconFont" />
+  <TgIcon class="iconFont" @click='handleGo("https://t.me/PEPE_X_BET")' />
 </template>
 
 <script>
@@ -14,11 +14,13 @@ import DiscordIcon from "../icons/discord.vue";
 import VkIcon from "../icons/vk.vue";
 import TwitterIcon from "../icons/twitter.vue";
 import YoutubeIcon from "../icons/youtube.vue";
+import TgIcon from '../icons/tg.vue'
 
 export default defineComponent({
   components: {
     DiscordIcon,
     VkIcon,
+    TgIcon,
     TwitterIcon,
     YoutubeIcon,
   },

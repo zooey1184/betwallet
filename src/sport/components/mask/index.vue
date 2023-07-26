@@ -148,7 +148,7 @@ export default defineComponent({
     max-width: 480px;
     display: block;
     margin: 0 auto;
-    background: #fff;
+    background: #f5f5f5;
     position: relative;
     border-radius: 18px;
     top: 45%;

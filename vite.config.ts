@@ -15,8 +15,10 @@ export default defineConfig({
   server: {
     proxy: {
       // '/v1': 'http://47.242.226.50:7020',
-      '/v2': 'http://47.242.226.50:7020',
-      '/v1': 'https://test-app.betweb3.org',
+      // '/v2': 'http://47.242.226.50:7020',
+      '/v2': 'https://api.pepexbet.com/api',
+      // '/v1': 'https://test-app.betweb3.org',
+      '/v1': 'https://api.pepexbet.com/api'
       // '/v2': 'https://test-app.betweb3.org'
     }
   },

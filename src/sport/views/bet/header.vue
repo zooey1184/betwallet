@@ -2,7 +2,7 @@
   <section>
     <div class="gray-9 font-size-20">BET REWARDS</div>
     <div class="gray mt-24">
-      Adding USDT to create casino or betting to Get BET Token
+      Adding $PEPE to create casino or betting to Get BET Token
     </div>
     <div class="IndzhiB">
       <div class="IndzhiBP">BET Token</div>

@@ -20,7 +20,7 @@
             <span>{{ getTotalBetC[0] }}</span>
             <div style="line-height: 1.9">{{ getTotalBetC[1] }}</div>
           </div>
-          <div class="InddanD f1">USDT</div>
+          <div class="InddanD f1">$PEPE</div>
         </div>
       </div>
       <div class="InddanN wow slideInUp" data-wow-duration="1.4s">
@@ -30,7 +30,7 @@
             <span>{{ getPoolsCalc[0] }}</span>
             <div style="line-height: 1.9">{{ getPoolsCalc[1] }}</div>
           </div>
-          <div class="InddanD f1">USDT</div>
+          <div class="InddanD f1">$PEPE</div>
         </div>
       </div>
       <div class="InddanN wow slideInUp" data-wow-duration="1.8s">
@@ -46,9 +46,9 @@
     </div>
 
     <div class="gray-9">
-      <div>BET Token available per bet of 1USDT this round: 0.8</div>
+      <div>BET Token available per bet of 1$PEPE this round: 0.8</div>
       <div>
-        BET Token available for each USDT bet in the pool this round: 0.2
+        BET Token available for each $PEPE bet in the pool this round: 0.2
       </div>
     </div>
 
