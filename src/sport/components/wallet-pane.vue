@@ -48,7 +48,7 @@
               <div class="navNu">0.00</div>
             </div>
             <div class="navNH flexC">
-              <img src="../images/zyq0425/pepe.png" />
+              <img src="../images/icons/USDT.png" />
               <p>$PEPE</p>
               <div class="navNu">0.015</div>
             </div>
