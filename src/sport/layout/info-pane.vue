@@ -47,7 +47,7 @@
               style="width: 14px"
               alt=""
             />
-            <span style="margin-left: 4px">BET</span>
+            <span style="margin-left: 4px">PBET</span>
           </div>
           <div class="active-color">{{ getBet }}</div>
         </div>
@@ -155,15 +155,15 @@
             />
           </div>
         </div>
-        <div>
+        <!-- <div>
           <div class="input-wrap flex items-center justify-between">
-            <div class="input f4">0 BET</div>
+            <div class="input f4">0 PBET</div>
             <div class="btn-input ff">CLAIM</div>
           </div>
           <div class="ff active-color mt-8 cursor-pointer" @click="handleGoBet">
             REWARD DETAILS
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div
