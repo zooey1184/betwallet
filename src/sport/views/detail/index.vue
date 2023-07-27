@@ -1,7 +1,7 @@
 <template>
   <!-- <div class="imgBg"></div> -->
   <div class="wrapPane">
-    <TopPane :address="state.detail.address" :time="state.detail.startTime" />
+    <TopPane :time="state.detail?.startTime" />
     <VsPane
       v-if="state.detail.selections"
       :time="state.detail.startTime"

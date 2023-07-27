@@ -140,8 +140,8 @@ export default defineComponent({
         const AMOUNT = web3.utils.toWei(`${item.betValue}`, "mwei");
 
         const tolerance = getBetConfig?.value?.tolerance || 0;
-        // const minOdds = parseInt(item.activeValue * (100 - tolerance));
-        const minOdds = parseInt(item.activeValue * 100);
+        const minOdds = Math.floor(parseInt(item.activeValue * (100 - tolerance)));
+        // const minOdds = parseInt(item.activeValue * 100);
         _list.push({
           marketId: item.oddsId,
           tenant: ROOM?.code?.value,

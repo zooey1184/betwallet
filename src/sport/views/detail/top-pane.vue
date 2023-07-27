@@ -11,7 +11,7 @@
     <div class="flex items-center">
       <div class="logo"></div>
       <div class="flex items-center flex-wrap">
-        <div class="gutter">
+        <div class="gutter" v-if='address'>
           {{ address }}
         </div>
         <div class="flex items-center gutter" v-if="getTime">

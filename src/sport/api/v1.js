@@ -1,7 +1,7 @@
 import http from '@/sport/js/http'
 
-const HOST = window.location.host.match(/localhost/g) ? '' : 'https://api.pepexbet.com/api'
-// const HOST = ''
+// const HOST = window.location.host.match(/localhost/g) ? '' : 'https://api.pepexbet.com/api'
+const HOST = ''
 
 /* ## 查看支持的运动类型列表
 * js
@@ -11,7 +11,7 @@ const HOST = window.location.host.match(/localhost/g) ? '' : 'https://api.pepexb
 * req: http://47.242.226.50:7011/v1/sports
 */
 export const getSports = async() => {
-  return http.get(`${HOST}/v1/sports`)
+  return http.get(`${HOST}/api/v1/sports`)
 }
 
 /* ## 查询指定运动类型下的赛事列表
@@ -22,7 +22,7 @@ js
   req: http://47.242.226.50:7011/v1/tournaments/sr:sport:1
 */
 export const getSportList = async(id) => {
-  return await http.get(`${HOST}/v1/tournaments/${id}`)
+  return await http.get(`${HOST}/api/v1/tournaments/${id}`)
 }
 
 
@@ -36,7 +36,7 @@ js
   req: http://47.242.226.50:7011/v1/events/schedule/sr:tournament:7
 */
 export const getSportTournament = async(id, data) => {
-  return await http.get(`${HOST}/v1/events/schedule/${id}`, {data})
+  return await http.get(`${HOST}/api/v1/events/schedule/${id}`, {data})
 }
 
 /* ## 查询指定比赛的赔率 - 测试环境不可用
@@ -47,7 +47,7 @@ js
   req: http://47.242.226.50:7020/v1/sports/events/probabilities/sr:match:27636100
 */
 export const getProbabilities = async(id) => {
-  return await http.get(`${HOST}/v1/sports/events/probabilities/${id}`)
+  return await http.get(`${HOST}/api/v1/sports/events/probabilities/${id}`)
 }
 
 /* ## 下单前预校验 - 是否允许下单
@@ -64,7 +64,7 @@ js
   req: http://47.242.226.50:7020/v1/bet/order/preCheck
 */
 export const preCheck = async(data) => {
-  return await http.post(`${HOST}/v1/bet/order/preCheck`, {data})
+  return await http.post(`${HOST}/api/v1/bet/order/preCheck`, {data})
 }
 
 /* ## 查询我的订单
@@ -78,7 +78,7 @@ js
   req: http://47.242.226.50:7020/v1/bet/order/query
 */
 export const orderQuery = async(data) => {
-  return await http.post(`${HOST}/v1/bet/order/query`, {data})
+  return await http.post(`${HOST}/api/v1/bet/order/query`, {data})
 }
 /* ## 下单
 ```js
@@ -96,9 +96,9 @@ export const orderQuery = async(data) => {
   req: http://47.242.226.50:7020/v1/bet/order/save
 */
 export const orderSave = async(data) => {
-  return http.post(`${HOST}/v1/bet/order/save`, {data})
+  return http.post(`${HOST}/api/v1/bet/order/save`, {data})
 }
 
 export const getBanner = async(data) => {
-  return http.get(`${HOST}/v1/system/getBannerList`, {data})
+  return http.get(`${HOST}/api/v1/system/getBannerList`, {data})
 }

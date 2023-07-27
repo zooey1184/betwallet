@@ -26,7 +26,7 @@
             type="text"
             :value="getLeftValue"
             @click="handlePick('home')"
-            class="zyqulNI"
+            class="zyqulNI ml-8"
             :class="{ active: getBetActive === 'home' }"
             readonly
           />
@@ -51,7 +51,7 @@
             type="text"
             :value="getRightValue"
             @click="handlePick('away')"
-            class="zyqulNI"
+            class="zyqulNI mr-8"
             :class="{ active: getBetActive === 'away' }"
             readonly
           />
