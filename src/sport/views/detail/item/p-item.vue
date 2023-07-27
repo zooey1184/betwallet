@@ -2,13 +2,13 @@
   <div class="itemWrap primary-bg">
     <div class="flex items-center">
       <div class="flex-1 sideItem flex items-center justify-between">
-        <div class="logo">
+        <!-- <div class="logo">
           <img
             src="../../../images/icons/sportItem-home-icon.png"
             style="width: 100%"
             alt=""
           />
-        </div>
+        </div> -->
         <div class="flex-1">
           <div class="flex items-center justify-between flex-1 insideItem">
             <div class="name betNum ff ellipsis_2">
@@ -51,13 +51,13 @@
             <div class="name betNum ellipsis_2 ff">{{ awayInfo.name }}</div>
           </div>
         </div>
-        <div class="logo">
+        <!-- <div class="logo">
           <img
             src="../../../images/icons/sportItem-away-icon.png"
             style="width: 100%"
             alt=""
           />
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

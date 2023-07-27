@@ -15,13 +15,13 @@
           {{ HomeTeam }}
         </div>
         <div class="flex items-center leftIcon">
-          <div class="icon flex items-center">
+          <!-- <div class="icon flex items-center">
             <img
               src="../../images/icons/sportItem-home-icon.png"
               style="width: 100%"
               alt=""
             />
-          </div>
+          </div> -->
           <input
             type="text"
             :value="getLeftValue"
@@ -55,13 +55,13 @@
             :class="{ active: getBetActive === 'away' }"
             readonly
           />
-          <div class="icon flex items-center">
+          <!-- <div class="icon flex items-center">
             <img
               src="../../images/icons/sportItem-away-icon.png"
               style="width: 100%"
               alt=""
             />
-          </div>
+          </div> -->
         </div>
         <div class="rightTitle ff">
           {{ AwayTeam }}

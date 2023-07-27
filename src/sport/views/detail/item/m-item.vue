@@ -4,13 +4,13 @@
 
     <div class="flex items-center justify-between">
       <div class="flex items-center sideItem">
-        <div class="logo" style="margin-right: 6px">
+        <!-- <div class="logo" style="margin-right: 6px">
           <img
             src="../../../images/icons/sportItem-home-icon.png"
             style="width: 100%"
             alt=""
           />
-        </div>
+        </div> -->
         <div class="flex justify-end flex-1" style="width: calc(50% - 55px)">
           <div class="betNum ff ellipsis_2 text-align-right">
             {{ homeInfo.name }}
@@ -21,13 +21,13 @@
         <div class="flex flex-1" style="width: calc(50% - 55px)">
           <div class="betNum ff">{{ awayInfo.name }}</div>
         </div>
-        <div class="logo" style="margin-left: 6px">
+        <!-- <div class="logo" style="margin-left: 6px">
           <img
             src="../../../images/icons/sportItem-away-icon.png"
             style="width: 100%"
             alt=""
           />
-        </div>
+        </div> -->
       </div>
     </div>
 
