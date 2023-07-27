@@ -218,7 +218,7 @@ export default defineComponent({
       getBalanceOf(erc_contract, state.id, "mWei").then((res) => {
         state.usdt = res;
       });
-      erc_contract.methods?.decimals().then(res => {
+      erc_contract.methods?.decimals().call().then(res => {
         state.uintX = res
       })
     };
