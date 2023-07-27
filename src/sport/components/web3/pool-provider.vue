@@ -28,6 +28,7 @@ export default defineComponent({
     const ACCOUNTS = inject("ACCOUNTS");
     const CONTRACT = inject("CONTRACT");
     const ROOM = inject("ROOM");
+    const UTILS = inject('UTILS')
 
     const handleGetReward = async (n) => {
       const res = await CONTRACT.value.football_contract?.methods["rewards"](
@@ -80,10 +81,10 @@ export default defineComponent({
     const getPoolsLeft = computed(() => {
       const val = getPools.value;
       if (val) {
-        const init = web3.utils.fromWei(`${val.initAmount}`, "mwei") || 0;
-        const bet = web3.utils.fromWei(`${val.betTotalAmount}`, "mwei") || 0;
-        const pay = web3.utils.fromWei(`${val.payForTotalAmount}`, "mwei") || 0;
-
+        // const init = web3.utils.fromWei(`${val.initAmount}`, "mwei") || 0;
+        const init = UTILS.decimals(val.initAmount)
+        const bet = UTILS.decimals(val.betTotalAmount)
+        const pay = UTILS.decimals(val.payForTotalAmount)
         const t = parseInt(init) + parseInt(bet) - parseInt(pay);
         return t;
       }
@@ -94,9 +95,8 @@ export default defineComponent({
     const getPoolsTotal = computed(() => {
       const val = getPools.value;
       if (val) {
-        const init = web3.utils.fromWei(`${val.initAmount}`, "mwei") || 0;
-        // const bet = web3.utils.fromWei(`${val.betTotalAmount}`, "mwei") || 0;
-        // const pay = web3.utils.fromWei(`${val.payForTotalAmount}`, "mwei") || 0;
+        // const init = web3.utils.fromWei(`${val.initAmount}`, "mwei") || 0;
+        const init = UTILS.decimals(val.initAmount)
 
         const t = parseInt(init);
         return t;

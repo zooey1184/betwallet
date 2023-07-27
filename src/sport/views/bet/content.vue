@@ -100,7 +100,7 @@ export default defineComponent({
     });
     const RESULT = inject("RESULT");
     const POOLS = inject("POOLS");
-
+    const UTILS = inject('UTILS')
     const getTotalBet = computed(() => RESULT?.totalBet?.value || 0);
     const getPools = computed(() => POOLS.pools?.value);
     const getRewards = computed(() => POOLS.rewards?.value);
@@ -141,9 +141,10 @@ export default defineComponent({
     const getPoolsCalc = computed(() => {
       if (getPools?.value?.initAmount) {
         const val = getPools.value;
-        const init = web3.utils.fromWei(`${val.initAmount}`, "mwei") || 0;
-        const bet = web3.utils.fromWei(`${val.betTotalAmount}`, "mwei") || 0;
-        const pay = web3.utils.fromWei(`${val.payForTotalAmount}`, "mwei") || 0;
+        // const init = web3.utils.fromWei(`${val.initAmount}`, "mwei") || 0;
+        const init = UTILS.decimals(val.initAmount)
+        const bet = UTILS.decimals(val.betTotalAmount)
+        const pay = UTILS.decimals(val.payForTotalAmount)
 
         const t = parseInt(init) + parseInt(bet) - parseInt(pay);
         return handleDealNum(t);
@@ -154,8 +155,10 @@ export default defineComponent({
     const getRewardCalc = computed(() => {
       const val = getRewards.value;
       if (val && val?.totalRewards) {
-        const claim = web3.utils.fromWei(`${val.totalClaimed}`, "ether") || 0;
-        const Reward = web3.utils.fromWei(`${val.totalRewards}`, "ether") || 0;
+        // const claim = web3.utils.fromWei(`${val.totalClaimed}`, "ether") || 0;
+        const claim = UTILS.decimals(val.totalClaimed)
+        // const Reward = web3.utils.fromWei(`${val.totalRewards}`, "ether") || 0;
+        const Reward = UTILS.decimals(val.totalRewards)
         const t = parseFloat(Reward) - parseFloat(claim);
         return handleDealNum(t);
       } else {
@@ -166,8 +169,10 @@ export default defineComponent({
     const getRemindBet = computed(() => {
       const val = getRewards?.value;
       if (val && val?.totalRewards) {
-        const claim = web3.utils.fromWei(`${val.totalClaimed}`, "ether") || 0;
-        const Reward = web3.utils.fromWei(`${val.totalRewards}`, "ether") || 0;
+        // const claim = web3.utils.fromWei(`${val.totalClaimed}`, "ether") || 0;
+        const claim = UTILS.decimals(val.totalClaimed)
+        // const Reward = web3.utils.fromWei(`${val.totalRewards}`, "ether") || 0;
+        const Reward = UTILS.decimals(val.totalRewards)
         const left = parseFloat(Reward) - parseFloat(claim);
         return {
           total: parseFloat(Reward),

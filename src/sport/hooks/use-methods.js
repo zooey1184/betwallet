@@ -11,6 +11,7 @@ const usePermission = () => {
   const ADDRESS = inject('ADDRESS')
   const ACCOUNTS = inject('ACCOUNTS')
   const CONTRACT = inject('CONTRACT')
+  const UTILS = inject('UTILS')
   const wallet_addr = computed(() => ACCOUNTS.accounts.value[0])
   // bet_address  usdt_address: 下注合约地址
   const usdt_address = computed(() => ADDRESS.value.usdt_address)
@@ -32,7 +33,8 @@ const usePermission = () => {
   const createPool = async (amout, callback) => {
     state.createLoading = true
     const gasPrice = await web3.eth.getGasPrice()
-    const AMOUNT = web3.utils.toWei(`${amout}`, 'mwei')
+    // const AMOUNT = web3.utils.toWei(`${amout}`, 'mwei')
+    const AMOUNT = UTILS.decimals(amount)
     const t = await CONTRACT.value.football_contract?.methods.createFundPool(AMOUNT).encodeABI()
     const params = {
       from: wallet_addr.value,
