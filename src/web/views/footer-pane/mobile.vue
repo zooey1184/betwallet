@@ -23,7 +23,7 @@
         <!-- <a href="https://medium.com/@betweb3official" target="_blank">
           <img class="icon" src="../../assets/icon-m.png" alt="" />
         </a> -->
-        <a href="https://t.me/PEPE_X_BET " target="_blank">
+        <a href="https://t.me/PBET_Channel" target="_blank">
           <img src="../../assets/tg.png" class="icon" alt="">
         </a>
 

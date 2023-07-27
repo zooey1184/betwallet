@@ -87,7 +87,7 @@
               class="iconFont"
               @click="handleLink('https://curry-steven.gitbook.io/untitled')"
             /> -->
-            <a href="https://t.me/PEPE_X_BET " target="_blank">
+            <a href="https://t.me/PBET_Channel" target="_blank">
           <img src="../../assets/tg.png" class="icon" alt="">
         </a>
             <TwitterOutlined
