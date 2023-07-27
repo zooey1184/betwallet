@@ -120,6 +120,7 @@ export default defineComponent({
     });
     const CONTRACT = inject("CONTRACT");
     const SPORT_BET = inject("SPORT_BET");
+    const UTILS = inject('UTILS')
     const ROOM = inject("ROOM");
     const { handleAuth } = usePermission();
 
@@ -137,7 +138,8 @@ export default defineComponent({
       );
       const _list = [];
       list.forEach((item) => {
-        const AMOUNT = web3.utils.toWei(`${item.betValue}`, "mwei");
+        // const AMOUNT = web3.utils.toWei(`${item.betValue}`, "mwei");
+        const AMOUNT = UTILS.decimals(item.betValue)
 
         const tolerance = getBetConfig?.value?.tolerance || 0;
         const minOdds = Math.floor(parseInt(item.activeValue * (100 - tolerance)));
@@ -214,31 +216,31 @@ export default defineComponent({
         market_id: params.marketId,
       }
       console.log(params)
-      preCheck(query).then((res) => {
-        if (res) {
-          handleAuth(() => {
-            handleBet(params, (h, r, e) => {
-              if (r) {
-                message.success("BET SUCCESS");
-                setTimeout(() => {
-                  SPORT_BET.clear();
-                  RESULT.handleGetResultList();
-                  state.loading = false;
-                  state.isOver = true;
-                });
-              }
-              if (e) {
-                state.loading = false;
-                state.isOver = false;
-              }
-            });
-          });
-        } else {
-          message.warning(TIP.preCheck);
-          state.loading = false;
-          state.isOver = false;
-        }
-      });
+      // preCheck(query).then((res) => {
+      //   if (res) {
+      //     handleAuth(() => {
+      //       handleBet(params, (h, r, e) => {
+      //         if (r) {
+      //           message.success("BET SUCCESS");
+      //           setTimeout(() => {
+      //             SPORT_BET.clear();
+      //             RESULT.handleGetResultList();
+      //             state.loading = false;
+      //             state.isOver = true;
+      //           });
+      //         }
+      //         if (e) {
+      //           state.loading = false;
+      //           state.isOver = false;
+      //         }
+      //       });
+      //     });
+      //   } else {
+      //     message.warning(TIP.preCheck);
+      //     state.loading = false;
+      //     state.isOver = false;
+      //   }
+      // });
     };
 
     const handleGetBetInfo = () => {
@@ -248,7 +250,7 @@ export default defineComponent({
       );
       const _list = [];
       list.forEach((item) => {
-        const AMOUNT = web3.utils.toWei(`${item.betValue}`, "mwei");
+        const AMOUNT = UTILS.decimals(item.betValue)
 
         const tolerance = getBetConfig?.value?.tolerance || 0;
         const minOdds = parseInt(item.activeValue * (100 - tolerance));

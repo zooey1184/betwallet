@@ -37,6 +37,7 @@ export default defineComponent({
       bet: 0,
       usdt: "--",
       isNew: true,
+      uintX: 6
     });
     // 点击连接钱包
     const handleConnect = () => {
@@ -217,6 +218,9 @@ export default defineComponent({
       getBalanceOf(erc_contract, state.id, "mWei").then((res) => {
         state.usdt = res;
       });
+      erc_contract.methods?.decimals().then(res => {
+        state.uintX = res
+      })
     };
 
     const getBalanceOf = async (contract, account, unit = "wei") => {
@@ -235,6 +239,11 @@ export default defineComponent({
     const getCnotract = computed(() => state.contract);
 
     provide("CONTRACT", getCnotract);
+    provide('UTILS', {
+      decimals: (amount) => {
+        return `${amount * (10 ** state.uintX)}`
+      }
+    })
 
     onMounted(() => {
       init(() => {
