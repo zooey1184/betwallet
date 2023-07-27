@@ -5,7 +5,7 @@
     class="iconFont"
     @click="handleGo('https://twitter.com/PEPE_X_BET')"
   />
-  <TgIcon class="iconFont" @click='handleGo("https://t.me/PEPE_X_BET")' />
+  <TgIcon class="iconFont" @click='handleGo("https://t.me/PBET_Channel")' />
 </template>
 
 <script>
