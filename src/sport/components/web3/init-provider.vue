@@ -239,10 +239,16 @@ export default defineComponent({
 
     const getCnotract = computed(() => state.contract);
 
+    const getBn = (amount, decimals) => {
+      
+    }
     provide("CONTRACT", getCnotract);
     provide('UTILS', {
       decimals: (amount, isInt=false) => {
-        return isInt ? amount * (10 ** state.uintX) : `${BigInt(amount * (10 ** state.uintX))}`
+        const BN = web3.utils.BN;
+        const t = parseInt(state.uintX)
+      
+        return amount ? `${BigInt(amount * (10 ** t))}` : '0'
       }
     })
 
