@@ -219,6 +219,7 @@ export default defineComponent({
         state.usdt = res;
       });
       erc_contract.methods?.decimals().call().then(res => {
+        console.log(res, '=========unitX===== dedimals')
         state.uintX = res
       })
     };
@@ -240,8 +241,8 @@ export default defineComponent({
 
     provide("CONTRACT", getCnotract);
     provide('UTILS', {
-      decimals: (amount) => {
-        return `${amount * (10 ** state.uintX)}`
+      decimals: (amount, isInt=false) => {
+        return isInt ? amount * (10 ** state.uintX) : `${BigInt(amount * (10 ** state.uintX))}`
       }
     })
 

@@ -18,6 +18,7 @@ const usePermission = () => {
 
   // 是否授权
   const hasPermission = async () => {
+    console.log('=====进入授权=====')
     const obj = await CONTRACT.value.erc_contract?.methods
       ?.allowance(wallet_addr.value, ADDRESS.value.bet_address)
       .call()
@@ -34,7 +35,8 @@ const usePermission = () => {
     state.createLoading = true
     const gasPrice = await web3.eth.getGasPrice()
     // const AMOUNT = web3.utils.toWei(`${amout}`, 'mwei')
-    const AMOUNT = UTILS.decimals(amount)
+    const AMOUNT = UTILS.decimals(amout)
+    console.log(AMOUNT, '==========AMOUNT')
     const t = await CONTRACT.value.football_contract?.methods.createFundPool(AMOUNT).encodeABI()
     const params = {
       from: wallet_addr.value,

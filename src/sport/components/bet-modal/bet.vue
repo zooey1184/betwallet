@@ -215,32 +215,32 @@ export default defineComponent({
         bet_side: params.betSide,
         market_id: params.marketId,
       }
-      console.log(params)
-      // preCheck(query).then((res) => {
-      //   if (res) {
-      //     handleAuth(() => {
-      //       handleBet(params, (h, r, e) => {
-      //         if (r) {
-      //           message.success("BET SUCCESS");
-      //           setTimeout(() => {
-      //             SPORT_BET.clear();
-      //             RESULT.handleGetResultList();
-      //             state.loading = false;
-      //             state.isOver = true;
-      //           });
-      //         }
-      //         if (e) {
-      //           state.loading = false;
-      //           state.isOver = false;
-      //         }
-      //       });
-      //     });
-      //   } else {
-      //     message.warning(TIP.preCheck);
-      //     state.loading = false;
-      //     state.isOver = false;
-      //   }
-      // });
+      console.log('components/bet-modal/bet  ==============> handleBetFn:params ', params)
+      preCheck(query).then((res) => {
+        if (res) {
+          handleAuth(() => {
+            handleBet(params, (h, r, e) => {
+              if (r) {
+                message.success("BET SUCCESS");
+                setTimeout(() => {
+                  SPORT_BET.clear();
+                  RESULT.handleGetResultList();
+                  state.loading = false;
+                  state.isOver = true;
+                });
+              }
+              if (e) {
+                state.loading = false;
+                state.isOver = false;
+              }
+            });
+          });
+        } else {
+          message.warning(TIP.preCheck);
+          state.loading = false;
+          state.isOver = false;
+        }
+      });
     };
 
     const handleGetBetInfo = () => {
