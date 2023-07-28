@@ -243,12 +243,19 @@ export default defineComponent({
       
     }
     provide("CONTRACT", getCnotract);
+    function toBigBumber(numstr, digits) {
+      const [a, d] = numstr?.split(',')
+      const _d = d || ''
+      const dlength = _d?.length || 0
+      const dnumber = digits - dlength
+      return `${a}${_d}${'0'.repeat(dnumber)}`
+    }
     provide('UTILS', {
       decimals: (amount, isInt=false) => {
-        const BN = web3.utils.BN;
-        const t = parseInt(state.uintX)
-      
+        const t = parseInt(state.uintX) || 1
+
         return amount ? `${BigInt(amount * (10 ** t))}` : '0'
+        // return amount ? toBigBumber(`${amount}`, t) : '0'
       }
     })
 
