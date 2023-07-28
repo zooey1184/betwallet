@@ -127,7 +127,7 @@ export default defineComponent({
       if (typeof web3 !== "undefined") {
         web3 = new Web3(web3.currentProvider);
         const accounts = await ethereum.request({ method: "eth_accounts" });
-        console.log(accounts);
+        console.log('web3: eth_accounts =====\n', accounts);
         const ACCOUNTS = window.localStorage.getItem("ACCOUNTS");
         if (ACCOUNTS?.length) {
           try {
@@ -215,7 +215,7 @@ export default defineComponent({
         // state.bet = res;
         state.bet = 0;
       });
-      getBalanceOf(erc_contract, state.id, "mWei").then((res) => {
+      getBalanceOf(erc_contract, state.id ).then((res) => {
         state.usdt = res;
       });
       erc_contract.methods?.decimals().call().then(res => {
@@ -226,7 +226,8 @@ export default defineComponent({
 
     const getBalanceOf = async (contract, account, unit = "wei") => {
       const res = await contract.methods.balanceOf(account).call();
-      return web3.utils.fromWei(res, unit);
+      // return web3.utils.fromWei(res, unit);
+      return res
     };
 
     const handleGetEth = async (account) => {
@@ -239,24 +240,34 @@ export default defineComponent({
 
     const getCnotract = computed(() => state.contract);
 
-    const getBn = (amount, decimals) => {
-      
-    }
     provide("CONTRACT", getCnotract);
+
     function toBigBumber(numstr, digits) {
-      const [a, d] = numstr?.split(',')
+      const [a, d] = numstr?.split('.')
       const _d = d || ''
       const dlength = _d?.length || 0
       const dnumber = digits - dlength
-      return `${a}${_d}${'0'.repeat(dnumber)}`
+      if (dnumber >=0) {
+        return `${a}${_d}${'0'.repeat(dnumber)}`
+      } else {
+        const t = `${a}${_d}` 
+        const sa = t.substring(0, t.length+dnumber)
+        const ea = t.substring(t.length + dnumber, t.length)
+        return `${sa}.${ea}`
+      }
     }
+
+    const getDigits = computed(() => state.uintX)
     provide('UTILS', {
       decimals: (amount, isInt=false) => {
         const t = parseInt(state.uintX) || 1
-
-        return amount ? `${BigInt(amount * (10 ** t))}` : '0'
-        // return amount ? toBigBumber(`${amount}`, t) : '0'
-      }
+        // return amount ? `${BigInt(amount * (10 ** t))}` : '0'
+        return amount ? toBigBumber(`${amount}`, t) : '0'
+      },
+      toBN(str, digits) {
+        return toBigBumber(str, digits)
+      },
+      getDigits: getDigits
     })
 
     onMounted(() => {

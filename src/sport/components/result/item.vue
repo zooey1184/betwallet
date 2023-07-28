@@ -52,15 +52,33 @@
 
       <div class="rightPane">
         <div class="f1 font-size-12 line-height-12 gray">Bet Amount</div>
-        <div class="font-size-18 ff gray-9">
+        <div class="font-size-18 ff gray-9 flex items-center justify-end">
           <UsdtIcon />
-          {{ info.bet_amount }}
+          <Tooltip placement='left'>
+            <template #title>
+              <div>
+                <div>Bet Amount</div>
+                {{info.bet_amount}}
+              </div>
+            </template>
+            <div class="ellipsis-1 " style="width: 80px" >
+              {{ info.bet_amount }}
+            </div>
+          </Tooltip>
         </div>
         <div class="f1 font-size-12 grey line-height-14">Return</div>
-        <div class="flex items-center font-size-18 ff">
+        <div class="flex items-center font-size-18 ff justify-end">
           <UsdtIcon />
-          <div v-if="info.isSettled">{{ info.win_amount }}</div>
-          <div v-else>{{ info.bet_amount * info.odds }}</div>
+          <Tooltip placement='left'>
+            <template #title>
+              <div>
+                <div>Return</div>
+                {{info.isSettled ? info.win_amount : (info.bet_amount * info.odds)}}
+              </div>
+            </template>
+            <div v-if="info.isSettled" class="ellipsis-1" style="width: 120px">{{ info.win_amount }}</div>
+            <div v-else class="ellipsis-1" style="width: 120px" >{{ info.bet_amount * info.odds }}</div>
+          </Tooltip>
         </div>
         <div
           v-if="info.win_amount > 0 && info.is_claimed === '0'"
@@ -78,12 +96,13 @@
 import { computed, defineComponent, inject, reactive } from "vue";
 import useMethods from "@/sport/hooks/use-claim";
 import usePermission from "@/sport/hooks/use-methods";
-import { message } from "ant-design-vue";
+import { message, Tooltip } from "ant-design-vue";
 import UsdtIcon from "../usdt-icon.vue";
 
 export default defineComponent({
   components: {
     UsdtIcon,
+    Tooltip,
   },
   props: {
     info: {
@@ -255,5 +274,8 @@ export default defineComponent({
   right: 0;
   top: 15px;
   text-align: right;
+}
+.bk {
+  word-break: break-all;
 }
 </style>
